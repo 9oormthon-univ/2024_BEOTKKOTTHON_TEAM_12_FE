@@ -1,11 +1,13 @@
 import React from 'react';
-import { ProfileCard } from '../../components/index';
+import * as S from './style';
+import { UserSection, MenuItem } from '../../components';
 
 const MyPage: React.FC = () => {
   return (
-    <div>
-      <ProfileCard />
-    </div>
+    <S.MenuItemWrapper>
+      <UserSection />
+      <MenuItem />
+    </S.MenuItemWrapper>
   );
 };
 

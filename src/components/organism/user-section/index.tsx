@@ -1,0 +1,28 @@
+import React from 'react';
+import { ProfileCard, ProgressBar } from '../..';
+import styled from 'styled-components';
+
+export const UserSectionWrapper = styled.div`
+  background-color: #fff;
+`;
+const UserSection: React.FC = () => {
+  const currentLevel = {
+    level: '새싹',
+    nextLevel: '목화',
+    currentExp: 100,
+    nextLevelExp: 200,
+  };
+  return (
+    <UserSectionWrapper>
+      <ProfileCard />
+      <ProgressBar
+        level={currentLevel.level}
+        nextLevel={currentLevel.nextLevel}
+        currentExp={currentLevel.currentExp}
+        nextLevelExp={currentLevel.nextLevelExp}
+      />
+    </UserSectionWrapper>
+  );
+};
+
+export default UserSection;
