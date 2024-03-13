@@ -86,7 +86,7 @@ const GlobalStyle = createGlobalStyle`
     max-width: 375px; 
     width: 100%; 
     margin: 0 auto; 
-    background-color: #fbfbfb;
+    background-color: #ffffff;
     border-radius: 10px;
   }
 

@@ -9,7 +9,7 @@ interface TextLabelProps {
 }
 
 const TextLabelWrapper = styled.div<{ size: number; weight?: number; color?: string }>`
-  color: ${({ color }) => color || '#3C3C3C'};
+  color: ${({ color }) => color || 'var(--grey-7)'};
   font-size: ${({ size }) => `${size}px`};
   font-weight: ${({ weight }) => weight || 500};
 `;

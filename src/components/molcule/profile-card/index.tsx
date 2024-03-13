@@ -6,31 +6,35 @@ import profileIconLevel1 from '../../../assets/icons/profile-icon-level1.svg';
 import styled from 'styled-components';
 
 export const ProfileCardWrapper = styled.div`
+  width: 80%;
   display: flex;
-  padding: 10px;
+  justify-content: space-around;
+  padding: 10px 15px;
+  margin: 20px auto 10px auto;
   border-radius: 10px;
 
-  background-color: #fbfbfb; //grey1
-  border: 1px solid #e2e2e2; //grey3
+  background-color: var(--grey-1);
+  border: 1px solid var(--grey-3);
 `;
 
 export const RightContainer = styled.div`
-  padding: 8px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const MiddleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 8px;
+  width: 100%;
+  padding: 10px;
   gap: 4px;
 `;
 
 export const LeftContainer = styled.div`
   display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  justify-content: flex-end;
+  align-items: center;
   cursor: pointer;
 `;
 
@@ -72,11 +76,16 @@ const ProfileCard: React.FC = () => {
           <TextLabel text={userProfile.nickname} size={18} />
           <Image src={profileIconLevel1} alt="profile level" />
         </UserNameWrapper>
-        <TextLabel text={userProfile.university} size={16} color="#9E9E9E" />
+        <TextLabel text={userProfile.university} size={16} color="var(--grey-5)" />
 
         <ButtonContainer>
           {userProfile.style.map((style, index) => (
-            <ProfileButton key={index} text={style} color="#777777" borderColor="#e2e2e2" />
+            <ProfileButton
+              key={index}
+              text={style}
+              color="var(--grey-6)"
+              borderColor="var(--grey-3)"
+            />
           ))}
         </ButtonContainer>
       </MiddleContainer>
