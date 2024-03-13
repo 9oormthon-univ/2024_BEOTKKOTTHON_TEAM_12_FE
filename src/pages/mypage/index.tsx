@@ -1,5 +1,6 @@
 import React from 'react';
-import { ProfileCard } from '../../components/index';
+import * as S from './style';
+import { MenuItem, ProfileCard } from '../../components/index';
 import ProgressBar from '../../components/molcule/eco-progressbar';
 
 const MyPage: React.FC = () => {
@@ -10,7 +11,7 @@ const MyPage: React.FC = () => {
     nextLevelExp: 200,
   };
   return (
-    <div>
+    <S.MenuItemWrapper>
       <ProfileCard />
       <ProgressBar
         level={currentLevel.level}
@@ -18,7 +19,8 @@ const MyPage: React.FC = () => {
         currentExp={currentLevel.currentExp}
         nextLevelExp={currentLevel.nextLevelExp}
       />
-    </div>
+      <MenuItem />
+    </S.MenuItemWrapper>
   );
 };
 
