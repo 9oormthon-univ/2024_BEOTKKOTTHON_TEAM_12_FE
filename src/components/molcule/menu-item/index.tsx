@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextLabel } from '../..';
+import { TextLabel, Toggle } from '../..';
 import * as S from './style';
 
 const MenuItem: React.FC = () => {
@@ -21,6 +21,14 @@ const MenuItem: React.FC = () => {
       list: ['문의하기', '서비스 정보'],
     },
   ];
+
+  const handleLogout = () => {
+    console.log('로그아웃');
+  };
+  const handleWithdrawal = () => {
+    console.log('탈퇴하기');
+  };
+
   return (
     <S.MenuWrapper>
       {menuContent.map((section, sectionIndex) => (
@@ -29,13 +37,21 @@ const MenuItem: React.FC = () => {
           <S.MenuItemList>
             {section.list.map((item, itemIndex) => (
               <S.MenuItem key={itemIndex}>
-                <TextLabel text={item} size={16} weight={300} />
+                <S.MenuItemWrapper>
+                  <TextLabel text={item} size={16} weight={300} />
+                  {sectionIndex === 2 && <Toggle />}
+                </S.MenuItemWrapper>
               </S.MenuItem>
             ))}
-            <S.ListLine></S.ListLine>
+            {sectionIndex !== 3 && <S.ListLine />}
           </S.MenuItemList>
         </S.MenuSection>
       ))}
+      <S.FooterWrapper>
+        <S.Link onClick={handleLogout}>로그아웃</S.Link>
+        <S.Divider>|</S.Divider>
+        <S.Link onClick={handleWithdrawal}>탈퇴하기</S.Link>
+      </S.FooterWrapper>
     </S.MenuWrapper>
   );
 };
