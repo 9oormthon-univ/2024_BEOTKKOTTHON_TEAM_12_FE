@@ -1,15 +1,15 @@
 import { Search } from '@components/index';
 import * as S from './style';
+import { useNavigate } from 'react-router-dom';
 
-interface HeaderSearchProps {
-  setFocus: (value: boolean) => void;
-}
-
-const HeaderSearch = ({ setFocus }: HeaderSearchProps) => {
+const HeaderSearch = () => {
+  const navigate = useNavigate();
   return (
     <S.Container>
-      <Search setFocus={setFocus} />
-      <p className="cancle">취소</p>
+      <Search />
+      <p className="cancle" onClick={() => navigate('/')}>
+        취소
+      </p>
     </S.Container>
   );
 };
