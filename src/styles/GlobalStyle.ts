@@ -89,6 +89,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto; 
     background-color: #ffffff;
     border-radius: 10px;
+    position: relative;
   }
 
   @font-face {
