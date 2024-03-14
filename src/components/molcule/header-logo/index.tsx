@@ -1,10 +1,11 @@
 import * as S from './styled';
 import logo from '@assets/logo/logo.svg';
 import notifications from '@assets/icons/notifications.svg';
+import { BoxHeader } from '@components/index';
 
 const HeaderLogo = () => {
   return (
-    <S.Container>
+    <BoxHeader>
       <S.BoxIcon />
 
       <img src={logo} alt="logo" />
@@ -12,7 +13,7 @@ const HeaderLogo = () => {
       <S.BoxIcon>
         <img src={notifications} alt="notifications" />
       </S.BoxIcon>
-    </S.Container>
+    </BoxHeader>
   );
 };
 
