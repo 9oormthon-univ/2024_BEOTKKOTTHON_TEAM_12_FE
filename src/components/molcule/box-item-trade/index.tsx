@@ -1,25 +1,32 @@
+import { SaleItem } from 'src/types/types';
 import * as S from './style';
 import stategrey from '@assets/icons/trade_state_grey.svg';
+import defaultImg from '@assets/images/product-default-img.png';
 
-const BoxItemTrade = () => {
+interface SaleItemProps {
+  data: SaleItem;
+  width?: string;
+}
+
+const BoxItemTrade: React.FC<SaleItemProps> = ({ data, width }) => {
   return (
-    <S.Container>
-      <S.BoxImage />
+    <S.Container width={width}>
+      <S.BoxImage src={defaultImg} />
 
       <S.BoxDescription>
         <S.Title>
-          <p className="name">지오다노</p>
-          <p className="time">30분전</p>
+          <p className="name">{data.name}</p>
+          <p className="time">{data.time}</p>
         </S.Title>
 
         <S.State>
           <img src={stategrey} alt="none-trade" />
-          <p className="state">상품 상태 : 아주 좋아요</p>
+          <p className="state">{data.state}</p>
         </S.State>
 
         <S.Price>
-          <p className="price">16,500원</p>
-          <p className="sold">판매완료</p>
+          <p className="price">{data.price}</p>
+          <p className="sold">{data.sold}</p>
         </S.Price>
       </S.BoxDescription>
     </S.Container>
