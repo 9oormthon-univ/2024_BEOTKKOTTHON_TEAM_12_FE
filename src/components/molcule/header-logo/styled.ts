@@ -1,5 +1,5 @@
+import BoxHeader from '@atom/box-header';
 import styled from 'styled-components';
-import BoxHeader from '../../atom/box-header';
 
 export const Container = styled(BoxHeader)`
   margin-bottom: 15px;

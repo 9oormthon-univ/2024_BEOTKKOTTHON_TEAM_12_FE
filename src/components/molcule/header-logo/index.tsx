@@ -1,6 +1,6 @@
 import * as S from './styled';
-import logo from '../../../assets/logo/logo.svg';
-import notifications from '../../../assets/icons/notifications.svg';
+import logo from '@assets/logo/logo.svg';
+import notifications from '@assets/icons/notifications.svg';
 
 const HeaderLogo = () => {
   return (

@@ -1,5 +1,5 @@
 import * as S from './style';
-import HeaderLogo from '../../components/molcule/header-logo';
+import HeaderLogo from '@molcule/header-logo';
 
 const MainPage = () => {
   return (
