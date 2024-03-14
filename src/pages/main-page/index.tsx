@@ -43,7 +43,7 @@ const MainPage = () => {
 
         <ButtonPlus />
       </S.Container>
-      <Nav />
+      <Nav currentTab="홈" />
     </>
   );
 };

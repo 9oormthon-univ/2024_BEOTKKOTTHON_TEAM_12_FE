@@ -31,3 +31,7 @@ export const TabName = styled.div<TabNameProps>`
   font-size: 10px;
   color: ${(props) => (props.$active ? 'var(--grey-7)' : 'var(--grey-4)')};
 `;
+
+export const TabIcon = styled.img`
+  pointer-events: none; /* 포인터 이벤트 무시 */
+`;

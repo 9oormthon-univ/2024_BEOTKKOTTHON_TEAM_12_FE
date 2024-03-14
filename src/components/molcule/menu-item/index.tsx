@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { TextLabel, Toggle } from '../..';
 import * as S from './style';
+import { Link } from 'react-router-dom';
 
 const MenuItem: React.FC = () => {
   const menuContent = [
@@ -38,7 +40,11 @@ const MenuItem: React.FC = () => {
             {section.list.map((item, itemIndex) => (
               <S.MenuItem key={itemIndex}>
                 <S.MenuItemWrapper>
-                  <TextLabel text={item} size={16} weight={300} />
+                  {sectionIndex === 1 && item === '판매 내역' ? (
+                    <Link to="/mypage/sales-history">{item}</Link>
+                  ) : (
+                    <TextLabel text={item} size={16} weight={300} />
+                  )}
                   {sectionIndex === 2 && <Toggle />}
                 </S.MenuItemWrapper>
               </S.MenuItem>
