@@ -5,11 +5,12 @@ import defaultImg from '@assets/images/product-default-img.png';
 
 interface SaleItemProps {
   data: SaleItem;
+  width?: string;
 }
 
-const BoxItemTrade: React.FC<SaleItemProps> = ({ data }) => {
+const BoxItemTrade: React.FC<SaleItemProps> = ({ data, width }) => {
   return (
-    <S.Container>
+    <S.Container width={width}>
       <S.BoxImage src={defaultImg} />
 
       <S.BoxDescription>

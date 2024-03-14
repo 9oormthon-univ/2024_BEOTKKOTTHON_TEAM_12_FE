@@ -17,10 +17,4 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const SaleWrapper = styled.div`
-  width: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 20px;
-`;
+export const SaleWrapper = styled.div``;

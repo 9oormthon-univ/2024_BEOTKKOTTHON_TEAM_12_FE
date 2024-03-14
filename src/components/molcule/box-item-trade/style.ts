@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 163.5px;
-  height: 232px;
+export const Container = styled.div<{ width: string }>`
+  width: ${({ width }) => width || '48%'};
   margin-bottom: 15px;
 `;
 
 export const BoxImage = styled.img`
-  height: 163px;
+  width: 100%;
   border-radius: 10px;
   margin-bottom: 6px;
 `;
