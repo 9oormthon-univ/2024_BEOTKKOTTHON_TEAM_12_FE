@@ -2,20 +2,14 @@ import { BoxItemTrade, Button, ButtonPlus, Header, Tab, TextLabel } from '@compo
 import React from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import * as S from './style';
-import { TabItemProps, SaleItem } from '../../types/types';
+import {
+  TabItemProps,
+  SaleItem,
+  SalesInProgressProps,
+  SalesCompletedProps,
+  HiddenItemsProps,
+} from '../../types/types';
 import { useNavigate } from 'react-router';
-
-interface SalesInProgressProps {
-  salesData: SaleItem[];
-}
-
-interface SalesCompletedProps {
-  salesCompletedData: SaleItem[];
-}
-
-interface HiddenItemsProps {
-  hiddenItemsData: SaleItem[];
-}
 
 const SalesHistory = () => {
   const navigate = useNavigate();
