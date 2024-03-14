@@ -8,6 +8,7 @@ export interface TabItemProps {
 export interface SaleItem {
   id: number;
   name: string;
+  url?: string;
   time: string;
   state: string;
   price: string;

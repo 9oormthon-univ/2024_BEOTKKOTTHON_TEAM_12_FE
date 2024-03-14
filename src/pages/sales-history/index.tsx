@@ -1,4 +1,4 @@
-import { Header, Tab, TextLabel } from '@components/index';
+import { BoxItemTrade, Header, Tab, TextLabel } from '@components/index';
 import React from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import * as S from './style';
@@ -24,6 +24,7 @@ const SalesHistory = () => {
       time: '30분전',
       state: '상품 상태 : 아주 좋아요',
       price: '16,500원',
+      sold: '판매중',
     },
     {
       id: 2,
@@ -31,6 +32,7 @@ const SalesHistory = () => {
       time: '30분전',
       state: '상품 상태 : 아주 좋아요',
       price: '16,500원',
+      sold: '판매중',
     },
     {
       id: 3,
@@ -38,6 +40,7 @@ const SalesHistory = () => {
       time: '30분전',
       state: '상품 상태 : 아주 좋아요',
       price: '16,500원',
+      sold: '판매중',
     },
   ];
 
@@ -67,7 +70,7 @@ const SalesHistory = () => {
     return (
       <div>
         {salesData.length > 0 ? (
-          salesData.map((item: SaleItem) => <div key={item.id}>{item.name}</div>)
+          salesData.map((item: SaleItem) => <BoxItemTrade data={item} />)
         ) : (
           <div>판매중인 상품이 없습니다.</div>
         )}

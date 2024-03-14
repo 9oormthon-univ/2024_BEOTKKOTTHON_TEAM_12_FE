@@ -1,6 +1,7 @@
 import { SaleItem } from 'src/types/types';
 import * as S from './style';
 import stategrey from '@assets/icons/trade_state_grey.svg';
+import defaultImg from '@assets/images/product-default-img.png';
 
 interface SaleItemProps {
   data: SaleItem;
@@ -9,7 +10,7 @@ interface SaleItemProps {
 const BoxItemTrade: React.FC<SaleItemProps> = ({ data }) => {
   return (
     <S.Container>
-      <S.BoxImage />
+      <S.BoxImage src={defaultImg} />
 
       <S.BoxDescription>
         <S.Title>

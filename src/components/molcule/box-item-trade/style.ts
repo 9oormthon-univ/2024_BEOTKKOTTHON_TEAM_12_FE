@@ -6,8 +6,7 @@ export const Container = styled.div`
   margin-bottom: 25px;
 `;
 
-export const BoxImage = styled.div`
-  box-shadow: inset 0 0 20px red;
+export const BoxImage = styled.img`
   height: 163px;
   border-radius: 10px;
   margin-bottom: 6px;
