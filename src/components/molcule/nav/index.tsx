@@ -10,12 +10,14 @@ import magazine_grey from '@assets/nav-icons/magazine_grey.svg';
 import profile_green from '@assets/nav-icons/profile_green.svg';
 import profile_grey from '@assets/nav-icons/profile_grey.svg';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const names = ['홈', '기부', '매거진', '채팅', '프로필'];
 const greenNav = [home_green, donation_green, magazine_green, chatting_green, profile_green];
 const greyNav = [home_grey, donation_grey, magazine_grey, chatting_grey, profile_grey];
 
 const Nav = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<string>('홈');
   const [nav, setNav] = useState<string[]>([
     home_green,
@@ -34,6 +36,24 @@ const Nav = () => {
       }
     }
     setNav(temp);
+
+    switch (i) {
+      case 0:
+        navigate('/');
+        break;
+      case 1:
+        navigate('/');
+        break;
+      case 2:
+        navigate('/');
+        break;
+      case 3:
+        navigate('/');
+        break;
+      case 4:
+        navigate('/mypage');
+        break;
+    }
   };
 
   return (
