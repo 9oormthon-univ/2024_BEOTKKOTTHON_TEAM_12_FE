@@ -1,3 +1,4 @@
+import React from 'react';
 import * as S from './style';
 import stategrey from '@assets/icons/trade_state_grey.svg';
 

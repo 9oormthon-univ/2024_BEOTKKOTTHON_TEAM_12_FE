@@ -1,12 +1,20 @@
 import { categories } from 'src/data/shared';
 import { useState } from 'react';
 import { BoxTag, Tag } from '@components/index';
+import { FormDataType } from '@components/organism/form-trade';
 
-const ListTag = () => {
+interface ListTagProps {
+  formData?: FormDataType;
+  setFormData?: (value: FormDataType) => void;
+}
+
+const ListTag = ({ formData, setFormData }: ListTagProps) => {
   const [activeCategory, SetActiveCategory] = useState<string>('전체');
 
   const handleClick = (category: string) => {
-    console.log(category);
+    if (setFormData && formData) {
+      setFormData({ ...formData, category });
+    }
     SetActiveCategory(category);
   };
 

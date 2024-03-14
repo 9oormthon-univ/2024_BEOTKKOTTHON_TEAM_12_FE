@@ -1,12 +1,13 @@
-import { BoxInput, FormGroup } from '@components/index';
+import { BoxInput, FormGroup, FormRadio, ListPrice, ListTag } from '@components/index';
 import * as S from './style';
 import image from '@assets/icons/image.svg';
 import { useState } from 'react';
 import cancle from '@assets/icons/cancel.svg';
+import { categories, placeList, priceList } from 'src/data/shared';
+import Button from '@components/atom/button-trade';
 
-interface FormDataType {
+export interface FormDataType {
   imgs: FileList;
-  // imgs: string[];
   title: string;
   category: string;
   state: string;
@@ -19,7 +20,6 @@ const FormTrade = () => {
   const [showImages, setShowImages] = useState<string[]>([]);
   const [formData, setFormData] = useState<FormDataType>({
     imgs: {} as FileList,
-    // imgs: [],
     title: '',
     category: '',
     state: '',
@@ -28,7 +28,7 @@ const FormTrade = () => {
     place: '',
   });
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | null>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | null>) => {
     const { name, value } = e.target;
     const files = (e.target as HTMLInputElement).files as FileList;
 
@@ -70,7 +70,7 @@ const FormTrade = () => {
             name="imgs"
             accept="image/*"
             multiple
-            onChange={onChange}
+            onChange={handleChange}
           />
           {showImages.map((img, id) => (
             <S.BoxImage key={id}>
@@ -84,9 +84,50 @@ const FormTrade = () => {
       <FormGroup>
         <p className="label">제목</p>
         <BoxInput>
-          <input name="title" onChange={onChange} placeholder="제목을 입력해주세요." />
+          <input name="title" onChange={handleChange} placeholder="제목을 입력해주세요." />
         </BoxInput>
       </FormGroup>
+
+      <FormGroup>
+        <p className="label">분류</p>
+        <ListTag formData={formData} setFormData={setFormData} />
+      </FormGroup>
+
+      <FormGroup>
+        <p className="label">상품 상태</p>
+        <FormRadio handleChange={handleChange} />
+      </FormGroup>
+
+      <FormGroup>
+        <p className="label">상품 설명</p>
+        <S.TextArea
+          name="description"
+          onChange={handleChange}
+          placeholder="상품에 대한 설명을 써주세요."
+        />
+      </FormGroup>
+
+      <FormGroup>
+        <p className="label">판매 가격</p>
+        <S.InputNum>
+          <input name="price" value={formData.price} onChange={handleChange} />
+          <p>원</p>
+        </S.InputNum>
+        <ListPrice list={priceList} />
+      </FormGroup>
+
+      <FormGroup>
+        <p className="label">거래 장소</p>
+        <BoxInput>
+          <input name="place" onChange={handleChange} placeholder="위치를 입력해주세요." />
+        </BoxInput>
+        <S.LabelPlace>성균관 대학교 추천 장소</S.LabelPlace>
+        <ListPrice list={placeList} />
+      </FormGroup>
+
+      <Button>
+        <S.TextSubmit>등록하기</S.TextSubmit>
+      </Button>
     </form>
   );
 };

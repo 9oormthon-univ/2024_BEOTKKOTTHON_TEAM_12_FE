@@ -1,3 +1,4 @@
+import { BoxInput } from '@components/index';
 import styled from 'styled-components';
 
 export const ListImage = styled.div`
@@ -58,5 +59,61 @@ export const BoxImage = styled.div`
     color: var(--color-grey-500);
     position: absolute;
     z-index: 3;
+  }
+`;
+
+export const TextArea = styled.textarea`
+  width: 100%;
+  height: 112px;
+  padding: 10px 17px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid var(--grey-3);
+  outline: none;
+  font-size: 14px;
+  line-height: 1.4em;
+
+  &::placeholder {
+    color: var(--grey-4);
+  }
+`;
+
+export const InputNum = styled(BoxInput)`
+  width: 164px;
+  align-items: center;
+
+  & > input {
+    width: 100%;
+  }
+
+  & > p {
+    padding-left: 0.3rem;
+    padding-right: 1rem;
+  }
+`;
+
+export const LabelPlace = styled.p`
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--grey-6);
+`;
+
+export const TextSubmit = styled.p`
+  padding: 16px;
+`;
+
+export const ListCategory = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+
+  & > div {
+    flex-shrink: 0;
+    // display: flex;
+    // align-items: center;
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 0.5rem;
+    border: 1px solid var(--color-grey-300);
   }
 `;
