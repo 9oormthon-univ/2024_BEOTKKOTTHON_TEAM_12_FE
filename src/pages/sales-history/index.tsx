@@ -1,8 +1,9 @@
-import { BoxItemTrade, Button, Header, Tab, TextLabel } from '@components/index';
+import { BoxItemTrade, Button, ButtonPlus, Header, Tab, TextLabel } from '@components/index';
 import React from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import * as S from './style';
 import { TabItemProps, SaleItem } from '../../types/types';
+import { useNavigate } from 'react-router';
 
 interface SalesInProgressProps {
   salesData: SaleItem[];
@@ -17,6 +18,7 @@ interface HiddenItemsProps {
 }
 
 const SalesHistory = () => {
+  const navigate = useNavigate();
   const salesData: SaleItem[] = [
     {
       id: 1,
@@ -66,6 +68,11 @@ const SalesHistory = () => {
     },
   ];
 
+  //판매완료 버튼 클릭
+  const handleSaleComplete = (id: number) => {
+    console.log(`판매완료 버튼 클릭 id: ${id}`);
+  };
+
   const SalesInProgress: React.FC<SalesInProgressProps> = ({ salesData }) => {
     return (
       <S.Container>
@@ -73,7 +80,11 @@ const SalesHistory = () => {
           salesData.map((item: SaleItem) => (
             <S.SaleWrapper>
               <BoxItemTrade data={item} />
-              <Button text="판매 완료하기" width="100%" />
+              <Button
+                text="판매 완료하기"
+                width="100%"
+                handleOnClick={() => handleSaleComplete(item.id)}
+              />
             </S.SaleWrapper>
           ))
         ) : (
@@ -128,10 +139,11 @@ const SalesHistory = () => {
     <>
       <Header>
         <TextLabel text="판매내역" size={16} weight={700} />
-        <S.BackIcon className="left" src={arrow} alt="go back" />
+        <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
       </Header>
       <S.MarginContainer />
       <Tab tabs={tabData} />
+      <ButtonPlus />
     </>
   );
 };
