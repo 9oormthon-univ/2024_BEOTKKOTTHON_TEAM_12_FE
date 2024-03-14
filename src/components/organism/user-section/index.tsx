@@ -1,5 +1,5 @@
+import { ProfileCard, ProgressBar } from '@components/index';
 import React from 'react';
-import { ProfileCard, ProgressBar } from '../..';
 import styled from 'styled-components';
 
 export const UserSectionWrapper = styled.div`

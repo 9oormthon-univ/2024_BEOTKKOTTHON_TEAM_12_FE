@@ -22,9 +22,7 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["./src/assets/*"],
-      "@atom/*": ["./src/components/atom/*"],
-      "@molcule/*": ["./src/components/molcule/*"],
-      "@organism/*": ["./src/components/organism/*"],
+      "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"]
     }
   },

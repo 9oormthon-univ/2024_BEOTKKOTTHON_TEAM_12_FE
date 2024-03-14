@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from './style';
 import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
-import defaultImg from '../../../assets/images/profile-default-image.svg';
-import arrow from '../../../assets/icons/arrow.svg';
-import profileIconLevel1 from '../../../assets/icons/profile-icon-level1.svg';
+import defaultImg from '@assets/images/profile-default-image.svg';
+import arrow from '@assets/icons/arrow.svg';
+import profileIconLevel1 from '@assets/icons/profile-icon-level1.svg';
 
 const ProfileCard: React.FC = () => {
   const userProfile = {

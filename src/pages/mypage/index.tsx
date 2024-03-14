@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import { UserSection, MenuItem } from '../../components';
+import { UserSection, MenuItem } from '@components/index';
 
 const MyPage: React.FC = () => {
   return (

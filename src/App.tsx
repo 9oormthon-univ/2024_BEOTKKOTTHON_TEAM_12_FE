@@ -1,5 +1,5 @@
+import { Router } from '@components/index';
 import GlobalStyle from './styles/GlobalStyle';
-import Router from './components/atom/router';
 
 function App() {
   return (

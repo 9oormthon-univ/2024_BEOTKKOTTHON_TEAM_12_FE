@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import MyPage from '../../../pages/mypage';
-import MainPage from '../../../pages/main-page';
+import MyPage from '@pages/mypage';
+import MainPage from '@pages/main-page';
 
 const Router = () => {
   return (
