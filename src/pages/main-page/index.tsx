@@ -1,6 +1,13 @@
-import { FilterTrade, HeaderLogo, ListTag, ListTradeItems, Nav, Search } from '@components/index';
+import {
+  ButtonPlus,
+  FilterTrade,
+  HeaderLogo,
+  ListTag,
+  ListTradeItems,
+  Nav,
+  Search,
+} from '@components/index';
 import * as S from './style';
-
 const MainPage = () => {
   return (
     <>
@@ -24,6 +31,7 @@ const MainPage = () => {
         <section className="items">
           <ListTradeItems />
         </section>
+        <ButtonPlus />
       </S.Container>
       <Nav />
     </>

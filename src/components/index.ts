@@ -6,6 +6,7 @@ export { default as Toggle } from './atom/toggle';
 export { default as BoxHeader } from './atom/box-header';
 export { default as Router } from './atom/router';
 export { default as Search } from './atom/search';
+export { default as ButtonPlus } from './atom/button-plus';
 // //Molcule
 export { default as ProfileCard } from './molcule/profile-card';
 export { default as ProgressBar } from './molcule/eco-progressbar';
