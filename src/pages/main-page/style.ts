@@ -10,10 +10,16 @@ export const Container = styled.div`
     margin-bottom: 15px;
   }
 
-  .search,
-  .category,
-  .filter {
+  .search {
+    margin-bottom: 13px;
+  }
+
+  .category {
     margin-bottom: 10px;
+  }
+
+  .filter {
+    margin-bottom: 16px;
   }
 
   .items {

@@ -35,6 +35,7 @@ const MainPage = () => {
         <section className="items">
           <ListTradeItems />
         </section>
+
         <ButtonPlus />
       </S.Container>
       <Nav />

@@ -1,13 +1,19 @@
-import { Label } from '@components/index';
+import { Label, Search } from '@components/index';
 import * as S from './style';
-import HeaderSearch from '@components/molcule/header-search';
 import ListSearchTag from '@components/molcule/list-search-tag';
+import { useNavigate } from 'react-router-dom';
 
 const SearchPage = () => {
+  const navigate = useNavigate();
   return (
     <S.Container>
       <section className="search">
-        <HeaderSearch />
+        <S.HeaderSearch>
+          <Search />
+          <p className="cancle" onClick={() => navigate('/')}>
+            취소
+          </p>
+        </S.HeaderSearch>
       </section>
 
       <section className="recent-search">
