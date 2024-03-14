@@ -1,4 +1,4 @@
-import { BoxItemTrade, FilterTrade, HeaderLogo, ListTag, Search } from '@components/index';
+import { FilterTrade, HeaderLogo, ListTag, ListTradeItems, Search } from '@components/index';
 import * as S from './style';
 
 const MainPage = () => {
@@ -16,9 +16,12 @@ const MainPage = () => {
         <ListTag />
       </section>
 
-      <section className="items">
+      <section className="filter">
         <FilterTrade />
-        <BoxItemTrade />
+      </section>
+
+      <section className="items">
+        <ListTradeItems />
       </section>
     </S.Container>
   );

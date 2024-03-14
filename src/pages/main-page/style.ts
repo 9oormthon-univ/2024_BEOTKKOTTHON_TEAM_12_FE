@@ -7,13 +7,9 @@ export const Container = styled.div`
     margin-bottom: 15px;
   }
 
-  .search {
+  .search,
+  .category,
+  .filter {
     margin-bottom: 10px;
   }
-
-  .category {
-    margin-bottom: 10px;
-  }
-
-  // .items
 `;
