@@ -10,7 +10,12 @@ export { default as ButtonPlus } from './atom/button-plus';
 export { default as Label } from './atom/label';
 export { default as Tag } from './atom/tag';
 export { default as BoxTag } from './atom/box-tag';
+<<<<<<< HEAD
 export { default as Button } from './atom/button';
+=======
+export { default as FormGroup } from './atom/form-group';
+export { default as BoxInput } from './atom/box-input';
+>>>>>>> main
 //Molcule
 export { default as ProfileCard } from './molcule/profile-card';
 export { default as ProgressBar } from './molcule/eco-progressbar';
@@ -25,3 +30,4 @@ export { default as Tab } from './molcule/tab';
 //Organism
 export { default as UserSection } from './organism/user-section';
 export { default as ListTradeItems } from './organism/list-trade-items';
+export { default as FormTrade } from './organism/form-trade';
