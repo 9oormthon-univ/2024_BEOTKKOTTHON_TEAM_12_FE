@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface TagProps {
+  $active: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   gap: 7px;
@@ -15,7 +19,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Tag = styled.div`
+export const Tag = styled.div<TagProps>`
   display: flex;
   align-items: center;
   height: 29px;
@@ -23,6 +27,8 @@ export const Tag = styled.div`
   box-sizing: border-box;
   border: 1px solid var(--grey-3);
   border-radius: 15px;
-  color: var(--grey-6);
+
+  background-color: ${(props) => (props.$active ? 'var(--green-6)' : '')};
+  color: ${(props) => (props.$active ? 'var(--green-7)' : 'var(--grey-6)')};
   font-size: 13px;
 `;
