@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+interface TabItemProps {
+  label: string;
+  count: number;
+  ContentComponent: React.ComponentType;
+}
+
+interface TabProps {
+  tabs: TabItemProps[];
+}
+
 const TabsContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -9,74 +19,47 @@ const TabsContainer = styled.div`
   color: var(--grey-4);
 `;
 
-const TabItem = styled.button`
-  width: 34%;
+const TabItemButton = styled.button<{ isActive: boolean }>`
+  width: 33.333%;
   padding: 10px 20px;
   border: none;
   background-color: transparent;
-  border-bottom: 1.5px solid var(--grey-4);
-  color: var(--gray-4);
+  border-bottom: 1.5px solid
+    ${({ isActive }) => (isActive ? 'var(--green-primary)' : 'var(--grey-4)')};
+  color: ${({ isActive }) => (isActive ? '#000000' : 'var(--gray-4)')};
   font-family: 'NanumSquareRound', 'Noto Sans KR', sans-serif;
   cursor: pointer;
-
-  &.active {
-    border-bottom: 1.5px solid var(--green-primary);
-    color: #000000;
-  }
 
   &:focus {
     outline: none;
   }
 `;
 
-const TabPanel = styled.div`
-  display: none;
-  &.active {
-    display: block;
-  }
+const TabPanel = styled.div<{ isActive: boolean }>`
+  display: ${({ isActive }) => (isActive ? 'block' : 'none')};
 `;
 
-const Tab = () => {
-  const [activeTab, setActiveTab] = useState('tab1');
-  const saleInfo = {
-    sales: 4,
-    salesComplete: 1,
-    hide: 2,
-  };
+const Tab: React.FC<TabProps> = ({ tabs }) => {
+  const [activeTab, setActiveTab] = useState(tabs[0].label);
+
   return (
     <>
       <TabsContainer>
-        <TabItem
-          className={activeTab === 'tab1' ? 'active' : ''}
-          onClick={() => setActiveTab('tab1')}
-        >
-          판매중 {saleInfo.sales}
-        </TabItem>
-        <TabItem
-          className={activeTab === 'tab2' ? 'active' : ''}
-          onClick={() => setActiveTab('tab2')}
-        >
-          판매 완료 {saleInfo.salesComplete}
-        </TabItem>
-        <TabItem
-          className={activeTab === 'tab3' ? 'active' : ''}
-          onClick={() => setActiveTab('tab3')}
-        >
-          숨김 {saleInfo.hide}
-        </TabItem>
+        {tabs.map((tab) => (
+          <TabItemButton
+            key={tab.label}
+            isActive={activeTab === tab.label}
+            onClick={() => setActiveTab(tab.label)}
+          >
+            {tab.label} {tab.count}
+          </TabItemButton>
+        ))}
       </TabsContainer>
-      <TabPanel className={activeTab === 'tab1' ? 'active' : ''}>
-        {/* 탭1 관련 내용 */}
-        판매중인 상품의 내용이 여기에 표시됩니다.
-      </TabPanel>
-      <TabPanel className={activeTab === 'tab2' ? 'active' : ''}>
-        {/* 탭2 관련 내용 */}
-        판매 완료된 상품의 내용이 여기에 표시됩니다.
-      </TabPanel>
-      <TabPanel className={activeTab === 'tab3' ? 'active' : ''}>
-        {/* 탭3 관련 내용 */}
-        숨겨진 상품의 내용이 여기에 표시됩니다.
-      </TabPanel>
+      {tabs.map((tab) => (
+        <TabPanel key={tab.label} isActive={activeTab === tab.label}>
+          <tab.ContentComponent />
+        </TabPanel>
+      ))}
     </>
   );
 };
