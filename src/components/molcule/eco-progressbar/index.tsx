@@ -1,8 +1,8 @@
 import React from 'react';
 import * as S from './style';
-import helpIcon from '../../../assets/icons/help.svg';
-import profileIconLevel1 from '../../../assets/icons/profile-icon-level1.svg';
-import { TextLabel } from '../..';
+import helpIcon from '@assets/icons/help.svg';
+import profileIconLevel1 from '@assets/icons/profile-icon-level1.svg';
+import { TextLabel } from '@components/index';
 
 interface ProgressBarProps {
   level: string;
