@@ -69,6 +69,7 @@ const GlobalStyle = createGlobalStyle`
     --green-3: #9de49b;
     --green-4: #72d270;
     --green-5: #58c85a;
+    --green-6: #1EB65B;
     --green-7: #12a054;
   }
 
