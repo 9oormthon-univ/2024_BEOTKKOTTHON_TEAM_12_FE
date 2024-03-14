@@ -5,3 +5,11 @@ export interface TabItemProps {
   count: number;
   ContentComponent: React.ComponentType;
 }
+export interface SaleItem {
+  id: number;
+  name: string;
+  time: string;
+  state: string;
+  price: string;
+  sold?: string;
+}

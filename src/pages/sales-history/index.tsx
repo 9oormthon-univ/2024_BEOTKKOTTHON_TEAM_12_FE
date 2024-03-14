@@ -2,15 +2,7 @@ import { Header, Tab, TextLabel } from '@components/index';
 import React from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import * as S from './style';
-import { TabItemProps } from '../../types/types';
-interface SaleItem {
-  id: number;
-  name: string;
-  time: string;
-  state: string;
-  price: string;
-  sold?: string;
-}
+import { TabItemProps, SaleItem } from '../../types/types';
 
 interface SalesInProgressProps {
   salesData: SaleItem[];
