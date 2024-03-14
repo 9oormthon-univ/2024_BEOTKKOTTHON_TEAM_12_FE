@@ -25,7 +25,7 @@ const MainPage = () => {
           <ListTradeItems />
         </section>
       </S.Container>
-      <Nav />
+      <Nav currentTab="홈" />
     </>
   );
 };

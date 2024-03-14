@@ -9,32 +9,44 @@ import magazine_green from '@assets/nav-icons/magazine_green.svg';
 import magazine_grey from '@assets/nav-icons/magazine_grey.svg';
 import profile_green from '@assets/nav-icons/profile_green.svg';
 import profile_grey from '@assets/nav-icons/profile_grey.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const names = ['홈', '기부', '매거진', '채팅', '프로필'];
 const greenNav = [home_green, donation_green, magazine_green, chatting_green, profile_green];
 const greyNav = [home_grey, donation_grey, magazine_grey, chatting_grey, profile_grey];
 
-const Nav = () => {
+interface NavProps {
+  currentTab: string;
+}
+
+const Nav: React.FC<NavProps> = ({ currentTab }) => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<string>('홈');
-  const [nav, setNav] = useState<string[]>([
-    home_green,
-    donation_grey,
-    magazine_grey,
-    chatting_grey,
-    profile_grey,
-  ]);
+  const [activeTab, setActiveTab] = useState<string>(currentTab);
+
+  const initializeNav = () => {
+    //모든 아이콘을 회색으로 초기화
+    const temp = [...greyNav];
+    const currentIndex = names.findIndex((name) => name === currentTab);
+    if (currentIndex !== -1) {
+      // 현재 탭에 해당하는 아이콘을 초록색으로 변경
+      temp[currentIndex] = greenNav[currentIndex];
+    }
+    return temp;
+  };
+
+  const [nav, setNav] = useState<string[]>(initializeNav);
+
+  useEffect(() => {
+    // currentTab이 변경될 때마다 nav 상태 업데이트
+    setNav(initializeNav());
+  }, [currentTab]);
 
   const handleClick = (i: number) => {
     const temp = [...greyNav];
-    for (let j = 0; j < 5; j++) {
-      if (i == j) {
-        temp[i] = greenNav[i];
-        setActiveTab(names[i]);
-      }
-    }
+    // 클릭한 탭의 아이콘을 초록색으로 변경
+    temp[i] = greenNav[i];
+    setActiveTab(names[i]);
     setNav(temp);
 
     switch (i) {
@@ -60,7 +72,7 @@ const Nav = () => {
     <S.BoxNav>
       {nav.map((imgUrl, i) => (
         <S.BoxItem key={imgUrl} onClick={() => handleClick(i)}>
-          <img src={imgUrl} />
+          <S.TabIcon src={imgUrl} />
           <S.TabName $active={activeTab === names[i]}>{names[i]}</S.TabName>
         </S.BoxItem>
       ))}
