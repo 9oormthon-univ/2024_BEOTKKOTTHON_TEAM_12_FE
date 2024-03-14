@@ -14,7 +14,7 @@ export { default as BoxTag } from './atom/box-tag';
 export { default as ProfileCard } from './molcule/profile-card';
 export { default as ProgressBar } from './molcule/eco-progressbar';
 export { default as MenuItem } from './molcule/menu-item';
-export { default as HeaderLogo } from './molcule/header-logo';
+export { default as Header } from './molcule/header';
 export { default as ListTag } from './molcule/list-tag';
 export { default as FilterTrade } from './molcule/filter-trade';
 export { default as BoxItemTrade } from './molcule/box-item-trade';
