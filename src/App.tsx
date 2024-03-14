@@ -1,11 +1,11 @@
 import GlobalStyle from './styles/GlobalStyle';
-import MyPage from './pages/mypage';
+import Router from './components/atom/router';
 
 function App() {
   return (
     <div className="root">
       <GlobalStyle />
-      <MyPage />
+      <Router />
     </div>
   );
 }
