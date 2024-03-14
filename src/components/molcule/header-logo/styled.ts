@@ -1,6 +1,12 @@
+import { BoxHeader } from '@components/index';
 import styled from 'styled-components';
 
-export const BoxIcon = styled.div`
-  width: 24px;
-  height: 24px;
+export const Container = styled(BoxHeader)`
+  position: relative;
+  justify-content: center;
+
+  .notifications {
+    position: absolute;
+    right: 4px;
+  }
 `;
