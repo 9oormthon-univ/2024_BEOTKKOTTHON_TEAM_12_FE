@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const Header = styled(BoxHeader)`
   position: relative;
   justify-content: center;
+  padding: 5px;
 
   .left {
     position: absolute;

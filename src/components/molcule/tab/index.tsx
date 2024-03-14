@@ -16,6 +16,7 @@ const TabItem = styled.button`
   background-color: transparent;
   border-bottom: 1.5px solid var(--grey-4);
   color: var(--gray-4);
+  font-family: 'NanumSquareRound', 'Noto Sans KR', sans-serif;
   cursor: pointer;
 
   &.active {
