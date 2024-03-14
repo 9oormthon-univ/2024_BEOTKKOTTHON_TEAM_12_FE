@@ -17,7 +17,13 @@ const greyNav = [home_grey, donation_grey, magazine_grey, chatting_grey, profile
 
 const Nav = () => {
   const [activeTab, setActiveTab] = useState<string>('홈');
-  const [nav, setNav] = useState<string[]>([...greyNav]);
+  const [nav, setNav] = useState<string[]>([
+    home_green,
+    donation_grey,
+    magazine_grey,
+    chatting_grey,
+    profile_grey,
+  ]);
 
   const handleClick = (i: number) => {
     const temp = [...greyNav];
