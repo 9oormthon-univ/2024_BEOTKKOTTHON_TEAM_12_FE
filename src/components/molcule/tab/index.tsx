@@ -3,19 +3,24 @@ import styled from 'styled-components';
 
 const TabsContainer = styled.div`
   display: flex;
-  border-bottom: 1px solid #e0e0e0;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  color: var(--grey-4);
 `;
 
 const TabItem = styled.button`
+  width: 34%;
   padding: 10px 20px;
   border: none;
   background-color: transparent;
-  border-bottom: 3px solid transparent;
+  border-bottom: 1.5px solid var(--grey-4);
+  color: var(--gray-4);
   cursor: pointer;
 
   &.active {
-    border-bottom: 3px solid #0000ff; // 활성 탭의 하이라이트 색상입니다.
-    font-weight: bold;
+    border-bottom: 1.5px solid var(--green-primary);
+    color: #000000;
   }
 
   &:focus {
@@ -32,7 +37,11 @@ const TabPanel = styled.div`
 
 const Tab = () => {
   const [activeTab, setActiveTab] = useState('tab1');
-
+  const saleInfo = {
+    sales: 4,
+    salesComplete: 1,
+    hide: 2,
+  };
   return (
     <>
       <TabsContainer>
@@ -40,19 +49,19 @@ const Tab = () => {
           className={activeTab === 'tab1' ? 'active' : ''}
           onClick={() => setActiveTab('tab1')}
         >
-          판매중 4
+          판매중 {saleInfo.sales}
         </TabItem>
         <TabItem
           className={activeTab === 'tab2' ? 'active' : ''}
           onClick={() => setActiveTab('tab2')}
         >
-          판매 완료 1
+          판매 완료 {saleInfo.salesComplete}
         </TabItem>
         <TabItem
           className={activeTab === 'tab3' ? 'active' : ''}
           onClick={() => setActiveTab('tab3')}
         >
-          숨김 2
+          숨김 {saleInfo.hide}
         </TabItem>
       </TabsContainer>
       <TabPanel className={activeTab === 'tab1' ? 'active' : ''}>

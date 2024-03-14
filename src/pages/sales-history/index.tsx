@@ -1,7 +1,12 @@
+import { Tab } from '@components/index';
 import React from 'react';
 
 const SalesHistory = () => {
-  return <div>sale</div>;
+  return (
+    <div>
+      <Tab />
+    </div>
+  );
 };
 
 export default SalesHistory;
