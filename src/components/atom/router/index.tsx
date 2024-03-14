@@ -4,6 +4,7 @@ import MainPage from '@pages/main-page';
 import SalesHistory from '@pages/sales-history';
 import SearchPage from '@pages/search-page';
 import SearchResultPage from '@pages/search-result-page';
+import ProductNewPage from '@pages/product-new-page';
 
 const Router = () => {
   return (
@@ -11,6 +12,7 @@ const Router = () => {
       <Route path="/" element={<MainPage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/search/result" element={<SearchResultPage />} />
+      <Route path="/product/new" element={<ProductNewPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/sales-history" element={<SalesHistory />} />
     </Routes>
