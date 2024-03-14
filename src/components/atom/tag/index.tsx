@@ -1,25 +1,9 @@
 import styled from 'styled-components';
-
 interface TagProps {
-  $active: boolean;
+  $active?: boolean;
 }
 
-export const Container = styled.div`
-  display: flex;
-  gap: 7px;
-  overflow: auto;
-  -ms-overflow-style: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  & > div {
-    flex-shrink: 0;
-  }
-`;
-
-export const Tag = styled.div<TagProps>`
+const Tag = styled.div<TagProps>`
   display: flex;
   align-items: center;
   height: 29px;
@@ -31,4 +15,13 @@ export const Tag = styled.div<TagProps>`
   background-color: ${(props) => (props.$active ? 'rgba(220, 248, 219, 0.3)' : '')};
   color: ${(props) => (props.$active ? 'var(--green-7)' : 'var(--grey-6)')};
   font-size: 13px;
+
+  .close {
+    display: grid;
+    place-items: center;
+    height: 22px;
+    padding-left: 4px;
+  }
 `;
+
+export default Tag;

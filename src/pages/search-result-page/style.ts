@@ -1,17 +1,15 @@
+import { BoxHeader } from '@components/index';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 86px);
-  padding: 0 20px;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 
   .header {
-    margin-bottom: 15px;
-  }
-
-  .search {
-    margin-bottom: 13px;
+    margin-bottom: 20px;
   }
 
   .category {
@@ -29,5 +27,18 @@ export const Container = styled.div`
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+`;
+
+export const HeaderSearch = styled(BoxHeader)`
+  gap: 10px;
+  & > div {
+    flex-grow: 1;
+  }
+
+  .cancle {
+    width: 26px;
+    font-size: 14px;
+    color: var(--grey-6);
   }
 `;
