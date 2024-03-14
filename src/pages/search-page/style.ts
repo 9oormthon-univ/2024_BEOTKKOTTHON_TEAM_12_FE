@@ -23,5 +23,6 @@ export const SectionSearch = styled(BoxHeader)`
     width: 26px;
     font-size: 14px;
     color: var(--grey-6);
+    cursor: pointer;
   }
 `;

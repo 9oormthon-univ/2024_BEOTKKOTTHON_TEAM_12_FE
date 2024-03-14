@@ -14,6 +14,7 @@ const Label = styled.div`
   .sub {
     font-size: 13px;
     color: var(--grey-4);
+    cursor: pointer;
   }
 `;
 

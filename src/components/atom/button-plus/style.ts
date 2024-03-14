@@ -7,6 +7,7 @@ export const Container = styled.div`
   height: 50px;
   border-radius: 50%;
   background-color: var(--green-6);
+  cursor: pointer;
 
   position: absolute;
   right: 20px;

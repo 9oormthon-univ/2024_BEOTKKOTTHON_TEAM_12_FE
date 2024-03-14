@@ -13,6 +13,7 @@ export const Container = styled.div`
   .btn-search {
     width: 24px;
     height: 24px;
+    cursor: pointer;
   }
 
   & > input {
