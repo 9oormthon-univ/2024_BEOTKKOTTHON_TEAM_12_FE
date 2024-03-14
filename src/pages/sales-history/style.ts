@@ -9,3 +9,9 @@ export const BackIcon = styled.img`
 export const MarginContainer = styled.div`
   margin-top: 10px;
 `;
+
+export const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;

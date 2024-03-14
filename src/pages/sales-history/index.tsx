@@ -68,37 +68,37 @@ const SalesHistory = () => {
 
   const SalesInProgress: React.FC<SalesInProgressProps> = ({ salesData }) => {
     return (
-      <div>
+      <S.Container>
         {salesData.length > 0 ? (
           salesData.map((item: SaleItem) => <BoxItemTrade data={item} />)
         ) : (
           <div>판매중인 상품이 없습니다.</div>
         )}
-      </div>
+      </S.Container>
     );
   };
 
   const SalesCompleted: React.FC<SalesCompletedProps> = ({ salesCompletedData }) => {
     return (
-      <div>
+      <S.Container>
         {salesCompletedData.length > 0 ? (
-          salesCompletedData.map((item: SaleItem) => <div key={item.id}>{item.name}</div>)
+          salesCompletedData.map((item: SaleItem) => <BoxItemTrade data={item} />)
         ) : (
           <div>판매완료된 상품이 없습니다.</div>
         )}
-      </div>
+      </S.Container>
     );
   };
 
   const HiddenItems: React.FC<HiddenItemsProps> = ({ hiddenItemsData }) => {
     return (
-      <div>
+      <S.Container>
         {hiddenItemsData.length > 0 ? (
-          hiddenItemsData.map((item: SaleItem) => <div key={item.id}>{item.name}</div>)
+          hiddenItemsData.map((item: SaleItem) => <BoxItemTrade data={item} />)
         ) : (
           <div>숨긴 상품이 없습니다.</div>
         )}
-      </div>
+      </S.Container>
     );
   };
 
