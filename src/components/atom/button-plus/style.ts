@@ -12,4 +12,9 @@ export const Container = styled.div`
   position: absolute;
   right: 20px;
   bottom: 100px;
+
+  transition: transform 0.1s ease;
+  &:active {
+    transform: scale(0.95);
+  }
 `;
