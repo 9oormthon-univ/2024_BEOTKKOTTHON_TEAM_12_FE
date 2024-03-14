@@ -1,7 +1,7 @@
 import {
   ButtonPlus,
   FilterTrade,
-  HeaderLogo,
+  Header,
   ListTag,
   ListTradeItems,
   Nav,
@@ -9,6 +9,8 @@ import {
 } from '@components/index';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
+import logo from '@assets/logo/logo.svg';
+import notifications from '@assets/icons/notifications.svg';
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -17,7 +19,10 @@ const MainPage = () => {
     <>
       <S.Container>
         <section className="header">
-          <HeaderLogo />
+          <Header>
+            <img src={logo} alt="logo" />
+            <img className="right" src={notifications} alt="notifications" />
+          </Header>
         </section>
 
         <section className="search" onClick={() => navigate('/search')}>
