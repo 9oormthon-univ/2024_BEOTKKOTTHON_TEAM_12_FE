@@ -8,12 +8,12 @@ const SearchPage = () => {
   return (
     <S.Container>
       <section className="search">
-        <S.HeaderSearch>
+        <S.SectionSearch>
           <Search />
           <p className="cancle" onClick={() => navigate('/')}>
             취소
           </p>
-        </S.HeaderSearch>
+        </S.SectionSearch>
       </section>
 
       <section className="recent-search">

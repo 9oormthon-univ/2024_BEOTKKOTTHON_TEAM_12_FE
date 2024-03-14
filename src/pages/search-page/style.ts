@@ -13,7 +13,7 @@ export const Container = styled.div`
   }
 `;
 
-export const HeaderSearch = styled(BoxHeader)`
+export const SectionSearch = styled(BoxHeader)`
   gap: 10px;
   & > div {
     flex-grow: 1;
