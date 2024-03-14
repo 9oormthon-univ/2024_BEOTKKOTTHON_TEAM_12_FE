@@ -125,9 +125,7 @@ const FormTrade = () => {
         <ListPrice list={placeList} />
       </FormGroup>
 
-      <Button>
-        <S.TextSubmit>등록하기</S.TextSubmit>
-      </Button>
+      <Button>등록하기</Button>
     </form>
   );
 };

@@ -84,11 +84,11 @@ export const InputNum = styled(BoxInput)`
 
   & > input {
     width: 100%;
+    padding-right: 4px;
   }
 
   & > p {
-    padding-left: 0.3rem;
-    padding-right: 1rem;
+    color: var(--grey-5);
   }
 `;
 
@@ -96,24 +96,4 @@ export const LabelPlace = styled.p`
   margin-top: 12px;
   font-size: 14px;
   color: var(--grey-6);
-`;
-
-export const TextSubmit = styled.p`
-  padding: 16px;
-`;
-
-export const ListCategory = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-
-  & > div {
-    flex-shrink: 0;
-    // display: flex;
-    // align-items: center;
-    border-radius: 20px;
-    font-size: 12px;
-    padding: 0.5rem;
-    border: 1px solid var(--color-grey-300);
-  }
 `;
