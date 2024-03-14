@@ -4,11 +4,8 @@ import MainPage from '@pages/main-page';
 import SalesHistory from '@pages/sales-history';
 import SearchPage from '@pages/search-page';
 import SearchResultPage from '@pages/search-result-page';
-<<<<<<< HEAD
 import PurchaseHistory from '@pages/purchase-history';
-=======
 import ProductNewPage from '@pages/product-new-page';
->>>>>>> main
 
 const Router = () => {
   return (
