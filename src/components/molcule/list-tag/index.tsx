@@ -1,6 +1,6 @@
 import { categories } from 'src/data/shared';
-import * as S from './style';
 import { useState } from 'react';
+import { BoxTag, Tag } from '@components/index';
 
 const ListTag = () => {
   const [activeCategory, SetActiveCategory] = useState<string>('전체');
@@ -11,17 +11,17 @@ const ListTag = () => {
   };
 
   return (
-    <S.Container>
+    <BoxTag>
       {categories.map((category, index) => (
-        <S.Tag
+        <Tag
           onClick={() => handleClick(category)}
           $active={category === activeCategory}
           key={index}
         >
           {category}
-        </S.Tag>
+        </Tag>
       ))}
-    </S.Container>
+    </BoxTag>
   );
 };
 
