@@ -8,7 +8,11 @@ import {
   Search,
 } from '@components/index';
 import * as S from './style';
+import { useNavigate } from 'react-router-dom';
+
 const MainPage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <S.Container>
@@ -16,7 +20,7 @@ const MainPage = () => {
           <HeaderLogo />
         </section>
 
-        <section className="search">
+        <section className="search" onClick={() => navigate('/search')}>
           <Search />
         </section>
 
@@ -31,6 +35,7 @@ const MainPage = () => {
         <section className="items">
           <ListTradeItems />
         </section>
+
         <ButtonPlus />
       </S.Container>
       <Nav />

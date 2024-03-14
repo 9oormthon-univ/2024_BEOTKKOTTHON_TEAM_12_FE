@@ -10,12 +10,14 @@ export const Container = styled.div`
   border-radius: 8px;
   box-shadow: 0 0 5px var(--grey-4);
 
-  & > div {
+  .btn-search {
     width: 24px;
     height: 24px;
+    cursor: pointer;
   }
 
   & > input {
+    flex-grow: 1;
     height: 24px;
     border: none;
     outline: none;

@@ -4,16 +4,20 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 20px;
 
-  .search {
-    margin-bottom: 34px;
+  .header {
+    margin-bottom: 20px;
   }
 
-  .recent-search {
-    margin-bottom: 15px;
+  .category {
+    margin-bottom: 10px;
+  }
+
+  .filter {
+    margin-bottom: 16px;
   }
 `;
 
-export const SectionSearch = styled(BoxHeader)`
+export const HeaderSearch = styled(BoxHeader)`
   gap: 10px;
   & > div {
     flex-grow: 1;
@@ -23,6 +27,5 @@ export const SectionSearch = styled(BoxHeader)`
     width: 26px;
     font-size: 14px;
     color: var(--grey-6);
-    cursor: pointer;
   }
 `;

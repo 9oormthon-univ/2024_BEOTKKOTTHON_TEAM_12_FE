@@ -19,6 +19,7 @@ export const Filter = styled.div<FilterProps>`
   display: flex;
   align-items: center;
   color: ${(props) => (props.$active ? 'var(--green-6)' : 'var(--grey-6)')};
+  cursor: pointer;
 
   & > p {
     margin-left: 5px;
