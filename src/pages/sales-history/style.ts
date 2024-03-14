@@ -14,4 +14,13 @@ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+`;
+
+export const SaleWrapper = styled.div`
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
 `;

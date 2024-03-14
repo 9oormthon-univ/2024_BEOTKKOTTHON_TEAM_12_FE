@@ -1,4 +1,4 @@
-import { BoxItemTrade, Header, Tab, TextLabel } from '@components/index';
+import { BoxItemTrade, Button, Header, Tab, TextLabel } from '@components/index';
 import React from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import * as S from './style';
@@ -70,7 +70,12 @@ const SalesHistory = () => {
     return (
       <S.Container>
         {salesData.length > 0 ? (
-          salesData.map((item: SaleItem) => <BoxItemTrade data={item} />)
+          salesData.map((item: SaleItem) => (
+            <S.SaleWrapper>
+              <BoxItemTrade data={item} />
+              <Button text="판매 완료하기" width="100%" />
+            </S.SaleWrapper>
+          ))
         ) : (
           <div>판매중인 상품이 없습니다.</div>
         )}

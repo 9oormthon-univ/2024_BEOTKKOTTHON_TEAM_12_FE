@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 163.5px;
   height: 232px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 `;
 
 export const BoxImage = styled.img`

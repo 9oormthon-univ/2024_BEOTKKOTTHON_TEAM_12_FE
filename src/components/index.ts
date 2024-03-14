@@ -10,6 +10,7 @@ export { default as ButtonPlus } from './atom/button-plus';
 export { default as Label } from './atom/label';
 export { default as Tag } from './atom/tag';
 export { default as BoxTag } from './atom/box-tag';
+export { default as Button } from './atom/button';
 //Molcule
 export { default as ProfileCard } from './molcule/profile-card';
 export { default as ProgressBar } from './molcule/eco-progressbar';
