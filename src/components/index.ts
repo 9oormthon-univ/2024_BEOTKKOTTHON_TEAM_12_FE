@@ -12,5 +12,6 @@ export { default as ProgressBar } from './molcule/eco-progressbar';
 export { default as MenuItem } from './molcule/menu-item';
 export { default as HeaderLogo } from './molcule/header-logo';
 export { default as ListTag } from './molcule/list-tag';
+export { default as FilterTrade } from './molcule/filter-trade';
 // //Organism
 export { default as UserSection } from './organism/user-section';

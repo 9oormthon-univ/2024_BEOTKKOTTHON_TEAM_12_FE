@@ -1,4 +1,4 @@
-import { HeaderLogo, ListTag, Search } from '@components/index';
+import { FilterTrade, HeaderLogo, ListTag, Search } from '@components/index';
 import * as S from './style';
 
 const MainPage = () => {
@@ -14,6 +14,10 @@ const MainPage = () => {
 
       <section className="category">
         <ListTag />
+      </section>
+
+      <section className="items">
+        <FilterTrade />
       </section>
     </S.Container>
   );

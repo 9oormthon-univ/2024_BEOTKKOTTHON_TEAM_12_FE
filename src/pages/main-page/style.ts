@@ -14,4 +14,6 @@ export const Container = styled.div`
   .category {
     margin-bottom: 10px;
   }
+
+  // .items
 `;
