@@ -8,6 +8,7 @@ import PurchaseHistory from '@pages/purchase-history';
 import ProductNewPage from '@pages/product-new-page';
 import AccountInfo from '@pages/account-info';
 import UserProfileEdit from '@pages/user-profile-edit';
+import BlockedUsers from '@pages/blocked-users';
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
       <Route path="/mypage/purchase-history" element={<PurchaseHistory />} />
       <Route path="/mypage/account-info" element={<AccountInfo />} />
       <Route path="mypage/profile-edit" element={<UserProfileEdit />} />
+      <Route path="mypage/blocked-users" element={<BlockedUsers />} />
       {/* <Route path="*" element={<div>Not Found</div>} /> */}
     </Routes>
   );

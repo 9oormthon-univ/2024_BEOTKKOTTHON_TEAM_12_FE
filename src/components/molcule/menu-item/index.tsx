@@ -41,7 +41,9 @@ const MenuItem: React.FC = () => {
               <S.MenuItem key={itemIndex}>
                 <S.MenuItemWrapper>
                   {sectionIndex === 0 && item === '계정 정보' ? (
-                    <Link to="/mypage/account-info">{item}</Link> // Replace with your actual route
+                    <Link to="/mypage/account-info">{item}</Link>
+                  ) : sectionIndex === 0 && item === '차단한 사용자' ? (
+                    <Link to="/mypage/blocked-users">{item}</Link>
                   ) : sectionIndex === 1 && item === '판매 내역' ? (
                     <Link to="/mypage/sales-history">{item}</Link>
                   ) : sectionIndex === 1 && item === '구매 내역' ? (
