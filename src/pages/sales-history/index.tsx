@@ -90,7 +90,7 @@ const SalesHistory = () => {
         {salesData.length > 0 ? (
           salesData.map((item: Product) => (
             <S.SaleWrapper>
-              <BoxItemTrade product={item} width={'98%'} />
+              <BoxItemTrade product={item} width={'100%'} />
               <Button
                 text="판매 완료하기"
                 width="100%"
