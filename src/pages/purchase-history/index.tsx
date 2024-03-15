@@ -4,11 +4,11 @@ import React from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import { Product, SalesCompletedProps } from 'src/types/types';
 import { useNavigate } from 'react-router';
-import { useProducts } from 'src/store/products';
+import { useAllProducts } from 'src/store/products';
 
 const PurchaseHistory = () => {
   const navigate = useNavigate();
-  const products = useProducts();
+  const products = useAllProducts();
   const salesCompletedData: Product[] = products.filter((product) => product.sold === '판매완료');
 
   const SalesCompleted: React.FC<SalesCompletedProps> = ({ salesCompletedData }) => {

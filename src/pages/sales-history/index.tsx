@@ -10,11 +10,11 @@ import {
   Product,
 } from '../../types/types';
 import { useNavigate } from 'react-router';
-import { useProducts } from 'src/store/products';
+import { useAllProducts } from 'src/store/products';
 
 const SalesHistory = () => {
   const navigate = useNavigate();
-  const products = useProducts();
+  const products = useAllProducts();
   const salesData = products.filter((product) => product.sold === '판매중');
   const salesCompletedData = products.filter((product) => product.sold === '판매완료');
 
