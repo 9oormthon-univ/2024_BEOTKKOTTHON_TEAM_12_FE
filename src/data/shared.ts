@@ -1,4 +1,5 @@
 import defaultImg from '@assets/images/profile-default-image.svg';
+import { Product } from 'src/types/types';
 
 // 카테고리, 최근 검색어
 export const categories = ['전체', '상의', '하의', '아우터', '원피스', '가방', '잡화', '기타'];
@@ -18,14 +19,14 @@ export const userProfile = {
 };
 
 // 판매 상품 데이터
-export const salesData = [
+export const salesData: Product[] = [
   {
     id: '1',
     name: '지오다노',
     time: '30분전',
     state: '보통이에요',
     price: 16500,
-    url: '/src/assets/images/product-default-img.png',
+
     recievedImgUrl: [
       '/src/assets/nav-icons/chatting_green.svg',
       '/src/assets/nav-icons/chatting_grey.svg',
@@ -42,7 +43,7 @@ export const salesData = [
     time: '30분전',
     state: '아주 좋아요',
     price: 16500,
-    url: '/src/assets/images/product-default-img.png',
+
     recievedImgUrl: [
       '/src/assets/nav-icons/donation_green.svg',
       '/src/assets/nav-icons/donation_grey.svg',
@@ -58,7 +59,7 @@ export const salesData = [
     time: '30분전',
     state: '보통이에요',
     price: 16500,
-    url: '/src/assets/images/product-default-img.png',
+
     recievedImgUrl: [
       '/src/assets/images/product-default-img.png',
       '/src/assets/nav-icons/donation_green.svg',

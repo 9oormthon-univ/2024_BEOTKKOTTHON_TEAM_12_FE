@@ -5,8 +5,8 @@ const ListTradeItems = () => {
   const products = useProducts();
   return (
     <S.Container>
-      {products.map((saleData) => (
-        <BoxItemTrade key={saleData.id} data={saleData} />
+      {products.map((product) => (
+        <BoxItemTrade key={product.id} product={product} />
       ))}
     </S.Container>
   );

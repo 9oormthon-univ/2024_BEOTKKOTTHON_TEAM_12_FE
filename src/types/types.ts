@@ -14,15 +14,15 @@ export interface TabItemProps {
 }
 
 export interface SalesInProgressProps {
-  salesData: SaleItem[];
+  salesData: Product[];
 }
 
 export interface SalesCompletedProps {
-  salesCompletedData: SaleItem[];
+  salesCompletedData: Product[];
 }
 
 export interface HiddenItemsProps {
-  hiddenItemsData: SaleItem[];
+  hiddenItemsData: Product[];
 }
 
 export interface SaleItem {
