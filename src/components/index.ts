@@ -15,6 +15,7 @@ export { default as FormGroup } from './atom/form-group';
 export { default as BoxTag } from './atom/box-tag';
 export { default as BoxInput } from './atom/box-input';
 export { default as BoxUpload } from './atom/box-upload';
+export { default as BoxKebabList } from './atom/box-kebab-list';
 //Molcule
 export { default as Carousel } from './molcule/carousel';
 export { default as ProfileCard } from './molcule/profile-card';
