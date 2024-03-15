@@ -13,11 +13,11 @@ import kebab from '@assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SaleItem } from 'src/types/types';
 import { useState } from 'react';
-import { useProducts } from 'src/store/products';
+import { useFilteredProducts } from 'src/store/products';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const products = useProducts();
+  const products = useFilteredProducts();
   const navigate = useNavigate();
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);

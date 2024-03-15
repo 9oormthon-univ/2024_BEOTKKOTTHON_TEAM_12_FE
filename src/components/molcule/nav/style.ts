@@ -8,11 +8,10 @@ export const BoxNav = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 25px;
   height: 86px;
   box-sizing: border-box;
   background-color: #ffffff;
+  box-shadow: 0 -3px 6.3px -2px var(--grey-4);
   border-top: 1px solid var(--grey-3);
 `;
 

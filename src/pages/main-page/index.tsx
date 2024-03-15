@@ -19,7 +19,7 @@ const MainPage = () => {
   const navigate = useNavigate();
   const { setInitalProducts } = useProductsActions();
 
-  const handleClick = () => {
+  const handleClickBtn = () => {
     navigate('/product/new');
   };
 
@@ -53,7 +53,7 @@ const MainPage = () => {
           <ListTradeItems />
         </section>
 
-        <ButtonPlus handleClick={handleClick} />
+        <ButtonPlus handleClick={handleClickBtn} />
       </S.Container>
       <Nav currentTab="홈" />
     </>

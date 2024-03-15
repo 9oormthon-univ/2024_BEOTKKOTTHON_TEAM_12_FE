@@ -3,19 +3,32 @@ import { create } from 'zustand';
 
 interface Actions {
   setInitalProducts: (newProducts: Product[]) => void;
+  setFilteredProducts: (category: string) => void;
 }
 
 interface ProductsStore {
-  products: Product[];
+  allProducts: Product[];
+  filteredProducts: Product[];
   actions: Actions;
 }
 
 export const useProductsStore = create<ProductsStore>((set) => ({
-  products: [],
+  allProducts: [],
+  filteredProducts: [],
   actions: {
-    setInitalProducts: (newProducts) => set(() => ({ products: [...newProducts] })),
+    setInitalProducts: (newProducts) =>
+      set(() => ({ allProducts: [...newProducts], filteredProducts: [...newProducts] })),
+    setFilteredProducts: (category) =>
+      set((state) => ({
+        ...state,
+        filteredProducts:
+          category === '전체'
+            ? state.allProducts
+            : state.allProducts.filter((product) => product.category === category),
+      })),
   },
 }));
 
-export const useProducts = () => useProductsStore((state) => state.products);
+export const useAllProducts = () => useProductsStore((state) => state.allProducts);
+export const useFilteredProducts = () => useProductsStore((state) => state.filteredProducts);
 export const useProductsActions = () => useProductsStore((state) => state.actions);
