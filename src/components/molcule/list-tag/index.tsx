@@ -1,14 +1,14 @@
 import { categories } from 'src/data/shared';
 import { useEffect, useState } from 'react';
 import { BoxTag, Tag } from '@components/index';
-import { SaleItem } from 'src/types/types';
+import { Product } from 'src/types/types';
 import { useLocation } from 'react-router-dom';
 import { useProductsActions } from 'src/store/products';
 
 interface ListTagProps {
   isform?: boolean;
-  formData?: SaleItem;
-  setFormData?: (value: SaleItem) => void;
+  formData?: Product;
+  setFormData?: (value: Product) => void;
 }
 
 const ListTag = ({ isform, formData, setFormData }: ListTagProps) => {

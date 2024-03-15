@@ -10,14 +10,14 @@ import * as S from './style';
 import { useState } from 'react';
 import { placeList, priceList } from 'src/data/shared';
 import Button from '@components/atom/button-trade';
-import { SaleItem } from 'src/types/types';
+import { Product } from 'src/types/types';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'src/utils/transformPrice';
 
 const FormTrade = () => {
   const navigate = useNavigate();
   const [showImages, setShowImages] = useState<string[]>([]);
-  const [formData, setFormData] = useState<SaleItem>({
+  const [formData, setFormData] = useState<Product>({
     id: 0,
     name: '',
     imgs: {} as FileList,

@@ -1,9 +1,9 @@
-import { SaleItem } from 'src/types/types';
+import { Product } from 'src/types/types';
 import * as S from './style';
 
 interface ListTradeFormProps {
-  formData: SaleItem;
-  setFormData: (value: SaleItem) => void;
+  formData: Product;
+  setFormData: (value: Product) => void;
   type: string;
   list: string[];
 }
@@ -11,7 +11,7 @@ interface ListTradeFormProps {
 const ListTradeForm = ({ formData, setFormData, type, list }: ListTradeFormProps) => {
   const handleClick = (element: string) => {
     if (type === 'price') {
-      const updated = Number(formData.price) + Number(element.match(/\d+/g).join(''));
+      const updated = formData.price + Number(element.match(/\d+/g).join(''));
       setFormData({
         ...formData,
         price: updated,

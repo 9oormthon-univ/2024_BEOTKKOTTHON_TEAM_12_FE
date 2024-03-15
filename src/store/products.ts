@@ -4,6 +4,7 @@ import { create } from 'zustand';
 interface Actions {
   setInitalProducts: (newProducts: Product[]) => void;
   setFilteredProducts: (category: string) => void;
+  addProduct: (newProduct: Product) => void;
 }
 
 interface ProductsStore {
@@ -18,6 +19,7 @@ export const useProductsStore = create<ProductsStore>((set) => ({
   actions: {
     setInitalProducts: (newProducts) =>
       set(() => ({ allProducts: [...newProducts], filteredProducts: [...newProducts] })),
+
     setFilteredProducts: (category) =>
       set((state) => ({
         ...state,
@@ -26,6 +28,9 @@ export const useProductsStore = create<ProductsStore>((set) => ({
             ? state.allProducts
             : state.allProducts.filter((product) => product.category === category),
       })),
+
+    addProduct: (newProduct) =>
+      set((state) => ({ allProducts: [...state.allProducts, newProduct] })),
   },
 }));
 

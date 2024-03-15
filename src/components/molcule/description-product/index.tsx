@@ -1,10 +1,10 @@
-import { SaleItem } from 'src/types/types';
+import { Product } from 'src/types/types';
 import * as S from './style';
 import stategrey from '@assets/icons/state_grey.svg';
 import stategreen from '@assets/icons/state_green.svg';
 
 interface DescriptionProductProps {
-  product: SaleItem;
+  product: Product;
 }
 
 const DescriptionProduct = ({ product }: DescriptionProductProps) => {

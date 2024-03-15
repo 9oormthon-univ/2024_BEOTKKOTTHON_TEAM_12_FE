@@ -11,7 +11,7 @@ import * as S from './style';
 import arrow from '@assets/icons/left_btn.svg';
 import kebab from '@assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SaleItem } from 'src/types/types';
+import { Product } from 'src/types/types';
 import { useState } from 'react';
 import { useFilteredProducts } from 'src/store/products';
 
@@ -68,12 +68,12 @@ const ProductDetailPage = () => {
         </section>
 
         <section className="description">
-          <DescriptionProduct product={product as SaleItem} />
+          <DescriptionProduct product={product} />
         </section>
       </S.SectionScroll>
 
       <section className="footer">
-        <FooterProductDetail product={product as SaleItem} />
+        <FooterProductDetail product={product} />
       </section>
     </S.Container>
   );
