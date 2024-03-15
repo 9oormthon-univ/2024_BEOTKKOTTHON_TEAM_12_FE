@@ -16,6 +16,7 @@ export { default as BoxTag } from './atom/box-tag';
 export { default as BoxInput } from './atom/box-input';
 export { default as BoxUpload } from './atom/box-upload';
 export { default as BoxKebabList } from './atom/box-kebab-list';
+export { default as BoxModal } from './atom/box-modal';
 //Molcule
 export { default as Carousel } from './molcule/carousel';
 export { default as ProfileCard } from './molcule/profile-card';
@@ -33,6 +34,7 @@ export { default as Tab } from './molcule/tab';
 export { default as DescriptionProduct } from './molcule/description-product';
 export { default as FormRadio } from './molcule/form-radio';
 export { default as FooterProductDetail } from './molcule/footer-product-detail';
+export { default as ModalProduct } from './molcule/modal-product';
 //Organism
 export { default as UserSection } from './organism/user-section';
 export { default as ListTradeItems } from './organism/list-trade-items';
