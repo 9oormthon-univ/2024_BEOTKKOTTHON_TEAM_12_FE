@@ -1,11 +1,11 @@
 import { categories } from 'src/data/shared';
 import { useState } from 'react';
 import { BoxTag, Tag } from '@components/index';
-import { FormDataType } from '@components/organism/form-trade';
+import { SaleItem } from 'src/types/types';
 
 interface ListTagProps {
-  formData?: FormDataType;
-  setFormData?: (value: FormDataType) => void;
+  formData?: SaleItem;
+  setFormData?: (value: SaleItem) => void;
 }
 
 const ListTag = ({ formData, setFormData }: ListTagProps) => {

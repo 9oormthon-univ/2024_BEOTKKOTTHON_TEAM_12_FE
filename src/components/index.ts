@@ -14,13 +14,15 @@ export { default as BoxTag } from './atom/box-tag';
 export { default as Button } from './atom/button';
 export { default as FormGroup } from './atom/form-group';
 export { default as BoxInput } from './atom/box-input';
+export { default as BoxUpload } from './atom/box-upload';
 //Molcule
 export { default as ProfileCard } from './molcule/profile-card';
 export { default as ProgressBar } from './molcule/eco-progressbar';
 export { default as MenuItem } from './molcule/menu-item';
 export { default as Header } from './molcule/header';
 export { default as ListTag } from './molcule/list-tag';
-export { default as ListPrice } from './molcule/list-price';
+export { default as ListTradeForm } from './molcule/list-trade-from';
+export { default as ListImage } from './molcule/list-image';
 export { default as FilterTrade } from './molcule/filter-trade';
 export { default as BoxItemTrade } from './molcule/box-item-trade';
 export { default as Nav } from './molcule/nav';

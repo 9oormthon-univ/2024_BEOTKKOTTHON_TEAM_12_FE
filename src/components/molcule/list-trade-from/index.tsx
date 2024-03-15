@@ -1,10 +1,10 @@
 import * as S from './style';
 
-interface ListPriceProps {
+interface ListTradeFormProps {
   list: string[];
 }
 
-const ListPrice = ({ list }: ListPriceProps) => {
+const ListTradeForm = ({ list }: ListTradeFormProps) => {
   return (
     <S.Container>
       {list.map((element, index) => (
@@ -16,4 +16,4 @@ const ListPrice = ({ list }: ListPriceProps) => {
   );
 };
 
-export default ListPrice;
+export default ListTradeForm;
