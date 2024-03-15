@@ -34,7 +34,7 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ data, width }) => {
           <p className="state">상품 상태 : {data.state}</p>
         </S.State>
 
-        <S.Price sold={data.sold === '판매완료' ? true : false}>
+        <S.Price sold={data.sold}>
           <p className="price">{transformPrice(data.price)}원</p>
           <p className="sold">{data.sold}</p>
         </S.Price>

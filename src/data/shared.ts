@@ -20,11 +20,11 @@ export const userProfile = {
 // 판매 상품 데이터
 export const salesData = [
   {
-    id: 1,
+    id: '1',
     name: '지오다노',
     time: '30분전',
     state: '보통이에요',
-    price: '16500',
+    price: 16500,
     url: '/src/assets/images/product-default-img.png',
     recievedImgUrl: [
       '/src/assets/nav-icons/chatting_green.svg',
@@ -37,11 +37,11 @@ export const salesData = [
     sold: '판매중',
   },
   {
-    id: 2,
+    id: '2',
     name: '지오다노',
     time: '30분전',
     state: '아주 좋아요',
-    price: '16500',
+    price: 16500,
     url: '/src/assets/images/product-default-img.png',
     recievedImgUrl: [
       '/src/assets/nav-icons/donation_green.svg',
@@ -53,11 +53,11 @@ export const salesData = [
     sold: '판매완료',
   },
   {
-    id: 3,
+    id: '3',
     name: '지오다노',
     time: '30분전',
     state: '보통이에요',
-    price: '16500',
+    price: 16500,
     url: '/src/assets/images/product-default-img.png',
     recievedImgUrl: [
       '/src/assets/images/product-default-img.png',

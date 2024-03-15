@@ -11,13 +11,21 @@ import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import logo from '@assets/logo/logo.svg';
 import notifications from '@assets/icons/notifications.svg';
+import { useEffect } from 'react';
+import { useProductsActions } from 'src/store/products';
+import { salesData } from 'src/data/shared';
 
 const MainPage = () => {
   const navigate = useNavigate();
+  const { setInitalProducts } = useProductsActions();
 
   const handleClick = () => {
     navigate('/product/new');
   };
+
+  useEffect(() => {
+    setInitalProducts(salesData);
+  }, []);
 
   return (
     <>
