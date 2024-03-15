@@ -9,11 +9,13 @@ const Header = styled(BoxHeader)`
   .left {
     position: absolute;
     left: 4px;
+    cursor: pointer;
   }
 
   .right {
     position: absolute;
     right: 4px;
+    cursor: pointer;
   }
 `;
 

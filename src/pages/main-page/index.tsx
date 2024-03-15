@@ -15,6 +15,10 @@ import notifications from '@assets/icons/notifications.svg';
 const MainPage = () => {
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    navigate('/product/new');
+  };
+
   return (
     <>
       <S.Container>
@@ -41,7 +45,7 @@ const MainPage = () => {
           <ListTradeItems />
         </section>
 
-        <ButtonPlus />
+        <ButtonPlus handleClick={handleClick} />
       </S.Container>
       <Nav currentTab="홈" />
     </>
