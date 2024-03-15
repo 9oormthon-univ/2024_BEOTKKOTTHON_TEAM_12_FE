@@ -4,7 +4,7 @@ import stategrey from '@assets/icons/state_grey.svg';
 import stategreen from '@assets/icons/state_green.svg';
 import defaultImg from '@assets/images/product-default-img.png';
 import { useNavigate } from 'react-router-dom';
-import { transformPrice } from 'src/utils/transfromPrice';
+import { transformPrice } from 'src/utils/transformPrice';
 
 interface SaleItemProps {
   data: SaleItem;
