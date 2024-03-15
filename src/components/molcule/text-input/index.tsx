@@ -8,6 +8,7 @@ interface TextInputProps {
   value: string;
   placeholder?: string;
   readonly?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -16,13 +17,20 @@ const TextInput: React.FC<TextInputProps> = ({
   placeholder,
   value,
   readonly = false,
+  onChange,
 }) => {
   return (
     <>
       <S.InputContainer>
         <TextLabel text={label} size={labelSize} />
         <S.StyledBoxInput readOnly={readonly}>
-          <input name="title" readOnly={readonly} placeholder={placeholder} defaultValue={value} />
+          <input
+            name="title"
+            readOnly={readonly}
+            placeholder={placeholder}
+            defaultValue={value}
+            onChange={onChange}
+          />
         </S.StyledBoxInput>
       </S.InputContainer>
     </>

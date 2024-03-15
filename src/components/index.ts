@@ -23,7 +23,9 @@ export { default as FilterTrade } from './molcule/filter-trade';
 export { default as BoxItemTrade } from './molcule/box-item-trade';
 export { default as Nav } from './molcule/nav';
 export { default as Tab } from './molcule/tab';
-// //Organism
+export { default as TextInput } from './molcule/text-input';
+export { default as ImageInput } from './molcule/image-input';
+export { default as TagInput } from './molcule/tag-input';
 //Organism
 export { default as UserSection } from './organism/user-section';
 export { default as ListTradeItems } from './organism/list-trade-items';
