@@ -52,8 +52,13 @@ const FormTrade = () => {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <FormGroup>
         <p className="label">이미지 업로드</p>
         <ListImage showImages={showImages} handleChange={handleChange} />
