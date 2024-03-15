@@ -17,7 +17,7 @@ const ProfileCard: React.FC = () => {
   };
 
   const onModifyProfile = () => {
-    navigate('/mypage/account-info');
+    navigate('/mypage/profile-edit');
   };
 
   return (

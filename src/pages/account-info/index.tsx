@@ -3,6 +3,7 @@ import * as S from './style';
 import arrow from '@assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
 import TextInput from '@components/molcule/text-input';
+
 const AccountInfo = () => {
   const navigate = useNavigate();
   const accountInfo = {
