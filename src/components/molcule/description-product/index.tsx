@@ -17,7 +17,7 @@ const DescriptionProduct = ({ product }: DescriptionProductProps) => {
       <S.SubTitle>
         <img src={circleUrl} alt="none-trade" />
 
-        <p className="state">{product.state}</p>
+        <p className="state">상품 상태 : {product.state}</p>
         <p className="time">{product.time}</p>
       </S.SubTitle>
 

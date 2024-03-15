@@ -50,7 +50,7 @@ export const salesData = [
     ],
     description: '우우앙아우우',
     place: '후문',
-    sold: '판매중',
+    sold: '판매완료',
   },
   {
     id: 3,

@@ -47,7 +47,7 @@ export const State = styled.div`
   }
 `;
 
-export const Price = styled.div`
+export const Price = styled.div<{ sold: boolean }>`
   display: flex;
   align-items: center;
   gap: 6px;
@@ -65,8 +65,8 @@ export const Price = styled.div`
     padding: 3px 5px;
     box-sizing: border-box;
     border-radius: 5px;
-    background-color: var(--grey-2);
+    background-color: ${({ sold }) => (sold ? 'var(--green-1)' : 'var(--grey-2)')};
     font-size: 10px;
-    color: var(--grey-5);
+    color: ${({ sold }) => (sold ? 'var(--green-6)' : 'var(--grey-5)')};
   }
 `;
