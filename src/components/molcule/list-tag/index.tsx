@@ -1,34 +1,31 @@
 import { categories } from 'src/data/shared';
 import { useEffect, useState } from 'react';
 import { BoxTag, Tag } from '@components/index';
-import { SaleItem } from 'src/types/types';
 import { useLocation } from 'react-router-dom';
 import { useProductsActions } from 'src/store/products';
+import { useFormDataActions } from 'src/store/formData';
 
 interface ListTagProps {
   isform?: boolean;
-  formData?: SaleItem;
-  setFormData?: (value: SaleItem) => void;
 }
 
-const ListTag = ({ isform, formData, setFormData }: ListTagProps) => {
+const ListTag = ({ isform }: ListTagProps) => {
   const location = useLocation();
   const { setFilteredProducts } = useProductsActions();
+  const { setFormData } = useFormDataActions();
 
   const [activeCategory, SetActiveCategory] = useState<string>('전체');
   const list = isform ? categories.slice(1) : categories;
 
   useEffect(() => {
-    // location.pathname을 사용하여 현재 경로와 문자열을 비교
-    if (location.pathname !== '/product/new') {
-      console.log(activeCategory);
+    if (location !== '/product/new') {
       setFilteredProducts(activeCategory);
     }
   }, [activeCategory, location.pathname]);
 
   const handleClick = (category: string) => {
-    if (setFormData && formData) {
-      setFormData({ ...formData, category });
+    if (isform) {
+      setFormData('category', category);
     }
     SetActiveCategory(category);
   };

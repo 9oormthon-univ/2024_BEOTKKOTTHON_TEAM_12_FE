@@ -1,11 +1,11 @@
-import { SaleItem } from 'src/types/types';
+import { Product } from 'src/types/types';
 import * as S from './style';
 import heart from '@assets/icons/heart.svg';
 import { Button } from '@components/index';
 import { transformPrice } from 'src/utils/transformPrice';
 
 interface FooterProductDetailProps {
-  product: SaleItem;
+  product: Product;
 }
 
 const FooterProductDetail = ({ product }: FooterProductDetailProps) => {

@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 import { useProductsActions } from 'src/store/products';
 import { salesData } from 'src/data/shared';
 
-const MainPage = () => {
+const Main = () => {
   const navigate = useNavigate();
   const { setInitalProducts } = useProductsActions();
 
@@ -60,4 +60,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default Main;

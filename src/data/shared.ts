@@ -68,7 +68,7 @@ export const salesData: Product[] = [
     time: '30분전',
     state: '보통이에요',
     price: 16500,
-
+    category: '하의',
     recievedImgUrl: [ImgEx1, ImgEx2, ImgEx3],
     description:
       '아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ',
@@ -81,7 +81,7 @@ export const salesData: Product[] = [
     time: '30분전',
     state: '보통이에요',
     price: 16500,
-
+    category: '원피스',
     recievedImgUrl: [ImgEx1, ImgEx2, ImgEx3],
     description:
       '아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ',

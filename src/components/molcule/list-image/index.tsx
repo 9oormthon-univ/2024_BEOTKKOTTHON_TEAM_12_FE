@@ -1,22 +1,20 @@
 import { BoxUpload } from '@components/index';
 import * as S from './style';
 import cancle from '@assets/icons/cancel.svg';
-import { ListImageProps } from 'src/types/types';
+import { useFormDataActions, useShowImages } from 'src/store/formData';
 
-const ListImage = ({ formData, setFormData, setShowImages, showImages }: ListImageProps) => {
+const ListImage = () => {
+  const showImages = useShowImages();
+  const { setShowImages } = useFormDataActions();
+
   const handleClick = (i: number) => {
-    const temp = showImages.filter((_, index) => index !== i);
-    setShowImages(temp);
+    const filterdUrls = showImages.filter((_, index) => index !== i);
+    setShowImages(filterdUrls);
   };
 
   return (
     <S.Container>
-      <BoxUpload
-        showImages={showImages}
-        setShowImages={setShowImages}
-        formData={formData}
-        setFormData={setFormData}
-      />
+      <BoxUpload />
 
       {showImages.map((img, i) => (
         <S.BoxImage key={i}>

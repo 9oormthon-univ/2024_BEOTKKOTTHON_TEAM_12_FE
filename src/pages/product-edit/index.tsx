@@ -1,9 +1,9 @@
 import { FormTrade, Header } from '@components/index';
-import * as S from './style';
+import * as S from './styled';
 import close from '@assets/icons/close_large.svg';
 import { useNavigate } from 'react-router-dom';
 
-const ProductNewPage = () => {
+const ProductEdit = () => {
   const navigate = useNavigate();
   return (
     <S.Container>
@@ -21,4 +21,4 @@ const ProductNewPage = () => {
   );
 };
 
-export default ProductNewPage;
+export default ProductEdit;

@@ -3,7 +3,7 @@ import * as S from './style';
 import back from '@assets/icons/left_btn.svg';
 import { useNavigate } from 'react-router-dom';
 
-const SearchResultPage = () => {
+const SearchResult = () => {
   const navigate = useNavigate();
 
   return (
@@ -32,4 +32,4 @@ const SearchResultPage = () => {
   );
 };
 
-export default SearchResultPage;
+export default SearchResult;

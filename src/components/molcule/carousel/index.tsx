@@ -2,10 +2,10 @@ import * as S from './style';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { SaleItem } from 'src/types/types';
+import { Product } from 'src/types/types';
 
 interface CarouselProps {
-  product: SaleItem | undefined;
+  product: Product | undefined;
 }
 
 const Carousel = ({ product }: CarouselProps) => {

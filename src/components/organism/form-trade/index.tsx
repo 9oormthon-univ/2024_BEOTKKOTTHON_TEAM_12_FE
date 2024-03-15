@@ -7,41 +7,31 @@ import {
   ListTag,
 } from '@components/index';
 import * as S from './style';
-import { useState } from 'react';
-import { placeList, priceList } from 'src/data/shared';
+import { placeList, priceList, salesData } from 'src/data/shared';
 import Button from '@components/atom/button-trade';
-import { SaleItem } from 'src/types/types';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'src/utils/transformPrice';
+import { useFormData, useFormDataActions, useShowImages } from 'src/store/formData';
+import { useEffect } from 'react';
 
 const FormTrade = () => {
   const navigate = useNavigate();
-  const [showImages, setShowImages] = useState<string[]>([]);
-  const [formData, setFormData] = useState<SaleItem>({
-    id: 0,
-    name: '',
-    imgs: {} as FileList,
-    category: '',
-    time: '',
-    state: '',
-    price: 0,
-    sold: '판매중',
-    place: '',
-  });
+  const formData = useFormData();
+  const showImages = useShowImages();
+  const { setFormData, receiveData } = useFormDataActions();
+
+  useEffect(() => {
+    // 서버에서 데이터 받아와서 receivedData에 저장
+    receiveData(salesData[0]);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | null>) => {
     const { name, value } = e.target;
 
     if (name === 'price') {
-      setFormData({
-        ...formData,
-        price: Number(value.replace(/,/g, '')),
-      });
+      setFormData('price', Number(value.replace(/,/g, '')));
     } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
+      setFormData(name, value);
     }
   };
 
@@ -57,24 +47,24 @@ const FormTrade = () => {
         <p className="label">
           이미지 업로드 (<span className="sub">{showImages.length}</span>/5)
         </p>
-        <ListImage
-          showImages={showImages}
-          setShowImages={setShowImages}
-          formData={formData}
-          setFormData={setFormData}
-        />
+        <ListImage />
       </FormGroup>
 
       <FormGroup>
         <p className="label">제목</p>
         <BoxInput>
-          <input name="name" onChange={handleChange} placeholder="제목을 입력해주세요." />
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="제목을 입력해주세요."
+          />
         </BoxInput>
       </FormGroup>
 
       <FormGroup>
         <p className="label">분류</p>
-        <ListTag formData={formData} setFormData={setFormData} isform={true} />
+        <ListTag isform={true} />
       </FormGroup>
 
       <FormGroup>
@@ -101,12 +91,7 @@ const FormTrade = () => {
           />
           <p>원</p>
         </S.InputNum>
-        <ListTradeForm
-          formData={formData}
-          setFormData={setFormData}
-          list={priceList}
-          type={'price'}
-        />
+        <ListTradeForm list={priceList} type={'price'} />
       </FormGroup>
 
       <FormGroup>
@@ -120,12 +105,7 @@ const FormTrade = () => {
           />
         </BoxInput>
         <S.LabelPlace>성균관 대학교 추천 장소</S.LabelPlace>
-        <ListTradeForm
-          formData={formData}
-          setFormData={setFormData}
-          list={placeList}
-          type={'place'}
-        />
+        <ListTradeForm list={placeList} type={'place'} />
       </FormGroup>
 
       <Button>등록하기</Button>

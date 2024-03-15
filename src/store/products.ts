@@ -18,6 +18,7 @@ export const useProductsStore = create<ProductsStore>((set) => ({
   actions: {
     setInitalProducts: (newProducts) =>
       set(() => ({ allProducts: [...newProducts], filteredProducts: [...newProducts] })),
+
     setFilteredProducts: (category) =>
       set((state) => ({
         ...state,
