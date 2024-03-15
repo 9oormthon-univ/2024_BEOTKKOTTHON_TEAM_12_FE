@@ -5,7 +5,6 @@ import {
   DescriptionProduct,
   FooterProductDetail,
   Header,
-  ModalPortal,
   ModalProduct,
 } from '@components/index';
 import * as S from './style';

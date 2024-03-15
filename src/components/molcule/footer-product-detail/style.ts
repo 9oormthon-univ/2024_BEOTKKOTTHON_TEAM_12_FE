@@ -28,5 +28,6 @@ export const Container = styled.div`
   & > button {
     margin-left: auto;
     font-size: 15px;
+    font-weight: bold;
   }
 `;
