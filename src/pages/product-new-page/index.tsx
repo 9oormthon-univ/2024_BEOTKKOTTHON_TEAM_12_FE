@@ -12,7 +12,7 @@ const ProductNewPage = () => {
         </Header>
       </section>
 
-      <section>
+      <section className="form">
         <FormTrade />
       </section>
     </S.Container>
