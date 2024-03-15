@@ -10,6 +10,7 @@ import AccountInfo from '@pages/account-info';
 import UserProfileEdit from '@pages/user-profile-edit';
 import BlockedUsers from '@pages/blocked-users';
 import ProductDetailPage from '@pages/product-detail-page';
+import ChatHome from '@pages/chat-home';
 
 const Router = () => {
   return (
@@ -25,6 +26,7 @@ const Router = () => {
       <Route path="/mypage/account-info" element={<AccountInfo />} />
       <Route path="mypage/profile-edit" element={<UserProfileEdit />} />
       <Route path="mypage/blocked-users" element={<BlockedUsers />} />
+      <Route path="chat-home" element={<ChatHome />} />
       {/* <Route path="*" element={<div>Not Found</div>} /> */}
     </Routes>
   );
