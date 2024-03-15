@@ -9,10 +9,10 @@ interface UserProfileInfo {
   image: string;
   styleTag: string[];
 }
-
 interface StoreState {
   userProfileInfo: UserProfileInfo;
   updateUserProfileInfo: (newProfile: Partial<UserProfileInfo>) => void;
+  updateUserStyleTags: (styleTags: string[]) => void; // 이 부분을 추가
 }
 
 const useStore = create<StoreState>((set) => ({

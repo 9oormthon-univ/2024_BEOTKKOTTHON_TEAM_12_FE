@@ -11,11 +11,16 @@ interface ListTradeFormProps {
 const ListTradeForm = ({ formData, setFormData, type, list }: ListTradeFormProps) => {
   const handleClick = (element: string) => {
     if (type === 'price') {
-      const updated = Number(formData.price) + Number(element.match(/\d+/g).join(''));
-      setFormData({
-        ...formData,
-        price: updated,
-      });
+      const matches = element.match(/\d+/g);
+      //null이 아닐 때만 실행
+      if (matches) {
+        const numbers = matches.join('');
+        const updated = Number(formData.price) + Number(numbers);
+        setFormData({
+          ...formData,
+          price: updated,
+        });
+      }
     } else if (type === 'place') {
       setFormData({
         ...formData,

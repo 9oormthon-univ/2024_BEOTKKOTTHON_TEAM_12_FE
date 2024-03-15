@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
-const ToggleWrapper = styled.div`
+interface ToggleProps {
+  isOn: boolean;
+}
+
+const ToggleWrapper = styled.div<ToggleProps>`
   position: relative;
   width: 50px;
   height: 25px;
   border-radius: 25px;
-  background-color: ${({ isOn }) => (isOn ? 'var(--green-primary)' : '#e0e0e0')};
+  background-color: ${({ isOn }) => (isOn ? 'var(--green-primary)' : 'var(--grey-4)')};
 `;
 
-const ToggleButton = styled.div`
+const ToggleButton = styled.div<ToggleProps>`
   position: absolute;
   top: 2px;
   left: 2px;
@@ -23,11 +27,6 @@ const ToggleButton = styled.div`
 
 const Toggle = () => {
   const [isOn, setIsOn] = useState(false);
-  useEffect(() => {
-    if (isOn) {
-      console.log('켜짐');
-    }
-  }, [isOn]);
 
   return (
     <ToggleWrapper isOn={isOn} onClick={() => setIsOn(!isOn)}>

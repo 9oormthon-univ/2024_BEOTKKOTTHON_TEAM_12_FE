@@ -92,7 +92,7 @@ const SalesHistory = () => {
             <S.SaleWrapper>
               <BoxItemTrade product={item} width={'100%'} />
               <Button
-                text="판매 완료하기"
+                children="판매 완료하기"
                 width="100%"
                 handleOnClick={() => handleSaleComplete(Number(item.id))}
               />

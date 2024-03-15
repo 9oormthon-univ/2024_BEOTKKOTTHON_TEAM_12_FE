@@ -19,11 +19,12 @@ const ListTag = ({ isform, formData, setFormData }: ListTagProps) => {
   const list = isform ? categories.slice(1) : categories;
 
   useEffect(() => {
-    if (location !== '/product/new') {
+    // location.pathname을 사용하여 현재 경로와 문자열을 비교
+    if (location.pathname !== '/product/new') {
       console.log(activeCategory);
       setFilteredProducts(activeCategory);
     }
-  }, [activeCategory]);
+  }, [activeCategory, location.pathname]);
 
   const handleClick = (category: string) => {
     if (setFormData && formData) {

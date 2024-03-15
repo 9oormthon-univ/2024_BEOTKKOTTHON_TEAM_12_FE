@@ -16,12 +16,12 @@ const ModalProduct = ({ openModal, setOpenModal }: ModalProductProps) => {
           <S.BoxButton>
             <Button
               width="143px"
-              text="취소"
+              children="취소"
               backgroundColor="var(--grey-2)"
               color="var(--grey-4)"
               handleOnClick={() => setOpenModal(!openModal)}
             />
-            <Button width="143px" text="삭제" backgroundColor="var(--green-6)" color="white" />
+            <Button width="143px" children="삭제" backgroundColor="var(--green-6)" color="white" />
           </S.BoxButton>
         </S.BoxContent>
       </S.Container>

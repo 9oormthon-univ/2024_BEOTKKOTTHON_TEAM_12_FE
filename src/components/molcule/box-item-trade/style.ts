@@ -47,7 +47,7 @@ export const State = styled.div`
   }
 `;
 
-export const Price = styled.div`
+export const Price = styled.div<{ $sold?: boolean }>`
   display: flex;
   align-items: center;
   height: 20px;
