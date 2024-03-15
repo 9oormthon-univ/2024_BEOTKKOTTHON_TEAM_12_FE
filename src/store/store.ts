@@ -28,6 +28,11 @@ const useStore = create<StoreState>((set) => ({
     set((state) => ({
       userProfileInfo: { ...state.userProfileInfo, ...newProfile },
     })),
+
+  updateUserStyleTags: (styleTags: string[]) =>
+    set((state) => ({
+      userProfileInfo: { ...state.userProfileInfo, styleTag: styleTags },
+    })),
 }));
 
 export default useStore;
