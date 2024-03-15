@@ -9,6 +9,7 @@ import ProductNewPage from '@pages/product-new-page';
 import AccountInfo from '@pages/account-info';
 import UserProfileEdit from '@pages/user-profile-edit';
 import BlockedUsers from '@pages/blocked-users';
+import ProductDetailPage from '@pages/product-detail-page';
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/search/result" element={<SearchResultPage />} />
       <Route path="/product/new" element={<ProductNewPage />} />
+      <Route path="/product/:id" element={<ProductDetailPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/sales-history" element={<SalesHistory />} />
       <Route path="/mypage/purchase-history" element={<PurchaseHistory />} />
