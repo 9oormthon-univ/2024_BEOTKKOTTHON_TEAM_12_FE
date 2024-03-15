@@ -47,7 +47,7 @@ export const State = styled.div`
   }
 `;
 
-export const Price = styled.div<{ $sold?: boolean }>`
+export const Price = styled.div`
   display: flex;
   align-items: center;
   height: 20px;
@@ -68,6 +68,6 @@ export const Price = styled.div<{ $sold?: boolean }>`
     border-radius: 5px;
     background-color: var(--grey-2);
     font-size: 10px;
-    color: ${({ $sold }) => ($sold ? 'var(--green-6)' : 'var(--grey-5)')};
+    color: var(--grey-5);
   }
 `;
