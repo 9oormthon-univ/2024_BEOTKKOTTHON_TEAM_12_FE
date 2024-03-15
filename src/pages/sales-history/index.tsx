@@ -51,16 +51,7 @@ const SalesHistory = () => {
     },
   ];
 
-  const hiddenItemsData: SaleItem[] = [
-    {
-      id: 1,
-      name: '지오다노',
-      time: '30분전',
-      state: '상품 상태 : 아주 좋아요',
-      price: '16,500원',
-      sold: '판매완료',
-    },
-  ];
+  const hiddenItemsData: SaleItem[] = [];
 
   //판매완료 버튼 클릭
   const handleSaleComplete = (id: number) => {
@@ -82,7 +73,7 @@ const SalesHistory = () => {
             </S.SaleWrapper>
           ))
         ) : (
-          <div>판매중인 상품이 없습니다.</div>
+          <S.NoItemContainer>내역이 없습니다.</S.NoItemContainer>
         )}
       </S.Container>
     );
@@ -94,7 +85,7 @@ const SalesHistory = () => {
         {salesCompletedData.length > 0 ? (
           salesCompletedData.map((item: SaleItem) => <BoxItemTrade data={item} />)
         ) : (
-          <div>판매완료된 상품이 없습니다.</div>
+          <S.NoItemContainer>내역이 없습니다.</S.NoItemContainer>
         )}
       </S.Container>
     );
@@ -106,7 +97,7 @@ const SalesHistory = () => {
         {hiddenItemsData.length > 0 ? (
           hiddenItemsData.map((item: SaleItem) => <BoxItemTrade data={item} />)
         ) : (
-          <div>숨긴 상품이 없습니다.</div>
+          <S.NoItemContainer>내역이 없습니다.</S.NoItemContainer>
         )}
       </S.Container>
     );
