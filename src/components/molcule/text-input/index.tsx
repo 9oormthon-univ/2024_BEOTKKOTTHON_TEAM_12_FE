@@ -23,15 +23,13 @@ const TextInput: React.FC<TextInputProps> = ({
     <>
       <S.InputContainer>
         <TextLabel text={label} size={labelSize} />
-        <S.StyledBoxInput readOnly={readonly}>
-          <input
-            name="title"
-            readOnly={readonly}
-            placeholder={placeholder}
-            defaultValue={value}
-            onChange={onChange}
-          />
-        </S.StyledBoxInput>
+        <S.StyledBoxInput
+          name="title"
+          readOnly={readonly}
+          placeholder={placeholder}
+          defaultValue={value}
+          onChange={onChange}
+        ></S.StyledBoxInput>
       </S.InputContainer>
     </>
   );

@@ -6,12 +6,7 @@ export const Container = styled.div`
   height: calc(100vh - 125px);
   padding: 20px;
 
-  .items {
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;

@@ -5,6 +5,7 @@ import useStore from '../../../store/store';
 
 interface TagInputProps {
   styleTags: string[];
+  userStyleTags?: string[];
 }
 
 const TagInput: React.FC<TagInputProps> = ({ styleTags }) => {

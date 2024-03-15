@@ -21,7 +21,7 @@ const ListTag = ({ isform }: ListTagProps) => {
     if (location !== '/product/new') {
       setFilteredProducts(activeCategory);
     }
-  }, [activeCategory]);
+  }, [activeCategory, location.pathname]);
 
   const handleClick = (category: string) => {
     if (isform) {

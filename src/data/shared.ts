@@ -1,4 +1,8 @@
 import defaultImg from '@assets/images/profile-default-image.svg';
+import ImgEx1 from '@assets/images/product-default-img.png';
+import ImgEx2 from '@assets/images/profile-no-image.png';
+import ImgEx3 from '@assets/nav-icons/chatting_green.svg';
+
 import { Product } from 'src/types/types';
 
 // 카테고리, 최근 검색어
@@ -27,11 +31,7 @@ export const salesData: Product[] = [
     state: '보통이에요',
     price: 16500,
     category: '상의',
-    recievedImgUrl: [
-      '/src/assets/nav-icons/chatting_green.svg',
-      '/src/assets/nav-icons/chatting_grey.svg',
-      '/src/assets/images/product-default-img.png',
-    ],
+    recievedImgUrl: [ImgEx1, ImgEx2, ImgEx3],
     description:
       '아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ',
     place: '정문',
@@ -45,11 +45,7 @@ export const salesData: Product[] = [
     price: 16500,
     category: '아우터',
 
-    recievedImgUrl: [
-      '/src/assets/nav-icons/donation_green.svg',
-      '/src/assets/nav-icons/donation_grey.svg',
-      '/src/assets/images/product-default-img.png',
-    ],
+    recievedImgUrl: [ImgEx1, ImgEx2, ImgEx3],
     description: '우우앙아우우',
     place: '후문',
     sold: '판매완료',
@@ -61,11 +57,7 @@ export const salesData: Product[] = [
     state: '보통이에요',
     price: 16500,
     category: '하의',
-    recievedImgUrl: [
-      '/src/assets/images/product-default-img.png',
-      '/src/assets/nav-icons/donation_green.svg',
-      '/src/assets/nav-icons/donation_grey.svg',
-    ],
+    recievedImgUrl: [ImgEx1, ImgEx2, ImgEx3],
     description: '이야아아아ㅏ앙',
     place: '도서관 앞',
     sold: '판매완료',
@@ -77,11 +69,7 @@ export const salesData: Product[] = [
     state: '보통이에요',
     price: 16500,
     category: '하의',
-    recievedImgUrl: [
-      '/src/assets/nav-icons/chatting_green.svg',
-      '/src/assets/nav-icons/chatting_grey.svg',
-      '/src/assets/images/product-default-img.png',
-    ],
+    recievedImgUrl: [ImgEx1, ImgEx2, ImgEx3],
     description:
       '아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ',
     place: '정문',
@@ -94,11 +82,7 @@ export const salesData: Product[] = [
     state: '보통이에요',
     price: 16500,
     category: '원피스',
-    recievedImgUrl: [
-      '/src/assets/nav-icons/chatting_green.svg',
-      '/src/assets/nav-icons/chatting_grey.svg',
-      '/src/assets/images/product-default-img.png',
-    ],
+    recievedImgUrl: [ImgEx1, ImgEx2, ImgEx3],
     description:
       '아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ',
     place: '정문',

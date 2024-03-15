@@ -45,9 +45,9 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
       </S.BoxUpload>
 
       <Button
-        text="사진 업로드"
+        children="사진 업로드"
         padding="5px"
-        borderRadious="20px"
+        borderRadius="20px"
         width="100px"
         color="var(--grey-7)"
         handleOnClick={handleClickUpload}
