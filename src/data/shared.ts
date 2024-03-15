@@ -26,7 +26,7 @@ export const salesData: Product[] = [
     time: '30분전',
     state: '보통이에요',
     price: 16500,
-
+    category: '상의',
     recievedImgUrl: [
       '/src/assets/nav-icons/chatting_green.svg',
       '/src/assets/nav-icons/chatting_grey.svg',
@@ -43,6 +43,7 @@ export const salesData: Product[] = [
     time: '30분전',
     state: '아주 좋아요',
     price: 16500,
+    category: '아우터',
 
     recievedImgUrl: [
       '/src/assets/nav-icons/donation_green.svg',
@@ -59,7 +60,7 @@ export const salesData: Product[] = [
     time: '30분전',
     state: '보통이에요',
     price: 16500,
-
+    category: '하의',
     recievedImgUrl: [
       '/src/assets/images/product-default-img.png',
       '/src/assets/nav-icons/donation_green.svg',

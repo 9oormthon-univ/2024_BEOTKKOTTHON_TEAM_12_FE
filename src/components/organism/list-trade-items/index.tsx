@@ -1,8 +1,10 @@
 import { BoxItemTrade } from '@components/index';
 import * as S from './style';
-import { useProducts } from 'src/store/products';
+import { useAllProducts, useFilteredProducts } from 'src/store/products';
 const ListTradeItems = () => {
-  const products = useProducts();
+  const products = useFilteredProducts();
+  const allproducts = useAllProducts();
+  console.log(allproducts);
   return (
     <S.Container>
       {products.map((product) => (
