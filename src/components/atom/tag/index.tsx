@@ -16,6 +16,14 @@ const Tag = styled.div<TagProps>`
   color: ${(props) => (props.$active ? 'var(--green-7)' : 'var(--grey-6)')};
   font-size: 13px;
 
+  transition: transform 0.1s ease;
+  //드래그 방지
+  user-select: none;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
   .close {
     display: grid;
     place-items: center;
