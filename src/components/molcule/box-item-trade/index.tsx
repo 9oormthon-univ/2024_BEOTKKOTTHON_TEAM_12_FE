@@ -13,6 +13,7 @@ interface SaleItemProps {
 
 const BoxItemTrade: React.FC<SaleItemProps> = ({ product, width }) => {
   const navigate = useNavigate();
+  const soldState = product.sold === '판매완료';
   const circleUrl = product.state === '아주 좋아요' ? stategreen : stategrey;
 
   const handleClick = () => {
@@ -34,9 +35,9 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ product, width }) => {
           <p className="state">상품 상태 : {product.state}</p>
         </S.State>
 
-        <S.Price $sold={product.sold === '판매완료' ? true : false}>
+        <S.Price>
           <p className="price">{transformPrice(product.price)}원</p>
-          <p className="sold">{product.sold}</p>
+          {soldState && <p className="sold">{product.sold}</p>}
         </S.Price>
       </S.BoxDescription>
     </S.Container>
