@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div<{ width: string }>`
   width: ${({ width }) => width || '48%'};
   margin-bottom: 15px;
+  cursor: pointer;
 `;
 
 export const BoxImage = styled.img`

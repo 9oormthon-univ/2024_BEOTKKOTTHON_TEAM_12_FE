@@ -2,6 +2,7 @@ import { SaleItem } from 'src/types/types';
 import * as S from './style';
 import stategrey from '@assets/icons/trade_state_grey.svg';
 import defaultImg from '@assets/images/product-default-img.png';
+import { useNavigate } from 'react-router-dom';
 
 interface SaleItemProps {
   data: SaleItem;
@@ -9,8 +10,14 @@ interface SaleItemProps {
 }
 
 const BoxItemTrade: React.FC<SaleItemProps> = ({ data, width }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/product/${data.id}`);
+  };
+
   return (
-    <S.Container width={width}>
+    <S.Container width={width} onClick={handleClick}>
       <S.BoxImage src={defaultImg} />
 
       <S.BoxDescription>
