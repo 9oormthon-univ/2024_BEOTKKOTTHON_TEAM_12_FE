@@ -35,6 +35,7 @@ export interface SaleItem {
   url?: string; // 이미지 url
   imgs?: FileList; // 이미지 파일 리스트
 
+  recievedImgUrl?: string[];
   category?: string; // 카테고리
   time: string; // 작성 시간
   state: string; // 상품 상태

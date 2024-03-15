@@ -1,0 +1,21 @@
+import { SaleItem } from 'src/types/types';
+import * as S from './style';
+import heart from '@assets/icons/heart.svg';
+import { Button } from '@components/index';
+import { transformPrice } from 'src/utils/transfromPrice';
+
+interface FooterProductDetailProps {
+  product: SaleItem;
+}
+
+const FooterProductDetail = ({ product }: FooterProductDetailProps) => {
+  return (
+    <S.Container>
+      <img src={heart} className="heart" alt="heart" />
+      <p className="price">{transformPrice(product.price as number)}원</p>
+      <Button width="280" backgroundColor="var(--green-6)" color="white" text="채팅하기" />
+    </S.Container>
+  );
+};
+
+export default FooterProductDetail;
