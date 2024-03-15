@@ -31,23 +31,8 @@ const FormTrade = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | null>) => {
     const { name, value } = e.target;
-    const files = (e.target as HTMLInputElement).files as FileList;
 
-    if (name === 'imgs') {
-      if (files) {
-        const imageLists = files;
-        let imageUrlLists = [...showImages];
-        for (let i = 0; i < imageLists.length; i++) {
-          const currentImageUrl = URL.createObjectURL(imageLists[i]);
-          imageUrlLists.push(currentImageUrl);
-        }
-        if (imageUrlLists.length > 5) {
-          imageUrlLists = imageUrlLists.slice(0, 5);
-        }
-        setShowImages(imageUrlLists);
-        setFormData({ ...formData, imgs: files });
-      }
-    } else if (name === 'price') {
+    if (name === 'price') {
       setFormData({
         ...formData,
         price: Number(value.replace(/,/g, '')),
@@ -75,7 +60,8 @@ const FormTrade = () => {
         <ListImage
           showImages={showImages}
           setShowImages={setShowImages}
-          handleChange={handleChange}
+          formData={formData}
+          setFormData={setFormData}
         />
       </FormGroup>
 
