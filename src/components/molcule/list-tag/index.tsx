@@ -20,7 +20,6 @@ const ListTag = ({ isform, formData, setFormData }: ListTagProps) => {
 
   useEffect(() => {
     if (location !== '/product/new') {
-      console.log(activeCategory);
       setFilteredProducts(activeCategory);
     }
   }, [activeCategory]);

@@ -23,7 +23,9 @@ const DescriptionProduct = ({ product }: DescriptionProductProps) => {
 
       <p className="description">{product.description}</p>
 
-      <p className="place">{product.place} 에서 만나요!</p>
+      <p className="place">
+        성균관 대학교<span>{product.place}</span>에서 만나요!
+      </p>
     </S.Container>
   );
 };

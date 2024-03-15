@@ -20,6 +20,14 @@ export const Container = styled.div`
   .place {
     font-size: 12px;
     color: var(--grey-7);
+
+    & > span {
+      margin: 0 6px;
+      padding: 3px 10px;
+      border-radius: 10px;
+      background-color: var(--grey-2);
+      color: var(--grey-6);
+    }
   }
 `;
 
