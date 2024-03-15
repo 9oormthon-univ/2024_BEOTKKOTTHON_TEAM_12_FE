@@ -12,17 +12,24 @@ export interface TabItemProps {
   count: number;
   ContentComponent: React.ComponentType;
 }
-
+/*판매중인 상품 타입 */
 export interface SalesInProgressProps {
   salesData: Product[];
 }
-
+/*판매 완료 상품 타입 */
 export interface SalesCompletedProps {
   salesCompletedData: Product[];
 }
-
+/*숨긴 상품 타입  */
 export interface HiddenItemsProps {
   hiddenItemsData: Product[];
+}
+/*차단한 사용자 타입 */
+export interface BlockUser {
+  id: number;
+  name: string;
+  levelImg: string;
+  profile: string;
 }
 
 export interface SaleItem {

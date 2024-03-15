@@ -17,4 +17,19 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const SaleWrapper = styled.div``;
+export const SaleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+`;
+
+export const NoItemContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+  font-size: 16px;
+  color: var(--grey-5);
+`;
