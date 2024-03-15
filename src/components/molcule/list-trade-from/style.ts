@@ -6,7 +6,7 @@ export const Container = styled.div`
   margin-top: 10px;
 `;
 
-export const TagPrice = styled.div`
+export const Tag = styled.div`
   display: grid;
   place-items: center;
   height: 30px;

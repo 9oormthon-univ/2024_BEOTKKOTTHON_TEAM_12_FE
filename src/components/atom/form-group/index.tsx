@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const FormGroup = styled.div`
+interface FormGroupProps {
+  $imglen?: number;
+}
+
+const FormGroup = styled.div<FormGroupProps>`
   margin-bottom: 30px;
 
   .label {
@@ -9,8 +13,8 @@ const FormGroup = styled.div`
     font-weight: bold;
     color: var(--grey-7);
 
-    .num {
-      color: var(--grey-4);
+    .sub {
+      color: ${(props) => (props.$imglen === 0 ? 'var(--grey-4)' : 'var(--green-6)')};
     }
   }
 `;
