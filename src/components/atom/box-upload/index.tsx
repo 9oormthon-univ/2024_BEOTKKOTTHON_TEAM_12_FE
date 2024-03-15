@@ -1,14 +1,18 @@
-import { ListImageProps } from 'src/types/types';
 import * as S from './style';
 import image from '@assets/icons/image.svg';
+import { useFormDataActions, useShowImages } from 'src/store/formData';
 
-const BoxUpload = ({ formData, setFormData, setShowImages, showImages }: ListImageProps) => {
+const BoxUpload = () => {
+  const showImages = useShowImages();
+  const { setFormData, setShowImages } = useFormDataActions();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files as FileList;
 
     if (files) {
       const imageLists = files;
       let imageUrlLists = [...showImages];
+
       for (let i = 0; i < imageLists.length; i++) {
         const currentImageUrl = URL.createObjectURL(imageLists[i]);
         imageUrlLists.push(currentImageUrl);
@@ -17,7 +21,7 @@ const BoxUpload = ({ formData, setFormData, setShowImages, showImages }: ListIma
         imageUrlLists = imageUrlLists.slice(0, 5);
       }
       setShowImages(imageUrlLists);
-      setFormData({ ...formData, imgs: files });
+      setFormData('imgs', files);
     }
   };
 

@@ -1,12 +1,5 @@
 import React from 'react';
 
-export interface ListImageProps {
-  showImages: string[];
-  formData: Product;
-  setShowImages: (value: string[]) => void;
-  setFormData: (value: Product) => void;
-}
-
 export interface TabItemProps {
   label: string;
   count: number;

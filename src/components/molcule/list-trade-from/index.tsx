@@ -1,26 +1,21 @@
-import { Product } from 'src/types/types';
+import { useFormData, useFormDataActions } from 'src/store/formData';
 import * as S from './style';
 
 interface ListTradeFormProps {
-  formData: Product;
-  setFormData: (value: Product) => void;
   type: string;
   list: string[];
 }
 
-const ListTradeForm = ({ formData, setFormData, type, list }: ListTradeFormProps) => {
+const ListTradeForm = ({ type, list }: ListTradeFormProps) => {
+  const formData = useFormData();
+  const { setFormData } = useFormDataActions();
+
   const handleClick = (element: string) => {
     if (type === 'price') {
       const updated = formData.price + Number(element.match(/\d+/g).join(''));
-      setFormData({
-        ...formData,
-        price: updated,
-      });
+      setFormData('price', updated);
     } else if (type === 'place') {
-      setFormData({
-        ...formData,
-        place: element,
-      });
+      setFormData('place', element);
     }
   };
 

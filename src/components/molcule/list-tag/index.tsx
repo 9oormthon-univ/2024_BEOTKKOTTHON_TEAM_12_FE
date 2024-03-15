@@ -1,19 +1,18 @@
 import { categories } from 'src/data/shared';
 import { useEffect, useState } from 'react';
 import { BoxTag, Tag } from '@components/index';
-import { Product } from 'src/types/types';
 import { useLocation } from 'react-router-dom';
 import { useProductsActions } from 'src/store/products';
+import { useFormDataActions } from 'src/store/formData';
 
 interface ListTagProps {
   isform?: boolean;
-  formData?: Product;
-  setFormData?: (value: Product) => void;
 }
 
-const ListTag = ({ isform, formData, setFormData }: ListTagProps) => {
+const ListTag = ({ isform }: ListTagProps) => {
   const location = useLocation();
   const { setFilteredProducts } = useProductsActions();
+  const { setFormData } = useFormDataActions();
 
   const [activeCategory, SetActiveCategory] = useState<string>('전체');
   const list = isform ? categories.slice(1) : categories;
@@ -25,8 +24,8 @@ const ListTag = ({ isform, formData, setFormData }: ListTagProps) => {
   }, [activeCategory]);
 
   const handleClick = (category: string) => {
-    if (setFormData && formData) {
-      setFormData({ ...formData, category });
+    if (isform) {
+      setFormData('category', category);
     }
     SetActiveCategory(category);
   };
