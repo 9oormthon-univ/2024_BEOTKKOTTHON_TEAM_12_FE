@@ -1,11 +1,12 @@
 import { BoxItemTrade } from '@components/index';
 import * as S from './style';
-import { salesData } from 'src/data/shared';
+import { useProducts } from 'src/store/products';
 const ListTradeItems = () => {
+  const products = useProducts();
   return (
     <S.Container>
-      {salesData.map((saleData) => (
-        <BoxItemTrade key={saleData.id} data={saleData} />
+      {products.map((product) => (
+        <BoxItemTrade key={product.id} product={product} />
       ))}
     </S.Container>
   );

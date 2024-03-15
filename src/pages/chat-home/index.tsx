@@ -17,3 +17,6 @@ const ChatHome = () => {
 };
 
 export default ChatHome;
+`
+  
+`;

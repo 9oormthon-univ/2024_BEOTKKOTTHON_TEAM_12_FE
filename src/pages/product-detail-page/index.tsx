@@ -11,17 +11,18 @@ import * as S from './style';
 import arrow from '@assets/icons/left_btn.svg';
 import kebab from '@assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
-import { salesData } from 'src/data/shared';
 import { SaleItem } from 'src/types/types';
 import { useState } from 'react';
+import { useProducts } from 'src/store/products';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
+  const products = useProducts();
   const navigate = useNavigate();
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const product = salesData.find((product) => product.id === parseInt(id as string));
+  const product = products.find((product) => product.id === id);
 
   return (
     <S.Container>

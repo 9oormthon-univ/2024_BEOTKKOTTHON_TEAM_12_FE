@@ -2,43 +2,20 @@ import { BoxItemTrade, Header, TextLabel } from '@components/index';
 import * as S from './style';
 import React from 'react';
 import arrow from '@assets/icons/arrow.svg';
-import { SaleItem, SalesCompletedProps } from 'src/types/types';
+import { Product, SalesCompletedProps } from 'src/types/types';
 import { useNavigate } from 'react-router';
+import { useProducts } from 'src/store/products';
 
 const PurchaseHistory = () => {
   const navigate = useNavigate();
-  const salesCompletedData: SaleItem[] = [
-    {
-      id: 1,
-      name: 'H&M',
-      time: '30분전',
-      state: '상품 상태 : 아주 좋아요',
-      price: '16,500원',
-      sold: '판매완료',
-    },
-    {
-      id: 2,
-      name: 'H&M',
-      time: '30분전',
-      state: '상품 상태 : 아주 좋아요',
-      price: '16,500원',
-      sold: '판매완료',
-    },
-    {
-      id: 3,
-      name: 'H&M',
-      time: '30분전',
-      state: '상품 상태 : 아주 좋아요',
-      price: '16,500원',
-      sold: '판매완료',
-    },
-  ];
+  const products = useProducts();
+  const salesCompletedData: Product[] = products.filter((product) => product.sold === '판매완료');
 
   const SalesCompleted: React.FC<SalesCompletedProps> = ({ salesCompletedData }) => {
     return (
       <S.Container>
         {salesCompletedData.length > 0 ? (
-          salesCompletedData.map((item: SaleItem) => <BoxItemTrade data={item} />)
+          salesCompletedData.map((item: Product) => <BoxItemTrade product={item} />)
         ) : (
           <div>구매한 상품이 없습니다.</div>
         )}
