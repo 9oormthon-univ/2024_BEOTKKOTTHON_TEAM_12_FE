@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ProfileButtonProps {
-  text: string;
   color?: string;
   borderColor?: string;
   backgroundColor?: string;
+  children?: React.ReactNode;
 }
 
 const ButtonWrapper = styled.button<ProfileButtonProps>`
@@ -18,14 +18,14 @@ const ButtonWrapper = styled.button<ProfileButtonProps>`
 `;
 
 const ProfileButton: React.FC<ProfileButtonProps> = ({
-  text,
+  children,
   color,
   borderColor,
   backgroundColor,
 }) => {
   return (
-    <ButtonWrapper backgroundcolor={backgroundColor} color={color} bordercolor={borderColor}>
-      {text}
+    <ButtonWrapper backgroundColor={backgroundColor} color={color} borderColor={borderColor}>
+      {children}
     </ButtonWrapper>
   );
 };

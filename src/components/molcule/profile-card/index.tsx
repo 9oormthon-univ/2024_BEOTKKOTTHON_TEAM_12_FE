@@ -37,7 +37,7 @@ const ProfileCard: React.FC = () => {
           {userProfile.style.map((style, index) => (
             <ProfileButton
               key={index}
-              text={style}
+              children={style}
               color="var(--grey-6)"
               borderColor="var(--grey-3)"
             />

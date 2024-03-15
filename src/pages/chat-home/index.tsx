@@ -1,5 +1,5 @@
 import { Header, Nav, Search, TextLabel } from '@components/index';
-import React from 'react';
+
 import * as S from './style';
 
 const ChatHome = () => {

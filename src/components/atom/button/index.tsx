@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-
 interface ButtonProps {
-  text: string;
   width?: string;
   color?: string;
   padding?: string;
   backgroundColor?: string;
-  borderRadious?: string;
+  borderRadius?: string;
+  children?: React.ReactNode;
   handleOnClick?: () => void;
 }
 
@@ -17,9 +16,8 @@ const ButtonContainer = styled.button<ButtonProps>`
   background-color: ${({ backgroundColor }) => backgroundColor || 'var(--grey-2)'};
   color: ${({ color }) => color || 'var(--grey-5)'};
   border: none;
-  border-radius: ${({ borderRadious }) => borderRadious || '5px'};
+  border-radius: ${({ borderRadius }) => borderRadius || '5px'};
   cursor: pointer;
-
   transition: transform 0.1s ease;
 
   &:active {
@@ -28,12 +26,12 @@ const ButtonContainer = styled.button<ButtonProps>`
 `;
 
 const Button: React.FC<ButtonProps> = ({
-  text,
+  children,
   width,
   color,
   backgroundColor,
   handleOnClick,
-  borderRadious,
+  borderRadius,
   padding,
 }) => {
   return (
@@ -42,10 +40,10 @@ const Button: React.FC<ButtonProps> = ({
       color={color}
       backgroundColor={backgroundColor}
       onClick={handleOnClick}
-      borderRadious={borderRadious}
+      borderRadius={borderRadius}
       padding={padding}
     >
-      {text}
+      {children}
     </ButtonContainer>
   );
 };
