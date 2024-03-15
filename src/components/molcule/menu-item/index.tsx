@@ -40,7 +40,9 @@ const MenuItem: React.FC = () => {
             {section.list.map((item, itemIndex) => (
               <S.MenuItem key={itemIndex}>
                 <S.MenuItemWrapper>
-                  {sectionIndex === 1 && item === '판매 내역' ? (
+                  {sectionIndex === 0 && item === '계정 정보' ? (
+                    <Link to="/mypage/account-info">{item}</Link> // Replace with your actual route
+                  ) : sectionIndex === 1 && item === '판매 내역' ? (
                     <Link to="/mypage/sales-history">{item}</Link>
                   ) : sectionIndex === 1 && item === '구매 내역' ? (
                     <Link to="/mypage/purchase-history">{item}</Link>

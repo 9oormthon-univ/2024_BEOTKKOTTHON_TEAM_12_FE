@@ -35,6 +35,9 @@ export { default as DescriptionProduct } from './molcule/description-product';
 export { default as FormRadio } from './molcule/form-radio';
 export { default as FooterProductDetail } from './molcule/footer-product-detail';
 export { default as ModalProduct } from './molcule/modal-product';
+export { default as TextInput } from './molcule/text-input';
+export { default as ImageInput } from './molcule/image-input';
+export { default as TagInput } from './molcule/tag-input';
 //Organism
 export { default as UserSection } from './organism/user-section';
 export { default as ListTradeItems } from './organism/list-trade-items';

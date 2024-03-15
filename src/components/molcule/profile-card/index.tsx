@@ -4,8 +4,10 @@ import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
 import defaultImg from '@assets/images/profile-default-image.svg';
 import arrow from '@assets/icons/arrow.svg';
 import profileIconLevel1 from '@assets/icons/profile-icon-level1.svg';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileCard: React.FC = () => {
+  const navigate = useNavigate();
   const userProfile = {
     nickname: '김스옹',
     university: '성균관대학교 서울캠퍼스',
@@ -15,7 +17,7 @@ const ProfileCard: React.FC = () => {
   };
 
   const onModifyProfile = () => {
-    console.log('프로필 수정');
+    navigate('/mypage/profile-edit');
   };
 
   return (

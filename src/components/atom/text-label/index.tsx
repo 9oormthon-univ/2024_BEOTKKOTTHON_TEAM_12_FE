@@ -6,6 +6,8 @@ interface TextLabelProps {
   size: number;
   weight?: number;
   color?: string;
+  className?: string;
+  onClick?: () => void;
 }
 
 const TextLabelWrapper = styled.div<{ size: number; weight?: number; color?: string }>`
@@ -14,9 +16,15 @@ const TextLabelWrapper = styled.div<{ size: number; weight?: number; color?: str
   font-weight: ${({ weight }) => weight || 500};
 `;
 
-const TextLabel: React.FC<TextLabelProps> = ({ text, size, weight, color }) => {
+const TextLabel: React.FC<TextLabelProps> = ({ text, size, weight, color, className, onClick }) => {
   return (
-    <TextLabelWrapper size={size} weight={weight} color={color}>
+    <TextLabelWrapper
+      className={className}
+      size={size}
+      weight={weight}
+      color={color}
+      onClick={onClick}
+    >
       {text}
     </TextLabelWrapper>
   );
