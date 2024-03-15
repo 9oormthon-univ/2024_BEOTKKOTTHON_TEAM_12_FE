@@ -2,15 +2,12 @@ import * as S from './style';
 import arrow from '@assets/icons/arrow.svg';
 import { Header, TextLabel, TextInput, ImageInput, TagInput } from '@components/index';
 import { useNavigate } from 'react-router-dom';
-import noImg from '@assets/images/profile-no-image.png';
+
+import useStore from '../../store/store';
 
 const UserProfileEdit = () => {
   const navigate = useNavigate();
-  const userProfileInfo = {
-    nickName: '김서영',
-    image: noImg,
-    styleTag: ['페미닌', '빈티지', '캐주얼'],
-  };
+  const { userProfileInfo, updateUserProfileInfo } = useStore();
 
   const styleTags = [
     '심플베이직',
@@ -28,7 +25,8 @@ const UserProfileEdit = () => {
     '아메카지',
   ];
   const postChangeAccountInfo = () => {
-    console.log('저장하기');
+    updateUserProfileInfo(userProfileInfo);
+    console.log(userProfileInfo);
   };
 
   return (
