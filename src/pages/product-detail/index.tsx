@@ -15,7 +15,7 @@ import { Product } from 'src/types/types';
 import { useState } from 'react';
 import { useFilteredProducts } from 'src/store/products';
 
-const ProductDetailPage = () => {
+const ProductDetail = () => {
   const { id } = useParams();
   const products = useFilteredProducts();
   const navigate = useNavigate();
@@ -68,15 +68,15 @@ const ProductDetailPage = () => {
         </section>
 
         <section className="description">
-          <DescriptionProduct product={product} />
+          <DescriptionProduct product={product as Product} />
         </section>
       </S.SectionScroll>
 
       <section className="footer">
-        <FooterProductDetail product={product} />
+        <FooterProductDetail product={product as Product} />
       </section>
     </S.Container>
   );
 };
 
-export default ProductDetailPage;
+export default ProductDetail;

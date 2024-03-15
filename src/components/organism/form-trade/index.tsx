@@ -18,7 +18,7 @@ const FormTrade = () => {
   const navigate = useNavigate();
   const [showImages, setShowImages] = useState<string[]>([]);
   const [formData, setFormData] = useState<Product>({
-    id: 0,
+    id: '0',
     name: '',
     imgs: {} as FileList,
     category: '',
