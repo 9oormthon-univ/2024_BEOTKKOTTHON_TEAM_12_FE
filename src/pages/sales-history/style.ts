@@ -20,6 +20,7 @@ export const Container = styled.div`
 export const SaleWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 48%;
   gap: 5px;
   margin-bottom: 20px;
 `;

@@ -13,7 +13,7 @@ export const BoxNav = styled.div`
   height: 86px;
   box-sizing: border-box;
   background-color: #ffffff;
-  box-shadow: 0 0 6.3px var(--grey-4);
+  border-top: 1px solid var(--grey-3);
 `;
 
 export const BoxItem = styled.div`

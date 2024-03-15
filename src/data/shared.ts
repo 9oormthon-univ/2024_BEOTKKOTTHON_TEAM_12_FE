@@ -67,6 +67,40 @@ export const salesData: Product[] = [
     ],
     description: '이야아아아ㅏ앙',
     place: '도서관 앞',
+    sold: '판매완료',
+  },
+  {
+    id: '4',
+    name: '지오다노',
+    time: '30분전',
+    state: '보통이에요',
+    price: 16500,
+
+    recievedImgUrl: [
+      '/src/assets/nav-icons/chatting_green.svg',
+      '/src/assets/nav-icons/chatting_grey.svg',
+      '/src/assets/images/product-default-img.png',
+    ],
+    description:
+      '아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ',
+    place: '정문',
+    sold: '판매중',
+  },
+  {
+    id: '5',
+    name: '지오다노',
+    time: '30분전',
+    state: '보통이에요',
+    price: 16500,
+
+    recievedImgUrl: [
+      '/src/assets/nav-icons/chatting_green.svg',
+      '/src/assets/nav-icons/chatting_grey.svg',
+      '/src/assets/images/product-default-img.png',
+    ],
+    description:
+      '아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ',
+    place: '정문',
     sold: '판매중',
   },
 ];
