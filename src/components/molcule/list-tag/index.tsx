@@ -18,7 +18,7 @@ const ListTag = ({ isform }: ListTagProps) => {
   const list = isform ? categories.slice(1) : categories;
 
   useEffect(() => {
-    if (location !== '/product/new') {
+    if (location.pathname !== '/product/new') {
       setFilteredProducts(activeCategory);
     }
   }, [activeCategory, location.pathname]);
