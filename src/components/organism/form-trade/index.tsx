@@ -9,20 +9,25 @@ import {
 import * as S from './style';
 import { placeList, priceList, salesData } from 'src/data/shared';
 import Button from '@components/atom/button-trade';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { transformPrice } from 'src/utils/transformPrice';
 import { useFormData, useFormDataActions, useShowImages } from 'src/store/formData';
 import { useEffect } from 'react';
 
 const FormTrade = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const formData = useFormData();
   const showImages = useShowImages();
   const { setFormData, receiveData } = useFormDataActions();
 
   useEffect(() => {
-    // 서버에서 데이터 받아와서 receivedData에 저장
-    receiveData(salesData[0]);
+    if (location.pathname.includes('edit')) {
+      // edit 페이지
+      // 서버에서 데이터 받아와서 receivedData에 저장
+      receiveData(salesData[Number(id) - 1]);
+    }
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | null>) => {

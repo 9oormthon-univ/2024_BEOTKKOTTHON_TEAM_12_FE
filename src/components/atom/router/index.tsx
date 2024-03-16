@@ -20,8 +20,8 @@ const Router = () => {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/search/result" element={<SearchResult />} />
       <Route path="/product/new" element={<ProductNew />} />
-      <Route path="/product/edit" element={<ProductEdit />} />
       <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/product/edit/:id" element={<ProductEdit />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/sales-history" element={<SalesHistory />} />
       <Route path="/mypage/purchase-history" element={<PurchaseHistory />} />

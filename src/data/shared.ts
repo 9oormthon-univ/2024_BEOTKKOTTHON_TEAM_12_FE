@@ -39,7 +39,7 @@ export const salesData: Product[] = [
   },
   {
     id: '2',
-    name: '지오다노',
+    name: '유니클로',
     time: '30분전',
     state: '아주 좋아요',
     price: 16500,
@@ -52,7 +52,7 @@ export const salesData: Product[] = [
   },
   {
     id: '3',
-    name: '지오다노',
+    name: '싸게 팔아요',
     time: '30분전',
     state: '보통이에요',
     price: 16500,
@@ -64,7 +64,7 @@ export const salesData: Product[] = [
   },
   {
     id: '4',
-    name: '지오다노',
+    name: '가져가세요',
     time: '30분전',
     state: '보통이에요',
     price: 16500,
@@ -77,7 +77,7 @@ export const salesData: Product[] = [
   },
   {
     id: '5',
-    name: '지오다노',
+    name: 'H&M',
     time: '30분전',
     state: '보통이에요',
     price: 16500,

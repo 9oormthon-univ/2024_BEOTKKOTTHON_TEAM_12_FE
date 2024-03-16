@@ -4,7 +4,7 @@ interface ButtonProps {
   width?: string;
   color?: string;
   padding?: string;
-  backgroundColor?: string;
+  bgcolor?: string;
   borderRadius?: string;
   children?: React.ReactNode;
   handleOnClick?: () => void;
@@ -13,7 +13,7 @@ interface ButtonProps {
 const ButtonContainer = styled.button<ButtonProps>`
   width: ${({ width }) => width || '100px'};
   padding: ${({ padding }) => padding || '10px'};
-  background-color: ${({ backgroundColor }) => backgroundColor || 'var(--grey-2)'};
+  background-color: ${({ bgcolor }) => bgcolor || 'var(--grey-2)'};
   color: ${({ color }) => color || 'var(--grey-5)'};
   border: none;
   border-radius: ${({ borderRadius }) => borderRadius || '5px'};
@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   width,
   color,
-  backgroundColor,
+  bgcolor,
   handleOnClick,
   borderRadius,
   padding,
@@ -38,7 +38,7 @@ const Button: React.FC<ButtonProps> = ({
     <ButtonContainer
       width={width}
       color={color}
-      backgroundColor={backgroundColor}
+      bgcolor={bgcolor}
       onClick={handleOnClick}
       borderRadius={borderRadius}
       padding={padding}
