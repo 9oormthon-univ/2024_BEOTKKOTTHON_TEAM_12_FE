@@ -71,6 +71,10 @@ const GlobalStyle = createGlobalStyle`
     --green-5: #58c85a;
     --green-6: #1EB65B;
     --green-7: #12a054;
+
+    --header-size: 55px;
+    --nav-size: 86px;
+    --content-size: calc(100vh - 55px - 86px);
   }
 
  /* 모바일 UI 스타일 */

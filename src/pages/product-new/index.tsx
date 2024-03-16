@@ -6,18 +6,16 @@ import { useNavigate } from 'react-router-dom';
 const ProductNew = () => {
   const navigate = useNavigate();
   return (
-    <S.Container>
-      <section className="header">
-        <Header>
-          <p>상품 등록</p>
-          <img src={close} className="right" alt="btn-close" onClick={() => navigate('/')} />
-        </Header>
-      </section>
+    <>
+      <Header>
+        <p>상품 등록</p>
+        <img src={close} className="right" alt="btn-close" onClick={() => navigate('/')} />
+      </Header>
 
-      <section className="form">
+      <S.Content>
         <FormTrade />
-      </section>
-    </S.Container>
+      </S.Content>
+    </>
   );
 };
 

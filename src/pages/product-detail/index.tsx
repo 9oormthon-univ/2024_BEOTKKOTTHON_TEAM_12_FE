@@ -25,59 +25,57 @@ const ProductDetail = () => {
   const product = products.find((product) => product.id === id);
 
   return (
-    <S.Container>
-      <section className="header">
-        <Header>
-          <img src={arrow} className="left" alt="btn-back" onClick={() => navigate('/')} />
-          <img
-            src={kebab}
-            className="right"
-            alt="btn-back"
-            onClick={() => setOpenKebab(!openKebab)}
-          />
-        </Header>
+    <>
+      <Header>
+        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate('/')} />
+        <img
+          src={kebab}
+          className="right"
+          alt="btn-back"
+          onClick={() => setOpenKebab(!openKebab)}
+        />
+      </Header>
 
-        {/* 로그인 된 상태 */}
-        {/* {openKebab && (
+      {/* 로그인 된 상태 */}
+      {/* {openKebab && (
           <BoxKebabList>
             <p>차단하기</p>
             <p className="red">신고하기</p>
           </BoxKebabList>
         )} */}
 
-        {openKebab && (
-          <BoxKebabList>
-            <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
-            <p>판매 완료로 변경</p>
-            <p>글 숨기기</p>
-            <p className="red" onClick={() => setOpenModal(!openModal)}>
-              삭제
-            </p>
-          </BoxKebabList>
-        )}
-        {openModal && <ModalProduct openModal={openModal} setOpenModal={setOpenModal} />}
-      </section>
+      {openKebab && (
+        <BoxKebabList>
+          <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
+          <p>판매 완료로 변경</p>
+          <p>글 숨기기</p>
+          <p className="red" onClick={() => setOpenModal(!openModal)}>
+            삭제
+          </p>
+        </BoxKebabList>
+      )}
+      {openModal && <ModalProduct openModal={openModal} setOpenModal={setOpenModal} />}
 
-      <section className="profile">
-        <BoxProductProfile />
-      </section>
-
-      <S.SectionScroll>
-        <section className="product-image">
-          <Carousel>
-            {product?.recievedImgUrl?.map((url, i) => <img src={url} alt={`img-${i}`} key={i} />)}
-          </Carousel>
+      <S.Content>
+        <section className="profile">
+          <BoxProductProfile />
         </section>
 
-        <section className="description">
-          <DescriptionProduct product={product as Product} />
-        </section>
-      </S.SectionScroll>
+        <S.SectionScroll>
+          <section className="product-image">
+            <Carousel>
+              {product?.recievedImgUrl?.map((url, i) => <img src={url} alt={`img-${i}`} key={i} />)}
+            </Carousel>
+          </section>
 
-      <section className="footer">
-        <FooterProductDetail product={product as Product} />
-      </section>
-    </S.Container>
+          <section className="description">
+            <DescriptionProduct product={product as Product} />
+          </section>
+        </S.SectionScroll>
+      </S.Content>
+
+      <FooterProductDetail product={product as Product} />
+    </>
   );
 };
 

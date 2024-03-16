@@ -7,7 +7,7 @@ export const Container = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  height: 86px;
+  height: var(--nav-size);
   padding: 24px;
   box-sizing: border-box;
   border-top: 1px solid var(--grey-3);

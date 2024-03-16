@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 136px);
+  height: var(--content-size);
   overflow-y: scroll;
   -ms-overflow-style: none;
 
@@ -12,7 +12,7 @@ export const Content = styled.div`
   }
 
   .carousel {
-    margin-top: 17px;
+    margin-top: 2px;
   }
 
   .carousel,

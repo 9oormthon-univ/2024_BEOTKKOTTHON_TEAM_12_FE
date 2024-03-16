@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 
 export const BackIcon = styled.img`
-  padding: 10px;
-  margin-left: 10px;
-  transform: rotate(180deg); /* 왼쪽 화살표*/
-`;
-
-export const MarginContainer = styled.div`
-  margin-top: 10px;
+  transform: translateX(11px) rotate(180deg);
 `;
 
 export const Container = styled.div`
@@ -33,4 +27,14 @@ export const NoItemContainer = styled.div`
   height: 500px;
   font-size: 16px;
   color: var(--grey-5);
+`;
+
+export const Content = styled.div`
+  height: calc(100vh - var(--header-size));
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

@@ -1,18 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const BtnLeft = styled.img`
+  transform: translateX(11px);
+`;
+
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 86px);
-
-  .header {
-    margin-bottom: 8px;
-    padding: 0 24px;
-
-    & .right {
-      transform: translateX(17px);
-    }
-  }
+  height: var(--content-size);
 
   .profile {
     margin-bottom: 6px;

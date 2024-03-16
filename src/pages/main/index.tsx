@@ -29,14 +29,12 @@ const Main = () => {
 
   return (
     <>
-      <S.Container>
-        <section className="header">
-          <Header>
-            <img src={logo} alt="logo" />
-            <img className="right" src={notifications} alt="notifications" />
-          </Header>
-        </section>
+      <Header>
+        <img src={logo} alt="logo" />
+        <img className="right" src={notifications} alt="notifications" />
+      </Header>
 
+      <S.Content>
         <section className="search" onClick={() => navigate('/search')}>
           <Search />
         </section>
@@ -53,8 +51,9 @@ const Main = () => {
           <ListTradeItems />
         </section>
 
-        <ButtonPlus handleClick={handleClickBtn} />
-      </S.Container>
+        <ButtonPlus $bottom="100px" handleClick={handleClickBtn} />
+      </S.Content>
+
       <Nav currentTab="홈" />
     </>
   );
