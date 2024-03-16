@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import * as S from './style';
 import { Tag, TextLabel } from '@components/index';
-import useStore from '../../../store/store';
+import useStore from '../../../store/userData';
 
 interface TagInputProps {
   styleTags: string[];

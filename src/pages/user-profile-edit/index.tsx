@@ -3,7 +3,7 @@ import arrow from '@assets/icons/arrow.svg';
 import { Header, TextLabel, TextInput, ImageInput, TagInput } from '@components/index';
 import { useNavigate } from 'react-router-dom';
 
-import useStore from '../../store/store';
+import useStore from '../../store/userData';
 
 const UserProfileEdit = () => {
   const navigate = useNavigate();

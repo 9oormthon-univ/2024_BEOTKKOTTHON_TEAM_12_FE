@@ -2,7 +2,7 @@ import { Button, TextLabel } from '@components/index';
 import * as S from './style';
 import React, { useRef, ChangeEvent, useState, useEffect } from 'react';
 import noImg from '@assets/images/profile-no-image.png';
-import useStore from '../../../store/store'; // 스토어 파일 경로에 따라 변경
+import useStore from '../../../store/userData'; // 스토어 파일 경로에 따라 변경
 
 interface ImageInputProps {
   image: string;
