@@ -1,16 +1,15 @@
 import { categories } from 'src/data/shared';
 import { useEffect, useState } from 'react';
 import { BoxTag, Tag } from '@components/index';
-import { useLocation } from 'react-router-dom';
 import { useProductsActions } from 'src/store/products';
-import { useFormDataActions } from 'src/store/formData';
-
+import { useFormData, useFormDataActions } from 'src/store/formData';
+// 받아온 정보와 일치하는 카테고리 색상
 interface ListTagProps {
   isform?: boolean;
 }
 
 const ListTag = ({ isform }: ListTagProps) => {
-  const location = useLocation();
+  const formData = useFormData();
   const { setFilteredProducts } = useProductsActions();
   const { setFormData } = useFormDataActions();
 
@@ -18,10 +17,16 @@ const ListTag = ({ isform }: ListTagProps) => {
   const list = isform ? categories.slice(1) : categories;
 
   useEffect(() => {
-    if (location !== '/product/new') {
+    if (!isform) {
       setFilteredProducts(activeCategory);
     }
-  }, [activeCategory, location.pathname]);
+  }, [activeCategory, isform]);
+
+  useEffect(() => {
+    if (isform) {
+      SetActiveCategory(formData.category as string);
+    }
+  }, [formData.category, isform]);
 
   const handleClick = (category: string) => {
     if (isform) {
