@@ -45,7 +45,7 @@ export const salesData: Product[] = [
     price: 16500,
     category: '아우터',
 
-    recievedImgUrl: [ImgEx1, ImgEx2, ImgEx3],
+    recievedImgUrl: [ImgEx3, ImgEx2, ImgEx1],
     description: '우우앙아우우',
     place: '후문',
     sold: '판매완료',
@@ -57,7 +57,7 @@ export const salesData: Product[] = [
     state: '보통이에요',
     price: 16500,
     category: '하의',
-    recievedImgUrl: [ImgEx1, ImgEx2, ImgEx3],
+    recievedImgUrl: [ImgEx2, ImgEx1, ImgEx3],
     description: '이야아아아ㅏ앙',
     place: '도서관 앞',
     sold: '판매완료',

@@ -81,6 +81,7 @@ const FormTrade = () => {
         <p className="label">상품 설명</p>
         <S.TextArea
           name="description"
+          value={formData.description}
           onChange={handleChange}
           placeholder="상품에 대한 설명을 써주세요."
         />

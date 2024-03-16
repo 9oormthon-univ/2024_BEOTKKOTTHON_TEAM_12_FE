@@ -31,7 +31,7 @@ export const useFormDataStore = create<FormDataStore>((set) => ({
       set((state) => ({ formData: { ...state.formData, [name]: value } })),
 
     setShowImages: (urls) => set(() => ({ showImages: [...urls] })),
-    receiveData: (data) => set(() => ({ formData: data })),
+    receiveData: (data) => set(() => ({ formData: data, showImages: data.recievedImgUrl })),
   },
 }));
 
