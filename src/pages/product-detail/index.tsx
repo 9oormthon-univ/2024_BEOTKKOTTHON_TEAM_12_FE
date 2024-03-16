@@ -64,7 +64,9 @@ const ProductDetail = () => {
 
       <S.SectionScroll>
         <section className="product-image">
-          <Carousel product={product} />
+          <Carousel>
+            {product?.recievedImgUrl?.map((url, i) => <img src={url} alt={`img-${i}`} key={i} />)}
+          </Carousel>
         </section>
 
         <section className="description">

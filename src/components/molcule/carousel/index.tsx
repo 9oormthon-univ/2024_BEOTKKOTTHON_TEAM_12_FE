@@ -2,17 +2,16 @@ import * as S from './style';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Product } from 'src/types/types';
 
 interface CarouselProps {
-  product: Product | undefined;
+  children: React.ReactNode;
 }
 
-const Carousel = ({ product }: CarouselProps) => {
+const Carousel = ({ children }: CarouselProps) => {
   const settings = {
     dots: true,
     arrows: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -20,9 +19,7 @@ const Carousel = ({ product }: CarouselProps) => {
 
   return (
     <S.Container>
-      <S.BoxSlider {...settings}>
-        {product?.recievedImgUrl?.map((url, i) => <img src={url} alt={`img-${i}`} key={i} />)}
-      </S.BoxSlider>
+      <S.BoxSlider {...settings}>{children}</S.BoxSlider>
     </S.Container>
   );
 };
