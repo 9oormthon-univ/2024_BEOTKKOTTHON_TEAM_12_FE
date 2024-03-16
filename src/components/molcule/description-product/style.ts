@@ -11,8 +11,10 @@ export const Container = styled.div`
   }
 
   .description {
-    margin-bottom: 21px;
+    margin-bottom: 5px;
     padding: 10px 0;
+    box-sizing: border-box;
+    min-height: 76px;
     font-size: 15px;
     color: var(--grey-7);
   }

@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  $bottom: string;
+}
+
+export const Container = styled.div<ContainerProps>`
   display: grid;
   place-items: center;
   width: 50px;
@@ -11,7 +15,7 @@ export const Container = styled.div`
 
   position: absolute;
   right: 20px;
-  bottom: 100px;
+  bottom: ${(props) => props.$bottom};
 
   transition: transform 0.1s ease;
   &:active {

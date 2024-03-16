@@ -28,17 +28,20 @@ const PurchaseHistory = () => {
         <TextLabel text="구매 내역" size={16} weight={700} />
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
       </Header>
-      <S.ProductHeader>
-        <TextLabel
-          text={`전체 ${salesCompletedData.length}개`}
-          size={12}
-          weight={100}
-          color="var(--grey-6)"
-        />
-      </S.ProductHeader>
-      <S.ProductWrapper>
-        <SalesCompleted salesCompletedData={salesCompletedData} />
-      </S.ProductWrapper>
+
+      <S.Content>
+        <S.ProductHeader>
+          <TextLabel
+            text={`전체 ${salesCompletedData.length}개`}
+            size={12}
+            weight={100}
+            color="var(--grey-6)"
+          />
+        </S.ProductHeader>
+        <S.ProductWrapper>
+          <SalesCompleted salesCompletedData={salesCompletedData} />
+        </S.ProductWrapper>
+      </S.Content>
     </>
   );
 };

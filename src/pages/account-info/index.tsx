@@ -30,13 +30,13 @@ const AccountInfo = () => {
   return (
     <>
       <Header>
-        <TextLabel text="계정 정보" size={16} weight={700} />
+        <TextLabel text="계정 정보" size={18} weight={700} />
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
         <S.HederLeft
           className="right "
           onClick={postChangeAccountInfo}
           text="저장"
-          size={16}
+          size={18}
           weight={700}
           color="var(--grey-5)"
         />

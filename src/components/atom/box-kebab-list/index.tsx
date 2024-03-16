@@ -8,7 +8,7 @@ const BoxKebabList = styled.div`
   border: 1px solid var(--grey-3);
   border-radius: 5px;
   top: 45px;
-  right: 26px;
+  right: 33px;
   background-color: white;
   font-size: 14px;
   cursor: pointer;

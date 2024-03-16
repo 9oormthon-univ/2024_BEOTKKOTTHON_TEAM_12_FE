@@ -3,13 +3,13 @@ import Slider from 'react-slick';
 
 export const Container = styled.div`
   box-sizing: border-box;
-  width: 375px;
+  width: 100%;
   height: 314px;
 `;
 
 export const BoxSlider = styled(Slider)`
   & img {
-    width: 375px;
+    width: 100%;
     height: 314px;
   }
 

@@ -1,16 +1,12 @@
 import { BoxHeader } from '@components/index';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  padding: 20px;
+  height: calc(100vh - var(--header-size) - 15px);
+  padding: 20px 20px 0 20px;
   box-sizing: border-box;
-
-  .header {
-    margin-bottom: 20px;
-  }
 
   .category {
     margin-bottom: 10px;
@@ -31,9 +27,14 @@ export const Container = styled.div`
 `;
 
 export const HeaderSearch = styled(BoxHeader)`
-  gap: 10px;
+  margin-top: 15px;
+  padding: 0 20px;
   & > div {
     flex-grow: 1;
+  }
+
+  & > img {
+    cursor: pointer;
   }
 
   .cancle {

@@ -14,27 +14,27 @@ const SearchPage = () => {
   };
 
   return (
-    <S.Container>
-      <section className="search">
-        <S.SectionSearch>
-          <Search />
-          <p className="cancle" onClick={handleClickCancle}>
-            취소
-          </p>
-        </S.SectionSearch>
-      </section>
+    <>
+      <S.SectionSearch>
+        <Search />
+        <p className="cancle" onClick={handleClickCancle}>
+          취소
+        </p>
+      </S.SectionSearch>
 
-      <section className="recent-search">
-        <Label>
-          <p className="label">최근 검색어</p>
-          <p className="sub">전체 삭제</p>
-        </Label>
-      </section>
+      <S.Content>
+        <section className="recent-search">
+          <Label>
+            <p className="label">최근 검색어</p>
+            <p className="sub">전체 삭제</p>
+          </Label>
+        </section>
 
-      <section className="tags">
-        <ListSearchTag />
-      </section>
-    </S.Container>
+        <section className="tags">
+          <ListSearchTag />
+        </section>
+      </S.Content>
+    </>
   );
 };
 
