@@ -2,15 +2,23 @@ import { Label, Search } from '@components/index';
 import * as S from './style';
 import ListSearchTag from '@components/molcule/list-search-tag';
 import { useNavigate } from 'react-router-dom';
+import { useSearchActions } from 'src/store/search';
 
 const SearchPage = () => {
   const navigate = useNavigate();
+  const { changeSearchData } = useSearchActions();
+
+  const handleClickCancle = () => {
+    changeSearchData('');
+    navigate('/');
+  };
+
   return (
     <S.Container>
       <section className="search">
         <S.SectionSearch>
           <Search />
-          <p className="cancle" onClick={() => navigate('/')}>
+          <p className="cancle" onClick={handleClickCancle}>
             취소
           </p>
         </S.SectionSearch>

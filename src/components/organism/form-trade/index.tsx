@@ -9,35 +9,35 @@ import {
 import * as S from './style';
 import { placeList, priceList, salesData } from 'src/data/shared';
 import Button from '@components/atom/button-trade';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { transformPrice } from 'src/utils/transformPrice';
 import { useFormData, useFormDataActions, useShowImages } from 'src/store/formData';
 import { useEffect } from 'react';
 
 const FormTrade = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const formData = useFormData();
   const showImages = useShowImages();
-  const { setFormData, receiveData } = useFormDataActions();
+  const { setFormData, receiveData, resetFormData } = useFormDataActions();
+
+  const isEdit = location.pathname.includes('edit');
 
   useEffect(() => {
-    // 서버에서 데이터 받아와서 receivedData에 저장
-    receiveData(salesData[0]);
-  }, []);
+    resetFormData();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | null>) => {
-    const { name, value } = e.target;
-
-    if (name === 'price') {
-      setFormData('price', Number(value.replace(/,/g, '')));
-    } else {
-      setFormData(name, value);
+    if (isEdit) {
+      // edit 페이지
+      // 서버에서 데이터 받아와서 receivedData에 저장
+      receiveData(salesData[Number(id) - 1]);
     }
-  };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
+    resetFormData();
     navigate('/');
   };
 
@@ -56,7 +56,7 @@ const FormTrade = () => {
           <input
             name="name"
             value={formData.name}
-            onChange={handleChange}
+            onChange={(e) => setFormData('name', e.target.value)}
             placeholder="제목을 입력해주세요."
           />
         </BoxInput>
@@ -69,15 +69,16 @@ const FormTrade = () => {
 
       <FormGroup>
         <p className="label">상품 상태</p>
-        <FormRadio handleChange={handleChange} />
+        <FormRadio />
       </FormGroup>
 
       <FormGroup>
         <p className="label">상품 설명</p>
         <S.TextArea
           name="description"
-          onChange={handleChange}
+          value={formData.description}
           placeholder="상품에 대한 설명을 써주세요."
+          onChange={(e) => setFormData('description', e.target.value)}
         />
       </FormGroup>
 
@@ -87,7 +88,7 @@ const FormTrade = () => {
           <input
             name="price"
             value={transformPrice(formData.price as number)}
-            onChange={handleChange}
+            onChange={(e) => setFormData('price', Number(e.target.value.replace(/,/g, '')))}
           />
           <p>원</p>
         </S.InputNum>
@@ -100,15 +101,15 @@ const FormTrade = () => {
           <input
             name="place"
             value={formData.place}
-            onChange={handleChange}
             placeholder="위치를 입력해주세요."
+            onChange={(e) => setFormData('place', e.target.value)}
           />
         </BoxInput>
         <S.LabelPlace>성균관 대학교 추천 장소</S.LabelPlace>
         <ListTradeForm list={placeList} type={'place'} />
       </FormGroup>
 
-      <Button>등록하기</Button>
+      {isEdit ? <Button color="primary">수정 완료</Button> : <Button>등록하기</Button>}
     </form>
   );
 };

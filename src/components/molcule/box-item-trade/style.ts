@@ -8,6 +8,7 @@ export const Container = styled.div<{ width: string }>`
 
 export const BoxImage = styled.img`
   width: 100%;
+  height: 163px;
   border-radius: 10px;
   margin-bottom: 6px;
 `;

@@ -3,6 +3,7 @@ import * as S from './style';
 import search from '@assets/icons/search.svg';
 import { useNavigate } from 'react-router-dom';
 import cancle from '@assets/icons/cancel.svg';
+import { useSearchActions, useSearchData } from 'src/store/search';
 
 interface SearchProps {
   placeholder?: string;
@@ -10,20 +11,19 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ placeholder }) => {
   const navigate = useNavigate();
-  const [searchInput, SetSearchInput] = useState<string>('');
+  const searchData = useSearchData();
+  const { changeSearchData } = useSearchActions();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    SetSearchInput(value);
-  };
+  // const [searchInput, SetSearchInput] = useState<string>('');
+
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { value } = e.target;
+  //   SetSearchInput(value);
+  // };
 
   const handleClickSearch = () => {
     // 값 전달
     navigate('/search/result');
-  };
-
-  const handleClickCancle = () => {
-    SetSearchInput('');
   };
 
   return (
@@ -33,12 +33,12 @@ const Search: React.FC<SearchProps> = ({ placeholder }) => {
       </div>
 
       <input
-        value={searchInput}
-        onChange={handleChange}
+        value={searchData}
+        onChange={(e) => changeSearchData(e.target.value)}
         placeholder={placeholder ? placeholder : '무엇이든 검색해보세요.'}
       />
 
-      {searchInput && <img src={cancle} alt="btn-cancle" onClick={handleClickCancle} />}
+      {searchData && <img src={cancle} alt="btn-cancle" onClick={() => changeSearchData('')} />}
     </S.Container>
   );
 };

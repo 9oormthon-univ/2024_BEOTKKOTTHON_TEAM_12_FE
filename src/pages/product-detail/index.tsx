@@ -47,7 +47,7 @@ const ProductDetail = () => {
 
         {openKebab && (
           <BoxKebabList>
-            <p>수정하기</p>
+            <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
             <p>판매 완료로 변경</p>
             <p>글 숨기기</p>
             <p className="red" onClick={() => setOpenModal(!openModal)}>
