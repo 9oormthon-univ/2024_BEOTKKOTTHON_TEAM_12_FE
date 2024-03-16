@@ -1,13 +1,9 @@
-import { ChangeEvent } from 'react';
 import * as S from './style';
-import { useFormData } from 'src/store/formData';
+import { useFormData, useFormDataActions } from 'src/store/formData';
 
-interface FormRadioType {
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-}
-
-const FormRadio = ({ handleChange }: FormRadioType) => {
+const FormRadio = () => {
   const formData = useFormData();
+  const { setFormData } = useFormDataActions();
 
   return (
     <S.Container>
@@ -16,9 +12,9 @@ const FormRadio = ({ handleChange }: FormRadioType) => {
           type="radio"
           id="very-good"
           name="state"
-          onChange={handleChange}
           value="very-good"
           checked={formData.state === '아주 좋아요'}
+          onChange={() => setFormData('state', '아주 좋아요')}
         />
         <label htmlFor="very-good">아주 좋아요</label>
       </S.Group>
@@ -28,9 +24,9 @@ const FormRadio = ({ handleChange }: FormRadioType) => {
           type="radio"
           id="good"
           name="state"
-          onChange={handleChange}
           value="good"
           checked={formData.state === '좋아요'}
+          onChange={() => setFormData('state', '좋아요')}
         />
         <label htmlFor="good">좋아요</label>
       </S.Group>
@@ -40,9 +36,9 @@ const FormRadio = ({ handleChange }: FormRadioType) => {
           type="radio"
           id="normal"
           name="state"
-          onChange={handleChange}
           value="normal"
           checked={formData.state === '보통이에요'}
+          onChange={() => setFormData('state', '보통이에요')}
         />
         <label htmlFor="normal">보통이에요</label>
       </S.Group>
@@ -52,9 +48,9 @@ const FormRadio = ({ handleChange }: FormRadioType) => {
           type="radio"
           id="used"
           name="state"
-          onChange={handleChange}
           value="used"
           checked={formData.state === '사용감 있어요'}
+          onChange={() => setFormData('state', '사용감 있어요')}
         />
         <label htmlFor="used">사용감 있어요</label>
       </S.Group>
