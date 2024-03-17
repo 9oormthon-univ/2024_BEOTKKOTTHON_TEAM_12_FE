@@ -8,7 +8,7 @@ const ChatContainer = styled.div`
 interface ChatScreenProps {
   messages: {
     id: string;
-    content: string;
+    content: string | File;
     timestamp: string;
     isMine: boolean;
     profilePic: string;

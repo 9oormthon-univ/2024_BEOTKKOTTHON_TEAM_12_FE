@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './style';
 import defaultProfilePic from '@assets/images/profile-default-image.svg';
 interface MessageProps {
-  content: string;
+  content: string | File;
   timestamp: string;
   isMine: boolean;
   profilePic?: string;
