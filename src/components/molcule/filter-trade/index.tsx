@@ -1,16 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './style';
 import checkgreen from '@assets/icons/check_circle_green.svg';
 import checkgrey from '@assets/icons/check_circle_grey.svg';
+import { useAllProducts, useProductsActions } from 'src/store/products';
 
 const FilterTrade = () => {
+  const allProducts = useAllProducts();
+  const { showSalesProducts } = useProductsActions();
   const [active, setActive] = useState<boolean>(false);
+  const [clicked, setClicked] = useState<boolean>(false);
+
   const handleClick = () => {
+    setClicked(!clicked);
     setActive(!active);
   };
+
+  useEffect(() => {
+    showSalesProducts(clicked);
+  }, [clicked]);
+
   return (
     <S.Container>
-      <p>상품 270개</p>
+      <p>상품 {allProducts.length}개</p>
 
       <S.Filter onClick={handleClick} $active={active}>
         {active ? (
