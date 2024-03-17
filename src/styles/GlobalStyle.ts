@@ -82,9 +82,11 @@ const GlobalStyle = createGlobalStyle`
     display: flex; 
     justify-content: center; 
     min-height: 100vh; 
+    min-height: -webkit-fill-available; 
     margin: 0;
     padding: 0;
     background-color: #3c3c3c; 
+    
   }
 
   #root {
