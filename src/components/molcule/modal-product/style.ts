@@ -4,7 +4,7 @@ export const Overlay = styled.div`
   position: absolute;
 
   // 전체 레이아웃 크기 변경시 수정 필수
-  width: 375px;
+  width: 100%;
   height: 100vh;
   top: 0;
   bottom: 0;
