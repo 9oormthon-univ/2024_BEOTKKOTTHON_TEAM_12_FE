@@ -86,6 +86,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
  /* 모바일 UI 스타일 */
+ html {
+  height: -webkit-fill-available;
+}
+
  body {
   display: flex; 
   justify-content: center; 
@@ -121,6 +125,10 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
 }
 
+/* iOS */ 
+@supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
 
 
 `;
