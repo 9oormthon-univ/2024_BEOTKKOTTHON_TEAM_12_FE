@@ -14,7 +14,7 @@ import notifications from '@assets/icons/notifications.svg';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductsActions } from 'src/store/products';
 import { salesData } from 'src/data/shared';
-import axios from 'axios';
+// import axios from 'axios';
 import { useSearchActions } from 'src/store/search';
 
 const Main = () => {

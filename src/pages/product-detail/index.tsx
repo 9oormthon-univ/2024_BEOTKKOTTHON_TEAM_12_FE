@@ -25,7 +25,7 @@ const ProductDetail = () => {
 
   // 서버에서 가져온 데이터로 수정해야 함
   const product = salesData[0];
-  const url = `${import.meta.env.VITE_SERVER_URL}/products/${id}`;
+  // const url = `${import.meta.env.VITE_SERVER_URL}/products/${id}`;
 
   const handleHideClick = async () => {
     // const res = axios.put(url, body, {

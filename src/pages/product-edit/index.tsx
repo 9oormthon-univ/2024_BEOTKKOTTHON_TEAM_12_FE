@@ -3,12 +3,12 @@ import * as S from './styled';
 import close from '@assets/icons/close_large.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 const ProductEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const url = `${import.meta.env.VITE_SERVER_URL}/products/${id}`;
+  // const url = `${import.meta.env.VITE_SERVER_URL}/products/${id}`;
 
   useEffect(() => {
     // const res = axios.put(url, {}, {

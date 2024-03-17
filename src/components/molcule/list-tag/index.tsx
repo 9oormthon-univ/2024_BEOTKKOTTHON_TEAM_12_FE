@@ -1,5 +1,5 @@
 import { categories } from 'src/data/shared';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { BoxTag, Tag } from '@components/index';
 import { useActiveCategory, useProductsActions } from 'src/store/products';
 import { useFormData, useFormDataActions } from 'src/store/formData';
@@ -26,26 +26,26 @@ const ListTag = ({ isform }: ListTagProps) => {
 
   useEffect(() => {
     if (isform) {
-      setActiveCategory(formData.category as string);
+      setActiveCategory(formData.category_id as string);
     }
-  }, [formData.category, isform]);
+  }, [formData.category_id, isform]);
 
-  const handleClick = (category: string) => {
+  const handleClick = (category_id: string) => {
     if (isform) {
-      setFormData('category', category);
+      setFormData('category_id', category_id);
     }
-    setActiveCategory(category);
+    setActiveCategory(category_id);
   };
 
   return (
     <BoxTag>
-      {list.map((category, index) => (
+      {list.map((category_id, index) => (
         <Tag
-          onClick={() => handleClick(category)}
-          $active={category === activeCategory}
+          onClick={() => handleClick(category_id)}
+          $active={category_id === activeCategory}
           key={index}
         >
-          {category}
+          {category_id}
         </Tag>
       ))}
     </BoxTag>
