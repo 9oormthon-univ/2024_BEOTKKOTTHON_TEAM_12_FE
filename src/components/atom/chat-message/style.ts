@@ -16,6 +16,13 @@ export const MessageBubble = styled.div<{ isMine: boolean }>`
   color: ${({ isMine }) => (isMine ? 'white' : 'var(--grey-7)')};
   margin: ${({ isMine }) => (isMine ? '0' : '0 0 0 10px')};
   position: relative;
+
+  & > img {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 10px;
+    object-fit: contain;
+  }
 `;
 
 export const Avatar = styled.img`
