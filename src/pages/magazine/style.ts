@@ -7,6 +7,10 @@ export const Content = styled.div`
   overflow-y: scroll;
   -ms-overflow-style: none;
 
+  section img {
+    width: 100%;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }

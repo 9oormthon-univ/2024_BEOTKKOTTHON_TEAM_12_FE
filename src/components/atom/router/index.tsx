@@ -13,6 +13,7 @@ import ProductDetail from '@pages/product-detail';
 import ChatHome from '@pages/chat-home';
 import ProductEdit from '@pages/product-edit';
 import Magazine from '@pages/magazine';
+import QuizPage from '@pages/quiz/quiz';
 
 const Router = () => {
   return (
@@ -36,8 +37,9 @@ const Router = () => {
       {/* 채팅 */}
       <Route path="chat-home" element={<ChatHome />} />
 
-      {/* 매거지 */}
+      {/* 매거진 */}
       <Route path="magazine" element={<Magazine />} />
+      <Route path="magazine/quiz" element={<QuizPage />} />
       {/* <Route path="*" element={<div>Not Found</div>} /> */}
     </Routes>
   );

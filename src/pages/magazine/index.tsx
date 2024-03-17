@@ -5,6 +5,7 @@ import banner1 from '@assets/magazine/banner1.svg';
 import banner2 from '@assets/magazine/banner2.svg';
 import quiz from '@assets/magazine/quiz.svg';
 import * as S from './style';
+import { Link } from 'react-router-dom';
 
 const Magazine = () => {
   return (
@@ -24,7 +25,9 @@ const Magazine = () => {
         </section>
 
         <section className="quiz">
-          <img src={quiz} alt="quiz" />
+          <Link to={'/magazine/quiz'}>
+            <img src={quiz} alt="quiz" />
+          </Link>
         </section>
 
         <section className="banner2">
