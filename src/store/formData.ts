@@ -15,16 +15,18 @@ interface FormDataStore {
 }
 
 const initialFormData = {
-  id: '0',
-  name: '',
-  imgs: {} as FileList,
-  category: '',
-  time: '',
-  state: '',
+  id: 0,
+  product_name: '',
   price: 0,
-  sold: '판매중',
-  description: '',
+  product_image: [],
+  product_content: '',
+  product_status: '',
+  post_status: '판매중',
   place: '',
+  is_private: false,
+  category_id: '',
+  wish: '',
+  count: '',
 };
 
 export const useFormDataStore = create<FormDataStore>((set) => ({
@@ -38,7 +40,7 @@ export const useFormDataStore = create<FormDataStore>((set) => ({
     },
 
     setShowImages: (urls) => set(() => ({ showImages: [...urls] })),
-    receiveData: (data) => set(() => ({ formData: data, showImages: data.recievedImgUrl })),
+    receiveData: (data) => set(() => ({ formData: data, showImages: data.product_image })),
     resetFormData: () => set(() => ({ formData: initialFormData, showImages: [] })),
   },
 }));

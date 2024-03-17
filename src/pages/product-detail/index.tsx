@@ -13,18 +13,18 @@ import kebab from '@assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Product } from 'src/types/types';
 import { useEffect, useState } from 'react';
-import { useAllProducts } from 'src/store/products';
+import { salesData } from 'src/data/shared';
 // import { useFilteredProducts } from 'src/store/products';
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const products = useAllProducts();
   // const products = useFilteredProducts();
   const navigate = useNavigate();
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const product = products.find((product) => product.id === Number(id));
+  // 서버에서 가져온 데이터로 수정해야 함
+  const product = salesData[0];
   const url = `${import.meta.env.VITE_SERVER_URL}/products/${id}`;
 
   const handleHideClick = async () => {
@@ -67,7 +67,9 @@ const ProductDetail = () => {
           </p>
         </BoxKebabList>
       )}
-      {openModal && <ModalProduct openModal={openModal} setOpenModal={setOpenModal} id={id} />}
+      {openModal && (
+        <ModalProduct openModal={openModal} setOpenModal={setOpenModal} id={id as string} />
+      )}
 
       <S.Content>
         <section className="profile">
@@ -77,7 +79,9 @@ const ProductDetail = () => {
         <S.SectionScroll>
           <section className="product-image">
             <Carousel>
-              {product?.recievedImgUrl?.map((url, i) => <img src={url} alt={`img-${i}`} key={i} />)}
+              {product.product_image.map((url, i) => (
+                <img src={url} alt={`img-${i}`} key={i} />
+              ))}
             </Carousel>
           </section>
 
