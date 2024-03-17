@@ -15,8 +15,7 @@ const ModalProduct = ({ id, openModal, setOpenModal }: ModalProductProps) => {
 
   return (
     <BoxModal>
-      <S.Container>
-        <div className="back" />
+      <S.Overlay>
         <S.BoxContent>
           <p className="text">게시글을 삭제하시겠어요?</p>
           <S.BoxButton>
@@ -36,7 +35,7 @@ const ModalProduct = ({ id, openModal, setOpenModal }: ModalProductProps) => {
             />
           </S.BoxButton>
         </S.BoxContent>
-      </S.Container>
+      </S.Overlay>
     </BoxModal>
   );
 };
