@@ -4,6 +4,7 @@ import { create } from 'zustand';
 interface Actions {
   setInitalProducts: (newProducts: Product[]) => void;
   setFilteredProducts: (category: string) => void;
+  showSalesProducts: (clicked: boolean) => void;
 }
 
 interface ProductsStore {
@@ -27,6 +28,16 @@ export const useProductsStore = create<ProductsStore>((set) => ({
             ? state.allProducts
             : state.allProducts.filter((product) => product.category === category),
       })),
+    showSalesProducts: (clicked) => {
+      if (clicked) {
+        set((state) => ({
+          ...state,
+          filteredProducts: state.allProducts.filter((product) => product.sold === '판매중'),
+        }));
+      } else {
+        set((state) => ({ filteredProducts: state.allProducts }));
+      }
+    },
   },
 }));
 
