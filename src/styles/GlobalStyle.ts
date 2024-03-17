@@ -117,7 +117,23 @@ const GlobalStyle = createGlobalStyle`
 document.addEventListener(
   'touchmove',
   function (event) {
-    event.preventDefault();
+    const touch = event.touches[0];
+    const startX = touch.clientX;
+    const startY = touch.clientY;
+
+    document.addEventListener(
+      'touchmove',
+      function (event) {
+        const touch = event.touches[0];
+        const deltaX = Math.abs(touch.clientX - startX);
+        const deltaY = Math.abs(touch.clientY - startY);
+
+        if (deltaX > deltaY) {
+          event.preventDefault();
+        }
+      },
+      { passive: false }
+    );
   },
   { passive: false }
 );
