@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import * as S from './style';
 import search from '@assets/icons/search.svg';
 import { useNavigate } from 'react-router-dom';
