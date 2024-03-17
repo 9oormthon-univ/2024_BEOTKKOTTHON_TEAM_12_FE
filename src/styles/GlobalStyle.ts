@@ -86,7 +86,7 @@ const GlobalStyle = createGlobalStyle`
   min-height: -webkit-fill-available; 
   margin: 0;
   padding: 0;
-  background-color: #3c3c3c; 
+  background-color: #ffffff; 
 }
 
   #root {

@@ -4,6 +4,7 @@ import defaultImg from '@assets/images/product-default-img.png';
 import { ChatInput, ChatScreen, Header, ProductInfo, TextLabel } from '@components/index';
 import arrow from '@assets/icons/arrow.svg';
 import kebab from '@assets/icons/kebab.svg';
+import { Product } from 'src/types/types';
 
 const ChatDetail = () => {
   const navigate = useNavigate();
@@ -28,7 +29,6 @@ const ChatDetail = () => {
     category_id: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
     wish: '193.148.54.13',
     count: '144.16.105.89',
-
   };
 
   const messages = [
