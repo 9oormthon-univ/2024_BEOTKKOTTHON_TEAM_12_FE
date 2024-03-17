@@ -1,14 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import defaultImg from '@assets/images/product-default-img.png';
-import { ChatInput, ChatScreen, Header, ProductInfo, TextLabel } from '@components/index';
+import {
+  BoxKebabList,
+  ChatInput,
+  ChatScreen,
+  Header,
+  ProductInfo,
+  TextLabel,
+} from '@components/index';
 import arrow from '@assets/icons/arrow.svg';
 import kebab from '@assets/icons/kebab.svg';
 import { Product } from 'src/types/types';
+import { useState } from 'react';
+import { levelUrlArr } from 'src/utils/levelUrlArr';
 
 const ChatDetail = () => {
   const navigate = useNavigate();
-
+  const [openKebab, setOpenKebab] = useState<boolean>(false);
   const product: Product = {
     id: 8,
     product_name: 'Catnip',
@@ -30,6 +39,8 @@ const ChatDetail = () => {
     wish: '193.148.54.13',
     count: '144.16.105.89',
   };
+
+  const otherUser = '김스옹';
 
   const messages = [
     {
@@ -152,9 +163,26 @@ const ChatDetail = () => {
           alt="btn-back"
           onClick={() => navigate('/chat-home')}
         />
-        <TextLabel text="채팅" size={18} weight={700} />
-        <img src={kebab} className="right" alt="btn-back" />
+        <S.NickNameContainer>
+          <TextLabel text={otherUser} size={18} weight={700} />
+          <img src={levelUrlArr(1)} alt="level" />
+        </S.NickNameContainer>
+        <img
+          src={kebab}
+          className="right"
+          alt="btn-back"
+          onClick={() => {
+            setOpenKebab(() => !openKebab);
+            console.log('openKebab:', openKebab);
+          }}
+        />
       </Header>
+      {openKebab && (
+        <BoxKebabList>
+          <p>차단하기</p>
+          <p className="red">신고하기</p>
+        </BoxKebabList>
+      )}
       <ProductInfo
         imageUrl={product.product_image ? product.product_image[0] : defaultImg}
         productName={product.product_name}
