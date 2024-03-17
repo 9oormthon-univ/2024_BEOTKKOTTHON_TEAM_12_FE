@@ -2,33 +2,19 @@ import { ChatMessage } from '@components/index';
 import styled from 'styled-components';
 
 const ChatContainer = styled.div`
-  padding: 20px 10px;
+  padding: 20px 20px;
 `;
-const messages = [
-  {
-    id: '1',
-    content: '안녕하세요!',
-    timestamp: '오후 12:00',
-    isMine: false,
-    profilePic: '',
-  },
-  {
-    id: '2',
-    content: '구매하고싶어요!',
-    timestamp: '오후 12:01',
-    isMine: false,
-    profilePic: '',
-  },
-  {
-    id: '3',
-    content: '가능합니다!',
-    timestamp: '오후 12:01',
-    isMine: true,
-    profilePic: '',
-  },
-];
 
-const ChatScreen = () => {
+interface ChatScreenProps {
+  messages: {
+    id: string;
+    content: string;
+    timestamp: string;
+    isMine: boolean;
+    profilePic: string;
+  }[];
+}
+const ChatScreen: React.FC<ChatScreenProps> = ({ messages }) => {
   return (
     <ChatContainer>
       {messages.map((msg) => (

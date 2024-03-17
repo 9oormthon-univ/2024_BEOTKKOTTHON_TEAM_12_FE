@@ -17,6 +17,114 @@ const ChatDetail = () => {
     recievedImgUrl: [defaultImg],
   };
 
+  const messages = [
+    {
+      id: '1',
+      content: '안녕하세요!',
+      timestamp: '오후 12:00',
+      isMine: false,
+      profilePic: '',
+    },
+    {
+      id: '2',
+      content: '구매하고싶어요!',
+      timestamp: '오후 12:01',
+      isMine: false,
+      profilePic: '',
+    },
+    {
+      id: '3',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '4',
+      content: '안녕하세요!',
+      timestamp: '오후 12:00',
+      isMine: false,
+      profilePic: '',
+    },
+    {
+      id: '5',
+      content: '구매하고싶어요!',
+      timestamp: '오후 12:01',
+      isMine: false,
+      profilePic: '',
+    },
+    {
+      id: '6',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '7',
+      content: '안녕하세요!',
+      timestamp: '오후 12:00',
+      isMine: false,
+      profilePic: '',
+    },
+    {
+      id: '8',
+      content: '구매하고싶어요!',
+      timestamp: '오후 12:01',
+      isMine: false,
+      profilePic: '',
+    },
+    {
+      id: '9',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '10',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '11',
+      content: '안녕하세요!',
+      timestamp: '오후 12:00',
+      isMine: false,
+      profilePic: '',
+    },
+    {
+      id: '12',
+      content: '구매하고싶어요!',
+      timestamp: '오후 12:01',
+      isMine: false,
+      profilePic: '',
+    },
+    {
+      id: '13',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '14',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '15',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+  ];
+
   const handleClickProduct = () => {
     navigate(`/product/${product.id}`);
   };
@@ -36,7 +144,9 @@ const ChatDetail = () => {
       />
 
       <S.Content>
-        <ChatScreen />
+        <S.SectionScroll>
+          <ChatScreen messages={messages} />
+        </S.SectionScroll>
       </S.Content>
       <ChatInput />
     </S.Container>
