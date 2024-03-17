@@ -4,26 +4,13 @@ import plusIcon from '@assets/icons/chat_add.svg';
 import sendIcon from '@assets/icons/send.svg';
 import * as S from './style';
 
-const ChatInput = () => {
-  const [message, setMessage] = useState('');
+interface ChatInputProps {
+  handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSend: (message: string) => void;
+}
 
-  const handleSend = (imageToSend: File | null) => {
-    // 메시지가 없고 이미지도 없으면 전송하지 않음
-    if (message.trim() === '' && !imageToSend) return;
-    console.log(message);
-    if (imageToSend) {
-      console.log('이미지 전송:', imageToSend);
-    }
-    // 메시지 전송 후 입력창을 비우기
-    setMessage('');
-  };
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      handleSend(file);
-    }
-  };
+const ChatInput: React.FC<ChatInputProps> = ({ handleImageChange, handleSend }) => {
+  const [message, setMessage] = useState<string>(''); // 입력된 메시지 상태 추가
 
   return (
     <S.ChatInputContainer>
@@ -41,13 +28,20 @@ const ChatInput = () => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="메시지를 입력하세요"
-        onKeyDown={(e) => {
+        onKeyPress={(e) => {
           if (e.key === 'Enter') {
-            handleSend(null);
+            e.preventDefault();
+            handleSend(message);
+            setMessage('');
           }
         }}
       />
-      <S.SendButton onClick={() => handleSend(null)}>
+      <S.SendButton
+        onClick={() => {
+          handleSend(message);
+          setMessage('');
+        }}
+      >
         <img src={sendIcon} alt="send" />
       </S.SendButton>
     </S.ChatInputContainer>

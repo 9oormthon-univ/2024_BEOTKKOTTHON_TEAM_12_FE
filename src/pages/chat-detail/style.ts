@@ -5,8 +5,14 @@ export const Container = styled.div`
 `;
 
 export const BtnLeft = styled.img`
-  transform: translateX(11px);
+  margin-left: 10px;
   transform: rotate(180deg);
+`;
+
+export const NickNameContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 3px;
 `;
 
 export const Content = styled.div`
