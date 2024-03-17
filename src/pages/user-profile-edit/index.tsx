@@ -2,8 +2,8 @@ import * as S from './style';
 import arrow from '@assets/icons/arrow.svg';
 import { Header, TextLabel, TextInput, ImageInput, TagInput } from '@components/index';
 import { useNavigate } from 'react-router-dom';
-
-import useStore from '../../store/store';
+import useStore from '../../store/userData';
+import { instance } from '../../apis/index';
 
 const UserProfileEdit = () => {
   const navigate = useNavigate();
@@ -24,9 +24,28 @@ const UserProfileEdit = () => {
     '섹시글램',
     '아메카지',
   ];
-  const postChangeAccountInfo = () => {
-    updateUserProfileInfo(userProfileInfo);
-    console.log(userProfileInfo);
+  const postChangeAccountInfo = async () => {
+    const userId = '1';
+    try {
+      const response = await instance.put(`/users/profile/${userId}`, userProfileInfo);
+      if (response.status === 200) {
+        // 성공적으로 업데이트되면 Zustand 상태를 업데이트
+        useStore.getState().updateUserProfileInfo(response.data);
+        alert('저장되었습니다.');
+      } else {
+        // 서버에서 예상치 못한 응답을 받았을 경우
+        console.error('서버 상태 업데이트 실패:', response);
+        alert('저장에 실패했습니다. 다시 시도해주세요.');
+      }
+    } catch (error) {
+      // 네트워크 오류나 서버 오류 등의 예외 처리
+      console.error('서버에 저장하는 중 오류 발생:', error);
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  };
+
+  const handleNickNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateUserProfileInfo({ nick_name: e.target.value });
   };
 
   return (
@@ -43,9 +62,14 @@ const UserProfileEdit = () => {
           color="var(--grey-5)"
         />
       </Header>
-      <TextInput label="닉네임" value={userProfileInfo.nickName} labelSize={16} />
-      <ImageInput image={userProfileInfo.image} />
-      <TagInput styleTags={styleTags} userStyleTags={userProfileInfo.styleTag} />
+      <TextInput
+        label="닉네임"
+        value={userProfileInfo.nick_name}
+        labelSize={16}
+        onChange={handleNickNameChange}
+      />
+      <ImageInput image={userProfileInfo.profile_image} />
+      <TagInput styleTags={styleTags} userStyleTags={userProfileInfo.style} />
     </>
   );
 };

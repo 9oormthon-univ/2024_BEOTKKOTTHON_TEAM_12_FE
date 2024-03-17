@@ -39,3 +39,13 @@ export interface Product {
   sold?: string; // 판매 상태
   place?: string; // 거래 장소
 }
+
+//채팅룸
+export interface ChatRoom {
+  id: string;
+  imageUrl: string;
+  senderName: string;
+  lastMessage: string;
+  timestamp: string;
+  unreadCount: number;
+}

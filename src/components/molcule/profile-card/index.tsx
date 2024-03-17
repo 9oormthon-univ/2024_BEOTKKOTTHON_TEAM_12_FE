@@ -5,16 +5,12 @@ import defaultImg from '@assets/images/profile-default-image.svg';
 import arrow from '@assets/icons/arrow.svg';
 import profileIconLevel1 from '@assets/icons/profile-icon-level1.svg';
 import { useNavigate } from 'react-router-dom';
+import useStore from '../../../store/userData';
 
 const ProfileCard: React.FC = () => {
+  const { userProfileInfo } = useStore();
   const navigate = useNavigate();
-  const userProfile = {
-    nickname: '김스옹',
-    university: '성균관대학교 서울캠퍼스',
-    profileImg: defaultImg,
-    level: 1,
-    style: ['캐주얼', '페미닌', '빈티지'],
-  };
+  const userProfile = userProfileInfo;
 
   const onModifyProfile = () => {
     navigate('/mypage/profile-edit');
@@ -28,10 +24,10 @@ const ProfileCard: React.FC = () => {
 
       <S.MiddleContainer>
         <S.UserNameWrapper>
-          <TextLabel text={userProfile.nickname} size={18} />
+          <TextLabel text={userProfile.user_name} size={18} />
           <S.Image src={profileIconLevel1} alt="profile level" />
         </S.UserNameWrapper>
-        <TextLabel text={userProfile.university} size={16} color="var(--grey-5)" />
+        <TextLabel text={userProfile.university_name} size={16} color="var(--grey-5)" />
 
         <S.ButtonContainer>
           {userProfile.style.map((style, index) => (

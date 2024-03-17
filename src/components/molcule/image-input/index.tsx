@@ -2,14 +2,14 @@ import { Button, TextLabel } from '@components/index';
 import * as S from './style';
 import React, { useRef, ChangeEvent, useState, useEffect } from 'react';
 import noImg from '@assets/images/profile-no-image.png';
-import useStore from '../../../store/store'; // 스토어 파일 경로에 따라 변경
+import useStore from '../../../store/userData';
 
 interface ImageInputProps {
   image: string;
 }
 
 const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
-  const { updateUserProfileInfo } = useStore();
+  const { userProfileInfo, updateUserProfileInfo } = useStore();
   // image prop이 있으면 사용하고, 없으면 noImg를 사용
   const [newImage, setNewImage] = useState(image || noImg);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -20,11 +20,12 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
       // URL을 생성
       const imageUrl = URL.createObjectURL(file);
       setNewImage(imageUrl);
-      updateUserProfileInfo({ image: imageUrl }); // 스토어의 상태도 업데이트
+      updateUserProfileInfo({ profile_image: imageUrl });
+      console.log(userProfileInfo);
     }
   };
 
-  // 컴포넌트가 언마운트되기 전에 메모리에서 URL을 정리합니다.
+  // 컴포넌트가 언마운트되기 전에 메모리에서 URL을 정리
   useEffect(() => {
     return () => {
       if (newImage !== noImg) {
