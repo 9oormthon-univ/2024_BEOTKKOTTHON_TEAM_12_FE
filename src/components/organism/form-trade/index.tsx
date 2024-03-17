@@ -54,8 +54,8 @@ const FormTrade = () => {
         <p className="label">제목</p>
         <BoxInput>
           <input
-            name="name"
-            value={formData.name}
+            name="product_name"
+            value={formData.product_name}
             onChange={(e) => setFormData('name', e.target.value)}
             placeholder="제목을 입력해주세요."
           />
@@ -75,10 +75,10 @@ const FormTrade = () => {
       <FormGroup>
         <p className="label">상품 설명</p>
         <S.TextArea
-          name="description"
-          value={formData.description}
+          name="product_content"
+          value={formData.product_content}
           placeholder="상품에 대한 설명을 써주세요."
-          onChange={(e) => setFormData('description', e.target.value)}
+          onChange={(e) => setFormData('product_content', e.target.value)}
         />
       </FormGroup>
 

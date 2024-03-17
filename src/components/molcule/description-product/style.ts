@@ -16,11 +16,13 @@ export const Container = styled.div`
     box-sizing: border-box;
     min-height: 76px;
     font-size: 15px;
+    line-height: 20px;
     color: var(--grey-7);
   }
 
   .place {
     font-size: 12px;
+    line-height: 24px;
     color: var(--grey-7);
 
     & > span {

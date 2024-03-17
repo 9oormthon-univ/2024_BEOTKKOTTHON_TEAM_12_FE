@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as S from './style';
 import checkgreen from '@assets/icons/check_circle_green.svg';
 import checkgrey from '@assets/icons/check_circle_grey.svg';

@@ -9,7 +9,9 @@ import { useAllProducts } from 'src/store/products';
 const PurchaseHistory = () => {
   const navigate = useNavigate();
   const products = useAllProducts();
-  const salesCompletedData: Product[] = products.filter((product) => product.sold === '판매완료');
+  const salesCompletedData: Product[] = products.filter(
+    (product) => product.post_status === '판매완료'
+  );
 
   const SalesCompleted: React.FC<SalesCompletedProps> = ({ salesCompletedData }) => {
     return (

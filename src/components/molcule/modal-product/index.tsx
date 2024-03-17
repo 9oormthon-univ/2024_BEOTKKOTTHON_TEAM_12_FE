@@ -1,14 +1,14 @@
-import { BoxModal, Button } from '@components/index';
+import { Button } from '@components/index';
 import * as S from './style';
-import axios from 'axios';
+// import axios from 'axios';
 
 interface ModalProductProps {
-  id: string;
+  id?: string;
   openModal: boolean;
   setOpenModal: (value: boolean) => void;
 }
 
-const ModalProduct = ({ id, openModal, setOpenModal }: ModalProductProps) => {
+const ModalProduct = ({ openModal, setOpenModal }: ModalProductProps) => {
   const handleClickDelete = async () => {
     // axios.delete(`products/${id}`)
   };

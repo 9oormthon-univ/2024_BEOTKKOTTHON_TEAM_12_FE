@@ -7,13 +7,28 @@ import kebab from '@assets/icons/kebab.svg';
 
 const ChatDetail = () => {
   const navigate = useNavigate();
-  const product = {
-    id: 1,
-    product_name: 'H&M 티셔츠',
-    price: 10000,
-    product_content: '',
+
+  const product: Product = {
+    id: 8,
+    product_name: 'Catnip',
+    price: 8,
+    product_image: [
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+    ],
+    product_content:
+      'suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque',
+    product_status: '아주 좋아요',
     post_status: '판매중',
-    product_image: [defaultImg],
+    place: 'ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
+    is_private: true,
+    category_id: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
+    wish: '193.148.54.13',
+    count: '144.16.105.89',
+
   };
 
   const messages = [

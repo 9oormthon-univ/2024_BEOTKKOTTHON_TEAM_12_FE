@@ -5,7 +5,7 @@ interface Actions {
   setInitalProducts: (newProducts: Product[]) => void;
   // setFilteredProducts: (category: string) => void;
   setActiveCategory: (category: string) => void;
-  showSalesProducts: () => void;
+  // showSalesProducts: () => void;
   setClickedOnSale: () => void;
 }
 
@@ -38,16 +38,16 @@ export const useProductsStore = create<ProductsStore>((set) => ({
     //         ? state.allProducts
     //         : state.allProducts.filter((product) => product.category === category),
     //   })),
-    showSalesProducts: (clicked) => {
-      if (clicked) {
-        set((state) => ({
-          ...state,
-          filteredProducts: state.allProducts.filter((product) => product.sold === '판매중'),
-        }));
-      } else {
-        set((state) => ({ filteredProducts: state.allProducts }));
-      }
-    },
+    // showSalesProducts: (clicked) => {
+    //   if (clicked) {
+    //     set((state) => ({
+    //       ...state,
+    //       filteredProducts: state.allProducts.filter((product) => product.sold === '판매중'),
+    //     }));
+    //   } else {
+    //     set((state) => ({ filteredProducts: state.allProducts }));
+    //   }
+    // },
   },
 }));
 

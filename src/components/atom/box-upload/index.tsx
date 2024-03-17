@@ -21,17 +21,24 @@ const BoxUpload = () => {
         imageUrlLists = imageUrlLists.slice(0, 5);
       }
       setShowImages(imageUrlLists);
-      setFormData('imgs', files);
+      setFormData('product_image', files);
     }
   };
 
   return (
     <S.Container>
-      <label htmlFor="img">
+      <label htmlFor="product_image">
         <img src={image} alt="img" />
       </label>
 
-      <input type="file" id="img" name="imgs" accept="image/*" multiple onChange={handleChange} />
+      <input
+        type="file"
+        id="product_image"
+        name="product_image"
+        accept="image/*"
+        multiple
+        onChange={handleChange}
+      />
     </S.Container>
   );
 };
