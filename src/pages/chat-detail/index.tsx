@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
-import { Product } from 'src/types/types';
 import defaultImg from '@assets/images/product-default-img.png';
 import { ChatInput, ChatScreen, Header, ProductInfo, TextLabel } from '@components/index';
 import arrow from '@assets/icons/arrow.svg';
@@ -8,6 +7,7 @@ import kebab from '@assets/icons/kebab.svg';
 
 const ChatDetail = () => {
   const navigate = useNavigate();
+
   const product: Product = {
     id: 8,
     product_name: 'Catnip',
@@ -28,6 +28,7 @@ const ChatDetail = () => {
     category_id: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
     wish: '193.148.54.13',
     count: '144.16.105.89',
+
   };
 
   const messages = [
@@ -145,7 +146,12 @@ const ChatDetail = () => {
   return (
     <S.Container>
       <Header>
-        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate('/')} />
+        <S.BtnLeft
+          src={arrow}
+          className="left"
+          alt="btn-back"
+          onClick={() => navigate('/chat-home')}
+        />
         <TextLabel text="채팅" size={18} weight={700} />
         <img src={kebab} className="right" alt="btn-back" />
       </Header>

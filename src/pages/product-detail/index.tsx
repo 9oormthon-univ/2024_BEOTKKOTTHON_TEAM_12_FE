@@ -27,6 +27,7 @@ const ProductDetail = () => {
   const product = salesData[0];
   // const url = `${import.meta.env.VITE_SERVER_URL}/products/${id}`;
 
+
   const handleHideClick = async () => {
     // const res = axios.put(url, body, {
     //   header:

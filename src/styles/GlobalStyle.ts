@@ -78,24 +78,29 @@ const GlobalStyle = createGlobalStyle`
   }
 
  /* 모바일 UI 스타일 */
-  body {
-    display: flex; 
-    justify-content: center; 
-    min-height: 100vh; 
-    min-height: -webkit-fill-available; 
-    margin: 0;
-    padding: 0;
-    background-color: #3c3c3c; 
-    
-  }
+ body {
+  display: flex; 
+  justify-content: center; 
+  height: auto;
+  min-height: 100vh;
+  min-height: -webkit-fill-available; 
+  margin: 0;
+  padding: 0;
+  background-color: #3c3c3c; 
+}
 
   #root {
-    max-width: 375px; 
-    width: 100%; 
-    margin: 0 auto; 
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: relative;
+  width: 100%; 
+  margin: 0 auto; 
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+}
+
+  @media (min-width: 400px) {
+    #root {
+      max-width: 400px;
+    }
   }
 
   @font-face {
