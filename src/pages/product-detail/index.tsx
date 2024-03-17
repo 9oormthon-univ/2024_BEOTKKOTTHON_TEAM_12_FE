@@ -39,6 +39,10 @@ const ProductDetail = () => {
 
   return (
     <>
+      {' '}
+      {openModal && (
+        <ModalProduct openModal={openModal} setOpenModal={setOpenModal} id={id as string} />
+      )}
       <Header>
         <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate('/')} />
         <img
@@ -48,7 +52,6 @@ const ProductDetail = () => {
           onClick={() => setOpenKebab(!openKebab)}
         />
       </Header>
-
       {/* 로그인 된 상태 */}
       {/* {openKebab && (
           <BoxKebabList>
@@ -56,7 +59,6 @@ const ProductDetail = () => {
             <p className="red">신고하기</p>
           </BoxKebabList>
         )} */}
-
       {openKebab && (
         <BoxKebabList>
           <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
@@ -67,10 +69,6 @@ const ProductDetail = () => {
           </p>
         </BoxKebabList>
       )}
-      {openModal && (
-        <ModalProduct openModal={openModal} setOpenModal={setOpenModal} id={id as string} />
-      )}
-
       <S.Content>
         <section className="profile">
           <BoxProductProfile />
@@ -90,7 +88,6 @@ const ProductDetail = () => {
           </section>
         </S.SectionScroll>
       </S.Content>
-
       <FooterProductDetail product={product as Product} />
     </>
   );
