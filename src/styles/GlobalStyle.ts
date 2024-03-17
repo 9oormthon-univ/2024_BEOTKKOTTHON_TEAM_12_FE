@@ -87,6 +87,8 @@ const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   background-color: #ffffff; 
+  font-family: 'NanumSquareRound', sans-serif;
+
 }
 
   #root {
@@ -109,10 +111,15 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
 }
-  
-    body {
-      font-family: 'NanumSquareRound', sans-serif;
-    }
+
 `;
+
+document.addEventListener(
+  'touchmove',
+  function (event) {
+    event.preventDefault();
+  },
+  { passive: false }
+);
 
 export default GlobalStyle;
