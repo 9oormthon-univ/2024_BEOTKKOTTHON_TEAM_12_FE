@@ -1,5 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 
+const setScreenSize = () => {
+  const vh = window.innerHeight * 0.01;
+
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+
+setScreenSize();
+
 const GlobalStyle = createGlobalStyle`
   /* CSS Reset */
   html, body, div, span, applet, object, iframe,
@@ -83,12 +91,13 @@ const GlobalStyle = createGlobalStyle`
   justify-content: center; 
   height: auto;
   min-height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   min-height: -webkit-fill-available; 
   margin: 0;
   padding: 0;
   background-color: #ffffff; 
   font-family: 'NanumSquareRound', sans-serif;
- //overflow-y: auto; /* 수직 스크롤만 허용 */
+
 }
 
   #root {
@@ -112,30 +121,8 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
 }
 
+
+
 `;
-
-document.addEventListener(
-  'touchmove',
-  function (event) {
-    const touch = event.touches[0];
-    const startX = touch.clientX;
-    const startY = touch.clientY;
-
-    document.addEventListener(
-      'touchmove',
-      function (event) {
-        const touch = event.touches[0];
-        const deltaX = Math.abs(touch.clientX - startX);
-        const deltaY = Math.abs(touch.clientY - startY);
-
-        if (deltaX > deltaY) {
-          event.preventDefault();
-        }
-      },
-      { passive: false }
-    );
-  },
-  { passive: false }
-);
 
 export default GlobalStyle;
