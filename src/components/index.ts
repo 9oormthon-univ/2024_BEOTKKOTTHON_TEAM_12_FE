@@ -42,3 +42,4 @@ export { default as TagInput } from './molcule/tag-input';
 export { default as UserSection } from './organism/user-section';
 export { default as ListTradeItems } from './organism/list-trade-items';
 export { default as FormTrade } from './organism/form-trade';
+export { default as CarouselMagazine } from './organism/carousel-magazine';

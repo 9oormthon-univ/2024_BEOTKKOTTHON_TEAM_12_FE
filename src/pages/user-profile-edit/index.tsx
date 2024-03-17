@@ -32,13 +32,13 @@ const UserProfileEdit = () => {
   return (
     <>
       <Header>
-        <TextLabel text="내 프로필" size={16} weight={700} />
+        <TextLabel text="내 프로필" size={18} weight={700} />
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
-        <S.HederLeft
+        <TextLabel
           className="right "
           onClick={postChangeAccountInfo}
           text="저장"
-          size={16}
+          size={18}
           weight={700}
           color="var(--grey-5)"
         />

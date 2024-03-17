@@ -1,15 +1,23 @@
 import styled from 'styled-components';
 
 export const BackIcon = styled.img`
-  padding: 10px;
-  margin-left: 10px;
-  transform: rotate(180deg); /* 왼쪽 화살표*/
+  transform: translateX(11px) rotate(180deg);
 `;
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const Content = styled.div`
+  height: calc(100vh - var(--header-size));
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const ProductWrapper = styled.div`

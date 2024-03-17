@@ -23,44 +23,6 @@ const SalesHistory = () => {
     navigate('/product/new');
   };
 
-  // const salesData: SaleItem[] = [
-  //   {
-  //     id: 1,
-  //     name: '지오다노',
-  //     time: '30분전',
-  //     state: '상품 상태 : 아주 좋아요',
-  //     price: '16,500원',
-  //     sold: '판매중',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: '지오다노',
-  //     time: '30분전',
-  //     state: '상품 상태 : 아주 좋아요',
-  //     price: '16,500원',
-  //     sold: '판매중',
-  //   },
-  //   {
-  //     id: 3,
-  //     name: '지오다노',
-  //     time: '30분전',
-  //     state: '상품 상태 : 아주 좋아요',
-  //     price: '16,500원',
-  //     sold: '판매중',
-  //   },
-  // ];
-
-  // const salesCompletedData: SaleItem[] = [
-  //   {
-  //     id: 1,
-  //     name: 'H&M',
-  //     time: '30분전',
-  //     state: '상품 상태 : 아주 좋아요',
-  //     price: '16,500원',
-  //     sold: '판매완료',
-  //   },
-  // ];
-
   const hiddenItemsData: Product[] = [
     {
       id: '1',
@@ -149,9 +111,11 @@ const SalesHistory = () => {
         <TextLabel text="판매내역" size={16} weight={700} />
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
       </Header>
-      <S.MarginContainer />
-      <Tab tabs={tabData} />
-      <ButtonPlus handleClick={handleClick} />
+
+      <S.Content>
+        <Tab tabs={tabData} />
+        <ButtonPlus $bottom="20px" handleClick={handleClick} />
+      </S.Content>
     </>
   );
 };

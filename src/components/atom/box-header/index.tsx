@@ -4,7 +4,8 @@ const BoxHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
+  height: var(--header-size);
+  box-sizing: border-box;
 `;
 
 export default BoxHeader;

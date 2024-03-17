@@ -1,7 +1,7 @@
 import { BoxHeader } from '@components/index';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Content = styled.div`
   padding: 20px;
 
   .search {
@@ -14,7 +14,10 @@ export const Container = styled.div`
 `;
 
 export const SectionSearch = styled(BoxHeader)`
+  margin-top: 15px;
+  padding: 0 20px;
   gap: 10px;
+
   & > div {
     flex-grow: 1;
   }

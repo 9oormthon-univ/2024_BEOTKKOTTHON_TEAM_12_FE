@@ -4,17 +4,20 @@ import styled from 'styled-components';
 const Header = styled(BoxHeader)`
   position: relative;
   justify-content: center;
-  padding: 5px;
+  height: var(--header-size);
+  padding: 0 20px;
+  padding-bottom: 10px;
+  font-size: 18px;
 
   .left {
     position: absolute;
-    left: 4px;
+    left: 20px;
     cursor: pointer;
   }
 
   .right {
     position: absolute;
-    right: 4px;
+    right: 20px;
     cursor: pointer;
   }
 `;
