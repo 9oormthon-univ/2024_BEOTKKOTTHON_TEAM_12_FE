@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import { Product } from 'src/types/types';
 import defaultImg from '@assets/images/product-default-img.png';
-import { Header, ProductInfo, TextLabel } from '@components/index';
+import { ChatInput, ChatScreen, Header, ProductInfo, TextLabel } from '@components/index';
 import arrow from '@assets/icons/arrow.svg';
 import kebab from '@assets/icons/kebab.svg';
 
@@ -34,6 +34,11 @@ const ChatDetail = () => {
         price={product.price}
         onClick={handleClickProduct}
       />
+
+      <S.Content>
+        <ChatScreen />
+      </S.Content>
+      <ChatInput />
     </S.Container>
   );
 };
