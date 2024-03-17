@@ -38,6 +38,7 @@ export { default as ModalProduct } from './molcule/modal-product';
 export { default as TextInput } from './molcule/text-input';
 export { default as ImageInput } from './molcule/image-input';
 export { default as TagInput } from './molcule/tag-input';
+export { default as ProductInfo } from './molcule/product-info';
 //Organism
 export { default as UserSection } from './organism/user-section';
 export { default as ListTradeItems } from './organism/list-trade-items';
