@@ -17,6 +17,7 @@ export { default as BoxInput } from './atom/box-input';
 export { default as BoxUpload } from './atom/box-upload';
 export { default as BoxKebabList } from './atom/box-kebab-list';
 export { default as BoxModal } from './atom/box-modal';
+export { default as BoxQuiz } from './atom/box-quiz';
 //Molcule
 export { default as Carousel } from './molcule/carousel';
 export { default as ProfileCard } from './molcule/profile-card';

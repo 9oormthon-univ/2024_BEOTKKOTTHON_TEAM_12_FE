@@ -13,7 +13,7 @@ const FooterProductDetail = ({ product }: FooterProductDetailProps) => {
     <S.Container>
       <img src={heart} className="heart" alt="heart" />
       <p className="price">{transformPrice(product.price as number)}원</p>
-      {product.sold === '판매완료' ? (
+      {product.post_status === '판매완료' ? (
         <Button width="280" $bgcolor="var(--grey-3)" color="var(--grey-5)" children="채팅하기" />
       ) : (
         <Button width="280" $bgcolor="var(--green-6)" color="white" children="채팅하기" />

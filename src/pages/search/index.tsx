@@ -10,7 +10,7 @@ const SearchPage = () => {
 
   const handleClickCancle = () => {
     changeSearchData('');
-    navigate('/');
+    navigate(-1);
   };
 
   return (
