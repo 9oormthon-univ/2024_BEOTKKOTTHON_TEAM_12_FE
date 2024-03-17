@@ -11,27 +11,36 @@ import {
 } from '../../types/types';
 import { useNavigate } from 'react-router';
 import { useAllProducts } from 'src/store/products';
-import defaultImg from '@assets/images/profile-default-image.svg';
+// import defaultImg from '@assets/images/profile-default-image.svg';
 import { Link } from 'react-router-dom';
 
 const SalesHistory = () => {
   const navigate = useNavigate();
   const products = useAllProducts();
-  const salesData = products.filter((product) => product.sold === '판매중');
-  const salesCompletedData = products.filter((product) => product.sold === '판매완료');
+  const salesData = products.filter((product) => product.post_status === '판매중');
+  const salesCompletedData = products.filter((product) => product.post_status === '판매완료');
 
   const hiddenItemsData: Product[] = [
     {
-      id: '1',
-      name: '지오다노',
-      time: '30분전',
-      state: '보통이에요',
-      price: 16500,
-      recievedImgUrl: [defaultImg],
-      description:
-        '아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ',
-      place: '정문',
-      sold: '판매중',
+      id: 8,
+      product_name: 'Catnip',
+      price: 8,
+      product_image: [
+        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+      ],
+      product_content:
+        'suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque',
+      product_status: '아주 좋아요',
+      post_status: '판매중',
+      place: 'ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
+      is_private: true,
+      category_id: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
+      wish: '193.148.54.13',
+      count: '144.16.105.89',
     },
   ];
 

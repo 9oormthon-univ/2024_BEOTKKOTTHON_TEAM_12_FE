@@ -1,10 +1,10 @@
 import { FilterTrade, ListTag, ListTradeItems, Search } from '@components/index';
 import * as S from './style';
 import back from '@assets/icons/left_btn.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductsActions } from 'src/store/products';
-import axios from 'axios';
+// import axios from 'axios';
 import { useSearchData } from 'src/store/search';
 
 const SearchResult = () => {
@@ -13,7 +13,7 @@ const SearchResult = () => {
   const searchData = useSearchData();
   const { setActiveCategory } = useProductsActions();
 
-  const getData = async () => {};
+  // const getData = async () => {};
 
   useEffect(() => {
     setActiveCategory('전체');

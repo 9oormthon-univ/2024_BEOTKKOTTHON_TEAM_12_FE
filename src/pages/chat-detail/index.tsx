@@ -9,12 +9,25 @@ import kebab from '@assets/icons/kebab.svg';
 const ChatDetail = () => {
   const navigate = useNavigate();
   const product: Product = {
-    id: '1',
-    name: 'H&M 티셔츠',
-    price: 10000,
-    time: '2021-08-01',
-    state: '판매중',
-    recievedImgUrl: [defaultImg],
+    id: 8,
+    product_name: 'Catnip',
+    price: 8,
+    product_image: [
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
+    ],
+    product_content:
+      'suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque',
+    product_status: '아주 좋아요',
+    post_status: '판매중',
+    place: 'ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
+    is_private: true,
+    category_id: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
+    wish: '193.148.54.13',
+    count: '144.16.105.89',
   };
 
   const messages = [
@@ -137,8 +150,8 @@ const ChatDetail = () => {
         <img src={kebab} className="right" alt="btn-back" />
       </Header>
       <ProductInfo
-        imageUrl={product.recievedImgUrl ? product.recievedImgUrl[0] : defaultImg}
-        productName={product.name}
+        imageUrl={product.product_image ? product.product_image[0] : defaultImg}
+        productName={product.product_name}
         price={product.price}
         onClick={handleClickProduct}
       />

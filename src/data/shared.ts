@@ -1,7 +1,4 @@
 import defaultImg from '@assets/images/profile-default-image.svg';
-import ImgEx1 from '@assets/images/product-default-img.png';
-import ImgEx2 from '@assets/images/profile-no-image.png';
-import ImgEx3 from '@assets/nav-icons/chatting_green.svg';
 
 import { Product } from 'src/types/types';
 
