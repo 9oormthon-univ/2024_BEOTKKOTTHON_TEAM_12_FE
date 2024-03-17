@@ -14,6 +14,7 @@ import ChatHome from '@pages/chat-home';
 import ProductEdit from '@pages/product-edit';
 import ChatDetail from '@pages/chat-detail';
 import Magazine from '@pages/magazine';
+import QuizPage from '@pages/quiz/quiz';
 
 const Router = () => {
   return (
@@ -40,8 +41,9 @@ const Router = () => {
       <Route path="/chat-home" element={<ChatHome />} />
       <Route path="/chat-detail/:id" element={<ChatDetail />} />
 
-      {/* 매거지 */}
+      {/* 매거진 */}
       <Route path="magazine" element={<Magazine />} />
+      <Route path="magazine/quiz" element={<QuizPage />} />
       {/* <Route path="*" element={<div>Not Found</div>} /> */}
     </Routes>
   );

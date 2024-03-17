@@ -5,8 +5,7 @@ interface ModalPortalType {
 }
 
 const BoxModal = ({ children }: ModalPortalType) => {
-  const el: HTMLElement | null = document.getElementById('root');
-  return ReactDom.createPortal(children, el as HTMLElement);
+  return ReactDom.createPortal(<>{children}</>, document.getElementById('root') as HTMLElement);
 };
 
 export default BoxModal;

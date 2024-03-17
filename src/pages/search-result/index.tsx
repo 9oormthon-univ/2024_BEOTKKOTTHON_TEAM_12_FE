@@ -1,18 +1,38 @@
 import { FilterTrade, ListTag, ListTradeItems, Search } from '@components/index';
 import * as S from './style';
 import back from '@assets/icons/left_btn.svg';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useActiveCategory, useClickedOnSale, useProductsActions } from 'src/store/products';
+import axios from 'axios';
+import { useSearchData } from 'src/store/search';
 
 const SearchResult = () => {
-  const navigate = useNavigate();
+  const clickedOnSale = useClickedOnSale();
+  const activeCategory = useActiveCategory();
+  const searchData = useSearchData();
+  const { setActiveCategory } = useProductsActions();
+
+  const getData = async () => {};
+
+  useEffect(() => {
+    setActiveCategory('전체');
+  }, []);
+  useEffect(() => {
+    const url = `${import.meta.env.VITE_SERVER_URL}/products?categoryName=${activeCategory}&postStatus=${clickedOnSale}&page=0/${searchData}`;
+    console.log(url);
+    // const res = axios.get(url);
+  }, [activeCategory, clickedOnSale, searchData]);
 
   return (
     <>
       <S.HeaderSearch>
-        <img src={back} onClick={() => navigate('/')} width={'30px'} alt="btn-back" />
-        <div onClick={() => navigate('/search')}>
+        <Link to={'/'}>
+          <img src={back} width={'30px'} alt="btn-back" />
+        </Link>
+        <Link to={'/search'} className="search-input">
           <Search />
-        </div>
+        </Link>
       </S.HeaderSearch>
 
       <S.Content>

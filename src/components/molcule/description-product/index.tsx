@@ -11,7 +11,7 @@ interface DescriptionProductProps {
 // product를 사용하는 것이 아닌 서버에서 보내온 정보를 사용
 
 const DescriptionProduct = ({ product }: DescriptionProductProps) => {
-  const circleUrl = product.state === '아주 좋아요' ? stategreen : stategrey;
+  const circleUrl = product.product_status === '아주 좋아요' ? stategreen : stategrey;
 
   useEffect(() =>
     // 서버에서 해당 상품에 대한 정보 불러오기
@@ -19,16 +19,16 @@ const DescriptionProduct = ({ product }: DescriptionProductProps) => {
 
   return (
     <S.Container>
-      <p className="name">{product.name}</p>
+      <p className="name">{product.product_name}</p>
 
       <S.SubTitle>
         <img src={circleUrl} alt="none-trade" />
 
-        <p className="state">상품 상태 : {product.state}</p>
-        <p className="time">{product.time}</p>
+        <p className="state">상품 상태 : {product.product_status}</p>
+        <p className="time">30분 전</p>
       </S.SubTitle>
 
-      <p className="description">{product.description}</p>
+      <p className="description">{product.product_content}</p>
 
       <p className="place">
         성균관 대학교<span>{product.place}</span>에서 만나요!
