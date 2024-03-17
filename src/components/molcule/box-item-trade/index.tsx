@@ -13,8 +13,8 @@ interface SaleItemProps {
 
 const BoxItemTrade: React.FC<SaleItemProps> = ({ product, width }) => {
   const navigate = useNavigate();
-  const soldState = product.sold === '판매완료';
-  const circleUrl = product.state === '아주 좋아요' ? stategreen : stategrey;
+  const soldState = product.product_status === '판매완료';
+  const circleUrl = product.product_status === '아주 좋아요' ? stategreen : stategrey;
 
   const handleClick = () => {
     navigate(`/product/${product.id}`);
@@ -22,22 +22,22 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ product, width }) => {
 
   return (
     <S.Container width={width || '48%'} onClick={handleClick}>
-      <S.BoxImage src={product.recievedImgUrl ? product.recievedImgUrl[0] : defaultImg} />
+      <S.BoxImage src={product.product_image ? product.product_image[0] : defaultImg} />
 
       <S.BoxDescription>
         <S.Title>
-          <p className="name">{product.name}</p>
-          <p className="time">{product.time}</p>
+          <p className="name">{product.product_name}</p>
+          <p className="time">30분 전</p>
         </S.Title>
 
         <S.State>
           <img src={circleUrl} alt="none-trade" />
-          <p className="state">상품 상태 : {product.state}</p>
+          <p className="state">상품 상태 : {product.product_status}</p>
         </S.State>
 
         <S.Price>
           <p className="price">{transformPrice(product.price)}원</p>
-          {soldState && <p className="sold">{product.sold}</p>}
+          {soldState && <p className="sold">{product.post_status}</p>}
         </S.Price>
       </S.BoxDescription>
     </S.Container>

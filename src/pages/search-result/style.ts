@@ -29,7 +29,7 @@ export const Content = styled.div`
 export const HeaderSearch = styled(BoxHeader)`
   margin-top: 15px;
   padding: 0 20px;
-  & > div {
+  .search-input {
     flex-grow: 1;
   }
 

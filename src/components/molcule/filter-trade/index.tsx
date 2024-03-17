@@ -6,18 +6,13 @@ import { useAllProducts, useProductsActions } from 'src/store/products';
 
 const FilterTrade = () => {
   const allProducts = useAllProducts();
-  const { showSalesProducts } = useProductsActions();
+  const { setClickedOnSale } = useProductsActions();
   const [active, setActive] = useState<boolean>(false);
-  const [clicked, setClicked] = useState<boolean>(false);
 
   const handleClick = () => {
-    setClicked(!clicked);
+    setClickedOnSale();
     setActive(!active);
   };
-
-  useEffect(() => {
-    showSalesProducts(clicked);
-  }, [clicked]);
 
   return (
     <S.Container>

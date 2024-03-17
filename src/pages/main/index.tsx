@@ -12,25 +12,34 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '@assets/logo/logo.svg';
 import notifications from '@assets/icons/notifications.svg';
 import { useEffect } from 'react';
-import { useProductsActions } from 'src/store/products';
+import { useActiveCategory, useClickedOnSale, useProductsActions } from 'src/store/products';
 import { salesData } from 'src/data/shared';
 import axios from 'axios';
+import { useSearchActions } from 'src/store/search';
 
 const Main = () => {
   const navigate = useNavigate();
-  const { setInitalProducts } = useProductsActions();
+  const clickedOnSale = useClickedOnSale();
+  const { changeSearchData } = useSearchActions();
+  const { setInitalProducts, setActiveCategory } = useProductsActions();
+  const activeCategory = useActiveCategory();
 
   const getData = async () => {
-    // const res = await axios.get(
-    //   'http://43.201.189.171:8080/products?categoryName="전체"&postStatus=null&page=0'
-    // );
+    const url = `${import.meta.env.VITE_SERVER_URL}/products?categoryName=${activeCategory}&postStatus=${clickedOnSale}&page=0`;
+    console.log(url);
+    // const res = await axios.get(url);
     // console.log(res.data);
   };
 
   useEffect(() => {
+    changeSearchData('');
+    setActiveCategory('전체');
+  }, []);
+
+  useEffect(() => {
     getData();
     setInitalProducts(salesData);
-  }, [getData]);
+  }, [getData, activeCategory, clickedOnSale]);
 
   return (
     <>
