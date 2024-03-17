@@ -11,16 +11,13 @@ import {
 } from '../../types/types';
 import { useNavigate } from 'react-router';
 import { useAllProducts } from 'src/store/products';
+import { Link } from 'react-router-dom';
 
 const SalesHistory = () => {
   const navigate = useNavigate();
   const products = useAllProducts();
   const salesData = products.filter((product) => product.sold === '판매중');
   const salesCompletedData = products.filter((product) => product.sold === '판매완료');
-
-  const handleClick = () => {
-    navigate('/product/new');
-  };
 
   const hiddenItemsData: Product[] = [
     {
@@ -117,7 +114,9 @@ const SalesHistory = () => {
 
       <S.Content>
         <Tab tabs={tabData} />
-        <ButtonPlus $bottom="20px" handleClick={handleClick} />
+        <Link to={'/product/new'}>
+          <ButtonPlus $bottom="20px" />
+        </Link>
       </S.Content>
     </>
   );

@@ -8,7 +8,7 @@ import {
   Search,
 } from '@components/index';
 import * as S from './style';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '@assets/logo/logo.svg';
 import notifications from '@assets/icons/notifications.svg';
 import { useEffect } from 'react';
@@ -18,10 +18,6 @@ import { salesData } from 'src/data/shared';
 const Main = () => {
   const navigate = useNavigate();
   const { setInitalProducts } = useProductsActions();
-
-  const handleClickBtn = () => {
-    navigate('/product/new');
-  };
 
   useEffect(() => {
     setInitalProducts(salesData);
@@ -51,7 +47,9 @@ const Main = () => {
           <ListTradeItems />
         </section>
 
-        <ButtonPlus $bottom="100px" handleClick={handleClickBtn} />
+        <Link to={'/product/new'}>
+          <ButtonPlus $bottom="100px" />
+        </Link>
       </S.Content>
 
       <Nav currentTab="홈" />

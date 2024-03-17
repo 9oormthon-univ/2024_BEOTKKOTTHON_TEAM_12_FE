@@ -3,12 +3,11 @@ import plus from '@assets/icons/add.svg';
 
 interface ButtonPlusProps {
   $bottom: string;
-  handleClick: () => void;
 }
 
-const ButtonPlus = ({ $bottom, handleClick }: ButtonPlusProps) => {
+const ButtonPlus = ({ $bottom }: ButtonPlusProps) => {
   return (
-    <S.Container onClick={handleClick} $bottom={$bottom}>
+    <S.Container $bottom={$bottom}>
       <img src={plus} alt="plus" />
     </S.Container>
   );
