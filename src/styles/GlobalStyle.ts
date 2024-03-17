@@ -88,7 +88,7 @@ const GlobalStyle = createGlobalStyle`
   padding: 0;
   background-color: #ffffff; 
   font-family: 'NanumSquareRound', sans-serif;
-
+ //overflow-y: auto; /* 수직 스크롤만 허용 */
 }
 
   #root {
