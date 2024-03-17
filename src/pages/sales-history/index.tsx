@@ -11,6 +11,7 @@ import {
 } from '../../types/types';
 import { useNavigate } from 'react-router';
 import { useAllProducts } from 'src/store/products';
+import defaultImg from '@assets/images/profile-default-image.svg';
 
 const SalesHistory = () => {
   const navigate = useNavigate();
@@ -29,11 +30,7 @@ const SalesHistory = () => {
       time: '30분전',
       state: '보통이에요',
       price: 16500,
-      recievedImgUrl: [
-        '/src/assets/nav-icons/chatting_green.svg',
-        '/src/assets/nav-icons/chatting_grey.svg',
-        '/src/assets/images/product-default-img.png',
-      ],
+      recievedImgUrl: [defaultImg],
       description:
         '아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ아아아ㅏㅏ아ㅏ이으으아아으잉이으으으아아아앙아아ㅏㅏ아ㅏㅇ아ㅏ아아아ㅏ아아ㅡ으으응ㅇ아아아ㅏ',
       place: '정문',

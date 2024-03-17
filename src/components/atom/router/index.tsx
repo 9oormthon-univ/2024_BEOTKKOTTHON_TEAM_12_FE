@@ -12,6 +12,7 @@ import BlockedUsers from '@pages/blocked-users';
 import ProductDetail from '@pages/product-detail';
 import ChatHome from '@pages/chat-home';
 import ProductEdit from '@pages/product-edit';
+import ChatDetail from '@pages/chat-detail';
 import Magazine from '@pages/magazine';
 
 const Router = () => {
@@ -30,11 +31,14 @@ const Router = () => {
       <Route path="/mypage/sales-history" element={<SalesHistory />} />
       <Route path="/mypage/purchase-history" element={<PurchaseHistory />} />
       <Route path="/mypage/account-info" element={<AccountInfo />} />
-      <Route path="mypage/profile-edit" element={<UserProfileEdit />} />
-      <Route path="mypage/blocked-users" element={<BlockedUsers />} />
+      <Route path="/mypage/profile-edit" element={<UserProfileEdit />} />
+      <Route path="/mypage/blocked-users" element={<BlockedUsers />} />
+      <Route path="/mypage/profile-edit" element={<UserProfileEdit />} />
+      <Route path="/mypage/blocked-users" element={<BlockedUsers />} />
 
       {/* 채팅 */}
-      <Route path="chat-home" element={<ChatHome />} />
+      <Route path="/chat-home" element={<ChatHome />} />
+      <Route path="/chat-detail/:id" element={<ChatDetail />} />
 
       {/* 매거지 */}
       <Route path="magazine" element={<Magazine />} />

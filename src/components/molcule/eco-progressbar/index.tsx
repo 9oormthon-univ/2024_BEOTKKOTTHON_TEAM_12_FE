@@ -8,16 +8,16 @@ interface ProgressBarProps {
   level: string;
   nextLevel: string;
   currentExp: number;
-  nextLevelExp: number;
+  remainLevelExp: number;
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
   level,
   nextLevel,
   currentExp,
-  nextLevelExp,
+  remainLevelExp,
 }) => {
-  const progressWidth = (currentExp / nextLevelExp) * 100 + '%';
+  const progressWidth = (currentExp / (currentExp + remainLevelExp)) * 100 + '%';
 
   const onHelpClick = () => {
     console.log('도움말');
@@ -33,7 +33,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       </S.ProgressBarHeader>
 
       <TextLabel
-        text={`다음 ${nextLevel}레벨까지 ${nextLevelExp - currentExp}포인트 남았어요!`}
+        text={`다음 ${nextLevel}레벨까지 ${remainLevelExp}포인트 남았어요!`}
         size={13}
         weight={300}
         color="var(--grey-5)"
