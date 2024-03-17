@@ -14,14 +14,23 @@ import notifications from '@assets/icons/notifications.svg';
 import { useEffect } from 'react';
 import { useProductsActions } from 'src/store/products';
 import { salesData } from 'src/data/shared';
+import axios from 'axios';
 
 const Main = () => {
   const navigate = useNavigate();
   const { setInitalProducts } = useProductsActions();
 
+  const getData = async () => {
+    // const res = await axios.get(
+    //   'http://43.201.189.171:8080/products?categoryName="전체"&postStatus=null&page=0'
+    // );
+    // console.log(res.data);
+  };
+
   useEffect(() => {
+    getData();
     setInitalProducts(salesData);
-  }, []);
+  }, [getData]);
 
   return (
     <>
