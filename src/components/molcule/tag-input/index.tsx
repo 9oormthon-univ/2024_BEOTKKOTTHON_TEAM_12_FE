@@ -13,12 +13,12 @@ const TagInput: React.FC<TagInputProps> = ({ styleTags }) => {
 
   const toggleTag = useCallback(
     (tag: string) => {
-      const newTags = userProfileInfo.styleTag.includes(tag)
-        ? userProfileInfo.styleTag.filter((t) => t !== tag)
-        : [...userProfileInfo.styleTag, tag];
+      const newTags = userProfileInfo.style.includes(tag)
+        ? userProfileInfo.style.filter((t) => t !== tag)
+        : [...userProfileInfo.style, tag];
       updateUserStyleTags(newTags);
     },
-    [userProfileInfo.styleTag, updateUserStyleTags]
+    [userProfileInfo.style, updateUserStyleTags]
   );
 
   return (
@@ -28,7 +28,7 @@ const TagInput: React.FC<TagInputProps> = ({ styleTags }) => {
         {styleTags.map((tag) => (
           <Tag
             key={tag}
-            $active={userProfileInfo.styleTag.includes(tag)}
+            $active={userProfileInfo.style.includes(tag)}
             onClick={() => toggleTag(tag)}
           >
             {tag}

@@ -1,7 +1,6 @@
 import React from 'react';
 import * as S from './style';
 import { TextLabel } from '@components/index';
-
 interface TextInputProps {
   label: string;
   labelSize: number;
