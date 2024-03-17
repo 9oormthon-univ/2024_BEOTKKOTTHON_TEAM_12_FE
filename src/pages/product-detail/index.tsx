@@ -12,7 +12,7 @@ import arrow from '@assets/icons/left_btn.svg';
 import kebab from '@assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Product } from 'src/types/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAllProducts } from 'src/store/products';
 // import { useFilteredProducts } from 'src/store/products';
 
@@ -24,7 +24,18 @@ const ProductDetail = () => {
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const product = products.find((product) => product.id === id);
+  const product = products.find((product) => product.id === Number(id));
+  const url = `${import.meta.env.VITE_SERVER_URL}/products/${id}`;
+
+  const handleHideClick = async () => {
+    // const res = axios.put(url, body, {
+    //   header:
+    // })
+  };
+
+  useEffect(() => {
+    // 데이터 저장
+  }, [id]);
 
   return (
     <>
@@ -50,13 +61,13 @@ const ProductDetail = () => {
         <BoxKebabList>
           <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
           <p>판매 완료로 변경</p>
-          <p>글 숨기기</p>
+          <p onClick={handleHideClick}>글 숨기기</p>
           <p className="red" onClick={() => setOpenModal(!openModal)}>
             삭제
           </p>
         </BoxKebabList>
       )}
-      {openModal && <ModalProduct openModal={openModal} setOpenModal={setOpenModal} />}
+      {openModal && <ModalProduct openModal={openModal} setOpenModal={setOpenModal} id={id} />}
 
       <S.Content>
         <section className="profile">

@@ -1,12 +1,18 @@
 import { BoxModal, Button } from '@components/index';
 import * as S from './style';
+import axios from 'axios';
 
 interface ModalProductProps {
+  id: string;
   openModal: boolean;
   setOpenModal: (value: boolean) => void;
 }
 
-const ModalProduct = ({ openModal, setOpenModal }: ModalProductProps) => {
+const ModalProduct = ({ id, openModal, setOpenModal }: ModalProductProps) => {
+  const handleClickDelete = async () => {
+    // axios.delete(`products/${id}`)
+  };
+
   return (
     <BoxModal>
       <S.Container>
@@ -21,7 +27,13 @@ const ModalProduct = ({ openModal, setOpenModal }: ModalProductProps) => {
               color="var(--grey-4)"
               handleOnClick={() => setOpenModal(!openModal)}
             />
-            <Button width="143px" children="삭제" $bgcolor="var(--green-6)" color="white" />
+            <Button
+              width="143px"
+              children="삭제"
+              $bgcolor="var(--green-6)"
+              color="white"
+              handleOnClick={handleClickDelete}
+            />
           </S.BoxButton>
         </S.BoxContent>
       </S.Container>
