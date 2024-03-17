@@ -102,6 +102,10 @@ const GlobalStyle = createGlobalStyle`
   background-color: #ffffff; 
   font-family: 'NanumSquareRound', sans-serif;
 
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
+
 }
 
   #root {
@@ -110,6 +114,10 @@ const GlobalStyle = createGlobalStyle`
   background-color: #ffffff;
   border-radius: 10px;
   position: relative;
+
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
 }
 
   @media (min-width: 400px) {
@@ -124,12 +132,6 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
 }
-
-/* iOS */ 
-@supports (-webkit-touch-callout: none) {
-    height: -webkit-fill-available;
-  }
-
 
 `;
 
