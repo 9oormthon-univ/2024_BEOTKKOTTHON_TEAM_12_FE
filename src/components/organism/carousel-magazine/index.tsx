@@ -6,7 +6,7 @@ import defaultImg from '@assets/images/profile-default-image.svg';
 const CarouselMagazine = () => {
   return (
     <S.Container>
-      <Carousel>
+      <Carousel $dot="13px" $width="100%" $height="314px">
         <img src={main} alt="main-carousel" />
         <img src={defaultImg} alt="main-carousel" />
       </Carousel>
