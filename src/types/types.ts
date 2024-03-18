@@ -13,6 +13,7 @@ export interface ProductListItem {
   product_status: string;
   post_status: string;
   product_image: string;
+  is_selected?: boolean;
 }
 /**리스트에 필요한 상품 데이터 prop */
 export interface ProductProp {

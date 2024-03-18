@@ -1,11 +1,12 @@
 import { BoxItemTrade } from '@components/index';
 import * as S from './style';
-import { useAllProducts } from 'src/store/products';
+import { useProductListData } from 'src/store/productListData';
+
 const ListTradeItems = () => {
-  const products = useAllProducts();
+  const { productList } = useProductListData();
   return (
     <S.Container>
-      {products.map((product) => (
+      {productList.map((product) => (
         <BoxItemTrade key={product.id} product={product} />
       ))}
     </S.Container>
