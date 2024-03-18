@@ -37,11 +37,25 @@ const ProductDetail = () => {
     // 데이터 저장
   }, [id]);
 
+  /**게시글 삭제 api 호출 */
+  const handleDeleteProduct = async (id: number) => {
+    // const res = axios.delete(url);
+    console.log(`삭제할 게시글 아이디 : ${id}`);
+  };
+
   return (
     <>
       {' '}
       {openModal && (
-        <ModalProduct openModal={openModal} setOpenModal={setOpenModal} id={id as string} />
+        <ModalProduct
+          text={'게시글을 삭제하시겠어요?'}
+          select1="취소"
+          select2="삭제"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          id={id as string}
+          onClick={handleDeleteProduct}
+        />
       )}
       <Header>
         <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate('/')} />

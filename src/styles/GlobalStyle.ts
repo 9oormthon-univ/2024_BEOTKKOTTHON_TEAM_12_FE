@@ -1,13 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-const setScreenSize = () => {
-  const vh = window.innerHeight * 0.01;
-
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-};
-
-setScreenSize();
-
 const GlobalStyle = createGlobalStyle`
   /* CSS Reset */
   html, body, div, span, applet, object, iframe,
@@ -82,7 +74,7 @@ const GlobalStyle = createGlobalStyle`
 
     --header-size: 55px;
     --nav-size: 86px;
-    --content-size: calc(100vh - 55px - 86px);
+    --content-size: calc(100svh - 55px - 86px);
   }
 
  /* 모바일 UI 스타일 */
@@ -94,13 +86,16 @@ const GlobalStyle = createGlobalStyle`
   display: flex; 
   justify-content: center; 
   height: auto;
-  min-height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100svh;
   min-height: -webkit-fill-available; 
   margin: 0;
   padding: 0;
   background-color: #ffffff; 
   font-family: 'NanumSquareRound', sans-serif;
+
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
 
 }
 
@@ -110,6 +105,10 @@ const GlobalStyle = createGlobalStyle`
   background-color: #ffffff;
   border-radius: 10px;
   position: relative;
+
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
 }
 
   @media (min-width: 400px) {
@@ -124,12 +123,6 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
 }
-
-/* iOS */ 
-@supports (-webkit-touch-callout: none) {
-    height: -webkit-fill-available;
-  }
-
 
 `;
 

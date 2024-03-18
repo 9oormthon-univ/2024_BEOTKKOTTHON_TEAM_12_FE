@@ -1,25 +1,56 @@
 import { BoxItemTrade, Header, TextLabel } from '@components/index';
 import * as S from './style';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import arrow from '@assets/icons/arrow.svg';
-import { Product, SalesCompletedProps } from 'src/types/types';
+import productImg1 from '@assets/images/product-image1.svg';
+import { ProductListItem, ProductProp } from 'src/types/types';
 import { useNavigate } from 'react-router';
-import { useAllProducts } from 'src/store/products';
+import { instance } from 'src/apis';
 
 const PurchaseHistory = () => {
   const navigate = useNavigate();
-  const products = useAllProducts();
-  const salesCompletedData: Product[] = products.filter(
-    (product) => product.post_status === '판매완료'
-  );
+  const [purchaseData, setPurchaseData] = useState<ProductListItem[]>([
+    {
+      id: 5,
+      price: 10000,
+      product_name: '안입는 옷 처분해요',
+      product_status: '아주 좋아요',
+      post_status: 'soldOut',
+      product_image: productImg1,
+    },
+    {
+      id: 6,
+      price: 10000,
+      product_name: '안입는 옷 처분해요',
+      product_status: '아주 좋아요',
+      post_status: 'soldOut',
+      product_image: productImg1,
+    },
+  ]);
+  /*구매한 상품 불러오기 */
+  const getPurchaseHistory = async () => {
+    console.log('구매 내역 불러오기');
+    const userId = `1`;
+    try {
+      const response = await instance.get(`/users/myHistory/${userId}`);
+      console.log('구매 내역 불러오기 성공:', response.data);
+      setPurchaseData(response.data);
+    } catch (error) {
+      console.error('구매 내역 불러오기 실패:', error);
+    }
+  };
 
-  const SalesCompleted: React.FC<SalesCompletedProps> = ({ salesCompletedData }) => {
+  useEffect(() => {
+    getPurchaseHistory();
+  }, []);
+
+  const SalesCompleted: React.FC<ProductProp> = ({ productData }) => {
     return (
       <S.Container>
-        {salesCompletedData.length > 0 ? (
-          salesCompletedData.map((item: Product) => <BoxItemTrade product={item} />)
+        {productData.length > 0 ? (
+          productData.map((item: ProductListItem) => <BoxItemTrade product={item} />)
         ) : (
-          <div>구매한 상품이 없습니다.</div>
+          <S.NoItemContainer>내역이 없습니다.</S.NoItemContainer>
         )}
       </S.Container>
     );
@@ -34,14 +65,14 @@ const PurchaseHistory = () => {
       <S.Content>
         <S.ProductHeader>
           <TextLabel
-            text={`전체 ${salesCompletedData.length}개`}
+            text={`전체 ${purchaseData.length}개`}
             size={12}
             weight={100}
             color="var(--grey-6)"
           />
         </S.ProductHeader>
         <S.ProductWrapper>
-          <SalesCompleted salesCompletedData={salesCompletedData} />
+          <SalesCompleted productData={purchaseData} />
         </S.ProductWrapper>
       </S.Content>
     </>

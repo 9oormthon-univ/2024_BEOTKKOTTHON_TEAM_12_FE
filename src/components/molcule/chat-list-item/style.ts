@@ -34,6 +34,9 @@ export const ChatRightContainer = styled.div`
 `;
 
 export const SenderName = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 3px;
   font-weight: bold;
 `;
 

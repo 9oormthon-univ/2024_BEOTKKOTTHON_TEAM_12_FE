@@ -11,11 +11,17 @@ import * as S from './style';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '@assets/logo/logo.svg';
 import notifications from '@assets/icons/notifications.svg';
+import productImg1 from '@assets/images/product-image1.svg';
+import productImg2 from '@assets/images/product-image2.svg';
+import productImg3 from '@assets/images/product-image3.svg';
+import productImg4 from '@assets/images/product-image4.svg';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductsActions } from 'src/store/products';
 import { salesData } from 'src/data/shared';
 // import axios from 'axios';
 import { useSearchActions } from 'src/store/search';
+import { instance } from 'src/apis';
+import { useProductListData } from 'src/store/productListData';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -23,23 +29,87 @@ const Main = () => {
   const { changeSearchData } = useSearchActions();
   const { setInitalProducts, setActiveCategory } = useProductsActions();
   const activeCategory = useActiveCategory();
+  const { actions } = useProductListData();
 
-  const getData = async () => {
-    const url = `${import.meta.env.VITE_SERVER_URL}/products?categoryName=${activeCategory}&postStatus=${clickedOnSale}&page=0`;
-    console.log(url);
-    // const res = await axios.get(url);
-    // console.log(res.data);
+  const getProductListData = async () => {
+    try {
+      const response = await instance.get(
+        `/products?categoryName=${activeCategory}&postStatus=${clickedOnSale}&page=0`
+      );
+      console.log(response.data);
+
+      actions.setInitialProductList(response.data.content);
+    } catch (e) {
+      console.log('물품 리스트 불러오기 실패 ', e);
+      actions.setInitialProductList([
+        {
+          id: 1,
+          price: 10000,
+          product_name: 'H&M 티셔츠 팔아요',
+          product_status: '아주 좋아요',
+          post_status: 'onSale',
+          product_image: productImg1,
+          is_selected: false,
+        },
+        {
+          id: 2,
+          price: 20000,
+          product_name: '안입는 옷 처분',
+          product_status: '아주 좋아요',
+          post_status: 'soldOut',
+          product_image: productImg2,
+          is_selected: false,
+        },
+        {
+          id: 3,
+          price: 30000,
+          product_name: 'ZARA 티셔츠',
+          product_status: '아주 좋아요',
+          post_status: 'onSale',
+          product_image: productImg3,
+          is_selected: false,
+        },
+        {
+          id: 4,
+          price: 15000,
+          product_name: '지오다노 티',
+          product_status: '보통이에요',
+          post_status: 'onSale',
+          product_image: productImg4,
+          is_selected: false,
+        },
+        {
+          id: 5,
+          price: 5,
+          product_name: 'RAV4',
+          product_status: '아주 좋아요',
+          post_status: 'onSale',
+          product_image: productImg2,
+          is_selected: false,
+        },
+        {
+          id: 6,
+          price: 6,
+          product_name: 'Grand Am',
+          product_status: '아주 좋아요',
+          post_status: 'onSale',
+          product_image: productImg1,
+          is_selected: false,
+        },
+      ]);
+    }
   };
 
   useEffect(() => {
     changeSearchData('');
     setActiveCategory('전체');
+    getProductListData();
   }, []);
 
   useEffect(() => {
-    getData();
+    //getProductListData();
     setInitalProducts(salesData);
-  }, [getData, activeCategory, clickedOnSale]);
+  }, [getProductListData, activeCategory, clickedOnSale]);
 
   return (
     <>

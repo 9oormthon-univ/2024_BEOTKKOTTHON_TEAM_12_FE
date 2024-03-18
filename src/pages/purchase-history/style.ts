@@ -34,3 +34,13 @@ export const ProductHeader = styled.div`
   padding: 10px 20px 0;
   margin-bottom: -10px;
 `;
+
+export const NoItemContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+  font-size: 16px;
+  color: var(--grey-5);
+`;

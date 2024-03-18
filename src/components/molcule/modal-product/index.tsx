@@ -3,35 +3,46 @@ import * as S from './style';
 // import axios from 'axios';
 
 interface ModalProductProps {
-  id?: string;
+  id: string;
+  text: string;
+  select1: string;
+  select2: string;
   openModal: boolean;
+  onClick: (id: number) => void;
   setOpenModal: (value: boolean) => void;
 }
 
-const ModalProduct = ({ openModal, setOpenModal }: ModalProductProps) => {
-  const handleClickDelete = async () => {
-    // axios.delete(`products/${id}`)
-  };
-
+const ModalProduct = ({
+  openModal,
+  setOpenModal,
+  text,
+  select1,
+  select2,
+  id,
+  onClick,
+}: ModalProductProps) => {
   return (
     // <BoxModal>
     <S.Overlay>
       <S.BoxContent>
-        <p className="text">게시글을 삭제하시겠어요?</p>
+        <p className="text">{text}</p>
         <S.BoxButton>
           <Button
             width="143px"
-            children="취소"
+            children={select1}
             $bgcolor="var(--grey-2)"
             color="var(--grey-4)"
             handleOnClick={() => setOpenModal(!openModal)}
           />
           <Button
             width="143px"
-            children="삭제"
+            children={select2}
             $bgcolor="var(--green-6)"
             color="white"
-            handleOnClick={handleClickDelete}
+            handleOnClick={() => {
+              onClick(Number(id));
+              setOpenModal(!openModal);
+            }}
           />
         </S.BoxButton>
       </S.BoxContent>
