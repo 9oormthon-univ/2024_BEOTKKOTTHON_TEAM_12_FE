@@ -5,9 +5,14 @@ export interface TabItemProps {
   count: number;
   ContentComponent: React.ComponentType;
 }
-/*판매중인 상품 타입 */
-export interface SalesInProgressProps {
-  salesData: Product[];
+/*상품 리스트에만 사용되는 제품 타입 */
+export interface ProductListItem {
+  id: number;
+  price: number;
+  product_name: string;
+  product_status: string;
+  post_status: string;
+  product_image: string;
 }
 /*판매 완료 상품 타입 */
 export interface SalesCompletedProps {

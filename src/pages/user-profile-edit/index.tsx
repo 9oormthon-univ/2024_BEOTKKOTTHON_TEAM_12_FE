@@ -4,11 +4,17 @@ import { Header, TextLabel, TextInput, ImageInput, TagInput } from '@components/
 import { useNavigate } from 'react-router-dom';
 import useStore from '../../store/userData';
 import { instance } from '../../apis/index';
+import { useState } from 'react';
 
 const UserProfileEdit = () => {
   const navigate = useNavigate();
   const { userProfileInfo, updateUserProfileInfo } = useStore();
-
+  const [userProfileApiInfo, setUserProfileApiInfo] = useState({
+    user_name: userProfileInfo.user_name,
+    nick_name: userProfileInfo.nick_name,
+    profile_image: userProfileInfo.profile_image,
+    style: userProfileInfo.style,
+  });
   const styleTags = [
     '심플베이직',
     '캐주얼',
@@ -24,10 +30,14 @@ const UserProfileEdit = () => {
     '섹시글램',
     '아메카지',
   ];
-  const postChangeAccountInfo = async () => {
+
+  /*프로필 정보를 저장하는 api 호출 */
+  const postChangeProfileInfo = async () => {
     const userId = '1';
     try {
-      const response = await instance.put(`/users/profile/${userId}`, userProfileInfo);
+      console.log(userProfileApiInfo);
+      const response = await instance.post(`/users/profile/${userId}`, userProfileInfo);
+
       if (response.status === 200) {
         // 성공적으로 업데이트되면 Zustand 상태를 업데이트
         useStore.getState().updateUserProfileInfo(response.data);
@@ -46,6 +56,7 @@ const UserProfileEdit = () => {
 
   const handleNickNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateUserProfileInfo({ nick_name: e.target.value });
+    setUserProfileApiInfo({ ...userProfileApiInfo, nick_name: e.target.value });
   };
 
   return (
@@ -55,7 +66,7 @@ const UserProfileEdit = () => {
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
         <TextLabel
           className="right "
-          onClick={postChangeAccountInfo}
+          onClick={postChangeProfileInfo}
           text="저장"
           size={18}
           weight={700}
