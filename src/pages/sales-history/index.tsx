@@ -10,17 +10,13 @@ import {
 import React, { useEffect, useState } from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import * as S from './style';
-import { TabItemProps, ProductListItem } from '../../types/types';
+import { TabItemProps, ProductListItem, ProductProp } from '../../types/types';
 import { useNavigate } from 'react-router';
 import productImg1 from '@assets/images/product-image1.svg';
 import productImg2 from '@assets/images/product-image2.svg';
 import productImg3 from '@assets/images/product-image3.svg';
 import { Link } from 'react-router-dom';
 import { instance } from '../../apis/index';
-
-interface ProductProp {
-  productData: ProductListItem[];
-}
 
 const SalesHistory = () => {
   const navigate = useNavigate();
@@ -86,7 +82,7 @@ const SalesHistory = () => {
   /*숨김 상품 불러오기 */
   const getHiddenItems = async () => {
     try {
-      const response = await instance.get(`/users/myProducts/hidden/${userId}`);
+      const response = await instance.get(`/users/myProducts/private/${userId}`);
       console.log('숨김 상품 불러오기 성공:', response.data);
       setHiddenItemsData(response.data);
     } catch (error) {

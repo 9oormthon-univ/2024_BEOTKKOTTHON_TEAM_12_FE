@@ -13,12 +13,12 @@ const ListItem: React.FC<ListItemProps> = ({ blockList, buttonName, onClick }) =
     return (
       <S.ListItemWrapper key={index}>
         <S.LeftContainer>
-          <S.ProfileImage src={blockUser.profile} alt="Profile" />
+          <S.ProfileImage src={blockUser.blocked_user_profile_image} alt="Profile" />
         </S.LeftContainer>
 
         <S.MiddleContainer>
           <S.UpContainer>
-            {blockUser.name}
+            {blockUser.blocked_user_name}
             <img src={blockUser.levelImg} alt="level" />
           </S.UpContainer>
         </S.MiddleContainer>
