@@ -5,7 +5,7 @@ import { BlockUser } from 'src/types/types';
 interface ListItemProps {
   blockList: BlockUser[];
   buttonName?: string;
-  onClick?: () => void;
+  onClick?: (userName: string) => void;
 }
 
 const ListItem: React.FC<ListItemProps> = ({ blockList, buttonName, onClick }) => {
@@ -24,7 +24,11 @@ const ListItem: React.FC<ListItemProps> = ({ blockList, buttonName, onClick }) =
         </S.MiddleContainer>
 
         <S.RightContainer>
-          {buttonName && <S.UpButton onClick={onClick}>{buttonName}</S.UpButton>}
+          {buttonName && (
+            <S.UpButton onClick={onClick && (() => onClick(blockUser.blocked_user_name))}>
+              {buttonName}
+            </S.UpButton>
+          )}
         </S.RightContainer>
       </S.ListItemWrapper>
     );

@@ -35,7 +35,7 @@ const AccountInfo = () => {
     console.log('저장하기');
     const userId = '1';
     try {
-      const response = await instance.put(`/users/userInfo/update/${userId}`, accountInfo);
+      const response = await instance.put(`/users/userInfo/update/${userId}`, { accountInfo });
       if (response.status === 200) {
         alert('저장되었습니다.');
       } else {

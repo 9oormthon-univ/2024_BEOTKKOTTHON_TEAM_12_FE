@@ -10,6 +10,7 @@ import { instance } from 'src/apis';
 import { useEffect, useState } from 'react';
 const BlockedUsers = () => {
   const navigate = useNavigate();
+  const userId = '1';
   const [blockedUserList, setBlockedUserList] = useState<BlockUser[]>([
     {
       id: 1,
@@ -22,7 +23,7 @@ const BlockedUsers = () => {
   const getBlockUserList = async () => {
     console.log('차단한 사용자 목록 불러오기');
     try {
-      const response = await instance.get(`/users/blockedUsers/{userId}}`);
+      const response = await instance.get(`/users/blockedUsers/${userId}}`);
       console.log('차단한 사용자 목록 불러오기 성공:', response.data);
       setBlockedUserList(response.data);
     } catch (error) {
@@ -31,10 +32,12 @@ const BlockedUsers = () => {
   };
 
   /**차단한 사용자 목록 해제하기 */
-  const onCLickDeleteBlock = async (userId: number) => {
+  const onClickDeleteBlock = async (userName: string) => {
     console.log('차단 해제하기');
     try {
-      const response = await instance.delete(`/users/blockedUsers/unBlock/${userId}`);
+      const response = await instance.delete(`/users/blockedUsers/unBlock/${userId}`, {
+        data: { blocked_user_name: userName },
+      });
       console.log('차단 해제하기 성공:', response.data);
       alert('차단이 해제되었습니다.');
       getBlockUserList();
@@ -53,7 +56,7 @@ const BlockedUsers = () => {
         <TextLabel text="차단한 사용자" size={18} weight={700} />
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
       </Header>
-      <ListItem blockList={blockedUserList} buttonName="차단 해제" onClick={onCLickDeleteBlock} />
+      <ListItem blockList={blockedUserList} buttonName="차단 해제" onClick={onClickDeleteBlock} />
     </>
   );
 };
