@@ -3,12 +3,14 @@ import * as S from './style';
 import clothes from '@assets/onboarding/clothes.svg';
 import donation from '@assets/onboarding/donation.svg';
 import earth from '@assets/onboarding/earth.svg';
+import { Button } from '@components/index';
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const items = [clothes, donation, earth];
 
 const Onboarding = () => {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
@@ -21,16 +23,19 @@ const Onboarding = () => {
 
   const handleDotClick = (index: number) => {
     if (carouselRef.current !== null) {
-      setActiveIndex(index);
       carouselRef.current.scrollTo({
         left: index * carouselRef.current.offsetWidth,
         behavior: 'smooth',
       });
+
+      setTimeout(() => {
+        setActiveIndex(index);
+      }, 200);
     }
   };
 
   return (
-    <>
+    <div>
       <S.CarouselContainer ref={carouselRef} onScroll={handleScroll}>
         <S.BoxFlex>
           <S.BoxImage>
@@ -74,10 +79,19 @@ const Onboarding = () => {
           return <S.Dot key={index} $bol={bol} onClick={() => handleDotClick(index)} />;
         })}
       </S.DotContainer>
-      <Link to={'/product'}>
-        <p>시작</p>
-      </Link>
-    </>
+
+      {activeIndex === 2 && (
+        <S.BoxButton>
+          <Button
+            $bgcolor="var(--green-6)"
+            color="white"
+            handleOnClick={() => navigate('/product')}
+          >
+            시작
+          </Button>
+        </S.BoxButton>
+      )}
+    </div>
   );
 };
 export default Onboarding;

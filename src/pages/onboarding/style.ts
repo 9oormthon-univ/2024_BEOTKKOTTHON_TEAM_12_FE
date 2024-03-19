@@ -81,3 +81,9 @@ export const Dot = styled.div<DotProps>`
   margin: 0 8px;
   cursor: pointer;
 `;
+
+export const BoxButton = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 20px;
+`;
