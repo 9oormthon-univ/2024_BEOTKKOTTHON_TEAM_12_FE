@@ -13,6 +13,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { transformPrice } from 'src/utils/transformPrice';
 import { useFormData, useFormDataActions, useShowImages } from 'src/store/formData';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 const FormTrade = () => {
   const { id } = useParams();
@@ -34,8 +35,41 @@ const FormTrade = () => {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const sendformData = new FormData();
+
+    //request로 보내야할 데이터를 formData에 넣어서 보냈다.
+    for (let i = 0; i < formData.product_image_list.length; i++) {
+      sendformData.append('product_image_list', formData.product_image_list[i]);
+    }
+    sendformData.append('product_name', formData.product_name);
+    sendformData.append('category', formData.category);
+    sendformData.append('product_status', formData.product_status);
+    sendformData.append('product_content', formData.product_content);
+    sendformData.append('price', formData.price.toString());
+    sendformData.append('place', formData.place);
+    sendformData.append('post_status', formData.post_status);
+
+    const url = `${import.meta.env.VITE_SERVER_URL}/products/new/1`;
+
+    await axios({
+      method: 'POST',
+      url: url,
+      headers: {
+        // Authorization: jwt,
+        'Content-Type': 'multipart/form-data', // 이것 필수
+      },
+      data: sendformData,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     console.log(formData);
     resetFormData();
     navigate('/');
@@ -56,7 +90,7 @@ const FormTrade = () => {
           <input
             name="product_name"
             value={formData.product_name}
-            onChange={(e) => setFormData('name', e.target.value)}
+            onChange={(e) => setFormData('product_name', e.target.value)}
             placeholder="제목을 입력해주세요."
           />
         </BoxInput>

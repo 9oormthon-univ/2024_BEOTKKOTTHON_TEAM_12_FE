@@ -18,7 +18,7 @@ import productImg4 from '@assets/images/product-image4.svg';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductsActions } from 'src/store/products';
 import { salesData } from 'src/data/shared';
-// import axios from 'axios';
+import axios from 'axios';
 import { useSearchActions } from 'src/store/search';
 import { instance } from 'src/apis';
 import { useProductListData } from 'src/store/productListData';

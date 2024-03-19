@@ -32,13 +32,13 @@ export interface Product {
   id: number;
   product_name: string; // 제목
   price: number;
-  product_image: string[]; // 이미지 url 리스트
+  product_image_list: string[]; // 이미지 url 리스트
   product_content: string; // 상품 설명
   product_status: string; // 상품 상태
   post_status: string; // 판매 상태
   place: string; // 거래 장소
   is_private: boolean; // 숨김 상태
-  category_id: string; // 카테고리
+  category: string; // 카테고리
   wish: string;
   count: string;
 }
