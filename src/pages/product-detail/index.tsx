@@ -58,7 +58,12 @@ const ProductDetail = () => {
         />
       )}
       <Header>
-        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate('/')} />
+        <S.BtnLeft
+          src={arrow}
+          className="left"
+          alt="btn-back"
+          onClick={() => navigate('/product')}
+        />
         <img
           src={kebab}
           className="right"

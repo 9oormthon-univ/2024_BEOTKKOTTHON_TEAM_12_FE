@@ -51,10 +51,10 @@ const Nav: React.FC<NavProps> = ({ currentTab }) => {
 
     switch (i) {
       case 0:
-        navigate('/');
+        navigate('/product');
         break;
       case 1:
-        navigate('/');
+        navigate('/product');
         break;
       case 2:
         navigate('/magazine');
