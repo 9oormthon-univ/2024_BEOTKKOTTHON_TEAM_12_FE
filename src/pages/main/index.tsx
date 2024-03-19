@@ -14,7 +14,7 @@ import notifications from '@assets/icons/notifications.svg';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductsActions } from 'src/store/products';
 import { salesData } from 'src/data/shared';
-// import axios from 'axios';
+import axios from 'axios';
 import { useSearchActions } from 'src/store/search';
 
 const Main = () => {
@@ -25,7 +25,8 @@ const Main = () => {
   const activeCategory = useActiveCategory();
 
   const getData = async () => {
-    const url = `${import.meta.env.VITE_SERVER_URL}/products?categoryName=${activeCategory}&postStatus=${clickedOnSale}&page=0`;
+    // const url = `${import.meta.env.VITE_SERVER_URL}/products?categoryName=${activeCategory}&postStatus=${clickedOnSale}&page=0`;
+    const url = `${import.meta.env.VITE_SERVER_URL}/products?categoryName=${activeCategory}?&pageNumber=0`;
     console.log(url);
     // const res = await axios.get(url);
     // console.log(res.data);

@@ -18,13 +18,13 @@ const initialFormData = {
   id: 0,
   product_name: '',
   price: 0,
-  product_image: [],
+  product_image_list: [],
   product_content: '',
   product_status: '',
   post_status: '판매중',
   place: '',
   is_private: false,
-  category_id: '',
+  category: '',
   wish: '',
   count: '',
 };
@@ -40,7 +40,7 @@ export const useFormDataStore = create<FormDataStore>((set) => ({
     },
 
     setShowImages: (urls) => set(() => ({ showImages: [...urls] })),
-    receiveData: (data) => set(() => ({ formData: data, showImages: data.product_image })),
+    receiveData: (data) => set(() => ({ formData: data, showImages: data.product_image_list })),
     resetFormData: () => set(() => ({ formData: initialFormData, showImages: [] })),
   },
 }));

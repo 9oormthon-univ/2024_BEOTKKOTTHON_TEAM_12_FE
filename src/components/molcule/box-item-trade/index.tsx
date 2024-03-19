@@ -22,7 +22,7 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ product, width }) => {
 
   return (
     <S.Container width={width || '48%'} onClick={handleClick}>
-      <S.BoxImage src={product.product_image ? product.product_image[0] : defaultImg} />
+      <S.BoxImage src={product.product_image_list ? product.product_image_list[0] : defaultImg} />
 
       <S.BoxDescription>
         <S.Title>

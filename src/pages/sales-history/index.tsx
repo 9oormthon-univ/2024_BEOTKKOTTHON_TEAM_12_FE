@@ -25,7 +25,7 @@ const SalesHistory = () => {
       id: 8,
       product_name: 'Catnip',
       price: 8,
-      product_image: [
+      product_image_list: [
         'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
         'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
         'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
@@ -38,7 +38,7 @@ const SalesHistory = () => {
       post_status: '판매중',
       place: 'ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
       is_private: true,
-      category_id: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
+      category: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
       wish: '193.148.54.13',
       count: '144.16.105.89',
     },

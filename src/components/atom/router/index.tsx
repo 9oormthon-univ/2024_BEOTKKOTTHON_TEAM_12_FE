@@ -15,7 +15,8 @@ import ProductEdit from '@pages/product-edit';
 import ChatDetail from '@pages/chat-detail';
 import Magazine from '@pages/magazine';
 import QuizPage from '@pages/quiz/quiz';
-import Onboarding from '@pages/onboarding';
+// import Onboarding from '@pages/onboarding';
+import OnboardingTest from '@pages/onboarding/test';
 
 const Router = () => {
   return (
@@ -48,7 +49,7 @@ const Router = () => {
       {/* <Route path="*" element={<div>Not Found</div>} /> */}
 
       {/* 온보딩 */}
-      <Route path="/onboarding" element={<Onboarding />} />
+      <Route path="/onboarding" element={<OnboardingTest />} />
     </Routes>
   );
 };
