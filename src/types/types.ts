@@ -5,24 +5,27 @@ export interface TabItemProps {
   count: number;
   ContentComponent: React.ComponentType;
 }
-/*판매중인 상품 타입 */
-export interface SalesInProgressProps {
-  salesData: Product[];
+/*상품 리스트에만 사용되는 제품 타입 */
+export interface ProductListItem {
+  id: number;
+  price: number;
+  product_name: string;
+  product_status: string;
+  post_status: string;
+  product_image: string;
+  is_selected?: boolean;
 }
-/*판매 완료 상품 타입 */
-export interface SalesCompletedProps {
-  salesCompletedData: Product[];
+/**리스트에 필요한 상품 데이터 prop */
+export interface ProductProp {
+  productData: ProductListItem[];
 }
-/*숨긴 상품 타입  */
-export interface HiddenItemsProps {
-  hiddenItemsData: Product[];
-}
+
 /*차단한 사용자 타입 */
 export interface BlockUser {
   id: number;
-  name: string;
+  blocked_user_name: string;
   levelImg: string;
-  profile: string;
+  blocked_user_profile_image: string;
 }
 
 export interface Product {

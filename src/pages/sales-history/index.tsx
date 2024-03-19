@@ -1,60 +1,141 @@
-import { BoxItemTrade, Button, ButtonPlus, Header, Tab, TextLabel } from '@components/index';
-import React from 'react';
+import {
+  BoxItemTrade,
+  Button,
+  ButtonPlus,
+  Header,
+  ModalProduct,
+  Tab,
+  TextLabel,
+} from '@components/index';
+import React, { useEffect, useState } from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import * as S from './style';
-import {
-  TabItemProps,
-  SalesInProgressProps,
-  SalesCompletedProps,
-  HiddenItemsProps,
-  Product,
-} from '../../types/types';
+import { TabItemProps, ProductListItem, ProductProp } from '../../types/types';
 import { useNavigate } from 'react-router';
-import { useAllProducts } from 'src/store/products';
-// import defaultImg from '@assets/images/profile-default-image.svg';
+import productImg1 from '@assets/images/product-image1.svg';
+import productImg2 from '@assets/images/product-image2.svg';
+import productImg3 from '@assets/images/product-image3.svg';
 import { Link } from 'react-router-dom';
+import { instance } from '../../apis/index';
 
 const SalesHistory = () => {
   const navigate = useNavigate();
-  const products = useAllProducts();
-  const salesData = products.filter((product) => product.post_status === '판매중');
-  const salesCompletedData = products.filter((product) => product.post_status === '판매완료');
-
-  const hiddenItemsData: Product[] = [
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [salesData, setSalesData] = useState<ProductListItem[]>([
     {
-      id: 8,
-      product_name: 'Catnip',
-      price: 8,
-      product_image_list: [
-        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-        'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-      ],
-      product_content:
-        'suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque',
+      id: 2,
+      price: 10000,
+      product_name: '안입는 옷 처분해요',
       product_status: '아주 좋아요',
-      post_status: '판매중',
-      place: 'ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
-      is_private: true,
-      category: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
-      wish: '193.148.54.13',
-      count: '144.16.105.89',
+      post_status: 'onSale',
+      product_image: productImg1,
     },
-  ];
+  ]);
+  const [salesCompletedData, setSalesCompletedData] = useState<ProductListItem[]>([
+    {
+      id: 4,
+      price: 10000,
+      product_name: 'H&M 티셔츠팔아요',
+      product_status: '아주 좋아요',
+      post_status: 'soldOut',
+      product_image: productImg2,
+    },
+  ]);
+
+  const [hiddenItemsData, setHiddenItemsData] = useState<ProductListItem[]>([
+    {
+      id: 3,
+      price: 10000,
+      product_name: 'ZARA 티셔츠 팔아요',
+      product_status: '아주 좋아요',
+      post_status: 'hidden',
+      product_image: productImg3,
+    },
+  ]);
+
+  // const salesCompletedData = products.filter((product) => product.post_status === '판매완료');
+  const userId = '1';
+
+  /*판매중인 상품 불러오기 */
+  const getSalesProducts = async () => {
+    try {
+      const response = await instance.get(`/users/myProducts/onSale/${userId}`);
+      console.log('판매중인 상품 불러오기 성공:', response.data);
+      setSalesData(response.data);
+    } catch (error) {
+      console.log('판매중 데이터 불러오기 실패', error);
+    }
+  };
+
+  /**판매완료 된 상품 불러오기 */
+  const getSalesCompletedProducts = async () => {
+    try {
+      const response = await instance.get(`/users/myProducts/soldOut/${userId}`);
+      console.log('판매완료 상품 불러오기 성공:', response.data);
+      setSalesCompletedData(response.data);
+      //setSalesCompletedData(response.data);
+    } catch (error) {
+      console.log('판매완료 데이터 불러오기 실패', error);
+    }
+  };
+
+  /*숨김 상품 불러오기 */
+  const getHiddenItems = async () => {
+    try {
+      const response = await instance.get(`/users/myProducts/private/${userId}`);
+      console.log('숨김 상품 불러오기 성공:', response.data);
+      setHiddenItemsData(response.data);
+    } catch (error) {
+      console.log('숨김 상품 불러오기 실패', error);
+    }
+  };
+
+  /**상품 상태를 판매완료로 변경하는 메ㅑ호출 */
+  const postSalesCompleted = async (productId: number) => {
+    const productStatus = {
+      id: productId,
+      post_status: 'soldOut',
+    };
+    console.log('판매완료로 변경할 상품 id:', productStatus);
+    try {
+      const response = await instance.post(`/users/myProducts/onSale/${userId}`, { productStatus });
+      console.log('상품 상태 변경 성공:', response.data);
+      getSalesProducts();
+      getSalesCompletedProducts();
+    } catch (error) {
+      console.log('상품 상태 변경 실패', error);
+    }
+  };
+
+  useEffect(() => {
+    getSalesProducts();
+    getSalesCompletedProducts();
+    getHiddenItems();
+  }, []);
 
   //판매완료 버튼 클릭
   const handleSaleComplete = (id: number) => {
     console.log(`판매완료 버튼 클릭 id: ${id}`);
+    setOpenModal(!openModal);
   };
 
-  const SalesInProgress: React.FC<SalesInProgressProps> = ({ salesData }) => {
+  const SalesInProgress: React.FC<ProductProp> = ({ productData }) => {
     return (
       <S.Container>
-        {salesData.length > 0 ? (
-          salesData.map((item: Product) => (
+        {productData.length > 0 ? (
+          productData.map((item: ProductListItem) => (
             <S.SaleWrapper>
+              {openModal && (
+                <ModalProduct
+                  id={item.id.toString()}
+                  text={'판매완료로 변경할까요?'}
+                  select1="취소"
+                  select2="변경"
+                  openModal={openModal}
+                  setOpenModal={setOpenModal}
+                  onClick={postSalesCompleted}
+                />
+              )}
               <BoxItemTrade product={item} width={'100%'} />
               <Button
                 children="판매 완료하기"
@@ -70,23 +151,11 @@ const SalesHistory = () => {
     );
   };
 
-  const SalesCompleted: React.FC<SalesCompletedProps> = ({ salesCompletedData }) => {
+  const SalesCompleted: React.FC<ProductProp> = ({ productData }) => {
     return (
       <S.Container>
-        {salesCompletedData.length > 0 ? (
-          salesCompletedData.map((item: Product) => <BoxItemTrade product={item} />)
-        ) : (
-          <S.NoItemContainer>내역이 없습니다.</S.NoItemContainer>
-        )}
-      </S.Container>
-    );
-  };
-
-  const HiddenItems: React.FC<HiddenItemsProps> = ({ hiddenItemsData }) => {
-    return (
-      <S.Container>
-        {hiddenItemsData.length > 0 ? (
-          hiddenItemsData.map((item: Product) => <BoxItemTrade product={item} />)
+        {productData.length > 0 ? (
+          productData.map((item: ProductListItem) => <BoxItemTrade product={item} />)
         ) : (
           <S.NoItemContainer>내역이 없습니다.</S.NoItemContainer>
         )}
@@ -98,17 +167,17 @@ const SalesHistory = () => {
     {
       label: '판매중',
       count: 4,
-      ContentComponent: () => <SalesInProgress salesData={salesData} />,
+      ContentComponent: () => <SalesInProgress productData={salesData} />,
     },
     {
       label: '판매 완료',
       count: 1,
-      ContentComponent: () => <SalesCompleted salesCompletedData={salesCompletedData} />,
+      ContentComponent: () => <SalesCompleted productData={salesCompletedData} />,
     },
     {
       label: '숨김',
       count: 2,
-      ContentComponent: () => <HiddenItems hiddenItemsData={hiddenItemsData} />,
+      ContentComponent: () => <SalesCompleted productData={hiddenItemsData} />,
     },
   ];
   return (

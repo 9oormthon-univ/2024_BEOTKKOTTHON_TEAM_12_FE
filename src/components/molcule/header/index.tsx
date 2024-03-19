@@ -5,7 +5,7 @@ const Header = styled(BoxHeader)`
   position: relative;
   justify-content: center;
   height: var(--header-size);
-  padding: 0 20px;
+  padding: 0 24px;
   padding-bottom: 10px;
   font-size: 18px;
 

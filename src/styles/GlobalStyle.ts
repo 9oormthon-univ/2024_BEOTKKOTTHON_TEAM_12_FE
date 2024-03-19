@@ -74,26 +74,47 @@ const GlobalStyle = createGlobalStyle`
 
     --header-size: 55px;
     --nav-size: 86px;
-    --content-size: calc(100vh - 55px - 86px);
+    --content-size: calc(100svh - 55px - 86px);
   }
 
  /* 모바일 UI 스타일 */
-  body {
-    display: flex; 
-    justify-content: center; 
-    min-height: 100vh; 
-    margin: 0;
-    padding: 0;
-    background-color: #3c3c3c; 
+ html {
+  height: -webkit-fill-available;
+}
+
+ body {
+  display: flex; 
+  justify-content: center; 
+  height: auto;
+  min-height: 100svh;
+  min-height: -webkit-fill-available; 
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff; 
+  font-family: 'NanumSquareRound', sans-serif;
+
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
   }
 
+}
+
   #root {
-    max-width: 375px; 
-    width: 100%; 
-    margin: 0 auto; 
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: relative;
+  width: 100%; 
+  margin: 0 auto; 
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
+}
+
+  @media (min-width: 400px) {
+    #root {
+      max-width: 400px;
+    }
   }
 
   @font-face {
@@ -102,10 +123,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
 }
-  
-    body {
-      font-family: 'NanumSquareRound', sans-serif;
-    }
+
 `;
 
 export default GlobalStyle;
