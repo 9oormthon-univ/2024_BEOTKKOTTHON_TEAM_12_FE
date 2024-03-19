@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MenuItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(var(--header-size) + var(--content-size));
+  height: calc(100svh - var(--nav-size));
   background-color: var(--grey-2);
 `;
 

@@ -6,6 +6,7 @@ interface ButtonProps {
   padding?: string;
   $bgcolor?: string;
   borderRadius?: string;
+  fontSize?: string;
   children?: React.ReactNode;
   handleOnClick?: () => void;
 }
@@ -19,7 +20,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   border-radius: ${({ borderRadius }) => borderRadius || '5px'};
   cursor: pointer;
   transition: transform 0.1s ease;
-
+  font-size: ${({ fontSize }) => fontSize || '16px'};
   &:active {
     transform: scale(0.95);
   }
@@ -32,12 +33,14 @@ const Button: React.FC<ButtonProps> = ({
   $bgcolor,
   handleOnClick,
   borderRadius,
+  fontSize,
   padding,
 }) => {
   return (
     <ButtonContainer
       width={width}
       color={color}
+      fontSize={fontSize}
       $bgcolor={$bgcolor}
       onClick={handleOnClick}
       borderRadius={borderRadius}

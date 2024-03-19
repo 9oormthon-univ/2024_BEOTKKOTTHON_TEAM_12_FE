@@ -19,6 +19,7 @@ export { default as BoxKebabList } from './atom/box-kebab-list';
 export { default as BoxModal } from './atom/box-modal';
 export { default as ChatMessage } from './atom/chat-message';
 export { default as BoxQuiz } from './atom/box-quiz';
+export { default as Checkbox } from './atom/checkbox';
 //Molcule
 export { default as Carousel } from './molcule/carousel';
 export { default as ProfileCard } from './molcule/profile-card';
