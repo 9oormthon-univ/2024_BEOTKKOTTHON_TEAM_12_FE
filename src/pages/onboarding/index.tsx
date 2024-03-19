@@ -46,29 +46,20 @@ const Onboarding = () => {
   };
 
   const handleTouchEnd = () => {
-    if (carouselRef.current !== null) {
-      // 좌우로 넘기는 기준 거리를 10% 이상으로 설정
-      const threshold = carouselRef.current.offsetWidth * 0.1;
+    const threshold = 50; // 스와이프 판정을 위한 최소 이동 거리
+    const direction = touchStartPosition - touchEndPosition; // 이동 방향 및 거리
 
-      // 터치가 시작된 위치와 끝난 위치의 차이를 계산
-      const touchDifference = touchStartPosition - touchEndPosition;
-
-      if (touchDifference > threshold && activeIndex < items.length - 1) {
-        // 오른쪽으로 스와이프
-        setActiveIndex(activeIndex + 1);
-      } else if (touchDifference < -threshold && activeIndex > 0) {
-        // 왼쪽으로 스와이프
-        setActiveIndex(activeIndex - 1);
-      }
-
-      // 선택적으로 스크롤 위치를 조정할 수 있습니다.
-      carouselRef.current.scrollTo({
-        left: activeIndex * carouselRef.current.offsetWidth,
-        behavior: 'smooth',
-      });
+    // 오른쪽으로 충분히 스와이프 했다면 이전 슬라이드로 이동
+    if (direction > threshold) {
+      const newIndex = activeIndex + 1 < items.length ? activeIndex + 1 : activeIndex;
+      handleDotClick(newIndex);
+    }
+    // 왼쪽으로 충분히 스와이프 했다면 다음 슬라이드로 이동
+    else if (direction < -threshold) {
+      const newIndex = activeIndex - 1 >= 0 ? activeIndex - 1 : activeIndex;
+      handleDotClick(newIndex);
     }
   };
-
   return (
     <div>
       <S.CarouselContainer
