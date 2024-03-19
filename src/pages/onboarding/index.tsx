@@ -74,7 +74,7 @@ const Onboarding = () => {
         </S.BoxFlex>
       </S.CarouselContainer>
       <S.DotContainer>
-        {items.map((item, index) => {
+        {items.map((_, index) => {
           const bol = index === activeIndex;
           return <S.Dot key={index} $bol={bol} onClick={() => handleDotClick(index)} />;
         })}
