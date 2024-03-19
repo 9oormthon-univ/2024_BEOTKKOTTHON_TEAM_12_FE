@@ -12,4 +12,17 @@ export const Content = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  .ranking {
+    margin-bottom: 63px;
+  }
+
+  .partner {
+    & > p {
+      margin-bottom: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--grey-7);
+    }
+  }
 `;

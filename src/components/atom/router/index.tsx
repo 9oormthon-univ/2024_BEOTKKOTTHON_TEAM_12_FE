@@ -18,6 +18,9 @@ import QuizPage from '@pages/quiz/quiz';
 import Login from '@pages/login';
 import Onboarding from '@pages/onboarding';
 import Donation from '@pages/donation';
+import DonationSelect from '@pages/donation-select';
+import DonationNotice from '@pages/donation-notice';
+import DonationFormBasic from '@pages/donation-form-basic';
 
 const Router = () => {
   return (
@@ -56,6 +59,9 @@ const Router = () => {
 
       {/* 기부 */}
       <Route path="/donation" element={<Donation />} />
+      <Route path="/donation/select" element={<DonationSelect />} />
+      <Route path="/donation/notice" element={<DonationNotice />} />
+      <Route path="/donation/form-basic" element={<DonationFormBasic />} />
 
       {/* <Routes path="*" element={<div>Not Found</div>} /> */}
     </Routes>

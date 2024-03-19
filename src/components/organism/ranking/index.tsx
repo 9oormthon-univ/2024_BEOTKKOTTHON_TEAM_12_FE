@@ -2,6 +2,7 @@ import * as S from './style';
 import icon from '@assets/icons/profile-icon-level1.svg';
 import ranking from '@assets/donation/ranking.svg';
 import { Button } from '@components/index';
+import { Link } from 'react-router-dom';
 
 const Ranking = () => {
   return (
@@ -27,9 +28,11 @@ const Ranking = () => {
         </p>
       </S.Text>
 
-      <Button $bgcolor="var(--green-6)" color="white" width="100%" fontSize="16px" padding="16px">
-        기부하기
-      </Button>
+      <Link to={'/donation/select'}>
+        <Button $bgcolor="var(--green-6)" color="white" width="100%" fontSize="16px" padding="16px">
+          기부하기
+        </Button>
+      </Link>
     </>
   );
 };
