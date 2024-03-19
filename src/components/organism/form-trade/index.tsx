@@ -72,7 +72,7 @@ const FormTrade = () => {
 
     console.log(formData);
     resetFormData();
-    navigate('/');
+    navigate('/product');
   };
 
   return (
