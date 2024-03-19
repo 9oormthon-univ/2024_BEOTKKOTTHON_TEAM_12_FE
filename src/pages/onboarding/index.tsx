@@ -34,9 +34,51 @@ const Onboarding = () => {
     }
   };
 
+  const [touchStartPosition, setTouchStartPosition] = useState(0);
+  const [touchEndPosition, setTouchEndPosition] = useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchStartPosition(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchEndPosition(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (carouselRef.current !== null) {
+      // 좌우로 넘기는 기준 거리를 10% 이상으로 설정
+      const threshold = carouselRef.current.offsetWidth * 0.1;
+
+      // 터치가 시작된 위치와 끝난 위치의 차이를 계산
+      const touchDifference = touchStartPosition - touchEndPosition;
+
+      if (touchDifference > threshold && activeIndex < items.length - 1) {
+        // 오른쪽으로 스와이프
+        setActiveIndex(activeIndex + 1);
+      } else if (touchDifference < -threshold && activeIndex > 0) {
+        // 왼쪽으로 스와이프
+        setActiveIndex(activeIndex - 1);
+      }
+
+      // 선택적으로 스크롤 위치를 조정할 수 있습니다.
+      carouselRef.current.scrollTo({
+        left: activeIndex * carouselRef.current.offsetWidth,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <div>
-      <S.CarouselContainer ref={carouselRef} onScroll={handleScroll}>
+      <S.CarouselContainer
+        ref={carouselRef}
+        onScroll={handleScroll}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {' '}
         <S.BoxFlex>
           <S.BoxImage>
             <img src={clothes} alt="clothes" />
@@ -48,7 +90,6 @@ const Onboarding = () => {
             <p className="description">옷들의 새로운 주인을 찾아드립니다!</p>
           </S.BoxTitle>
         </S.BoxFlex>
-
         <S.BoxFlex>
           <S.BoxImage>
             <img src={earth} alt="earth" />
@@ -60,7 +101,6 @@ const Onboarding = () => {
             <p className="description">지구에게 따뜻함을 선물해 보세요.</p>
           </S.BoxTitle>
         </S.BoxFlex>
-
         <S.BoxFlex>
           <S.BoxImage>
             <img src={donation} alt="donation" />
