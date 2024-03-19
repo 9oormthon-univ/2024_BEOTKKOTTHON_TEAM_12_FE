@@ -21,13 +21,12 @@ import Onboarding from '@pages/onboarding';
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Main />} />
       {/*로그인 회원가입*/}
       <Route path="/login" element={<Login />} />
-      
+
       {/* 온보딩 */}
       <Route path="/" element={<Onboarding />} />
-      
+
       {/* 중고 거래 */}
       <Route path="/product" element={<Main />} />
       <Route path="/product/new" element={<ProductNew />} />
