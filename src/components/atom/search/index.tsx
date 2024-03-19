@@ -39,6 +39,8 @@ const Search: React.FC<SearchProps> = ({ placeholder }) => {
 
       <input
         type="search"
+        name="search"
+        enterKeyHint="search"
         value={searchData}
         onChange={(e) => changeSearchData(e.target.value)}
         placeholder={placeholder ? placeholder : '무엇이든 검색해보세요.'}
