@@ -16,6 +16,7 @@ import ChatDetail from '@pages/chat-detail';
 import Magazine from '@pages/magazine';
 import QuizPage from '@pages/quiz/quiz';
 import Login from '@pages/login';
+import Onboarding from '@pages/onboarding';
 
 const Router = () => {
   return (
@@ -23,7 +24,12 @@ const Router = () => {
       <Route path="/" element={<Main />} />
       {/*로그인 회원가입*/}
       <Route path="/login" element={<Login />} />
+      
+      {/* 온보딩 */}
+      <Route path="/" element={<Onboarding />} />
+      
       {/* 중고 거래 */}
+      <Route path="/product" element={<Main />} />
       <Route path="/product/new" element={<ProductNew />} />
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/product/edit/:id" element={<ProductEdit />} />
@@ -47,7 +53,7 @@ const Router = () => {
       {/* 매거진 */}
       <Route path="magazine" element={<Magazine />} />
       <Route path="magazine/quiz" element={<QuizPage />} />
-      {/* <Route path="*" element={<div>Not Found</div>} /> */}
+      {/* <Routes path="*" element={<div>Not Found</div>} /> */}
     </Routes>
   );
 };

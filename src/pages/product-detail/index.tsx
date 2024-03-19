@@ -58,7 +58,12 @@ const ProductDetail = () => {
         />
       )}
       <Header>
-        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate('/')} />
+        <S.BtnLeft
+          src={arrow}
+          className="left"
+          alt="btn-back"
+          onClick={() => navigate('/product')}
+        />
         <img
           src={kebab}
           className="right"
@@ -90,8 +95,8 @@ const ProductDetail = () => {
 
         <S.SectionScroll>
           <section className="product-image">
-            <Carousel>
-              {product.product_image.map((url, i) => (
+            <Carousel $dot="13px" $width="100%" $height="314px">
+              {product.product_image_list.map((url, i) => (
                 <img src={url} alt={`img-${i}`} key={i} />
               ))}
             </Carousel>

@@ -9,7 +9,7 @@ const ProductNew = () => {
     <>
       <Header>
         <p>상품 등록</p>
-        <img src={close} className="right" alt="btn-close" onClick={() => navigate('/')} />
+        <img src={close} className="right" alt="btn-close" onClick={() => navigate('/product')} />
       </Header>
 
       <S.Content>

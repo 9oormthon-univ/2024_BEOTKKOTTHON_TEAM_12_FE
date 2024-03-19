@@ -55,7 +55,7 @@ const ChatDetail = () => {
     id: 8,
     product_name: 'Catnip',
     price: 8,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
@@ -68,7 +68,7 @@ const ChatDetail = () => {
     post_status: '판매중',
     place: 'ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
     is_private: true,
-    category_id: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
+    category: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
     wish: '193.148.54.13',
     count: '144.16.105.89',
   };
@@ -129,7 +129,7 @@ const ChatDetail = () => {
         </BoxKebabList>
       )}
       <ProductInfo
-        imageUrl={product.product_image ? product.product_image[0] : defaultImg}
+        imageUrl={product.product_image_list ? product.product_image_list[0] : defaultImg}
         productName={product.product_name}
         price={product.price}
         onClick={handleClickProduct}

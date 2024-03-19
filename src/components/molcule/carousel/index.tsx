@@ -4,10 +4,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 interface CarouselProps {
+  $dot: string;
+  $width: string;
+  $height: string;
   children: React.ReactNode;
 }
 
-const Carousel = ({ children }: CarouselProps) => {
+const Carousel = ({ $dot, $width, $height, children }: CarouselProps) => {
   const settings = {
     dots: true,
     arrows: false,
@@ -18,8 +21,10 @@ const Carousel = ({ children }: CarouselProps) => {
   };
 
   return (
-    <S.Container>
-      <S.BoxSlider {...settings}>{children}</S.BoxSlider>
+    <S.Container className="carousel" $width={$width} $height={$height}>
+      <S.BoxSlider $dot={$dot} $width={$width} $height={$height} {...settings}>
+        {children}
+      </S.BoxSlider>
     </S.Container>
   );
 };

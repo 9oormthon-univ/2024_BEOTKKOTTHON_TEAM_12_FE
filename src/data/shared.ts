@@ -25,7 +25,7 @@ export const salesData: Product[] = [
     id: 1,
     product_name: 'Virola',
     price: 1,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/150x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/150x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/150x100.png/5fa2dd/ffffff',
@@ -38,7 +38,7 @@ export const salesData: Product[] = [
     post_status: '판매중',
     place: 'quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse',
     is_private: true,
-    category_id: 'eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit',
+    category: 'eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit',
     wish: '22.220.182.165',
     count: '161.136.72.219',
   },
@@ -46,7 +46,7 @@ export const salesData: Product[] = [
     id: 2,
     product_name: 'Oregon Whitetop Aster',
     price: 2,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/193x100.png/dddddd/000000',
       'http://dummyimage.com/193x100.png/dddddd/000000',
       'http://dummyimage.com/193x100.png/dddddd/000000',
@@ -58,7 +58,7 @@ export const salesData: Product[] = [
     post_status: '판매중',
     place: 'proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at',
     is_private: true,
-    category_id: 'massa tempor convallis nulla neque libero convallis eget eleifend luctus',
+    category: 'massa tempor convallis nulla neque libero convallis eget eleifend luctus',
     wish: '86.136.172.124',
     count: '248.182.67.91',
   },
@@ -66,7 +66,7 @@ export const salesData: Product[] = [
     id: 3,
     product_name: 'Blue Dwarf Fleabane',
     price: 3,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/161x100.png/ff4444/ffffff',
       'http://dummyimage.com/161x100.png/ff4444/ffffff',
       'http://dummyimage.com/161x100.png/ff4444/ffffff',
@@ -79,7 +79,7 @@ export const salesData: Product[] = [
     place:
       'massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in',
     is_private: true,
-    category_id:
+    category:
       'nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis',
     wish: '139.228.172.112',
     count: '100.20.184.244',
@@ -88,7 +88,7 @@ export const salesData: Product[] = [
     id: 4,
     product_name: 'Lepianthes',
     price: 4,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/111x100.png/ff4444/ffffff',
       'http://dummyimage.com/111x100.png/ff4444/ffffff',
       'http://dummyimage.com/111x100.png/ff4444/ffffff',
@@ -101,7 +101,7 @@ export const salesData: Product[] = [
     post_status: '판매중',
     place: 'erat id mauris vulputate elementum nullam varius nulla facilisi cras non',
     is_private: false,
-    category_id:
+    category:
       'magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis',
     wish: '63.219.230.216',
     count: '24.44.87.186',
@@ -110,7 +110,7 @@ export const salesData: Product[] = [
     id: 5,
     product_name: 'Madagascar Dropseed',
     price: 5,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/134x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/134x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/134x100.png/5fa2dd/ffffff',
@@ -123,7 +123,7 @@ export const salesData: Product[] = [
     place:
       'interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue',
     is_private: false,
-    category_id: 'massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi',
+    category: 'massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi',
     wish: '215.15.182.96',
     count: '245.24.50.53',
   },
@@ -131,7 +131,7 @@ export const salesData: Product[] = [
     id: 6,
     product_name: 'Hillside Crowngrass',
     price: 6,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/101x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/101x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/101x100.png/5fa2dd/ffffff',
@@ -143,7 +143,7 @@ export const salesData: Product[] = [
     post_status: '판매중',
     place: 'diam erat fermentum justo nec condimentum neque sapien placerat ante',
     is_private: true,
-    category_id:
+    category:
       'montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes',
     wish: '214.147.198.233',
     count: '69.45.125.191',
@@ -152,7 +152,7 @@ export const salesData: Product[] = [
     id: 7,
     product_name: 'Western Mojave Buckwheat',
     price: 7,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/177x100.png/dddddd/000000',
       'http://dummyimage.com/177x100.png/dddddd/000000',
       'http://dummyimage.com/177x100.png/dddddd/000000',
@@ -166,8 +166,7 @@ export const salesData: Product[] = [
     place:
       'hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci',
     is_private: false,
-    category_id:
-      'lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna',
+    category: 'lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna',
     wish: '52.209.218.116',
     count: '62.202.147.8',
   },
@@ -175,7 +174,7 @@ export const salesData: Product[] = [
     id: 8,
     product_name: 'Catnip',
     price: 8,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
@@ -188,7 +187,7 @@ export const salesData: Product[] = [
     post_status: '판매중',
     place: 'ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
     is_private: true,
-    category_id: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
+    category: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
     wish: '193.148.54.13',
     count: '144.16.105.89',
   },
@@ -196,7 +195,7 @@ export const salesData: Product[] = [
     id: 9,
     product_name: 'Purple Locoweed',
     price: 9,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/194x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/194x100.png/5fa2dd/ffffff',
       'http://dummyimage.com/194x100.png/5fa2dd/ffffff',
@@ -210,7 +209,7 @@ export const salesData: Product[] = [
     place:
       'nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie',
     is_private: true,
-    category_id:
+    category:
       'enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis',
     wish: '211.216.173.191',
     count: '108.42.238.80',
@@ -219,7 +218,7 @@ export const salesData: Product[] = [
     id: 10,
     product_name: 'Showy Phlox',
     price: 10,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/162x100.png/cc0000/ffffff',
       'http://dummyimage.com/162x100.png/cc0000/ffffff',
       'http://dummyimage.com/162x100.png/cc0000/ffffff',
@@ -233,7 +232,7 @@ export const salesData: Product[] = [
     place:
       'at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non',
     is_private: false,
-    category_id:
+    category:
       'ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris',
     wish: '14.177.146.167',
     count: '1.129.208.146',
@@ -242,7 +241,7 @@ export const salesData: Product[] = [
     id: 11,
     product_name: "Lakela's Pinweed",
     price: 11,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/210x100.png/dddddd/000000',
       'http://dummyimage.com/210x100.png/dddddd/000000',
       'http://dummyimage.com/210x100.png/dddddd/000000',
@@ -256,7 +255,7 @@ export const salesData: Product[] = [
     place:
       'dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices',
     is_private: true,
-    category_id: 'feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce',
+    category: 'feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce',
     wish: '205.200.48.166',
     count: '186.180.87.13',
   },
@@ -264,7 +263,7 @@ export const salesData: Product[] = [
     id: 12,
     product_name: 'Wand Holdback',
     price: 12,
-    product_image: [
+    product_image_list: [
       'http://dummyimage.com/232x100.png/dddddd/000000',
       'http://dummyimage.com/232x100.png/dddddd/000000',
       'http://dummyimage.com/232x100.png/dddddd/000000',
@@ -278,7 +277,7 @@ export const salesData: Product[] = [
     place:
       'enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor',
     is_private: false,
-    category_id:
+    category:
       'turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis',
     wish: '103.188.111.73',
     count: '166.98.174.81',

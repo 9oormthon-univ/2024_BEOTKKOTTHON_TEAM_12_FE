@@ -26,26 +26,26 @@ const ListTag = ({ isform }: ListTagProps) => {
 
   useEffect(() => {
     if (isform) {
-      setActiveCategory(formData.category_id as string);
+      setActiveCategory(formData.category as string);
     }
-  }, [formData.category_id, isform]);
+  }, [formData.category, isform]);
 
-  const handleClick = (category_id: string) => {
+  const handleClick = (category: string) => {
     if (isform) {
-      setFormData('category_id', category_id);
+      setFormData('category', category);
     }
-    setActiveCategory(category_id);
+    setActiveCategory(category);
   };
 
   return (
     <BoxTag>
-      {list.map((category_id, index) => (
+      {list.map((category, index) => (
         <Tag
-          onClick={() => handleClick(category_id)}
-          $active={category_id === activeCategory}
+          onClick={() => handleClick(category)}
+          $active={category === activeCategory}
           key={index}
         >
-          {category_id}
+          {category}
         </Tag>
       ))}
     </BoxTag>

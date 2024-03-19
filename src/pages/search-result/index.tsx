@@ -27,7 +27,7 @@ const SearchResult = () => {
   return (
     <>
       <S.HeaderSearch>
-        <Link to={'/'}>
+        <Link to={'/product'}>
           <img src={back} width={'30px'} alt="btn-back" />
         </Link>
         <Link to={'/search'} className="search-input">
