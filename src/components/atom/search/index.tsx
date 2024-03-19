@@ -25,6 +25,12 @@ const Search: React.FC<SearchProps> = ({ placeholder }) => {
     navigate('/search/result');
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleClickSearch();
+    }
+  };
+
   return (
     <S.Container>
       <div className="btn-search" onClick={handleClickSearch}>
@@ -35,6 +41,7 @@ const Search: React.FC<SearchProps> = ({ placeholder }) => {
         value={searchData}
         onChange={(e) => changeSearchData(e.target.value)}
         placeholder={placeholder ? placeholder : '무엇이든 검색해보세요.'}
+        onKeyDown={handleKeyDown}
       />
 
       {searchData && <img src={cancle} alt="btn-cancle" onClick={() => changeSearchData('')} />}

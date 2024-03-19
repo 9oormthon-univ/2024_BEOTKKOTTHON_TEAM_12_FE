@@ -5,6 +5,7 @@ import stategreen from '@assets/icons/state_green.svg';
 import defaultImg from '@assets/images/product-default-img.png';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'src/utils/transformPrice';
+import { truncatedName } from 'src/utils/truncatedName';
 
 interface SaleItemProps {
   product: ProductListItem;
@@ -26,7 +27,7 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ product, width }) => {
 
       <S.BoxDescription>
         <S.Title>
-          <p className="name">{product.product_name}</p>
+          <p className="name">{truncatedName(product.product_name)}</p>
           <p className="time">30분 전</p>
         </S.Title>
 
