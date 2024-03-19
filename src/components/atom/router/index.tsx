@@ -17,6 +17,7 @@ import Magazine from '@pages/magazine';
 import QuizPage from '@pages/quiz/quiz';
 import Login from '@pages/login';
 import Onboarding from '@pages/onboarding';
+import Donation from '@pages/donation';
 
 const Router = () => {
   return (
@@ -52,6 +53,10 @@ const Router = () => {
       {/* 매거진 */}
       <Route path="magazine" element={<Magazine />} />
       <Route path="magazine/quiz" element={<QuizPage />} />
+
+      {/* 기부 */}
+      <Route path="/donation" element={<Donation />} />
+
       {/* <Routes path="*" element={<div>Not Found</div>} /> */}
     </Routes>
   );
