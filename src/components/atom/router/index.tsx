@@ -15,11 +15,14 @@ import ProductEdit from '@pages/product-edit';
 import ChatDetail from '@pages/chat-detail';
 import Magazine from '@pages/magazine';
 import QuizPage from '@pages/quiz/quiz';
+import Login from '@pages/login';
 
 const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
+      {/*로그인 회원가입*/}
+      <Route path="/login" element={<Login />} />
       {/* 중고 거래 */}
       <Route path="/product/new" element={<ProductNew />} />
       <Route path="/product/:id" element={<ProductDetail />} />
