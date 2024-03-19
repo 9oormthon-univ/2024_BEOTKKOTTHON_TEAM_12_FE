@@ -4,24 +4,29 @@ import clothes from '@assets/onboarding/clothes.svg';
 import donation from '@assets/onboarding/donation.svg';
 import earth from '@assets/onboarding/earth.svg';
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const items = [clothes, donation, earth];
 
 const Onboarding = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const carouselRef = useRef(null);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const handleScroll = () => {
-    const index = Math.round(carouselRef.current.scrollLeft / carouselRef.current.offsetWidth);
-    setActiveIndex(index);
+    if (carouselRef.current !== null) {
+      const index = Math.round(carouselRef.current.scrollLeft / carouselRef.current.offsetWidth);
+      setActiveIndex(index);
+    }
   };
 
-  const handleDotClick = (index) => {
-    setActiveIndex(index);
-    carouselRef.current.scrollTo({
-      left: index * carouselRef.current.offsetWidth,
-      behavior: 'smooth',
-    });
+  const handleDotClick = (index: number) => {
+    if (carouselRef.current !== null) {
+      setActiveIndex(index);
+      carouselRef.current.scrollTo({
+        left: index * carouselRef.current.offsetWidth,
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (
@@ -69,6 +74,9 @@ const Onboarding = () => {
           return <S.Dot key={index} $bol={bol} onClick={() => handleDotClick(index)} />;
         })}
       </S.DotContainer>
+      <Link to={'/product'}>
+        <p>시작</p>
+      </Link>
     </>
   );
 };
