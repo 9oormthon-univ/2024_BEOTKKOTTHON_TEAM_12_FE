@@ -1,6 +1,9 @@
 import defaultImg from '@assets/images/profile-default-image.svg';
-
 import { Product } from 'src/types/types';
+
+import clothes from '@assets/onboarding/clothes.svg';
+import donation from '@assets/onboarding/donation.svg';
+import earth from '@assets/onboarding/earth.svg';
 
 // 카테고리, 최근 검색어
 export const categories = ['전체', '상의', '하의', '아우터', '원피스', '가방', '잡화', '기타'];
@@ -301,5 +304,30 @@ export const quizData = [
       '환경을 위협하는 쓰레기를 배출하지 않고 책임감 있는 생간, 소비 등 다양한 방법을 통해 자원을 보존하는 것을 일컫는 용어는?',
     list: ['세컨슈머', '콘슈머', '뉴제로', '시컨슈머', '마그네슘'],
     answer: 4,
+  },
+];
+
+// 온보딩 데이터
+export const onboardingData = [
+  {
+    img_url: clothes,
+    num: 1,
+    title: '옷장에서 잠자고 있는 옷들을 깨워주세요.',
+    description: ['WEAR가 공간만 차지하는 더 이상 입지 않는', '옷들의 새로운 주인을 찾아드립니다!'],
+  },
+  {
+    img_url: earth,
+    num: 2,
+    title: '당신의 소중한 나눔이 WEAR에서 시작됩니다.',
+    description: ['의류 기부를 통해 사랑이 필요한 분들과', '지구에게 따뜻함을 선물해 보세요.'],
+  },
+  {
+    img_url: donation,
+    num: 3,
+    title: 'WEAR와 함께 환경보호도, 기부도 재밌게!',
+    description: [
+      '중고 거래와 기부를 하면 쌓이는 환경 점수!',
+      '대학별 환경 점수 순위도 확인해보세요.',
+    ],
   },
 ];

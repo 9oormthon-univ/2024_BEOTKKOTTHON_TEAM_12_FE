@@ -83,7 +83,12 @@ export const Dot = styled.div<DotProps>`
 `;
 
 export const BoxButton = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 20px;
+  display: grid;
+  place-items: center;
+  height: var(--nav-size);
+  padding: 0 20px;
+`;
+
+export const Content = styled.div`
+  height: calc(var(--header-size) + var(--content-size));
 `;

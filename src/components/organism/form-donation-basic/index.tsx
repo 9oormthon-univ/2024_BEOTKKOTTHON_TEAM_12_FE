@@ -14,18 +14,18 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
 
   useEffect(() => {
     if (
-      formData.name &&
-      formData.addr1 &&
-      formData.addr2 &&
-      formData.phone1 &&
-      formData.phone2 &&
-      formData.phone3 &&
-      formData.email1 &&
-      formData.email2
+      formData.name !== '' &&
+      formData.addr1 !== '' &&
+      formData.addr2 !== '' &&
+      formData.phone1 !== '' &&
+      formData.phone2 !== '' &&
+      formData.phone3 !== '' &&
+      formData.email1 !== '' &&
+      formData.email2 !== ''
     ) {
       setIsDisabled(false);
     }
-  }, []);
+  }, [formData]);
 
   return (
     <S.Container>
@@ -79,7 +79,7 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
       </div>
 
       <div>
-        <S.Label htmlFor="phone">휴대전화</S.Label>
+        <S.Label htmlFor="phone1">휴대전화</S.Label>
         <S.FlexInput>
           <BoxInput>
             <input
@@ -94,6 +94,7 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
               onChange={(e) => setFormData('phone1', e.target.value)}
             />
           </BoxInput>
+          -
           <BoxInput>
             <input
               type="text"
@@ -107,6 +108,7 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
               onChange={(e) => setFormData('phone2', e.target.value)}
             />
           </BoxInput>
+          -
           <BoxInput>
             <input
               type="text"

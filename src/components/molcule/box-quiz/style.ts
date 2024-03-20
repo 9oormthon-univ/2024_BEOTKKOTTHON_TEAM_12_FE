@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 20px 28px;
+  margin-bottom: 13px;
 
   .question {
     margin: 10px 0 19px 0;
