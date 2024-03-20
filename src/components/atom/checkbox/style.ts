@@ -43,12 +43,16 @@ export const CustomCheckbox = styled.input`
   }
 
   &:checked::before {
+    content: '';
     position: absolute;
     top: 55%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-image: url(${checkIcon});
     width: 15px;
     height: 15px;
+
+    background-image: url(${checkIcon});
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%);
   }
 `;
