@@ -77,6 +77,7 @@ export const CheckboxWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   width: 90%;
+  max-width: 335px;
   margin-bottom: 60px;
   gap: 7px;
 `;

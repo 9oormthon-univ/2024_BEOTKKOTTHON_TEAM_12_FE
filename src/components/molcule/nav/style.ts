@@ -28,6 +28,14 @@ export const TabName = styled.div<TabNameProps>`
   margin-top: 10px;
   font-size: 10px;
   color: ${(props) => (props.$active ? 'var(--grey-7)' : 'var(--grey-4)')};
+
+  @media screen and (min-width: 500px) {
+    font-size: 13px;
+  }
+
+  @media screen and (max-width: 499px) {
+    font-size: 10px;
+  }
 `;
 export const TabIcon = styled.img`
   pointer-events: none; /* 포인터 이벤트 무시 */

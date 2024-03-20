@@ -4,10 +4,13 @@ export const BackIcon = styled.img`
   transform: translateX(11px) rotate(180deg);
 `;
 export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, auto));
+  grid-template-rows: repeat(auto-fill, minmax(233px, auto));
+  justify-items: center;
   align-items: center;
+  gap: 8px;
+  width: 100%;
 `;
 
 export const Content = styled.div`

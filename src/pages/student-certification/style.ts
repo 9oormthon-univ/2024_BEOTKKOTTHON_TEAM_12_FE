@@ -22,9 +22,9 @@ export const Logo = styled.img`
 `;
 
 export const ButtonWrapper = styled.div`
-  position: absolute;
-  bottom: 60px;
-  left: 20px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
 `;
 
 export const LinkWrapper = styled.div`

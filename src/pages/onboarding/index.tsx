@@ -7,7 +7,14 @@ import { onboardingData } from 'src/data/shared';
 const Onboarding = () => {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStartPosition, setTouchStartPosition] = useState(0);
+  const [touchEndPosition, setTouchEndPosition] = useState(0);
+
   const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  let mouseDown = false;
+  let startX = 0;
+  let endX = 0;
 
   const handleScroll = () => {
     if (carouselRef.current !== null) {
@@ -28,9 +35,6 @@ const Onboarding = () => {
       }, 200);
     }
   };
-
-  const [touchStartPosition, setTouchStartPosition] = useState(0);
-  const [touchEndPosition, setTouchEndPosition] = useState(0);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStartPosition(e.targetTouches[0].clientX);
@@ -56,6 +60,30 @@ const Onboarding = () => {
     }
   };
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    mouseDown = true;
+    startX = e.clientX;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!mouseDown) return;
+    endX = e.clientX;
+  };
+
+  const handleMouseUp = () => {
+    mouseDown = false;
+    const threshold = 50;
+    const direction = startX - endX;
+
+    if (direction > threshold) {
+      const newIndex = activeIndex + 1 < onboardingData.length ? activeIndex + 1 : activeIndex;
+      handleDotClick(newIndex);
+    } else if (direction < -threshold) {
+      const newIndex = activeIndex - 1 >= 0 ? activeIndex - 1 : activeIndex;
+      handleDotClick(newIndex);
+    }
+  };
+
   return (
     <>
       <S.Content>
@@ -65,9 +93,12 @@ const Onboarding = () => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
         >
           {onboardingData.map((data, index) => (
-            <S.BoxFlex>
+            <S.BoxFlex key={index}>
               <S.BoxImage>
                 <img src={data.img_url} alt={`img-${index}`} />
               </S.BoxImage>

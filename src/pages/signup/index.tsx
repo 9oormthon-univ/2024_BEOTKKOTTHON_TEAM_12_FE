@@ -214,7 +214,7 @@ const SignUp: React.FC = () => {
               <Button
                 handleOnClick={goToNextTab}
                 children="다음"
-                width="360px"
+                width="100%"
                 $padding="16px"
                 fontSize="18px"
                 $bgcolor={buttonColor.backgroundColor}
@@ -272,7 +272,7 @@ const SignUp: React.FC = () => {
               <Button
                 handleOnClick={() => navigate('/student-certification')}
                 children="다음"
-                width="360px"
+                width="100%"
                 $padding="16px"
                 fontSize="18px"
                 $bgcolor={buttonColor.backgroundColor}
@@ -301,7 +301,7 @@ const SignUp: React.FC = () => {
               <Button
                 handleOnClick={goToNextTab}
                 children="다음"
-                width="360px"
+                width="100%"
                 $padding="16px"
                 fontSize="18px"
                 $bgcolor={buttonColor.backgroundColor}
@@ -362,7 +362,7 @@ const SignUp: React.FC = () => {
               <Button
                 handleOnClick={goToNextTab}
                 children="완료"
-                width="360px"
+                width="100%"
                 $padding="16px"
                 fontSize="18px"
                 $bgcolor={buttonColor.backgroundColor}
@@ -373,27 +373,29 @@ const SignUp: React.FC = () => {
         );
       case 4: //회원가입 완료
         return (
-          <S.FlexCenter>
-            <img src={welcomeLogo} alt="회원가입 완료" />
-            <TextLabel
-              text={'회원가입이 완료되었습니다'}
-              color="var(--green-primary)"
-              size={15}
-              $weight={500}
-              $textAlign="center"
-            />
+          <>
+            <S.FlexCenter>
+              <img src={welcomeLogo} alt="회원가입 완료" />
+              <TextLabel
+                text={'회원가입이 완료되었습니다'}
+                color="var(--green-primary)"
+                size={15}
+                $weight={500}
+                $textAlign="center"
+              />
+            </S.FlexCenter>
             <S.ButtonWrapper>
               <Button
                 handleOnClick={() => navigate('/login')}
                 children="로그인 하러 가기"
-                width="360px"
+                width="100%"
                 $padding="16px"
                 fontSize="18px"
                 $bgcolor={'var(--green-primary)'}
                 color={'#ffffff'}
               />
             </S.ButtonWrapper>
-          </S.FlexCenter>
+          </>
         );
       default:
         return null;
