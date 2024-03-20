@@ -45,7 +45,7 @@ const StudentCertification = () => {
           size={14}
           weight={400}
           color={'var(--grey-5)'}
-          textAlign={'center'}
+          $textAlign={'center'}
         />
       </S.Container>
 

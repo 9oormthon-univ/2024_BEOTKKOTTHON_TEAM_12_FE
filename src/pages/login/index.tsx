@@ -129,7 +129,7 @@ const Login = () => {
           size={9}
           weight={300}
           color="var(--grey-4)"
-          textAlign="center"
+          $textAlign="center"
         />
       </S.LoginMessage>
     </S.LoginWrapper>

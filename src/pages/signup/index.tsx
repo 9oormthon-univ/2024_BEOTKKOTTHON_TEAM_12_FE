@@ -375,7 +375,7 @@ const SignUp: React.FC = () => {
               color="var(--green-primary)"
               size={15}
               weight={500}
-              textAlign="center"
+              $textAlign="center"
             />
             <S.ButtonWrapper>
               <Button
