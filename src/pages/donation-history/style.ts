@@ -31,6 +31,7 @@ export const TableCell = styled.td`
   width: 33.3333%;
   padding: 15px 20px;
   border-bottom: 1px solid var(--grey-3);
+  font-size: 13px;
 `;
 
 export const TableHeaderCell = styled.th`
