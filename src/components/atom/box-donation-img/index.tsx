@@ -10,7 +10,7 @@ interface BoxDonationImgProps {
 }
 
 const BoxDonationImg = ({ activeIndex, setActiveIndex }: BoxDonationImgProps) => {
-  const imgUrl = [otcan, beutiful, goodwill];
+  const imgUrl = [beutiful, otcan, goodwill];
 
   const handleClick = (index: number) => {
     if (setActiveIndex) {
@@ -20,11 +20,16 @@ const BoxDonationImg = ({ activeIndex, setActiveIndex }: BoxDonationImgProps) =>
 
   return (
     <S.Container>
-      {imgUrl.map((img, index) => (
-        <S.BoxImage key={`${img}-${index}`} className={activeIndex === index ? 'active' : ''}>
-          <img src={img} alt="otcan" onClick={() => handleClick(index)} />
-        </S.BoxImage>
-      ))}
+      {imgUrl.map((img, index) => {
+        const className = activeIndex === index ? 'active' : '';
+        const imgName = img === otcan ? 'otcan' : '';
+
+        return (
+          <S.BoxImage key={`${img}-${index}`} className={`${className} ${imgName}`}>
+            <img src={img} alt={`${index}`} onClick={() => handleClick(index)} />
+          </S.BoxImage>
+        );
+      })}
     </S.Container>
   );
 };

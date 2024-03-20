@@ -21,6 +21,10 @@ export const Container = styled.div`
   }
 `;
 
+export const BackIcon = styled.img`
+  transform: translate(11px) rotate(180deg);
+`;
+
 export const BtnNext = styled.div`
   display: grid;
   place-items: center;

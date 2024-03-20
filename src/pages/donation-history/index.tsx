@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
@@ -18,10 +18,10 @@ const DonationHistory = () => {
     <S.Container>
       <Header>
         <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
-        <TextLabel text={'기부 내역'} size={18} weight={500} />
+        <TextLabel text={'기부 내역'} size={18} $weight={500} />
       </Header>
       <S.TableHeader>
-        <TextLabel text={`총 ${data.length}개`} size={13} weight={400} color={'var(--grey-6)'} />
+        <TextLabel text={`총 ${data.length}개`} size={13} $weight={400} color={'var(--grey-6)'} />
         <Checkbox
           label="완료된 내역만 보기"
           id={'complete'}

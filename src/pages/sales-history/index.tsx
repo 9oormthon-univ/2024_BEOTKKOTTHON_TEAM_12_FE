@@ -184,7 +184,7 @@ const SalesHistory = () => {
   return (
     <>
       <Header>
-        <TextLabel text="판매내역" size={16} weight={700} />
+        <TextLabel text="판매내역" size={16} $weight={700} />
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
       </Header>
 

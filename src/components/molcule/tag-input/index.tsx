@@ -35,7 +35,7 @@ const TagInput: React.FC<TagInputProps> = ({ styleTags, label, setButtonColor })
 
   return (
     <S.TagInputWrapper>
-      <TextLabel text={label ? label : '스타일 선택'} size={16} weight={500} />
+      <TextLabel text={label ? label : '스타일 선택'} size={16} $weight={500} />
       <S.SelectTagWrapper>
         {styleTags.map((tag) => (
           <Tag

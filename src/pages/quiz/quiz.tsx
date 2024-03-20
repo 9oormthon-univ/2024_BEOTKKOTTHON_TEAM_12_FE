@@ -70,9 +70,9 @@ const QuizPage = () => {
             width="100%"
             color="white"
             $bgcolor="var(--green-6)"
-            borderRadius="8px"
+            $borderRadius="8px"
             fontSize="16px"
-            padding="16px"
+            $padding="16px"
             handleOnClick={() => navigate('/magazine')}
           >
             다음 기회에 또 만나요
@@ -82,9 +82,9 @@ const QuizPage = () => {
             width="100%"
             color="white"
             $bgcolor={isDisabled ? 'var(--grey-3)' : 'var(--green-6)'}
-            borderRadius="8px"
+            $borderRadius="8px"
             fontSize="16px"
-            padding="16px"
+            $padding="16px"
             disabled={isDisabled}
             handleOnClick={handleClick}
           >

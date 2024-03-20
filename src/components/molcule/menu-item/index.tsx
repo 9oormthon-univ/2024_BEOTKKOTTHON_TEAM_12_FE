@@ -35,7 +35,7 @@ const MenuItem: React.FC = () => {
     <S.MenuWrapper>
       {menuContent.map((section, sectionIndex) => (
         <S.MenuSection key={sectionIndex}>
-          <TextLabel text={section.title} size={17} weight={800} />
+          <TextLabel text={section.title} size={17} $weight={800} />
           <S.MenuItemList>
             {section.list.map((item, itemIndex) => (
               <S.MenuItem key={itemIndex}>
@@ -49,7 +49,7 @@ const MenuItem: React.FC = () => {
                   ) : sectionIndex === 1 && item === '구매 내역' ? (
                     <Link to="/mypage/purchase-history">{item}</Link>
                   ) : (
-                    <TextLabel text={item} size={16} weight={300} />
+                    <TextLabel text={item} size={16} $weight={300} />
                   )}
                   {sectionIndex === 2 && <Toggle />}
                 </S.MenuItemWrapper>
