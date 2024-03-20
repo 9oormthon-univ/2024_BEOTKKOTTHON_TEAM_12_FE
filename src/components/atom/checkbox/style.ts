@@ -7,10 +7,14 @@ export const CheckboxContainer = styled.div`
   cursor: pointer;
 `;
 
-export const CheckboxLabel = styled.label`
-  font-size: 12px;
+export const CheckboxLabel = styled.label<{
+  color?: string;
+}>`
   margin-left: 8px;
+  font-size: 12px;
+  color: ${({ color }) => color || 'var(--grey-7)'};
   user-select: none;
+  font-family: 'Noto Sans KR';
 `;
 
 export const CustomCheckbox = styled.input`
@@ -43,12 +47,16 @@ export const CustomCheckbox = styled.input`
   }
 
   &:checked::before {
+    content: '';
     position: absolute;
     top: 55%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-image: url(${checkIcon});
     width: 15px;
     height: 15px;
+
+    background-image: url(${checkIcon});
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%);
   }
 `;

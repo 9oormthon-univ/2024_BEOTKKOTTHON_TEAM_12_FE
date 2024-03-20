@@ -21,6 +21,7 @@ const Login = () => {
 
   const handleLogin = () => {
     console.log('로그인');
+    navigate('/product');
   };
 
   const hadleNewPassword = () => {
