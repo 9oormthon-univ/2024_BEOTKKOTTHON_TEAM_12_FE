@@ -119,12 +119,7 @@ const ChatDetail = () => {
   return (
     <S.Container>
       <Header>
-        <S.BtnLeft
-          src={arrow}
-          className="left"
-          alt="btn-back"
-          onClick={() => navigate('/chat-home')}
-        />
+        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
         <S.NickNameContainer>
           <TextLabel text={otherUser} size={18} weight={700} />
           <img src={levelUrlArr(1)} alt="level" />
