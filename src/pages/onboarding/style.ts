@@ -90,5 +90,8 @@ export const BoxButton = styled.div`
 `;
 
 export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: calc(var(--header-size) + var(--content-size));
 `;
