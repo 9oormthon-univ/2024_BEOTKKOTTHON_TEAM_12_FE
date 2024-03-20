@@ -36,7 +36,7 @@ const FormDonationBasic = () => {
           </BoxInput>
           <Button
             width="82px"
-            padding="10px 17px"
+            $padding="10px 17px"
             color="var(--grey-1)"
             $bgcolor="var(--grey-4)"
             fontSize="16px"

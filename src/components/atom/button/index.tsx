@@ -3,7 +3,7 @@ import styled from 'styled-components';
 interface ButtonProps {
   width?: string;
   color?: string;
-  padding?: string;
+  $padding?: string;
   $bgcolor?: string;
   borderRadius?: string;
   fontSize?: string;
@@ -14,7 +14,7 @@ interface ButtonProps {
 
 const ButtonContainer = styled.button<ButtonProps>`
   width: ${({ width }) => width || '100px'};
-  padding: ${({ padding }) => padding || '10px'};
+  padding: ${({ $padding }) => $padding || '10px'};
   background-color: ${({ $bgcolor }) => $bgcolor || 'var(--grey-2)'};
   color: ${({ color }) => color || 'var(--grey-5)'};
   border: none;
@@ -35,7 +35,7 @@ const Button: React.FC<ButtonProps> = ({
   handleOnClick,
   borderRadius,
   fontSize,
-  padding,
+  $padding,
   disabled,
 }) => {
   return (
@@ -46,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
       $bgcolor={$bgcolor}
       onClick={handleOnClick}
       borderRadius={borderRadius}
-      padding={padding}
+      $padding={$padding}
       disabled={disabled}
     >
       {children}

@@ -25,7 +25,7 @@ const DonationFinish = () => {
             $bgcolor="var(--green-6)"
             borderRadius="8px"
             fontSize="16px"
-            padding="16px"
+            $padding="16px"
           >
             확인
           </Button>

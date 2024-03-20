@@ -107,7 +107,7 @@ const Login = () => {
         handleOnClick={handleLogin}
         children="로그인"
         width="335px"
-        padding="16px"
+        $padding="16px"
         fontSize="18px"
         $bgcolor={buttonColor.backgroundColor}
         color={buttonColor.color}

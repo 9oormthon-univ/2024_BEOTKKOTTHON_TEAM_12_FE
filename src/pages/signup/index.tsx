@@ -215,7 +215,7 @@ const SignUp: React.FC = () => {
                 handleOnClick={goToNextTab}
                 children="다음"
                 width="360px"
-                padding="16px"
+                $padding="16px"
                 fontSize="18px"
                 $bgcolor={buttonColor.backgroundColor}
                 color={buttonColor.color}
@@ -273,7 +273,7 @@ const SignUp: React.FC = () => {
                 handleOnClick={() => navigate('/student-certification')}
                 children="다음"
                 width="360px"
-                padding="16px"
+                $padding="16px"
                 fontSize="18px"
                 $bgcolor={buttonColor.backgroundColor}
                 color={buttonColor.color}
@@ -302,7 +302,7 @@ const SignUp: React.FC = () => {
                 handleOnClick={goToNextTab}
                 children="다음"
                 width="360px"
-                padding="16px"
+                $padding="16px"
                 fontSize="18px"
                 $bgcolor={buttonColor.backgroundColor}
                 color={buttonColor.color}
@@ -363,7 +363,7 @@ const SignUp: React.FC = () => {
                 handleOnClick={goToNextTab}
                 children="완료"
                 width="360px"
-                padding="16px"
+                $padding="16px"
                 fontSize="18px"
                 $bgcolor={buttonColor.backgroundColor}
                 color={buttonColor.color}
@@ -387,7 +387,7 @@ const SignUp: React.FC = () => {
                 handleOnClick={() => navigate('/login')}
                 children="로그인 하러 가기"
                 width="360px"
-                padding="16px"
+                $padding="16px"
                 fontSize="18px"
                 $bgcolor={'var(--green-primary)'}
                 color={'#ffffff'}

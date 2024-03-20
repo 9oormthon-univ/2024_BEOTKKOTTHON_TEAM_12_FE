@@ -47,7 +47,7 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
 
       <Button
         children="사진 업로드"
-        padding="5px"
+        $padding="5px"
         borderRadius="20px"
         width="100px"
         color="var(--grey-7)"

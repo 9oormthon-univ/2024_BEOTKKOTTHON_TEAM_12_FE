@@ -29,7 +29,13 @@ const Ranking = () => {
       </S.Text>
 
       <Link to={'/donation/select'}>
-        <Button $bgcolor="var(--green-6)" color="white" width="100%" fontSize="16px" padding="16px">
+        <Button
+          $bgcolor="var(--green-6)"
+          color="white"
+          width="100%"
+          fontSize="16px"
+          $padding="16px"
+        >
           기부하기
         </Button>
       </Link>
