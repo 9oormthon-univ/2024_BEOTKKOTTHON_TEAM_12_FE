@@ -19,6 +19,12 @@ import Login from '@pages/login';
 import Onboarding from '@pages/onboarding';
 import SignIn from '@pages/signup';
 import StudentCertification from '@pages/student-certification';
+import Donation from '@pages/donation';
+import DonationSelect from '@pages/donation-select';
+import DonationNotice from '@pages/donation-notice';
+import DonationFormBasic from '@pages/donation-form-basic';
+import DonationFormRequest from '@pages/donation-form-request';
+import DonationFinish from '@pages/donation-finish';
 
 const Router = () => {
   return (
@@ -58,6 +64,15 @@ const Router = () => {
       {/* 매거진 */}
       <Route path="magazine" element={<Magazine />} />
       <Route path="magazine/quiz" element={<QuizPage />} />
+
+      {/* 기부 */}
+      <Route path="/donation" element={<Donation />} />
+      <Route path="/donation/select" element={<DonationSelect />} />
+      <Route path="/donation/notice" element={<DonationNotice />} />
+      <Route path="/donation/form-basic" element={<DonationFormBasic />} />
+      <Route path="/donation/form-request" element={<DonationFormRequest />} />
+      <Route path="/donation/finish" element={<DonationFinish />} />
+
       {/* <Routes path="*" element={<div>Not Found</div>} /> */}
     </Routes>
   );

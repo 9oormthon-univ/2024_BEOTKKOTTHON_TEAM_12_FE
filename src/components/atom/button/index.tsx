@@ -9,6 +9,7 @@ interface ButtonProps {
   fontSize?: string;
   children?: React.ReactNode;
   handleOnClick?: () => void;
+  disabled?: boolean;
 }
 
 const ButtonContainer = styled.button<ButtonProps>`
@@ -35,6 +36,7 @@ const Button: React.FC<ButtonProps> = ({
   borderRadius,
   fontSize,
   padding,
+  disabled,
 }) => {
   return (
     <ButtonContainer
@@ -45,6 +47,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={handleOnClick}
       borderRadius={borderRadius}
       padding={padding}
+      disabled={disabled}
     >
       {children}
     </ButtonContainer>

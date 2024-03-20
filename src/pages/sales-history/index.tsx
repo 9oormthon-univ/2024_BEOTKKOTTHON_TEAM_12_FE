@@ -128,13 +128,14 @@ const SalesHistory = () => {
               {openModal && (
                 <ModalProduct
                   id={item.id.toString()}
-                  text={'판매완료로 변경할까요?'}
                   select1="취소"
                   select2="변경"
                   openModal={openModal}
                   setOpenModal={setOpenModal}
                   onClick={postSalesCompleted}
-                />
+                >
+                  <p>판매완료로 변경할까요?</p>
+                </ModalProduct>
               )}
               <BoxItemTrade product={item} width={'100%'} />
               <Button

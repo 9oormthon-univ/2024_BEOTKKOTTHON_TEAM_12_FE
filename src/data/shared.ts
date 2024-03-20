@@ -283,3 +283,23 @@ export const salesData: Product[] = [
     count: '166.98.174.81',
   },
 ];
+
+// 퀴즈
+export const quizData = [
+  {
+    title_num: 1,
+    point: 1,
+    question:
+      "'제2의'라는 뜻의 'second'와 소비자 'consumer'의 합성어이면서, 지속가능한 삶을 위해 대안을 찾아 즐기는 소비자를 뜻하는 용어는?",
+    list: ['블랙컨슈머', '시컨슈머', '세컨슈머', '마그네슘', '콘슈머'],
+    answer: 3,
+  },
+  {
+    title_num: 2,
+    point: 1,
+    question:
+      '환경을 위협하는 쓰레기를 배출하지 않고 책임감 있는 생간, 소비 등 다양한 방법을 통해 자원을 보존하는 것을 일컫는 용어는?',
+    list: ['세컨슈머', '콘슈머', '뉴제로', '시컨슈머', '마그네슘'],
+    answer: 4,
+  },
+];

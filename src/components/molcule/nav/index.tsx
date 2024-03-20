@@ -54,7 +54,7 @@ const Nav: React.FC<NavProps> = ({ currentTab }) => {
         navigate('/product');
         break;
       case 1:
-        navigate('/product');
+        navigate('/donation');
         break;
       case 2:
         navigate('/magazine');
