@@ -1,12 +1,31 @@
 import { BoxInput, Button } from '@components/index';
 import * as S from './style';
 import { useDonationForm, useDonationFormActions } from 'src/store/donationForm';
-import { useRef } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
-const FormDonationBasic = () => {
+interface FormDonationBasicProps {
+  setIsDisabled: Dispatch<SetStateAction<boolean>>;
+}
+
+const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
   const formData = useDonationForm();
   const { setFormData } = useDonationFormActions();
   const addr2Ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (
+      formData.name !== '' &&
+      formData.addr1 !== '' &&
+      formData.addr2 !== '' &&
+      formData.phone1 !== '' &&
+      formData.phone2 !== '' &&
+      formData.phone3 !== '' &&
+      formData.email1 !== '' &&
+      formData.email2 !== ''
+    ) {
+      setIsDisabled(false);
+    }
+  }, [formData]);
 
   return (
     <S.Container>
@@ -36,7 +55,7 @@ const FormDonationBasic = () => {
           </BoxInput>
           <Button
             width="82px"
-            padding="10px 17px"
+            $padding="10px 17px"
             color="var(--grey-1)"
             $bgcolor="var(--grey-4)"
             fontSize="16px"
@@ -60,7 +79,7 @@ const FormDonationBasic = () => {
       </div>
 
       <div>
-        <S.Label htmlFor="phone">휴대전화</S.Label>
+        <S.Label htmlFor="phone1">휴대전화</S.Label>
         <S.FlexInput>
           <BoxInput>
             <input
@@ -75,6 +94,7 @@ const FormDonationBasic = () => {
               onChange={(e) => setFormData('phone1', e.target.value)}
             />
           </BoxInput>
+          -
           <BoxInput>
             <input
               type="text"
@@ -88,6 +108,7 @@ const FormDonationBasic = () => {
               onChange={(e) => setFormData('phone2', e.target.value)}
             />
           </BoxInput>
+          -
           <BoxInput>
             <input
               type="text"

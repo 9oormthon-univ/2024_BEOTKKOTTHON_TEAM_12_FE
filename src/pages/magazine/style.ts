@@ -4,6 +4,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   height: var(--content-size);
+  padding: 0 20px;
   overflow-y: scroll;
   -ms-overflow-style: none;
 
@@ -27,7 +28,7 @@ export const Content = styled.div`
     transition: transform 0.2s;
 
     &:hover {
-      transform: scale(1.03);
+      transform: scale(1.01);
     }
   }
 `;

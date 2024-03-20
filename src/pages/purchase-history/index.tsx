@@ -58,7 +58,7 @@ const PurchaseHistory = () => {
   return (
     <>
       <Header>
-        <TextLabel text="구매 내역" size={16} weight={700} />
+        <TextLabel text="구매 내역" size={16} $weight={700} />
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
       </Header>
 
@@ -67,7 +67,7 @@ const PurchaseHistory = () => {
           <TextLabel
             text={`전체 ${purchaseData.length}개`}
             size={12}
-            weight={100}
+            $weight={100}
             color="var(--grey-6)"
           />
         </S.ProductHeader>

@@ -129,6 +129,7 @@ const ChatDetail = () => {
           productName={product.product_name}
           price={product.price}
           onClick={handleClickProduct}
+
         />
       </S.ChatFixedHeader>
 

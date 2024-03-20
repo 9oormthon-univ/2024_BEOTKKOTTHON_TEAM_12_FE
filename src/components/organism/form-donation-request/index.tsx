@@ -1,10 +1,25 @@
 import { BoxInput } from '@components/index';
 import * as S from './style';
 import { useDonationForm, useDonationFormActions } from 'src/store/donationForm';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
-const FormDonationRequest = () => {
+interface FormDonationRequestProps {
+  setIsDisabled: Dispatch<SetStateAction<boolean>>;
+}
+
+const FormDonationRequest = ({ setIsDisabled }: FormDonationRequestProps) => {
   const formData = useDonationForm();
   const { setFormData } = useDonationFormActions();
+
+  useEffect(() => {
+    if (
+      formData.sort !== '' &&
+      (formData.clothes_num !== 0 || formData.goods_num !== 0) &&
+      formData.box_num !== 0
+    ) {
+      setIsDisabled(false);
+    }
+  }, [formData]);
 
   return (
     <S.Container>
@@ -28,8 +43,9 @@ const FormDonationRequest = () => {
           <input
             id="clothes_num"
             name="clothes_num"
-            value={formData.clothes_num}
+            value={formData.clothes_num === 0 ? '' : formData.clothes_num}
             onChange={(e) => setFormData('clothes_num', e.target.value)}
+            placeholder="0"
           />
           <p>개</p>
         </S.InputNum>
@@ -39,8 +55,9 @@ const FormDonationRequest = () => {
           <input
             id="goods_num"
             name="goods_num"
-            value={formData.goods_num}
+            value={formData.goods_num === 0 ? '' : formData.goods_num}
             onChange={(e) => setFormData('goods_num', e.target.value)}
+            placeholder="0"
           />
           <p>개</p>
         </S.InputNum>

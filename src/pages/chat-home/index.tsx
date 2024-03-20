@@ -42,7 +42,7 @@ const ChatHome: React.FC = () => {
   return (
     <>
       <Header>
-        <TextLabel className="left" text="채팅" size={20} weight={600} />
+        <TextLabel className="left" text="채팅" size={20} $weight={600} />
       </Header>
       <S.Container>
         <Search placeholder="닉네임, 상품 검색" />

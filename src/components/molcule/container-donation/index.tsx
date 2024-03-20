@@ -3,7 +3,8 @@ import close from '@assets/icons/close_large.svg';
 import Header from '../header';
 import { BoxDonationDot, Button } from '@components/index';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import arrow from '@assets/icons/arrow.svg';
 
 interface ContainerDonationProps {
   page: number;
@@ -22,11 +23,16 @@ const ContainerDonation = ({
   isDisabled,
   children,
 }: ContainerDonationProps) => {
+  const navigate = useNavigate();
   return (
     <>
       <Header>
-        <img src={close} className="right" alt="close" />
+        {page !== 0 && (
+          <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
+        )}
+        <img src={close} className="right" alt="close" onClick={() => navigate('/donation')} />
       </Header>
+
       <S.Container>
         <section className="dot">
           <BoxDonationDot num={page} />
@@ -38,15 +44,17 @@ const ContainerDonation = ({
 
         {children}
       </S.Container>
+
       <Link to={to}>
         <S.BtnNext>
           <Button
             width="100%"
             color="white"
             $bgcolor={isDisabled ? 'var(--grey-3)' : 'var(--green-6)'}
-            borderRadius="8px"
+            $borderRadius="8px"
             fontSize="16px"
-            padding="16px"
+            $fontWeight="bold"
+            $padding="16px"
             disabled={isDisabled}
           >
             {btn}

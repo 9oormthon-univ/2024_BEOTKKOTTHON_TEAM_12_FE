@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
+  margin-top: 41px;
 
   .num {
     margin-bottom: 15px;
@@ -68,6 +69,14 @@ export const InputNum = styled(BoxInput)`
     width: 100%;
     text-align: center;
     padding-right: 4px;
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+
+    &:focus::-ms-input-placeholder {
+      color: transparent;
+    }
   }
 
   & > p {

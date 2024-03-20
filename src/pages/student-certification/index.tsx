@@ -37,15 +37,15 @@ const StudentCertification = () => {
       </Header>
       <S.Container>
         <S.Logo src={logo} alt="logo"></S.Logo>
-        <TextLabel text={'메일을 확인해주세요!'} size={24} weight={700} color={'var(--grey-7)'} />
+        <TextLabel text={'메일을 확인해주세요!'} size={24} $weight={700} color={'var(--grey-7)'} />
         <TextLabel
           text={
             '대학교 인증 메일이 발송되었습니다. \n 발송된 메일을 통해 인증 번호 입력 후 다음 버튼을 눌러주세요.'
           }
           size={14}
-          weight={400}
+          $weight={400}
           color={'var(--grey-5)'}
-          textAlign={'center'}
+          $textAlign={'center'}
         />
       </S.Container>
 
@@ -63,7 +63,7 @@ const StudentCertification = () => {
           handleOnClick={handleNextClick}
           children="다음"
           width="360px"
-          padding="16px"
+          $padding="16px"
           fontSize="18px"
           $bgcolor={buttonColor.backgroundColor}
           color={buttonColor.color}
