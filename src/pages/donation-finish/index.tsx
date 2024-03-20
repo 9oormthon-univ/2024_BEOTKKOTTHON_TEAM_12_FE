@@ -16,6 +16,7 @@ const DonationFinish = () => {
           <p>확인하실 수 있습니다.</p>
         </div>
       </S.Container>
+
       <Link to={'/donation'}>
         <S.BtnNext>
           <Button

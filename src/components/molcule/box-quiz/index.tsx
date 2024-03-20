@@ -3,31 +3,24 @@ import * as S from './style';
 import check from '@assets/icons/check.svg';
 
 interface BoxQuizProps {
-  title_num: number;
-  point: number;
-  question: string;
-  list: string[];
+  quiz: {
+    title_num: number;
+    point: number;
+    question: string;
+    list: string[];
+    answer: number;
+  };
   submitAnswer: number[];
   markAnswer: boolean;
-  answer: number;
   setSubmitAnswer: Dispatch<SetStateAction<number[]>>;
 }
 
-const BoxQuiz = ({
-  title_num,
-  point,
-  question,
-  list,
-  submitAnswer,
-  markAnswer,
-  answer,
-  setSubmitAnswer,
-}: BoxQuizProps) => {
+const BoxQuiz = ({ quiz, submitAnswer, markAnswer, setSubmitAnswer }: BoxQuizProps) => {
   const [active, setActive] = useState<number | null>(null);
 
   const handleClick = (index: number) => {
     const tempArr = [...submitAnswer];
-    tempArr[title_num - 1] = index + 1;
+    tempArr[quiz.title_num - 1] = index + 1;
     setSubmitAnswer(tempArr);
     setActive(index);
   };
@@ -35,16 +28,16 @@ const BoxQuiz = ({
   return (
     <S.Container>
       <S.Header>
-        <p className="title">QUIZ {title_num}</p>
-        <p className="point">+{point}포인트</p>
+        <p className="title">QUIZ {quiz.title_num}</p>
+        <p className="point">+{quiz.point}포인트</p>
       </S.Header>
-      <div className="question">{question}</div>
+      <div className="question">{quiz.question}</div>
       <ol className="list">
-        {list.map((item, index) => (
+        {quiz.list.map((item, index) => (
           <S.Item key={index} onClick={() => handleClick(index)}>
             <div className={active === index ? 'number active' : 'number'}>{index + 1}</div>
             <p className="text">{item}</p>
-            {markAnswer && answer === index + 1 && (
+            {markAnswer && quiz.answer === index + 1 && (
               <div className="check-box">
                 <img src={check} alt="check" />
               </div>
