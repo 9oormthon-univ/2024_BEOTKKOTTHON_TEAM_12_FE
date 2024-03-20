@@ -23,7 +23,7 @@ const DonationFinish = () => {
             width="100%"
             color="white"
             $bgcolor="var(--green-6)"
-            borderRadius="8px"
+            $borderRadius="8px"
             fontSize="16px"
             $padding="16px"
           >

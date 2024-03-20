@@ -5,7 +5,7 @@ interface ButtonProps {
   color?: string;
   $padding?: string;
   $bgcolor?: string;
-  borderRadius?: string;
+  $borderRadius?: string;
   fontSize?: string;
   children?: React.ReactNode;
   handleOnClick?: () => void;
@@ -18,7 +18,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   background-color: ${({ $bgcolor }) => $bgcolor || 'var(--grey-2)'};
   color: ${({ color }) => color || 'var(--grey-5)'};
   border: none;
-  border-radius: ${({ borderRadius }) => borderRadius || '5px'};
+  border-radius: ${({ $borderRadius }) => $borderRadius || '5px'};
   cursor: pointer;
   transition: transform 0.1s ease;
   font-size: ${({ fontSize }) => fontSize || '16px'};
@@ -33,7 +33,7 @@ const Button: React.FC<ButtonProps> = ({
   color,
   $bgcolor,
   handleOnClick,
-  borderRadius,
+  $borderRadius,
   fontSize,
   $padding,
   disabled,
@@ -45,7 +45,7 @@ const Button: React.FC<ButtonProps> = ({
       fontSize={fontSize}
       $bgcolor={$bgcolor}
       onClick={handleOnClick}
-      borderRadius={borderRadius}
+      $borderRadius={$borderRadius}
       $padding={$padding}
       disabled={disabled}
     >
