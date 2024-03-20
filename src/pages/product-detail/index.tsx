@@ -14,11 +14,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Product } from 'src/types/types';
 import { useEffect, useState } from 'react';
 import { salesData } from 'src/data/shared';
-// import { useFilteredProducts } from 'src/store/products';
 
 const ProductDetail = () => {
   const { id } = useParams();
-  // const products = useFilteredProducts();
   const navigate = useNavigate();
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -72,7 +70,7 @@ const ProductDetail = () => {
           onClick={() => setOpenKebab(!openKebab)}
         />
       </Header>
-      {/* 로그인 된 상태 */}
+      {/* 로그인 된 상태 && 다른 유저 상품*/}
       {/* {openKebab && (
           <BoxKebabList>
             <p>차단하기</p>
