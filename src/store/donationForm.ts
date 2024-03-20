@@ -14,6 +14,10 @@ interface DonationStore {
     phone3: string;
     email1: string;
     email2: string;
+    sort: string;
+    clothes_num: number;
+    goods_num: number;
+    box_num: number;
   };
   actions: Actions;
 }
@@ -27,6 +31,10 @@ const initialFormData = {
   phone3: '',
   email1: '',
   email2: '',
+  sort: '',
+  clothes_num: 0,
+  goods_num: 0,
+  box_num: 0,
 };
 
 export const useDonationStore = create<DonationStore>((set) => ({

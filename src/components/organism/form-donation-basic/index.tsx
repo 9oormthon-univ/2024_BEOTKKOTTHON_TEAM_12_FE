@@ -9,7 +9,7 @@ const FormDonationBasic = () => {
   const addr2Ref = useRef<HTMLInputElement>(null);
 
   return (
-    <S.ContainerForm>
+    <S.Container>
       <div>
         <S.Label htmlFor="name">이름</S.Label>
         <BoxInput>
@@ -129,7 +129,7 @@ const FormDonationBasic = () => {
           </BoxInput>
         </S.FlexInput>
       </div>
-    </S.ContainerForm>
+    </S.Container>
   );
 };
 

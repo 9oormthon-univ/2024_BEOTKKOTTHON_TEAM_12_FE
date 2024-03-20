@@ -21,6 +21,7 @@ import Donation from '@pages/donation';
 import DonationSelect from '@pages/donation-select';
 import DonationNotice from '@pages/donation-notice';
 import DonationFormBasic from '@pages/donation-form-basic';
+import DonationFormRequest from '@pages/donation-form-request';
 
 const Router = () => {
   return (
@@ -62,6 +63,7 @@ const Router = () => {
       <Route path="/donation/select" element={<DonationSelect />} />
       <Route path="/donation/notice" element={<DonationNotice />} />
       <Route path="/donation/form-basic" element={<DonationFormBasic />} />
+      <Route path="/donation/form-request" element={<DonationFormRequest />} />
 
       {/* <Routes path="*" element={<div>Not Found</div>} /> */}
     </Routes>
