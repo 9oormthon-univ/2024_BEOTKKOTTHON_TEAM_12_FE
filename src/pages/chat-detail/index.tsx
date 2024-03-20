@@ -12,7 +12,7 @@ import {
 import arrow from '@assets/icons/arrow.svg';
 import kebab from '@assets/icons/kebab.svg';
 import { Product } from 'src/types/types';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { levelUrlArr } from 'src/utils/levelUrlArr';
 
 interface Message {
@@ -98,16 +98,28 @@ const ChatDetail = () => {
     navigate(`/product/${product.id}`);
   };
 
+  const sectionScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const adjustChatHeight = () => {
+      if (sectionScrollRef.current) {
+        const screenHeight = window.innerHeight;
+        sectionScrollRef.current.style.paddingBottom = `${screenHeight * 0.3}px`;
+      }
+    };
+
+    window.addEventListener('resize', adjustChatHeight);
+
+    return () => {
+      window.removeEventListener('resize', adjustChatHeight);
+    };
+  }, []);
+
   //const { id } = useParams();
   return (
     <S.Container>
       <Header>
-        <S.BtnLeft
-          src={arrow}
-          className="left"
-          alt="btn-back"
-          onClick={() => navigate('/chat-home')}
-        />
+        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
         <S.NickNameContainer>
           <TextLabel text={otherUser} size={18} weight={700} />
           <img src={levelUrlArr(1)} alt="level" />
@@ -136,7 +148,7 @@ const ChatDetail = () => {
       />
 
       <S.Content>
-        <S.SectionScroll>
+        <S.SectionScroll ref={sectionScrollRef}>
           <ChatScreen messages={messages} />
         </S.SectionScroll>
       </S.Content>
