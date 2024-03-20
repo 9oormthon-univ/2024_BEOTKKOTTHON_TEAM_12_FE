@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: absolute;
-
-  // 전체 레이아웃 크기 변경시 수정 필수
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
@@ -30,8 +28,11 @@ export const BoxContent = styled.div`
   .text {
     width: 295px;
     height: 96px;
-    display: grid;
-    place-items: center;
+    display: flex;
+    gap: 13px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -40,6 +41,7 @@ export const BoxButton = styled.div`
   gap: 8px;
 
   button {
+    flex-grow: 1;
     height: 55px;
     font-size: 16px;
   }

@@ -19,7 +19,6 @@ export { default as BoxKebabList } from './atom/box-kebab-list';
 export { default as BoxModal } from './atom/box-modal';
 export { default as BoxDonationImg } from './atom/box-donation-img';
 export { default as ChatMessage } from './atom/chat-message';
-export { default as BoxQuiz } from './atom/box-quiz';
 export { default as BoxDonationDot } from './atom/box-donation-dot';
 export { default as Checkbox } from './atom/checkbox';
 //Molcule
@@ -35,6 +34,7 @@ export { default as FilterTrade } from './molcule/filter-trade';
 export { default as BoxItemTrade } from './molcule/box-item-trade';
 export { default as BoxProductProfile } from './molcule/box-product-profile';
 export { default as BoxNoticeItem } from './molcule/box-notice-item';
+export { default as BoxQuiz } from './molcule/box-quiz';
 export { default as Nav } from './molcule/nav';
 export { default as Tab } from './molcule/tab';
 export { default as DescriptionProduct } from './molcule/description-product';

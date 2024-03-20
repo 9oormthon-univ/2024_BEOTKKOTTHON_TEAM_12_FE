@@ -48,14 +48,15 @@ const ProductDetail = () => {
       {' '}
       {openModal && (
         <ModalProduct
-          text={'게시글을 삭제하시겠어요?'}
           select1="취소"
           select2="삭제"
           openModal={openModal}
           setOpenModal={setOpenModal}
           id={id as string}
           onClick={handleDeleteProduct}
-        />
+        >
+          <p>게시글을 삭제하시겠어요?</p>
+        </ModalProduct>
       )}
       <Header>
         <S.BtnLeft
