@@ -109,7 +109,7 @@ const ChatDetail = () => {
           onClick={() => navigate('/chat-home')}
         />
         <S.NickNameContainer>
-          <TextLabel text={otherUser} size={18} weight={700} />
+          <TextLabel text={otherUser} size={18} $weight={700} />
           <img src={levelUrlArr(1)} alt="level" />
         </S.NickNameContainer>
         <img

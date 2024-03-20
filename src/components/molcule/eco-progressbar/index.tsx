@@ -26,7 +26,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
     <S.ProgressBarCard>
       <S.ProgressBarHeader>
         <S.UserLevelWrapper>
-          <TextLabel text={`Lv.${level}`} size={20} weight={800} color="var(--green-primary)" />
+          <TextLabel text={`Lv.${level}`} size={20} $weight={800} color="var(--green-primary)" />
           <S.Image src={profileIconLevel1} alt="profile level" />
         </S.UserLevelWrapper>
         <S.Image src={helpIcon} alt="help icon" onClick={onHelpClick} />
@@ -35,7 +35,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       <TextLabel
         text={`다음 ${nextLevel}레벨까지 ${remainLevelExp}포인트 남았어요!`}
         size={13}
-        weight={300}
+        $weight={300}
         color="var(--grey-5)"
       />
       <S.ProgressBarContainer>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 interface TextLabelProps {
   text: string;
   size: number;
-  weight?: number;
+  $weight?: number;
   color?: string;
   className?: string;
   $textAlign?: string;
@@ -13,13 +13,13 @@ interface TextLabelProps {
 
 const TextLabelWrapper = styled.div<{
   size: number;
-  weight?: number;
+  $weight?: number;
   color?: string;
   $textAlign?: string;
 }>`
   color: ${({ color }) => color || 'var(--grey-7)'};
   font-size: ${({ size }) => `${size}px`};
-  font-weight: ${({ weight }) => weight || 500};
+  font-weight: ${({ $weight }) => $weight || 500};
   font-family: 'Noto Sans KR', sans-serif;
   text-align: ${({ $textAlign }) => $textAlign || 'left'};
   white-space: pre-line;
@@ -35,7 +35,7 @@ const TextLabelWrapper = styled.div<{
 const TextLabel: React.FC<TextLabelProps> = ({
   text,
   size,
-  weight,
+  $weight,
   color,
   className,
   onClick,
@@ -45,7 +45,7 @@ const TextLabel: React.FC<TextLabelProps> = ({
     <TextLabelWrapper
       className={className}
       size={size}
-      weight={weight}
+      $weight={$weight}
       color={color}
       onClick={onClick}
       $textAlign={$textAlign}

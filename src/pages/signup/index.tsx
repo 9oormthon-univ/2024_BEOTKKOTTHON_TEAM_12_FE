@@ -142,13 +142,18 @@ const SignUp: React.FC = () => {
               <TextLabel
                 text={'회원가입'}
                 size={24}
-                weight={700}
+                $weight={700}
                 color={'var(--grey-7)'}
               ></TextLabel>
             </S.PasswordInputWrapper>
 
             <S.PasswordInputWrapper>
-              <TextLabel text={'아이디'} size={16} weight={500} color={'var(--grey-7)'}></TextLabel>
+              <TextLabel
+                text={'아이디'}
+                size={16}
+                $weight={500}
+                color={'var(--grey-7)'}
+              ></TextLabel>
 
               <S.LoginInput
                 name="userId"
@@ -163,7 +168,7 @@ const SignUp: React.FC = () => {
               <TextLabel
                 text={'비밀번호'}
                 size={16}
-                weight={500}
+                $weight={500}
                 color={'var(--grey-7)'}
               ></TextLabel>
 
@@ -187,7 +192,7 @@ const SignUp: React.FC = () => {
               <TextLabel
                 text={'비밀번호 확인'}
                 size={16}
-                weight={500}
+                $weight={500}
                 color={'var(--grey-7)'}
               ></TextLabel>
 
@@ -225,7 +230,7 @@ const SignUp: React.FC = () => {
               <TextLabel
                 text={'재학생 인증'}
                 size={24}
-                weight={700}
+                $weight={700}
                 color={'var(--grey-7)'}
               ></TextLabel>
             </S.PasswordInputWrapper>
@@ -234,7 +239,7 @@ const SignUp: React.FC = () => {
               <TextLabel
                 text={'학교 이름'}
                 size={16}
-                weight={500}
+                $weight={500}
                 color={'var(--grey-7)'}
               ></TextLabel>
 
@@ -249,7 +254,7 @@ const SignUp: React.FC = () => {
               <TextLabel
                 text={'학교 이메일'}
                 size={16}
-                weight={500}
+                $weight={500}
                 color={'var(--grey-7)'}
               ></TextLabel>
 
@@ -283,7 +288,7 @@ const SignUp: React.FC = () => {
               <TextLabel
                 text={'스타일 태그 선택'}
                 size={24}
-                weight={700}
+                $weight={700}
                 color={'var(--grey-7)'}
               ></TextLabel>
             </S.PasswordInputWrapper>
@@ -313,7 +318,7 @@ const SignUp: React.FC = () => {
               <TextLabel
                 text={'약관 동의'}
                 size={24}
-                weight={700}
+                $weight={700}
                 color={'var(--grey-7)'}
               ></TextLabel>
               <S.AgreeWrapper>
@@ -328,7 +333,7 @@ const SignUp: React.FC = () => {
                     <TextLabel
                       text={'모두 동의합니다'}
                       size={14}
-                      weight={700}
+                      $weight={700}
                       color={'var(--grey-7)'}
                     />
                     <TextLabel
@@ -336,7 +341,7 @@ const SignUp: React.FC = () => {
                         '전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며, \n개별적으로도 동의를 선택하실 수 있습니다.'
                       }
                       size={12}
-                      weight={400}
+                      $weight={400}
                       color={'var(--grey-5)'}
                     />
                   </label>
@@ -374,7 +379,7 @@ const SignUp: React.FC = () => {
               text={'회원가입이 완료되었습니다'}
               color="var(--green-primary)"
               size={15}
-              weight={500}
+              $weight={500}
               $textAlign="center"
             />
             <S.ButtonWrapper>

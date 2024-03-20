@@ -53,7 +53,7 @@ const BlockedUsers = () => {
   return (
     <>
       <Header>
-        <TextLabel text="차단한 사용자" size={18} weight={700} />
+        <TextLabel text="차단한 사용자" size={18} $weight={700} />
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
       </Header>
       <ListItem blockList={blockedUserList} buttonName="차단 해제" onClick={onClickDeleteBlock} />
