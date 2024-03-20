@@ -17,12 +17,18 @@ import Magazine from '@pages/magazine';
 import QuizPage from '@pages/quiz/quiz';
 import Login from '@pages/login';
 import Onboarding from '@pages/onboarding';
+import SignIn from '@pages/signup';
+import StudentCertification from '@pages/student-certification';
 
 const Router = () => {
   return (
     <Routes>
       {/*로그인 회원가입*/}
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignIn />} />
+
+      {/*재학생 인증 페이지 */}
+      <Route path="/student-certification" element={<StudentCertification />} />
 
       {/* 온보딩 */}
       <Route path="/" element={<Onboarding />} />
