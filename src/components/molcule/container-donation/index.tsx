@@ -32,6 +32,7 @@ const ContainerDonation = ({
         )}
         <img src={close} className="right" alt="close" onClick={() => navigate('/donation')} />
       </Header>
+
       <S.Container>
         <section className="dot">
           <BoxDonationDot num={page} />
@@ -43,6 +44,7 @@ const ContainerDonation = ({
 
         {children}
       </S.Container>
+
       <Link to={to}>
         <S.BtnNext>
           <Button
@@ -51,6 +53,7 @@ const ContainerDonation = ({
             $bgcolor={isDisabled ? 'var(--grey-3)' : 'var(--green-6)'}
             $borderRadius="8px"
             fontSize="16px"
+            $fontWeight="bold"
             $padding="16px"
             disabled={isDisabled}
           >

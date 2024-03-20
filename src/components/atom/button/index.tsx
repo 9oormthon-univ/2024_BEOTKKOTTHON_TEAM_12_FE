@@ -7,6 +7,7 @@ interface ButtonProps {
   $bgcolor?: string;
   $borderRadius?: string;
   fontSize?: string;
+  $fontWeight?: string;
   children?: React.ReactNode;
   handleOnClick?: () => void;
   disabled?: boolean;
@@ -22,6 +23,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   cursor: pointer;
   transition: transform 0.1s ease;
   font-size: ${({ fontSize }) => fontSize || '16px'};
+  font-weight: ${({ $fontWeight }) => $fontWeight || '16px'};
   &:active {
     transform: scale(0.95);
   }
@@ -35,6 +37,7 @@ const Button: React.FC<ButtonProps> = ({
   handleOnClick,
   $borderRadius,
   fontSize,
+  $fontWeight,
   $padding,
   disabled,
 }) => {
@@ -43,6 +46,7 @@ const Button: React.FC<ButtonProps> = ({
       width={width}
       color={color}
       fontSize={fontSize}
+      $fontWeight={$fontWeight}
       $bgcolor={$bgcolor}
       onClick={handleOnClick}
       $borderRadius={$borderRadius}
