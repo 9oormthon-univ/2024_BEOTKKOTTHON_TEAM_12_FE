@@ -79,7 +79,7 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
       </div>
 
       <div>
-        <S.Label htmlFor="phone">휴대전화</S.Label>
+        <S.Label htmlFor="phone1">휴대전화</S.Label>
         <S.FlexInput>
           <BoxInput>
             <input
@@ -94,6 +94,7 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
               onChange={(e) => setFormData('phone1', e.target.value)}
             />
           </BoxInput>
+          -
           <BoxInput>
             <input
               type="text"
@@ -107,6 +108,7 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
               onChange={(e) => setFormData('phone2', e.target.value)}
             />
           </BoxInput>
+          -
           <BoxInput>
             <input
               type="text"
