@@ -137,7 +137,7 @@ const SalesHistory = () => {
                   <p>판매완료로 변경할까요?</p>
                 </ModalProduct>
               )}
-              <BoxItemTrade product={item} width={'100%'} />
+              <BoxItemTrade product={item} width={'160px'} />
               <Button
                 children="판매 완료하기"
                 width="100%"
@@ -156,7 +156,9 @@ const SalesHistory = () => {
     return (
       <S.Container>
         {productData.length > 0 ? (
-          productData.map((item: ProductListItem) => <BoxItemTrade product={item} />)
+          productData.map((item: ProductListItem) => (
+            <BoxItemTrade product={item} width={'160px'} />
+          ))
         ) : (
           <S.NoItemContainer>내역이 없습니다.</S.NoItemContainer>
         )}

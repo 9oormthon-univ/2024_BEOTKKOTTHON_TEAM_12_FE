@@ -98,9 +98,9 @@ export const PasswordError = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-  position: absolute;
-  bottom: 60px;
-  left: 20px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
 `;
 
 export const ChecklistColumn = styled.ul`
@@ -154,7 +154,7 @@ export const FlexCenter = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: calc(100svh - 60px);
+  height: calc(100svh - var(--nav-size));
 
   & > img {
     margin-bottom: 20px;

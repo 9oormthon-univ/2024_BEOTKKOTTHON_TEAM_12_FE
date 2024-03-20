@@ -7,7 +7,7 @@ const ListTradeItems = () => {
   return (
     <S.Container>
       {productList.map((product) => (
-        <BoxItemTrade key={product.id} product={product} />
+        <BoxItemTrade key={product.id} product={product} width="160px" />
       ))}
     </S.Container>
   );

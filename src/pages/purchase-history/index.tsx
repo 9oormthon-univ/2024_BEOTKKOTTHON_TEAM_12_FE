@@ -48,7 +48,7 @@ const PurchaseHistory = () => {
     return (
       <S.Container>
         {productData.length > 0 ? (
-          productData.map((item: ProductListItem) => <BoxItemTrade product={item} />)
+          productData.map((item: ProductListItem) => <BoxItemTrade product={item} width="160px" />)
         ) : (
           <S.NoItemContainer>내역이 없습니다.</S.NoItemContainer>
         )}

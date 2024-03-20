@@ -62,7 +62,7 @@ const StudentCertification = () => {
         <Button
           handleOnClick={handleNextClick}
           children="다음"
-          width="360px"
+          width="100%"
           $padding="16px"
           fontSize="18px"
           $bgcolor={buttonColor.backgroundColor}
