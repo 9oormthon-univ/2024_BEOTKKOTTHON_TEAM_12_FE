@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - var(--header-size) - 15px);
+  height: calc(100svh - var(--header-size) - 15px);
   padding: 20px 20px 0 20px;
   box-sizing: border-box;
 
