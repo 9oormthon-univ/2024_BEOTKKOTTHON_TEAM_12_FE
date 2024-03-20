@@ -113,11 +113,7 @@ const Onboarding = () => {
 
       {activeIndex === 2 && (
         <S.BoxButton>
-          <Button
-            $bgcolor="var(--green-6)"
-            color="white"
-            handleOnClick={() => navigate('/product')}
-          >
+          <Button $bgcolor="var(--green-6)" color="white" handleOnClick={() => navigate('/login')}>
             시작
           </Button>
         </S.BoxButton>
