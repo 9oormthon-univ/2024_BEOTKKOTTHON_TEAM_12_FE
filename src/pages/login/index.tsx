@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import logo from '@assets/logo/big-logo.svg';
 import eyeOff from '@assets/icons/eye-off.svg';
-import { Button, Checkbox } from '@components/index';
+import { Button, Checkbox, TextLabel } from '@components/index';
+import { useNavigate } from 'react-router-dom';
 
 interface FormData {
   userId: string;
@@ -14,14 +15,19 @@ const Login = () => {
     console.log('아이디찾기');
   };
 
-  const handleWithdrawal = () => {
-    console.log('회원탈퇴');
+  const handleSignIn = () => {
+    navigate('/signup');
   };
 
   const handleLogin = () => {
     console.log('로그인');
   };
 
+  const hadleNewPassword = () => {
+    console.log('비밀번호 재설정');
+  };
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     userId: '',
     password: '',
@@ -110,10 +116,22 @@ const Login = () => {
       <S.LinkWrapper>
         <S.Link onClick={handleFindId}>아이디 찾기</S.Link>
         <S.Divider>|</S.Divider>
-        <S.Link onClick={handleWithdrawal}>비밀번호 재설정</S.Link>
+        <S.Link onClick={hadleNewPassword}>비밀번호 재설정</S.Link>
         <S.Divider>|</S.Divider>
-        <S.Link onClick={handleWithdrawal}>회원가입</S.Link>
+        <S.Link onClick={handleSignIn}>회원가입</S.Link>
       </S.LinkWrapper>
+
+      <S.LoginMessage>
+        <TextLabel
+          text={
+            '로그인하면 웨어 이용약관에 동의하는 것으로 간주합니다. \n웨어의 회원 정보 처리 방식은 개인정보 처리방침 및 쿠키 정책에서 확인해보세요.'
+          }
+          size={9}
+          weight={300}
+          color="var(--grey-4)"
+          textAlign="center"
+        />
+      </S.LoginMessage>
     </S.LoginWrapper>
   );
 };

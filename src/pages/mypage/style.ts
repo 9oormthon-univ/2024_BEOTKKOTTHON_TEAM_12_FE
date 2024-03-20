@@ -5,9 +5,6 @@ export const MenuItemWrapper = styled.div`
   flex-direction: column;
   height: calc(100svh - var(--nav-size));
   background-color: var(--grey-2);
-`;
-
-export const ItemsSection = styled.section`
   overflow-y: scroll;
   // IE와 Edge를 위한 스크롤바 숨기기
   -ms-overflow-style: none;

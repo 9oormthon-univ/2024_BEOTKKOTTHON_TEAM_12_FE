@@ -90,3 +90,7 @@ export const EyeIcon = styled.img`
   height: 24px;
   cursor: pointer;
 `;
+
+export const LoginMessage = styled.div`
+  margin-top: 80px;
+`;
