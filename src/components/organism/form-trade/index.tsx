@@ -45,12 +45,11 @@ const FormTrade = () => {
       sendformData.append('product_image_list', formData.product_image_list[i]);
     }
     sendformData.append('product_name', formData.product_name);
-    sendformData.append('category', formData.category);
+    sendformData.append('category_name', formData.category);
     sendformData.append('product_status', formData.product_status);
     sendformData.append('product_content', formData.product_content);
     sendformData.append('price', formData.price.toString());
     sendformData.append('place', formData.place);
-    sendformData.append('post_status', formData.post_status);
 
     const url = `${import.meta.env.VITE_SERVER_URL}/products/new/1`;
 
@@ -58,8 +57,7 @@ const FormTrade = () => {
       method: 'POST',
       url: url,
       headers: {
-        // Authorization: jwt,
-        'Content-Type': 'multipart/form-data', // 이것 필수
+        'Content-Type': 'multipart/form-data',
       },
       data: sendformData,
     })
