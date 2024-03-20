@@ -98,7 +98,7 @@ const Onboarding = () => {
           onMouseUp={handleMouseUp}
         >
           {onboardingData.map((data, index) => (
-            <S.BoxFlex>
+            <S.BoxFlex key={index}>
               <S.BoxImage>
                 <img src={data.img_url} alt={`img-${index}`} />
               </S.BoxImage>
