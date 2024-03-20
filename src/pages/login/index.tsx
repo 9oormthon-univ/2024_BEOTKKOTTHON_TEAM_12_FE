@@ -128,7 +128,7 @@ const Login = () => {
             '로그인하면 웨어 이용약관에 동의하는 것으로 간주합니다. \n웨어의 회원 정보 처리 방식은 개인정보 처리방침 및 쿠키 정책에서 확인해보세요.'
           }
           size={9}
-          weight={300}
+          $weight={300}
           color="var(--grey-4)"
           $textAlign="center"
         />
