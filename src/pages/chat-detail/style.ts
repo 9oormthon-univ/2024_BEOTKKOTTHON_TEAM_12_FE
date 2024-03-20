@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  padding-top: 130px;
   background: white;
+`;
+
+export const ChatFixedHeader = styled.div`
+  position: fixed;
+  top: 0;
+  width: 400px;
+  background-color: #ffffff;
+  z-index: 100;
 `;
 
 export const BtnLeft = styled.img`
@@ -18,7 +27,7 @@ export const NickNameContainer = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 55px - 86px - 75px);
+  height: calc(100svh - 55px - 86px - 75px);
 `;
 
 export const SectionScroll = styled.div`
