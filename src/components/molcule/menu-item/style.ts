@@ -68,4 +68,10 @@ const MenuItemWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  font-family: 'Noto Sans KR';
+  & > a {
+    font-weight: 300;
+    text-decoration: none;
+    color: var(--grey-7);
+  }
 `;

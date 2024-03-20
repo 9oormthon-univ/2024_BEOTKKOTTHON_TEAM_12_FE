@@ -12,7 +12,7 @@ import {
 import arrow from '@assets/icons/arrow.svg';
 import kebab from '@assets/icons/kebab.svg';
 import { Product } from 'src/types/types';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { levelUrlArr } from 'src/utils/levelUrlArr';
 
 interface Message {
@@ -98,57 +98,42 @@ const ChatDetail = () => {
     navigate(`/product/${product.id}`);
   };
 
-  const sectionScrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const adjustChatHeight = () => {
-      if (sectionScrollRef.current) {
-        const screenHeight = window.innerHeight;
-        sectionScrollRef.current.style.paddingBottom = `${screenHeight * 0.3}px`;
-      }
-    };
-
-    window.addEventListener('resize', adjustChatHeight);
-
-    return () => {
-      window.removeEventListener('resize', adjustChatHeight);
-    };
-  }, []);
-
   //const { id } = useParams();
   return (
     <S.Container>
-      <Header>
-        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
-        <S.NickNameContainer>
-          <TextLabel text={otherUser} size={18} $weight={700} />
-          <img src={levelUrlArr(1)} alt="level" />
-        </S.NickNameContainer>
-        <img
-          src={kebab}
-          className="right"
-          alt="btn-back"
-          onClick={() => {
-            setOpenKebab(() => !openKebab);
-            console.log('openKebab:', openKebab);
-          }}
+      <S.ChatFixedHeader>
+        <Header>
+          <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
+          <S.NickNameContainer>
+            <TextLabel text={otherUser} size={18} $weight={700} />
+            <img src={levelUrlArr(1)} alt="level" />
+          </S.NickNameContainer>
+          <img
+            src={kebab}
+            className="right"
+            alt="btn-back"
+            onClick={() => {
+              setOpenKebab(() => !openKebab);
+              console.log('openKebab:', openKebab);
+            }}
+          />
+        </Header>
+        {openKebab && (
+          <BoxKebabList>
+            <p>차단하기</p>
+            <p className="red">신고하기</p>
+          </BoxKebabList>
+        )}
+        <ProductInfo
+          imageUrl={product.product_image_list ? product.product_image_list[0] : defaultImg}
+          productName={product.product_name}
+          price={product.price}
+          onClick={handleClickProduct}
         />
-      </Header>
-      {openKebab && (
-        <BoxKebabList>
-          <p>차단하기</p>
-          <p className="red">신고하기</p>
-        </BoxKebabList>
-      )}
-      <ProductInfo
-        imageUrl={product.product_image_list ? product.product_image_list[0] : defaultImg}
-        productName={product.product_name}
-        price={product.price}
-        onClick={handleClickProduct}
-      />
+      </S.ChatFixedHeader>
 
       <S.Content>
-        <S.SectionScroll ref={sectionScrollRef}>
+        <S.SectionScroll>
           <ChatScreen messages={messages} />
         </S.SectionScroll>
       </S.Content>
