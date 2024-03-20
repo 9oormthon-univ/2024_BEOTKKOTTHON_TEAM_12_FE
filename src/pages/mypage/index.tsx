@@ -16,10 +16,8 @@ const MyPage: React.FC = () => {
   return (
     <>
       <S.MenuItemWrapper>
-        <S.ItemsSection>
-          <UserSection />
-          <MenuItem />
-        </S.ItemsSection>
+        <UserSection />
+        <MenuItem />
       </S.MenuItemWrapper>
       <Nav currentTab="프로필" />
     </>
