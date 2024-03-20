@@ -105,7 +105,7 @@ const ChatDetail = () => {
         <Header>
           <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
           <S.NickNameContainer>
-            <TextLabel text={otherUser} size={18} weight={700} />
+            <TextLabel text={otherUser} size={18} $weight={700} />
             <img src={levelUrlArr(1)} alt="level" />
           </S.NickNameContainer>
           <img
@@ -129,7 +129,6 @@ const ChatDetail = () => {
           productName={product.product_name}
           price={product.price}
           onClick={handleClickProduct}
-
         />
       </S.ChatFixedHeader>
 
