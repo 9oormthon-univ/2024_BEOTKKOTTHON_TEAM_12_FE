@@ -101,34 +101,36 @@ const ChatDetail = () => {
   //const { id } = useParams();
   return (
     <S.Container>
-      <Header>
-        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
-        <S.NickNameContainer>
-          <TextLabel text={otherUser} size={18} weight={700} />
-          <img src={levelUrlArr(1)} alt="level" />
-        </S.NickNameContainer>
-        <img
-          src={kebab}
-          className="right"
-          alt="btn-back"
-          onClick={() => {
-            setOpenKebab(() => !openKebab);
-            console.log('openKebab:', openKebab);
-          }}
+      <S.ChatFixedHeader>
+        <Header>
+          <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
+          <S.NickNameContainer>
+            <TextLabel text={otherUser} size={18} weight={700} />
+            <img src={levelUrlArr(1)} alt="level" />
+          </S.NickNameContainer>
+          <img
+            src={kebab}
+            className="right"
+            alt="btn-back"
+            onClick={() => {
+              setOpenKebab(() => !openKebab);
+              console.log('openKebab:', openKebab);
+            }}
+          />
+        </Header>
+        {openKebab && (
+          <BoxKebabList>
+            <p>차단하기</p>
+            <p className="red">신고하기</p>
+          </BoxKebabList>
+        )}
+        <ProductInfo
+          imageUrl={product.product_image_list ? product.product_image_list[0] : defaultImg}
+          productName={product.product_name}
+          price={product.price}
+          onClick={handleClickProduct}
         />
-      </Header>
-      {openKebab && (
-        <BoxKebabList>
-          <p>차단하기</p>
-          <p className="red">신고하기</p>
-        </BoxKebabList>
-      )}
-      <ProductInfo
-        imageUrl={product.product_image_list ? product.product_image_list[0] : defaultImg}
-        productName={product.product_name}
-        price={product.price}
-        onClick={handleClickProduct}
-      />
+      </S.ChatFixedHeader>
 
       <S.Content>
         <S.SectionScroll>
