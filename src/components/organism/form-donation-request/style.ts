@@ -69,6 +69,14 @@ export const InputNum = styled(BoxInput)`
     width: 100%;
     text-align: center;
     padding-right: 4px;
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+
+    &:focus::-ms-input-placeholder {
+      color: transparent;
+    }
   }
 
   & > p {

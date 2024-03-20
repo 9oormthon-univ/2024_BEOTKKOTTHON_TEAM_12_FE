@@ -14,18 +14,18 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
 
   useEffect(() => {
     if (
-      formData.name &&
-      formData.addr1 &&
-      formData.addr2 &&
-      formData.phone1 &&
-      formData.phone2 &&
-      formData.phone3 &&
-      formData.email1 &&
-      formData.email2
+      formData.name !== '' &&
+      formData.addr1 !== '' &&
+      formData.addr2 !== '' &&
+      formData.phone1 !== '' &&
+      formData.phone2 !== '' &&
+      formData.phone3 !== '' &&
+      formData.email1 !== '' &&
+      formData.email2 !== ''
     ) {
       setIsDisabled(false);
     }
-  }, []);
+  }, [formData]);
 
   return (
     <S.Container>
