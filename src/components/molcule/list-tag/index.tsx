@@ -1,5 +1,5 @@
 import { categories } from 'src/data/shared';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BoxTag, Tag } from '@components/index';
 import { useActiveCategory, useProductsActions } from 'src/store/products';
 import { useFormData, useFormDataActions } from 'src/store/formData';
@@ -15,20 +15,30 @@ const ListTag = ({ isform }: ListTagProps) => {
   const activeCategory = useActiveCategory();
   const { setActiveCategory } = useProductsActions();
 
-  // const [activeCategory, setActiveCategory] = useState<string>('전체');
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
   const list = isform ? categories.slice(1) : categories;
 
-  // useEffect(() => {
-  //   if (!isform) {
-  //     setFilteredProducts(activeCategory);
-  //   }
-  // }, [activeCategory, isform]);
+  // 마우스 이벤트 핸들러
+  const startDragging = (e: React.PointerEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    setStartX(e.pageX - e.currentTarget.offsetLeft);
+    setScrollLeft(e.currentTarget.scrollLeft);
+  };
 
-  useEffect(() => {
-    if (isform) {
-      setActiveCategory(formData.category as string);
-    }
-  }, [formData.category, isform]);
+  const stopDragging = () => {
+    setIsDragging(false);
+  };
+
+  const whileDragging = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - e.currentTarget.offsetLeft;
+    const walk = (x - startX) * 1;
+    e.currentTarget.scrollLeft = scrollLeft - walk;
+  };
 
   const handleClick = (category: string) => {
     if (isform) {
@@ -37,8 +47,19 @@ const ListTag = ({ isform }: ListTagProps) => {
     setActiveCategory(category);
   };
 
+  useEffect(() => {
+    if (isform) {
+      setActiveCategory(formData.category as string);
+    }
+  }, [formData.category, isform]);
+
   return (
-    <BoxTag>
+    <BoxTag
+      onMouseDown={startDragging}
+      onMouseLeave={stopDragging}
+      onMouseUp={stopDragging}
+      onMouseMove={whileDragging}
+    >
       {list.map((category, index) => (
         <Tag
           onClick={() => handleClick(category)}
