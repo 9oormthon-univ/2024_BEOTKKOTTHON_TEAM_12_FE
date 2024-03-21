@@ -22,7 +22,7 @@ export interface ProductProp {
 
 /*차단한 사용자 타입 */
 export interface BlockUser {
-  id: number;
+  blocked_user_id: number;
   blocked_user_name: string;
   levelImg: string;
   blocked_user_profile_image: string;

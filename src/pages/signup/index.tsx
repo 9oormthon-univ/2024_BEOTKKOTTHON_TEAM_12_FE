@@ -7,6 +7,7 @@ import eyeOff from '@assets/icons/eye-off.svg';
 import welcomeLogo from '@assets/logo/welcome-logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { instance } from 'src/apis';
 
 interface FormData {
   userId: string;
@@ -60,6 +61,26 @@ const SignUp: React.FC = () => {
     '섹시글램',
     '아메카지',
   ];
+
+  /*재학생 인증 */
+  const postVerificationEmail = async () => {
+    try {
+      console.log({
+        universityName: formData.universityName,
+        email: formData.universityEmail,
+      });
+      alert('인증번호가 발송되었습니다.');
+      navigate('/student-certification');
+      const response = await instance.post('/university/certify', {
+        universityName: formData.universityName,
+        email: formData.universityEmail,
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error('인증번호 발송 실패', error);
+    }
+  };
 
   /*입력창 변경시 */
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -246,7 +267,7 @@ const SignUp: React.FC = () => {
               <S.LoginInput
                 name="universityName"
                 type={'text'}
-                placeholder="학교 입력"
+                placeholder="동국대학교"
                 value={formData.universityName}
                 onChange={handleInputChange}
               />
@@ -261,7 +282,7 @@ const SignUp: React.FC = () => {
               <S.LoginInput
                 name="universityEmail"
                 type={'text'}
-                placeholder="이메일 입력"
+                placeholder="honggildong@dgu.ac.kr"
                 value={formData.universityEmail}
                 onChange={handleInputChange}
               />
@@ -270,7 +291,7 @@ const SignUp: React.FC = () => {
 
             <S.ButtonWrapper>
               <Button
-                handleOnClick={() => navigate('/student-certification')}
+                handleOnClick={postVerificationEmail}
                 children="다음"
                 width="100%"
                 $padding="16px"

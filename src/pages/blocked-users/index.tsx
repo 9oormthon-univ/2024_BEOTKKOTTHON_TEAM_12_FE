@@ -13,7 +13,7 @@ const BlockedUsers = () => {
   const userId = '1';
   const [blockedUserList, setBlockedUserList] = useState<BlockUser[]>([
     {
-      id: 1,
+      blocked_user_id: 1,
       blocked_user_name: '김스옹',
       levelImg: level1Icon,
       blocked_user_profile_image: defaultImg,
