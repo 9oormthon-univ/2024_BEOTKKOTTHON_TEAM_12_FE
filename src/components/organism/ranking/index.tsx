@@ -1,5 +1,5 @@
 import * as S from './style';
-import icon from '@assets/icons/profile-icon-level1.svg';
+import { levelUrlArr } from 'src/utils/levelUrlArr';
 import ranking from '@assets/donation/ranking.svg';
 import { Button } from '@components/index';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ const Ranking = () => {
       <S.Header>
         <div className="title">
           <p>대학교별 환경 점수 TOP 5</p>
-          <img src={icon} alt="icon" />
+          <img src={levelUrlArr(1)} alt="icon" />
         </div>
         <p className="time">03.11 16:00 기준</p>
       </S.Header>

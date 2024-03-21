@@ -26,6 +26,7 @@ import DonationFormBasic from '@pages/donation-form-basic';
 import DonationFormRequest from '@pages/donation-form-request';
 import DonationFinish from '@pages/donation-finish';
 import DonationHistory from '@pages/donation-history';
+import LevelInfo from '@pages/level-info';
 
 const Router = () => {
   return (
@@ -58,6 +59,7 @@ const Router = () => {
       <Route path="/mypage/profile-edit" element={<UserProfileEdit />} />
       <Route path="/mypage/blocked-users" element={<BlockedUsers />} />
       <Route path="/mypage/donation-history" element={<DonationHistory />} />
+      <Route path="/mypage/level-info" element={<LevelInfo />} />
 
       {/* 채팅 */}
       <Route path="/chat-home" element={<ChatHome />} />
