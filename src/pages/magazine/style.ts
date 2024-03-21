@@ -31,12 +31,4 @@ export const Content = styled.div`
       transform: scale(1.01);
     }
   }
-
-  @media screen and (min-width: 500px) {
-    padding: 0 100px;
-  }
-
-  @media screen and (max-width: 499px) {
-    padding: 0 20px;
-  }
 `;

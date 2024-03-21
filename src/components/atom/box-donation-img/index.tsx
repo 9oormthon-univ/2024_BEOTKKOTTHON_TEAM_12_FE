@@ -26,8 +26,12 @@ const BoxDonationImg = ({ activeIndex, setActiveIndex }: BoxDonationImgProps) =>
         const imgName = img === otcan ? 'otcan' : '';
 
         return (
-          <S.BoxImage key={`${img}-${index}`} className={`${className} ${imgName}`}>
-            <img src={img} alt={`${index}`} onClick={() => handleClick(index)} />
+          <S.BoxImage
+            key={`${img}-${index}`}
+            className={`${className} ${imgName}`}
+            onClick={() => handleClick(index)}
+          >
+            <img src={img} alt={`${index}`} />
           </S.BoxImage>
         );
       })}
