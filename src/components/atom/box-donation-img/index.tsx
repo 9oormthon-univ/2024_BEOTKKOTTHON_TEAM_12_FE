@@ -15,6 +15,7 @@ const BoxDonationImg = ({ activeIndex, setActiveIndex }: BoxDonationImgProps) =>
   const handleClick = (index: number) => {
     if (setActiveIndex) {
       setActiveIndex(index);
+      console.log(activeIndex);
     }
   };
 

@@ -41,6 +41,7 @@ const FormDonationRequest = ({ setIsDisabled }: FormDonationRequestProps) => {
         <S.Sort>의류</S.Sort>
         <S.InputNum className="num">
           <input
+            type="number"
             id="clothes_num"
             name="clothes_num"
             value={formData.clothes_num === 0 ? '' : formData.clothes_num}
@@ -53,6 +54,7 @@ const FormDonationRequest = ({ setIsDisabled }: FormDonationRequestProps) => {
         <S.Sort htmlFor="goods_num">잡화</S.Sort>
         <S.InputNum>
           <input
+            type="number"
             id="goods_num"
             name="goods_num"
             value={formData.goods_num === 0 ? '' : formData.goods_num}
