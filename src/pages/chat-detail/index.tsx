@@ -11,7 +11,8 @@ import {
 } from '@components/index';
 import arrow from '@assets/icons/arrow.svg';
 import kebab from '@assets/icons/kebab.svg';
-import { Product } from 'src/types/types';
+import { ProductListItem } from 'src/types/types';
+import productImg1 from '@assets/images/product-image1.svg';
 import { useState } from 'react';
 import { levelUrlArr } from 'src/utils/levelUrlArr';
 
@@ -25,7 +26,6 @@ interface Message {
 
 const ChatDetail = () => {
   const navigate = useNavigate();
-
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -49,28 +49,79 @@ const ChatDetail = () => {
       isMine: true,
       profilePic: '',
     },
+    {
+      id: '4',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '5',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '6',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+
+    {
+      id: '7',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '8',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '9',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '10',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '11',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
+    {
+      id: '12',
+      content: '가능합니다!',
+      timestamp: '오후 12:01',
+      isMine: true,
+      profilePic: '',
+    },
   ]);
 
-  const product: Product = {
-    id: 8,
-    product_name: 'Catnip',
-    price: 8,
-    product_image_list: [
-      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-      'http://dummyimage.com/201x100.png/5fa2dd/ffffff',
-    ],
-    product_content:
-      'suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque',
+  const product: ProductListItem = {
+    id: 5,
+    price: 10000,
+    product_name: '안입는 옷 처분해요',
     product_status: '아주 좋아요',
-    post_status: '판매중',
-    place: 'ultrices posuere cubilia curae nulla dapibus dolor vel est donec',
-    is_private: true,
-    category: 'nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus',
-    wish: '193.148.54.13',
-    count: '144.16.105.89',
+    post_status: 'soldOut',
+    product_image: productImg1,
   };
 
   const otherUser = '김스옹';
@@ -80,7 +131,7 @@ const ChatDetail = () => {
     const newMessage = {
       id: (messages.length + 1).toString(),
       content: message,
-      timestamp: new Date().toLocaleTimeString().slice(0, 8),
+      timestamp: new Date().toLocaleTimeString().slice(0, 7),
       isMine: true,
       profilePic: '',
     };
@@ -125,7 +176,7 @@ const ChatDetail = () => {
           </BoxKebabList>
         )}
         <ProductInfo
-          imageUrl={product.product_image_list ? product.product_image_list[0] : defaultImg}
+          imageUrl={product.product_image ? product.product_image : defaultImg}
           productName={product.product_name}
           price={product.price}
           onClick={handleClickProduct}

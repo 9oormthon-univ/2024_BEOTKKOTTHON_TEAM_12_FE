@@ -103,7 +103,6 @@ const GlobalStyle = createGlobalStyle`
   width: 100%; 
   margin: 0 auto; 
   background-color: #ffffff;
-  border: 1px solid var(--grey-3);
   border-radius: 10px;
   position: relative;
 
@@ -114,7 +113,7 @@ const GlobalStyle = createGlobalStyle`
 
   @media (min-width: 400px) {
     #root {
-      max-width: 650px;
+      max-width: 400px;
     }
   }
 

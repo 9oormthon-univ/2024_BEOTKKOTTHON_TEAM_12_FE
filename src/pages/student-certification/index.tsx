@@ -4,13 +4,34 @@ import { Button, Header, TextInput, TextLabel } from '@components/index';
 import arrow from '@assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { instance } from 'src/apis';
 
 const StudentCertification = () => {
   const navigate = useNavigate();
-  const handleNextClick = () => {
-    alert('인증이 완료되었습니다.');
-    navigate('/signup', { state: { tab: 2 } });
+
+  /*인증코드 인증 */
+  const postVerificationCode = async () => {
+    try {
+      console.log({
+        verificationCode,
+      });
+      alert('인증이 완료되었습니다.');
+      navigate('/signup', { state: { tab: 2 } });
+      const response = await instance.post('/university/certifycode', {
+        verificationCode,
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error('인증번호 발송 실패', error);
+    }
   };
+
+  /*재학생 인증 메일 재발송 */
+  const postVerificationEmail = async () => {
+    alert('이메일을 재전송했습니다.');
+  };
+
   const [verificationCode, setVerificationCode] = useState('');
   //유효성 확인 후 버튼 색 변경
   const [buttonColor, setButtonColor] = useState({
@@ -25,10 +46,6 @@ const StudentCertification = () => {
       setButtonColor({ backgroundColor: 'var(--grey-2)', color: 'var(--grey-5)' });
     }
   }, [verificationCode]);
-
-  const sendEmailAgain = () => {
-    alert('이메일을 재전송했습니다.');
-  };
 
   return (
     <>
@@ -57,10 +74,10 @@ const StudentCertification = () => {
         onChange={(e) => setVerificationCode(e.target.value)}
       />
 
-      <S.LinkWrapper onClick={sendEmailAgain}>이메일 재전송</S.LinkWrapper>
+      <S.LinkWrapper onClick={postVerificationEmail}>이메일 재전송</S.LinkWrapper>
       <S.ButtonWrapper>
         <Button
-          handleOnClick={handleNextClick}
+          handleOnClick={postVerificationCode}
           children="다음"
           width="100%"
           $padding="16px"
