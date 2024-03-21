@@ -1,4 +1,3 @@
-import React from 'react';
 import x from '@assets/icons/x.svg';
 import * as S from './style';
 import { Header, TextLabel } from '@components/index';

@@ -1,4 +1,4 @@
-import { BoxDonationImg, Nav, Ranking } from '@components/index';
+import { BoxDonationImg, Nav, Ranking, TextLabel } from '@components/index';
 import * as S from './style';
 
 const Donation = () => {
@@ -9,8 +9,22 @@ const Donation = () => {
           <Ranking />
         </section>
 
+        <section className="ranking">
+          <S.MapWrapper>
+            <TextLabel
+              text="직접 방문해서 기부하고 싶다면?"
+              size={16}
+              $weight={700}
+              color="var(--grey-7)"
+            />
+          </S.MapWrapper>
+        </section>
+
         <section className="partner">
-          <p>함께하는 기부 단체</p>
+          <S.MapWrapper>
+            <TextLabel text="함께하는 기부 단체" size={16} $weight={700} color="var(--grey-7)" />
+          </S.MapWrapper>
+
           <BoxDonationImg />
         </section>
       </S.Content>
