@@ -15,7 +15,9 @@ import productImage from '@assets/images/product-default-img.png';
 import { useEffect, useRef, useState } from 'react';
 import { levelUrlArr } from 'src/utils/levelUrlArr';
 import { instance } from 'src/apis';
-import { WebSocketAPI } from 'src/apis/websocket';
+
+import SockJS from 'sockjs-client';
+import { Stomp, CompatClient } from '@stomp/stompjs';
 
 interface Message {
   id: string;
@@ -58,23 +60,38 @@ const ChatDetail = () => {
     profile_image: defaultImg,
   });
   const [messages, setMessages] = useState<Message[]>([]);
-  // webSocketAPI 인스턴스를 저장할 ref 생성
-  const webSocketAPIRef = useRef<WebSocketAPI | null>(null);
+
+  // Stomp의 CompatClient 객체를 참조하는 객체 (리렌더링에도 유지를 위해 useRef 사용)
+  // Stomp라이브러리와 소켓 연결을 수행하는 cliet객체에 접근할 수 있게 해준다.
+  const client = useRef<CompatClient | null>(null);
+
+  const connectHandler = () => {
+    const serverUrl = `${import.meta.env.VITE_SERVER_URL}/ws-stomp`;
+
+    const webSocketFactory = () => {
+      return new SockJS(serverUrl);
+    };
+
+    client.current = Stomp.over(webSocketFactory);
+    console.log('client.current:', client.current);
+    client.current.connect(
+      () => {
+        // 첫 번째 인자로 빈 객체 전달
+        console.log('연결 성공');
+        client.current?.subscribe(`/sub/api/chat/room/${chatRoomId}`, (message) => {
+          console.log(message);
+          // 메시지 처리 로직
+        });
+      },
+      (error: any) => {
+        // 에러 핸들링 콜백
+        console.error('연결 실패:', error);
+      }
+    );
+  };
 
   useEffect(() => {
-    // webSocketAPI 인스턴스를 ref에 할당
-    webSocketAPIRef.current = new WebSocketAPI();
-
-    webSocketAPIRef.current.subscribeToChatRoom(chatRoomId, (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
-    // 컴포넌트가 언마운트될 때 연결 종료
-    return () => {
-      if (webSocketAPIRef.current) {
-        webSocketAPIRef.current.disconnect();
-      }
-    };
+    connectHandler();
   }, [chatRoomId]);
 
   const handleSend = (message: File | string) => {
@@ -88,9 +105,13 @@ const ChatDetail = () => {
         profilePic: '',
       };
       setMessages([...messages, newMessage]);
-      if (typeof message === 'string' && webSocketAPIRef.current) {
-        // webSocketAPIRef를 통해 인스턴스에 접근하여 메시지 전송
-        webSocketAPIRef.current.sendMessage(chatRoomId, { content: message });
+      if (typeof message === 'string' && client.current && client.current.connected) {
+        client.current.send(
+          `/pub/api/chat/message`,
+          // JSON 형식으로 전송한다
+          newMessage
+        );
+        console.log('메시지 전송 완료:', newMessage);
       }
     } catch (error) {
       console.error('메시지 전송 중 오류 발생:', error);
@@ -112,7 +133,7 @@ const ChatDetail = () => {
     const response = await instance.get(
       `/chat/room/enter?roomId=${chatRoomId}&productId=${productId}`
     );
-    console.log('채팅방 입장', response.data);
+    console.log('채팅방 입장');
     setProduct({
       id: response.data.product_id,
       price: response.data.price,
@@ -139,7 +160,6 @@ const ChatDetail = () => {
           <S.NickNameContainer>
             <TextLabel text={otherUser.nickname} size={18} $weight={700} />
             <img src={levelUrlArr(otherUser.level)} alt="level" />
-
           </S.NickNameContainer>
           <img
             src={kebab}

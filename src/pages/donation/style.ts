@@ -7,6 +7,8 @@ export const Content = styled.div`
   align-items: center;
   margin-top: -15px;
   height: calc(100svh - var(--nav-size) - var(--header-size));
+
+  background-color: var(--grey-2);
   overflow-y: scroll;
   overflow-x: hidden;
   -ms-overflow-style: none;
@@ -41,4 +43,5 @@ export const MapWrapper = styled.div`
 `;
 export const ImageWrapper = styled.div`
   padding: 0px 33px 20px 33px;
+  background-color: white;
 `;
