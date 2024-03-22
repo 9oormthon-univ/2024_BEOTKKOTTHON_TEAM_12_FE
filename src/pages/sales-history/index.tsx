@@ -98,7 +98,7 @@ const SalesHistory = () => {
     };
     console.log('판매완료로 변경할 상품 id:', productStatus);
     try {
-      const response = await instance.post(`/users/myProducts/onSale/${userId}`, { productStatus });
+      const response = await instance.put(`/users/myProducts/onSale/${userId}`, { productStatus });
       console.log('상품 상태 변경 성공:', response.data);
       getSalesProducts();
       getSalesCompletedProducts();

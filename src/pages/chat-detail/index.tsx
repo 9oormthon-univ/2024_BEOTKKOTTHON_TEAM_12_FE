@@ -139,6 +139,7 @@ const ChatDetail = () => {
           <S.NickNameContainer>
             <TextLabel text={otherUser.nickname} size={18} $weight={700} />
             <img src={levelUrlArr(otherUser.level)} alt="level" />
+
           </S.NickNameContainer>
           <img
             src={kebab}

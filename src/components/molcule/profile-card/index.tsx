@@ -5,12 +5,11 @@ import defaultImg from '@assets/images/profile-default-image.svg';
 import arrow from '@assets/icons/arrow.svg';
 import { levelUrlArr } from 'src/utils/levelUrlArr';
 import { useNavigate } from 'react-router-dom';
-import useStore from '../../../store/userData';
+import { useUserProfileInfo } from '../../../store/userData';
 
 const ProfileCard: React.FC = () => {
-  const { userProfileInfo } = useStore();
   const navigate = useNavigate();
-  const userProfile = userProfileInfo;
+  const userProfile = useUserProfileInfo();
 
   const onModifyProfile = () => {
     navigate('/mypage/profile-edit');
@@ -25,7 +24,7 @@ const ProfileCard: React.FC = () => {
       <S.MiddleContainer>
         <S.UserNameWrapper>
           <TextLabel text={userProfile.user_name} size={18} />
-          <S.Image src={levelUrlArr(2)} alt="profile level" />
+          <S.Image src={levelUrlArr(userProfile.level)} alt="profile level" />
         </S.UserNameWrapper>
         <TextLabel text={userProfile.university_name} size={16} color="var(--grey-5)" />
 

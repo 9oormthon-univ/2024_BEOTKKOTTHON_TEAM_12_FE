@@ -23,8 +23,10 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatRooms }) => {
           <S.ChatImage src={chat.user_profile_image} alt="Profile" />
           <S.ChatDetails>
             <S.SenderName>
+
               {chat.user_nick_name}
               <img src={levelUrlArr(chat.user_level)} alt="level" />
+
             </S.SenderName>
             <S.LastMessage>{'마지막 메세지'}</S.LastMessage>
           </S.ChatDetails>

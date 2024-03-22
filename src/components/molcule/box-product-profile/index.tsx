@@ -1,7 +1,6 @@
 import { ProfileAvatar } from '@components/index';
 import * as S from './style';
 import { levelUrlArr } from 'src/utils/levelUrlArr';
-import { userProfile } from 'src/data/shared';
 import { Seller } from 'src/types/types';
 
 const data = {

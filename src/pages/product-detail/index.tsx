@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import { salesData } from 'src/data/shared';
 import { instance } from 'src/apis';
 import { useProduct, useProductActions } from 'src/store/product';
+import { useUserProfileInfo } from 'src/store/userData';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -23,13 +24,14 @@ const ProductDetail = () => {
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const product = useProduct();
-  const { setProduct } = useProductActions();
+  const { setProduct, updateOnSale } = useProductActions();
+  const userProfileInfo = useUserProfileInfo();
 
-  const url = `/products/${id}`;
+  const userId = 1;
 
   const getData = async () => {
     await instance
-      .get(url)
+      .get(`/products/${id}`)
       .then((response) => {
         console.log('데이터 가져오기 성공', response);
         setProduct(response.data);
@@ -46,14 +48,27 @@ const ProductDetail = () => {
   }, []);
 
   const handleOnSaleClick = async () => {
-    await instance
-      .put(`/products/soldOut/${id}`, { product_stauts: 'soldOut' })
-      .then((response) => {
-        console.log('판매 완료 변경 성공', response);
-      })
-      .catch((e) => {
-        console.log('판매 완료 변경 실패', e);
-      });
+    if (product?.post_status === 'onSale') {
+      await instance
+        .put(`/products/soldOut/${id}`, { id: id, product_stauts: 'soldOut' })
+        .then((response) => {
+          console.log('판매 완료 변경 성공', response);
+          updateOnSale('soldOut');
+        })
+        .catch((e) => {
+          console.log('판매 완료 변경 실패', e);
+        });
+    } else {
+      await instance
+        .put(`/products/soldOut/${id}`, { id: id, product_stauts: 'onSale' })
+        .then((response) => {
+          console.log('판매 중으로 변경 성공', response);
+          updateOnSale('onSale');
+        })
+        .catch((e) => {
+          console.log('판매 중으로 변경 실패', e);
+        });
+    }
   };
 
   const handleHideClick = async () => {
@@ -72,16 +87,20 @@ const ProductDetail = () => {
   /**게시글 삭제 api 호출 */
   const handleDeleteProduct = async () => {
     await instance
-      .delete(`/products/delete/${id}`)
+      .delete(`/products/delete/${userId}`, {
+        // id: id as string,
+        // post_status: 'soldOut',
+      })
       .then((response) => {
         console.log('글 삭제 성공', response);
+        navigate('/product');
       })
       .catch((e) => {
         console.log('글 삭제 실패', e);
       });
     navigate('/product');
   };
-
+  console.log(userProfileInfo.nick_name);
   return (
     <>
       {' '}
@@ -98,12 +117,7 @@ const ProductDetail = () => {
         </ModalProduct>
       )}
       <Header>
-        <S.BtnLeft
-          src={arrow}
-          className="left"
-          alt="btn-back"
-          onClick={() => navigate('/product')}
-        />
+        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
         <img
           src={kebab}
           className="right"
@@ -111,19 +125,23 @@ const ProductDetail = () => {
           onClick={() => setOpenKebab(!openKebab)}
         />
       </Header>
-      {/* 로그인 된 상태 && 다른 유저 상품*/}
-      {/* {openKebab && (
-          <BoxKebabList>
-            <p>차단하기</p>
-            <p className="red">신고하기</p>
-          </BoxKebabList>
-        )} */}
       {product && (
         <>
+          {/* {openKebab && product.seller?.nick_name !== userProfileInfo.nick_name && (
+            <BoxKebabList>
+              <p>차단하기</p>
+              <p className="red">신고하기</p>
+            </BoxKebabList>
+          )} */}
           {openKebab && (
+            // {openKebab && product.seller?.nick_name === userProfileInfo.nick_name && (
             <BoxKebabList>
               <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
-              <p onClick={handleOnSaleClick}>판매 완료로 변경</p>
+              {product.post_status === 'onSale' ? (
+                <p onClick={handleOnSaleClick}>판매 완료로 변경</p>
+              ) : (
+                <p onClick={handleOnSaleClick}>판매 중으로 변경</p>
+              )}
               <p onClick={handleHideClick}>글 숨기기</p>
               <p className="red" onClick={() => setOpenModal(!openModal)}>
                 삭제

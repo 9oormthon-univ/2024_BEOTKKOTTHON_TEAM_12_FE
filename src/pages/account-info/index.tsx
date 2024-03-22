@@ -11,10 +11,10 @@ const AccountInfo = () => {
     university_name: '',
     university_email: '',
   });
+  const userId = '37';
 
   /*계정 정보 가져오는 api 호출 */
   const getAccountInfo = async () => {
-    const userId = '1';
     console.log('계정 정보 가져오기');
     try {
       const response = await instance.get(`/users/userInfo/${userId}`);
@@ -33,8 +33,8 @@ const AccountInfo = () => {
   /*계정 정보를 저장하는 api 호출 */
   const postChangeAccountInfo = async () => {
     console.log('저장하기');
-    const userId = '1';
     try {
+      console.log(accountInfo);
       const response = await instance.put(`/users/userInfo/update/${userId}`, { accountInfo });
       if (response.status === 200) {
         alert('저장되었습니다.');

@@ -43,6 +43,7 @@ const Donation = () => {
               color="var(--grey-7)"
             />
           </S.MapWrapper>
+
           <S.ImageWrapper>
             <BoxDonationImg />
           </S.ImageWrapper>

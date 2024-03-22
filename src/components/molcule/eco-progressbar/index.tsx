@@ -1,23 +1,18 @@
-import React from 'react';
 import * as S from './style';
 import helpIcon from '@assets/icons/help.svg';
 import { levelUrlArr } from 'src/utils/levelUrlArr';
 import { TextLabel } from '@components/index';
 import { useNavigate } from 'react-router-dom';
+import { useUserProfileInfo } from 'src/store/userData';
 
-interface ProgressBarProps {
-  level: string;
-  nextLevel: string;
-  currentExp: number;
-  remainLevelExp: number;
-}
+const ProgressBar = () => {
+  const {
+    level,
+    next_level: nextLevel,
+    point: currentExp,
+    remain_level_point: remainLevelExp,
+  } = useUserProfileInfo();
 
-const ProgressBar: React.FC<ProgressBarProps> = ({
-  level,
-  nextLevel,
-  currentExp,
-  remainLevelExp,
-}) => {
   const progressWidth = (currentExp / (currentExp + remainLevelExp)) * 100 + '%';
   const navigate = useNavigate();
 
@@ -30,7 +25,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       <S.ProgressBarHeader>
         <S.UserLevelWrapper>
           <TextLabel text={`Lv.${level}`} size={20} $weight={800} color="var(--green-primary)" />
-          <S.Image src={levelUrlArr(2)} alt="profile level" />
+          <S.Image src={levelUrlArr(level)} alt="profile level" />
         </S.UserLevelWrapper>
         <S.Image src={helpIcon} alt="help icon" onClick={onHelpClick} />
       </S.ProgressBarHeader>
