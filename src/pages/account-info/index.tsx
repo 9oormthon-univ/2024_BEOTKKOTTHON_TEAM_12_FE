@@ -11,7 +11,7 @@ const AccountInfo = () => {
     university_name: '',
     university_email: '',
   });
-  const userId = '1';
+  const userId = '37';
 
   /*계정 정보 가져오는 api 호출 */
   const getAccountInfo = async () => {
@@ -33,7 +33,6 @@ const AccountInfo = () => {
   /*계정 정보를 저장하는 api 호출 */
   const postChangeAccountInfo = async () => {
     console.log('저장하기');
-    const userId = '1';
     try {
       console.log(accountInfo);
       const response = await instance.put(`/users/userInfo/update/${userId}`, { accountInfo });
