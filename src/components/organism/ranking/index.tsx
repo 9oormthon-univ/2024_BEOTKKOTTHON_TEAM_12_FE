@@ -1,16 +1,16 @@
 import * as S from './style';
-import icon from '@assets/icons/profile-icon-level1.svg';
+import { levelUrlArr } from 'src/utils/levelUrlArr';
 import ranking from '@assets/donation/ranking.svg';
 import { Button } from '@components/index';
 import { Link } from 'react-router-dom';
 
 const Ranking = () => {
   return (
-    <>
+    <S.Container>
       <S.Header>
         <div className="title">
           <p>대학교별 환경 점수 TOP 5</p>
-          <img src={icon} alt="icon" />
+          <img src={levelUrlArr(2)} alt="icon" />
         </div>
         <p className="time">03.11 16:00 기준</p>
       </S.Header>
@@ -32,14 +32,14 @@ const Ranking = () => {
         <Button
           $bgcolor="var(--green-6)"
           color="white"
-          width="100%"
+          width="335px"
           fontSize="16px"
           $padding="16px"
         >
           기부하기
         </Button>
       </Link>
-    </>
+    </S.Container>
   );
 };
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import * as S from './style';
 import helpIcon from '@assets/icons/help.svg';
-import profileIconLevel1 from '@assets/icons/profile-icon-level1.svg';
+import { levelUrlArr } from 'src/utils/levelUrlArr';
 import { TextLabel } from '@components/index';
+import { useNavigate } from 'react-router-dom';
 
 interface ProgressBarProps {
   level: string;
@@ -18,16 +19,18 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   remainLevelExp,
 }) => {
   const progressWidth = (currentExp / (currentExp + remainLevelExp)) * 100 + '%';
+  const navigate = useNavigate();
 
   const onHelpClick = () => {
-    console.log('도움말');
+    navigate('/mypage/level-info');
   };
+
   return (
     <S.ProgressBarCard>
       <S.ProgressBarHeader>
         <S.UserLevelWrapper>
           <TextLabel text={`Lv.${level}`} size={20} $weight={800} color="var(--green-primary)" />
-          <S.Image src={profileIconLevel1} alt="profile level" />
+          <S.Image src={levelUrlArr(2)} alt="profile level" />
         </S.UserLevelWrapper>
         <S.Image src={helpIcon} alt="help icon" onClick={onHelpClick} />
       </S.ProgressBarHeader>

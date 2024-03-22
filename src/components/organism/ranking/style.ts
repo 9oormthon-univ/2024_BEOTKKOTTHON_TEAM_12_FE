@@ -1,10 +1,21 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 33px 30px 33px;
+  background-color: white;
+`;
+
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   margin-top: 25px;
+  font-family: 'Noto Sans KR' !important;
 
   .title {
     display: flex;
@@ -12,6 +23,11 @@ export const Header = styled.div`
     gap: 3px;
     font-size: 16px;
     font-weight: bold;
+    & > img {
+      width: 14px;
+      height: 14px;
+      margin-bottom: 2px;
+    }
   }
 
   .time {

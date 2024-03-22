@@ -91,7 +91,7 @@ const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   background-color: #ffffff; 
-  font-family: 'NanumSquareRound', sans-serif;
+  font-family: 'Notosans KR', sans-serif;
 
   @supports (-webkit-touch-callout: none) {
     height: -webkit-fill-available;

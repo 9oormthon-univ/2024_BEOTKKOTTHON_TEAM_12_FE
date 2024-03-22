@@ -3,26 +3,24 @@ import styled from 'styled-components';
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(var(--header-size) + var(--content-size));
-  padding: 0 20px;
-
+  align-items: center;
+  background-color: var(--grey-2);
   overflow-y: scroll;
   -ms-overflow-style: none;
-
   &::-webkit-scrollbar {
     display: none;
   }
 
   .ranking {
-    margin-bottom: 63px;
+    margin-bottom: 14px;
   }
-
-  .partner {
-    & > p {
-      margin-bottom: 14px;
-      font-size: 16px;
-      font-weight: bold;
-      color: var(--grey-7);
-    }
-  }
+`;
+export const MapWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 335px;
+  padding: 20px 33px;
+  gap: 5px;
+  background-color: white;
 `;
