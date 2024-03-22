@@ -3,14 +3,14 @@ import styled from 'styled-components';
 const BoxKebabList = styled.div`
   display: flex;
   flex-direction: column;
-  width: 116px;
+  width: 120px;
   position: absolute;
   border: 1px solid var(--grey-3);
   border-radius: 5px;
   top: 45px;
   right: 33px;
   background-color: white;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   z-index: 3;
 

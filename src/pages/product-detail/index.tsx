@@ -87,10 +87,7 @@ const ProductDetail = () => {
   /**게시글 삭제 api 호출 */
   const handleDeleteProduct = async () => {
     await instance
-      .delete(`/products/delete/${userId}`, {
-        // id: id as string,
-        // post_status: 'soldOut',
-      })
+      .delete(`/products/delete/${userId}/${product?.id}`)
       .then((response) => {
         console.log('글 삭제 성공', response);
         navigate('/product');
