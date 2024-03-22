@@ -18,9 +18,9 @@ export const Content = styled.div`
 export const MapWrapper = styled.div`
   display: flex;
   justify-content: center;
-
   flex-direction: column;
-  padding: 20px 33px;
   width: 335px;
+  padding: 20px 33px;
+  gap: 5px;
   background-color: white;
 `;
