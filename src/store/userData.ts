@@ -80,4 +80,6 @@ const useStore = create<StoreState>((set) => ({
   },
 }));
 
+export const useUserProfileInfo = () => useStore((state) => state.userProfileInfo);
+
 export default useStore;

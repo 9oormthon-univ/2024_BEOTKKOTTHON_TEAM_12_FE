@@ -40,6 +40,7 @@ export const UserNameWrapper = styled.div`
 
 export const ButtonContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin-top: 3px;
   gap: 3px;
 `;
