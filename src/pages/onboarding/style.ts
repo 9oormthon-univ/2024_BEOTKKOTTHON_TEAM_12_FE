@@ -20,7 +20,7 @@ export const BoxTitle = styled.div`
   align-items: center;
 
   .title {
-    font-size: 19px;
+    font-size: 17px;
     font-weight: bold;
     color: var(--green-7);
     margin-bottom: 40px;
@@ -28,7 +28,7 @@ export const BoxTitle = styled.div`
 
   .description {
     height: 30px;
-    font-szie: 16px;
+    font-szie: 15px;
     color: var(--grey-7);
   }
 `;
