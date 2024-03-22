@@ -17,7 +17,8 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatRooms }) => {
           <S.ChatDetails>
             <S.SenderName>
               {chat.senderName}
-              <img src={levelUrlArr(1)} alt="level" />
+              <img src={levelUrlArr('새싹')} alt="level" />
+              {/* <img src={levelUrlArr(1)} alt="level" /> */}
             </S.SenderName>
             <S.LastMessage>{chat.lastMessage}</S.LastMessage>
           </S.ChatDetails>

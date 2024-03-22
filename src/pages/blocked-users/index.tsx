@@ -15,7 +15,7 @@ const BlockedUsers = () => {
     {
       blocked_user_id: 1,
       blocked_user_name: '김스옹',
-      levelImg: levelUrlArr(2),
+      levelImg: levelUrlArr('목화'),
       blocked_user_profile_image: defaultImg,
     },
   ]);

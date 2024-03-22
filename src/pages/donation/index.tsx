@@ -43,7 +43,9 @@ const Donation = () => {
             />
           </S.MapWrapper>
 
-          <BoxDonationImg />
+          <div className="partner-box">
+            <BoxDonationImg />
+          </div>
         </section>
       </S.Content>
       <Nav currentTab="기부" />

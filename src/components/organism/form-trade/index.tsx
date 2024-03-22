@@ -12,8 +12,7 @@ import Button from '@components/atom/button-trade';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { transformPrice } from 'src/utils/transformPrice';
 import { useFormData, useFormDataActions, useShowImages } from 'src/store/formData';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import { instance } from 'src/apis';
 
 const FormTrade = () => {
@@ -37,10 +36,10 @@ const FormTrade = () => {
   }, []);
 
   // const [files, setFiles] = useState<FileList | null>(null);
-  const [files, setFiles] = useState<string[]>([
+  const files = [
     'https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg',
     'https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg',
-  ]);
+  ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -75,16 +74,15 @@ const FormTrade = () => {
     //   console.log(key, value);
     // }
 
-    const url = `${import.meta.env.VITE_SERVER_URL}/products/new/1`;
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data',
+    //   },
+    // };
 
     try {
-      await axios
-        .post(`http://43.201.189.171:8080/api/products/new/1`, test)
+      await instance
+        .post(`products/new/1`, test)
         // .post(`http://43.201.189.171:8080/api/products/new/1`, sendformData, config)
         .then(function (response) {
           // 성공한 경우 실행
