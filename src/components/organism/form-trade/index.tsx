@@ -12,8 +12,9 @@ import Button from '@components/atom/button-trade';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { transformPrice } from 'src/utils/transformPrice';
 import { useFormData, useFormDataActions, useShowImages } from 'src/store/formData';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { instance } from 'src/apis';
 
 const FormTrade = () => {
   const { id } = useParams();
@@ -35,15 +36,25 @@ const FormTrade = () => {
     }
   }, []);
 
+  // const [files, setFiles] = useState<FileList | null>(null);
+  const [files, setFiles] = useState<string[]>([
+    'https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg',
+    'https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg',
+  ]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const sendformData = new FormData();
 
-    //request로 보내야할 데이터를 formData에 넣어서 보냈다.
-    for (let i = 0; i < formData.product_image_list.length; i++) {
-      sendformData.append('product_image_list', formData.product_image_list[i]);
-    }
+    // if (files) {
+    //   //request로 보내야할 데이터를 formData에 넣어서 보냈다.
+    //   for (let i = 0; i < files.length; i++) {
+    //     sendformData.append('product_image', files[i]);
+    //   }
+    // }
+
+    sendformData.append('product_image', files[0]);
     sendformData.append('product_name', formData.product_name);
     sendformData.append('category_name', formData.category);
     sendformData.append('product_status', formData.product_status);
@@ -51,22 +62,38 @@ const FormTrade = () => {
     sendformData.append('price', formData.price.toString());
     sendformData.append('place', formData.place);
 
-    const url = `${import.meta.env.VITE_SERVER_URL}/products/new/1`;
+    const test = {
+      product_image: files[0],
+      product_name: formData.product_name,
+      category_name: formData.category,
+      product_status: formData.product_status,
+      product_content: formData.product_content,
+      price: formData.price,
+      place: formData.place,
+    };
+    // for (const [key, value] of sendformData.entries()) {
+    //   console.log(key, value);
+    // }
 
-    await axios({
-      method: 'POST',
-      url: url,
+    const url = `${import.meta.env.VITE_SERVER_URL}/products/new/1`;
+    const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-      data: sendformData,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    };
+
+    try {
+      await axios
+        .post(`http://43.201.189.171:8080/api/products/new/1`, test)
+        // .post(`http://43.201.189.171:8080/api/products/new/1`, sendformData, config)
+        .then(function (response) {
+          // 성공한 경우 실행
+          console.log('성공', response);
+        });
+    } catch (e) {
+      console.log('실패', e);
+      console.log(...sendformData);
+    }
 
     console.log(formData);
     resetFormData();
@@ -80,6 +107,7 @@ const FormTrade = () => {
           이미지 업로드 (<span className="sub">{showImages.length}</span>/5)
         </p>
         <ListImage />
+        {/* <ListImage setFiles={setFiles} /> */}
       </FormGroup>
 
       <FormGroup>

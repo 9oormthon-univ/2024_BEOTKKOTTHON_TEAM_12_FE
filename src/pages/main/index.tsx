@@ -22,6 +22,7 @@ import { salesData } from 'src/data/shared';
 import { useSearchActions } from 'src/store/search';
 import { instance } from 'src/apis';
 import { useProductListData } from 'src/store/productListData';
+import axios from 'axios';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -33,12 +34,15 @@ const Main = () => {
 
   const getProductListData = async () => {
     try {
-      const response = await instance.get(
-        `/products?categoryName=${activeCategory}&postStatus=${clickedOnSale}&page=0`
-      );
-      console.log(response.data);
-
-      actions.setInitialProductList(response.data.content);
+      await instance
+        .get(
+          `/products/category?categoryName=${activeCategory}&postStatus=${clickedOnSale}&pageNumber=0`
+        )
+        .then(function (response) {
+          // 성공한 경우 실행
+          console.log('물품 리스트 불러오기 성공', response);
+          actions.setInitialProductList(response.data.content);
+        });
     } catch (e) {
       console.log('물품 리스트 불러오기 실패 ', e);
       actions.setInitialProductList([
@@ -103,13 +107,11 @@ const Main = () => {
   useEffect(() => {
     changeSearchData('');
     setActiveCategory('전체');
-    getProductListData();
   }, []);
 
   useEffect(() => {
-    //getProductListData();
-    setInitalProducts(salesData);
-  }, [getProductListData, activeCategory, clickedOnSale]);
+    getProductListData();
+  }, [activeCategory, clickedOnSale]);
 
   return (
     <>

@@ -3,6 +3,7 @@ import * as S from './style';
 import otcan from '@assets/donation/otcan.svg';
 import beutiful from '@assets/donation/beautiful.svg';
 import goodwill from '@assets/donation/goodwill.svg';
+import { useDonationFormActions } from 'src/store/donationForm';
 
 interface BoxDonationImgProps {
   activeIndex?: number | null;
@@ -11,11 +12,12 @@ interface BoxDonationImgProps {
 
 const BoxDonationImg = ({ activeIndex, setActiveIndex }: BoxDonationImgProps) => {
   const imgUrl = [beutiful, otcan, goodwill];
+  const { setCharityNumber } = useDonationFormActions();
 
   const handleClick = (index: number) => {
     if (setActiveIndex) {
+      setCharityNumber(index);
       setActiveIndex(index);
-      console.log(activeIndex);
     }
   };
 

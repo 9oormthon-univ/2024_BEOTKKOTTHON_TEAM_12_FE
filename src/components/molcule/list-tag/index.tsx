@@ -49,7 +49,9 @@ const ListTag = ({ isform }: ListTagProps) => {
 
   useEffect(() => {
     if (isform) {
-      setActiveCategory(formData.category as string);
+      // setActiveCategory(formData.category as string);
+    } else {
+      console.log('list-tag / activeCategory', activeCategory);
     }
   }, [formData.category, isform]);
 

@@ -1,8 +1,13 @@
 import * as S from './style';
 import image from '@assets/icons/image.svg';
+import { Dispatch, SetStateAction } from 'react';
 import { useFormDataActions, useShowImages } from 'src/store/formData';
 
-const BoxUpload = () => {
+interface BoxUploadProps {
+  setFiles?: Dispatch<SetStateAction<FileList>>;
+}
+
+const BoxUpload = ({ setFiles }: BoxUploadProps) => {
   const showImages = useShowImages();
   const { setFormData, setShowImages } = useFormDataActions();
 
@@ -21,6 +26,7 @@ const BoxUpload = () => {
         imageUrlLists = imageUrlLists.slice(0, 5);
       }
       setShowImages(imageUrlLists);
+      // setFiles(files);
       setFormData('product_image_list', files);
     }
   };
