@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import { salesData } from 'src/data/shared';
 import { instance } from 'src/apis';
 import { useProduct, useProductActions } from 'src/store/product';
+import { useUserProfileInfo } from 'src/store/userData';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -24,12 +25,13 @@ const ProductDetail = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const product = useProduct();
   const { setProduct, updateOnSale } = useProductActions();
+  const userProfileInfo = useUserProfileInfo();
 
-  const url = `/products/${id}`;
+  const userId = 1;
 
   const getData = async () => {
     await instance
-      .get(url)
+      .get(`/products/${id}`)
       .then((response) => {
         console.log('데이터 가져오기 성공', response);
         setProduct(response.data);
@@ -85,7 +87,10 @@ const ProductDetail = () => {
   /**게시글 삭제 api 호출 */
   const handleDeleteProduct = async () => {
     await instance
-      .delete(`/products/delete/${id}`)
+      .delete(`/products/delete/${userId}`, {
+        // id: id as string,
+        // post_status: 'soldOut',
+      })
       .then((response) => {
         console.log('글 삭제 성공', response);
         navigate('/product');
@@ -95,7 +100,7 @@ const ProductDetail = () => {
       });
     navigate('/product');
   };
-
+  console.log(userProfileInfo.nick_name);
   return (
     <>
       {' '}
@@ -120,16 +125,16 @@ const ProductDetail = () => {
           onClick={() => setOpenKebab(!openKebab)}
         />
       </Header>
-      {/* 로그인 된 상태 && 다른 유저 상품*/}
-      {/* {openKebab && (
-          <BoxKebabList>
-            <p>차단하기</p>
-            <p className="red">신고하기</p>
-          </BoxKebabList>
-        )} */}
       {product && (
         <>
+          {/* {openKebab && product.seller?.nick_name !== userProfileInfo.nick_name && (
+            <BoxKebabList>
+              <p>차단하기</p>
+              <p className="red">신고하기</p>
+            </BoxKebabList>
+          )} */}
           {openKebab && (
+            // {openKebab && product.seller?.nick_name === userProfileInfo.nick_name && (
             <BoxKebabList>
               <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
               {product.post_status === 'onSale' ? (
