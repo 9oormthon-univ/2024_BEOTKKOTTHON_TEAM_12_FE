@@ -8,4 +8,8 @@ export default defineConfig({
     outDir: 'build', // 빌드 결과물이 저장될 디렉터리를 'build'로 지정
   },
   plugins: [react(), tsconfigPaths()],
+  //global not fine 해결
+  define: {
+    global: {},
+  },
 });
