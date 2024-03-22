@@ -6,11 +6,12 @@ import main from '@assets/magazine/quiz_page.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { quizData } from 'src/data/shared';
+import { instance } from 'src/apis';
 
 let totalPoints = 0;
 
 const QuizPage = () => {
-  const answer = [3, 4];
+  const answer = [3, 3];
   const quizDatas = [...quizData];
   const [submitAnswer, setSubmitAnswer] = useState<number[]>([0, 0]);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -18,6 +19,9 @@ const QuizPage = () => {
   const [markAnswer, setMarkAnswer] = useState<boolean>(false);
 
   const navigate = useNavigate();
+
+  // 유저 아이디 수정 필요
+  const userId = 1;
 
   useEffect(() => {
     setIsDisabled(submitAnswer.some((item) => item === 0));
@@ -27,7 +31,7 @@ const QuizPage = () => {
     totalPoints = 0;
   }, []);
 
-  const handleClick = () => {
+  const handleClickShowAnswer = async () => {
     for (let i = 0; i < submitAnswer.length; i++) {
       if (submitAnswer[i] === answer[i]) {
         totalPoints += 1;
@@ -35,6 +39,15 @@ const QuizPage = () => {
     }
 
     // 총합 totalpoint를 서버에 전송
+    await instance
+      .post(`magazine/${userId}?score=${totalPoints}`)
+      .then((response) => {
+        console.log('퀴즈 점수 등록 성공', response);
+      })
+      .catch((e) => {
+        console.log('퀴즈 점수 등록 실패', e);
+      });
+
     setOpenModal(true);
   };
 
@@ -86,7 +99,7 @@ const QuizPage = () => {
             fontSize="16px"
             $padding="16px"
             disabled={isDisabled}
-            handleOnClick={handleClick}
+            handleOnClick={handleClickShowAnswer}
           >
             정답 확인
           </Button>

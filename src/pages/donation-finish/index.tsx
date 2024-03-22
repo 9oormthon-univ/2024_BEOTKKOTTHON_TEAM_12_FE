@@ -3,19 +3,29 @@ import * as S from './style';
 import { Button } from '@components/index';
 import logo from '@assets/logo/donation-logo.svg';
 import { instance } from 'src/apis';
-import { useDonationStore } from 'src/store/donationForm';
+import { useCharityNumber, useDonationForm } from 'src/store/donationForm';
 import { useEffect } from 'react';
 
 const DonationFinish = () => {
-  const donationData = useDonationStore();
-  console.log(donationData.formData);
+  const donationForm = useDonationForm();
+  const charityNumber = useCharityNumber();
   const userId = '1';
-  const charityNumber = '1';
+
+  const sendData = {
+    user_name: donationForm.name,
+    address: donationForm.addr1 + ' ' + donationForm.addr2,
+    phone: donationForm.phone1 + '-' + donationForm.phone2 + '-' + donationForm.phone3,
+    email: donationForm.email1 + '@' + donationForm.email2,
+    donation_item: donationForm.sort,
+    clothes_count: donationForm.clothes_num,
+    fashion_count: donationForm.goods_num,
+    box_count: donationForm.box_num,
+  };
 
   const postDonationData = async () => {
     try {
       const response = await instance.post(`/donations/${userId}?charity=${charityNumber}`, {
-        donationData,
+        sendData,
       });
       console.log(response.data);
     } catch (error) {

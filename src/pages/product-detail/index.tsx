@@ -11,34 +11,75 @@ import * as S from './style';
 import arrow from '@assets/icons/left_btn.svg';
 import kebab from '@assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Product } from 'src/types/types';
+import { Seller } from 'src/types/types';
 import { useEffect, useState } from 'react';
 import { salesData } from 'src/data/shared';
+import { instance } from 'src/apis';
+import { useProduct, useProductActions } from 'src/store/product';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const product = useProduct();
+  const { setProduct } = useProductActions();
 
-  // 서버에서 가져온 데이터로 수정해야 함
-  const product = salesData[0];
-  // const url = `${import.meta.env.VITE_SERVER_URL}/products/${id}`;
+  const url = `/products/${id}`;
 
-  const handleHideClick = async () => {
-    // const res = axios.put(url, body, {
-    //   header:
-    // })
+  const getData = async () => {
+    await instance
+      .get(url)
+      .then((response) => {
+        console.log('데이터 가져오기 성공', response);
+        setProduct(response.data);
+      })
+      .catch((e) => {
+        console.log('데이터 가져오기 실패', e);
+        setProduct(salesData[0]);
+      });
   };
 
   useEffect(() => {
     // 데이터 저장
-  }, [id]);
+    getData();
+  }, []);
+
+  const handleOnSaleClick = async () => {
+    await instance
+      .put(`/products/soldOut/${id}`, { product_stauts: 'soldOut' })
+      .then((response) => {
+        console.log('판매 완료 변경 성공', response);
+      })
+      .catch((e) => {
+        console.log('판매 완료 변경 실패', e);
+      });
+  };
+
+  const handleHideClick = async () => {
+    await instance
+      .put(`/products/private/${id}`, {
+        is_private: true,
+      })
+      .then((response) => {
+        console.log('글 숨기기 성공', response);
+      })
+      .catch((e) => {
+        console.log('글 숨기기 실패', e);
+      });
+  };
 
   /**게시글 삭제 api 호출 */
-  const handleDeleteProduct = async (id: number) => {
-    // const res = axios.delete(url);
-    console.log(`삭제할 게시글 아이디 : ${id}`);
+  const handleDeleteProduct = async () => {
+    await instance
+      .delete(`/products/delete/${id}`)
+      .then((response) => {
+        console.log('글 삭제 성공', response);
+      })
+      .catch((e) => {
+        console.log('글 삭제 실패', e);
+      });
+    navigate('/product');
   };
 
   return (
@@ -77,36 +118,43 @@ const ProductDetail = () => {
             <p className="red">신고하기</p>
           </BoxKebabList>
         )} */}
-      {openKebab && (
-        <BoxKebabList>
-          <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
-          <p>판매 완료로 변경</p>
-          <p onClick={handleHideClick}>글 숨기기</p>
-          <p className="red" onClick={() => setOpenModal(!openModal)}>
-            삭제
-          </p>
-        </BoxKebabList>
-      )}
-      <S.Content>
-        <section className="profile">
-          <BoxProductProfile />
-        </section>
+      {product && (
+        <>
+          {openKebab && (
+            <BoxKebabList>
+              <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
+              <p onClick={handleOnSaleClick}>판매 완료로 변경</p>
+              <p onClick={handleHideClick}>글 숨기기</p>
+              <p className="red" onClick={() => setOpenModal(!openModal)}>
+                삭제
+              </p>
+            </BoxKebabList>
+          )}
+          <S.Content>
+            <section className="profile">
+              <BoxProductProfile user={product.seller as Seller} />
+            </section>
 
-        <S.SectionScroll>
-          <section className="product-image">
-            <Carousel $dot="13px" $width="100%" $height="314px">
-              {product.product_image_list.map((url, i) => (
-                <img src={url} alt={`img-${i}`} key={i} />
-              ))}
-            </Carousel>
-          </section>
+            <S.SectionScroll>
+              <section className="product-image">
+                <Carousel $dot="13px" $width="100%" $height="314px">
+                  {/* 이미지 부분 리스트로 수정해야함 */}
+                  {/* {product.product_image.map((url, i) => (
+                    <img src={url} alt={`img-${i}`} key={i} />
+                  ))} */}
 
-          <section className="description">
-            <DescriptionProduct product={product as Product} />
-          </section>
-        </S.SectionScroll>
-      </S.Content>
-      <FooterProductDetail product={product as Product} />
+                  <img src={product.product_image} alt={`img`} />
+                </Carousel>
+              </section>
+
+              <section className="description">
+                <DescriptionProduct product={product} />
+              </section>
+            </S.SectionScroll>
+          </S.Content>
+          <FooterProductDetail product={product} />
+        </>
+      )}{' '}
     </>
   );
 };
