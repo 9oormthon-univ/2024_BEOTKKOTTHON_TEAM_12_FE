@@ -15,9 +15,10 @@ const FooterProductDetail = ({ product }: FooterProductDetailProps) => {
       <p className="price">{transformPrice(product.price as number)}원</p>
       <Button
         width="280"
-        $bgcolor={product.post_status === '판매완료' ? 'var(--grey-3)' : 'var(--green-6)'}
-        color={product.post_status === '판매완료' ? 'var(--grey-5)' : 'white'}
+        $bgcolor={product.post_status === 'soldOut' ? 'var(--grey-3)' : 'var(--green-6)'}
+        color={product.post_status === 'soldOut' ? 'var(--grey-5)' : 'white'}
         children="채팅하기"
+        disabled={product.post_status === 'soldOut'}
       />
     </S.Container>
   );
