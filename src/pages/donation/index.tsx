@@ -1,4 +1,4 @@
-import { BoxDonationImg, Nav, Ranking, TextLabel, KakaoMap, Header } from '@components/index';
+import { BoxDonationImg, Nav, Ranking, TextLabel, Header } from '@components/index';
 import * as S from './style';
 import logo from '@assets/logo/logo.svg';
 import notifications from '@assets/icons/notifications.svg';
@@ -13,24 +13,6 @@ const Donation = () => {
       <S.Content>
         <section className="ranking">
           <Ranking />
-        </section>
-
-        <section className="ranking">
-          <S.MapWrapper>
-            <TextLabel
-              text="직접 방문해서 기부하고 싶다면?"
-              size={16}
-              $weight={700}
-              color="var(--grey-7)"
-            />
-            <TextLabel
-              text="아래 지도를 참고하여 근처 아름다운 가게에 방문해보아요."
-              size={12}
-              $weight={400}
-              color="var(--grey-7)"
-            />
-            <KakaoMap />
-          </S.MapWrapper>
         </section>
 
         <section className="partner">
