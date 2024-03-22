@@ -32,3 +32,6 @@ export const MapWrapper = styled.div`
   gap: 5px;
   background-color: white;
 `;
+export const ImageWrapper = styled.div`
+  padding: 0px 33px 20px 33px;
+`;
