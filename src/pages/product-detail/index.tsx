@@ -50,7 +50,7 @@ const ProductDetail = () => {
   const handleOnSaleClick = async () => {
     if (product?.post_status === 'onSale') {
       await instance
-        .put(`/products/soldOut/${id}`, { id: id, product_stauts: 'soldOut' })
+        .put(`/products/soldOut/${userId}`, { id: id, product_stauts: 'soldOut' })
         .then((response) => {
           console.log('판매 완료 변경 성공', response);
           updateOnSale('soldOut');
