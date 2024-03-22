@@ -3,16 +3,19 @@ import * as S from './style';
 import back from '@assets/icons/left_btn.svg';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useActiveCategory, useClickedOnSale, useProductsActions } from 'src/store/products';
-// import axios from 'axios';
 import { useSearchData } from 'src/store/search';
-import { instance } from 'src/apis';
+import {
+  useActiveCategory,
+  useClickedOnSale,
+  useProductListActions,
+} from 'src/store/productListData';
+// import { instance } from 'src/apis';
 
 const SearchResult = () => {
   const clickedOnSale = useClickedOnSale();
   const activeCategory = useActiveCategory();
   const searchData = useSearchData();
-  const { setActiveCategory } = useProductsActions();
+  const { setActiveCategory } = useProductListActions();
 
   // const getData = async () => {
   //   await instance.get()

@@ -16,21 +16,21 @@ import productImg2 from '@assets/images/product-image2.svg';
 import productImg3 from '@assets/images/product-image3.svg';
 import productImg4 from '@assets/images/product-image4.svg';
 import { useEffect } from 'react';
-import { useActiveCategory, useClickedOnSale, useProductsActions } from 'src/store/products';
-import { salesData } from 'src/data/shared';
-// import axios from 'axios';
 import { useSearchActions } from 'src/store/search';
 import { instance } from 'src/apis';
-import { useProductListData } from 'src/store/productListData';
-import axios from 'axios';
+import {
+  useActiveCategory,
+  useClickedOnSale,
+  useProductListActions,
+} from 'src/store/productListData';
 
 const Main = () => {
   const navigate = useNavigate();
   const clickedOnSale = useClickedOnSale();
   const { changeSearchData } = useSearchActions();
-  const { setInitalProducts, setActiveCategory } = useProductsActions();
   const activeCategory = useActiveCategory();
-  const { actions } = useProductListData();
+  const { setActiveCategory } = useProductListActions();
+  const { setInitialProductList } = useProductListActions();
 
   const getProductListData = async () => {
     try {
@@ -41,11 +41,11 @@ const Main = () => {
         .then(function (response) {
           // 성공한 경우 실행
           console.log('물품 리스트 불러오기 성공', response);
-          actions.setInitialProductList(response.data.content);
+          setInitialProductList(response.data.content);
         });
     } catch (e) {
       console.log('물품 리스트 불러오기 실패 ', e);
-      actions.setInitialProductList([
+      setInitialProductList([
         {
           id: 1,
           price: 10000,

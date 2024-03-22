@@ -2,11 +2,11 @@ import { useState } from 'react';
 import * as S from './style';
 import checkgreen from '@assets/icons/check_circle_green.svg';
 import checkgrey from '@assets/icons/check_circle_grey.svg';
-import { useAllProducts, useProductsActions } from 'src/store/products';
+import { useProductList, useProductListActions } from 'src/store/productListData';
 
 const FilterTrade = () => {
-  const allProducts = useAllProducts();
-  const { setClickedOnSale } = useProductsActions();
+  const productList = useProductList();
+  const { setClickedOnSale } = useProductListActions();
   const [active, setActive] = useState<boolean>(false);
 
   const handleClick = () => {
@@ -16,7 +16,7 @@ const FilterTrade = () => {
 
   return (
     <S.Container>
-      <p>상품 {allProducts.length}개</p>
+      <p>상품 {productList.length}개</p>
 
       <S.Filter onClick={handleClick} $active={active}>
         {active ? (

@@ -11,11 +11,11 @@ import * as S from './style';
 import arrow from '@assets/icons/left_btn.svg';
 import kebab from '@assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Product, Seller } from 'src/types/types';
+import { Seller } from 'src/types/types';
 import { useEffect, useState } from 'react';
 import { salesData } from 'src/data/shared';
 import { instance } from 'src/apis';
-import { useProduct, useProductActions } from 'src/store/newProduct';
+import { useProduct, useProductActions } from 'src/store/product';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -36,6 +36,7 @@ const ProductDetail = () => {
       })
       .catch((e) => {
         console.log('데이터 가져오기 실패', e);
+        setProduct(salesData[0]);
       });
   };
 

@@ -1,8 +1,8 @@
 import { categories } from 'src/data/shared';
 import { useEffect, useState } from 'react';
 import { BoxTag, Tag } from '@components/index';
-import { useActiveCategory, useProductsActions } from 'src/store/products';
 import { useFormData, useFormDataActions } from 'src/store/formData';
+import { useActiveCategory, useProductListActions } from 'src/store/productListData';
 // 받아온 정보와 일치하는 카테고리 색상
 interface ListTagProps {
   isform?: boolean;
@@ -13,7 +13,7 @@ const ListTag = ({ isform }: ListTagProps) => {
   const { setFormData } = useFormDataActions();
 
   const activeCategory = useActiveCategory();
-  const { setActiveCategory } = useProductsActions();
+  const { setActiveCategory } = useProductListActions();
 
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
