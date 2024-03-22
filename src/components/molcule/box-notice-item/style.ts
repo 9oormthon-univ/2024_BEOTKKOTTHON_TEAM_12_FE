@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 45px;
-
+  word-break: keep-all;
   .smile {
     margin-bottom: 40px;
   }

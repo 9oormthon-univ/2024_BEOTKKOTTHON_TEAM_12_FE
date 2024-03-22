@@ -60,7 +60,8 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
             $bgcolor="var(--grey-4)"
             fontSize="16px"
             handleOnClick={() => {
-              if (addr2Ref.current) addr2Ref.current.focus();
+              setFormData('addr1', '서울시 행복구 소망동');
+              setFormData('addr2', '104동 1004호');
             }}
           >
             검색

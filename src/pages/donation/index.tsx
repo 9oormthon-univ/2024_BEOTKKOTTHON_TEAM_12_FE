@@ -2,6 +2,7 @@ import { BoxDonationImg, Nav, Ranking, TextLabel, KakaoMap, Header } from '@comp
 import * as S from './style';
 import logo from '@assets/logo/logo.svg';
 import notifications from '@assets/icons/notifications.svg';
+
 const Donation = () => {
   return (
     <>
@@ -23,7 +24,7 @@ const Donation = () => {
               color="var(--grey-7)"
             />
             <TextLabel
-              text="아래 지도를 참고하여 근처 아름다우 가게에 방문해보아요."
+              text="아래 지도를 참고하여 근처 아름다운 가게에 방문해보아요."
               size={12}
               $weight={400}
               color="var(--grey-7)"
@@ -43,9 +44,9 @@ const Donation = () => {
             />
           </S.MapWrapper>
 
-          <div className="partner-box">
+          <S.ImageWrapper>
             <BoxDonationImg />
-          </div>
+          </S.ImageWrapper>
         </section>
       </S.Content>
       <Nav currentTab="홈" />
