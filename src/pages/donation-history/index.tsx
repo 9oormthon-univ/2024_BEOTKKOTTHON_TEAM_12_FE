@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import arrow from '@assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import { Checkbox, Header, TextLabel } from '@components/index';
+import { instance } from 'src/apis';
 
 const DonationHistory = () => {
   const navigate = useNavigate();
@@ -11,6 +12,31 @@ const DonationHistory = () => {
     { date: '2024.03.23', record: '의류 56 / 잡화 0', status: '완료' },
     { date: '2024.03.24', record: '의류 56 / 잡화 0', status: '완료' },
   ];
+
+  type donationDataType = {
+    id: number;
+    date: string;
+    clothes_count: number;
+    fashion_count: number;
+    is_donation_complete: boolean;
+  };
+  const [donationData, setDonationData] = useState<donationDataType[]>([]);
+
+  const userId = `1`;
+
+  const getDonationHistory = async () => {
+    try {
+      const response = await instance.get(`/users/myDonations/${userId}`);
+      console.log('기부 내역 불러오기 성공:', response.data);
+      setDonationData(response.data);
+    } catch (error) {
+      console.error('기부 내역 불러오기 실패:', error);
+    }
+  };
+
+  useEffect(() => {
+    getDonationHistory();
+  }, []);
 
   const [showCompletedOnly, setShowCompletedOnly] = useState(false);
 
@@ -39,17 +65,24 @@ const DonationHistory = () => {
           </S.TableRow>
         </S.TableHead>
         <tbody>
-          {data
-            .filter((row) => !showCompletedOnly || row.status === '완료')
-            .map((row, index) => (
-              <S.TableRow key={index}>
-                <S.TableCell>{row.date}</S.TableCell>
-                <S.TableCell>{row.record}</S.TableCell>
-                <S.TableCell style={{ color: row.status === '완료' ? 'var(--green-primary)' : '' }}>
-                  {row.status}
-                </S.TableCell>
-              </S.TableRow>
-            ))}
+          {donationData
+            .filter((row) => !showCompletedOnly || row.is_donation_complete)
+            .map((row, index) => {
+              console.log(row);
+              return (
+                <S.TableRow key={index}>
+                  <S.TableCell>{row.date}</S.TableCell>
+                  <S.TableCell>
+                    의류 {row.clothes_count} / 잡화 {row.fashion_count}
+                  </S.TableCell>
+                  <S.TableCell
+                    style={{ color: row.is_donation_complete ? 'var(--green-primary)' : '' }}
+                  >
+                    {row.is_donation_complete ? '완료' : '진행 중'}
+                  </S.TableCell>
+                </S.TableRow>
+              );
+            })}
         </tbody>
       </S.Table>
     </S.Container>

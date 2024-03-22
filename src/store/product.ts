@@ -3,6 +3,7 @@ import { create } from 'zustand';
 
 interface Actions {
   setProduct: (newProducts: Product) => void;
+  updateOnSale: (status: string) => void;
 }
 
 interface ProductsStore {
@@ -14,6 +15,10 @@ export const useProductStore = create<ProductsStore>((set) => ({
   product: null,
   actions: {
     setProduct: (newProduct) => set(() => ({ product: newProduct })),
+    updateOnSale: (status) =>
+      set((state) => ({
+        product: state.product ? { ...state.product, post_status: status } : null,
+      })),
   },
 }));
 

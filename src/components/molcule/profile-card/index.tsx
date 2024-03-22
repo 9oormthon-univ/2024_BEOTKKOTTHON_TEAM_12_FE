@@ -1,36 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as S from './style';
 import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
 import defaultImg from '@assets/images/profile-default-image.svg';
 import arrow from '@assets/icons/arrow.svg';
 import { levelUrlArr } from 'src/utils/levelUrlArr';
 import { useNavigate } from 'react-router-dom';
-import useStore, { useUserProfileInfo } from '../../../store/userData';
-import { instance } from 'src/apis';
+import { useUserProfileInfo } from '../../../store/userData';
 
 const ProfileCard: React.FC = () => {
-  const { updateUserProfileInfo } = useStore();
   const navigate = useNavigate();
   const userProfile = useUserProfileInfo();
-
-  // 로그인된 사용자 id 필요
-  const userId = 1;
-
-  const getData = async () => {
-    await instance
-      .get(`users/${userId}`)
-      .then((res) => {
-        console.log('마이페이지 데이터 가져오기 성공', res);
-        updateUserProfileInfo(res.data);
-      })
-      .catch((e) => {
-        console.log('마이페이지 데이터 가져오기 실패', e);
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   const onModifyProfile = () => {
     navigate('/mypage/profile-edit');
