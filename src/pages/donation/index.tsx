@@ -1,9 +1,14 @@
-import { BoxDonationImg, Nav, Ranking, TextLabel, KakaoMap } from '@components/index';
+import { BoxDonationImg, Nav, Ranking, TextLabel, KakaoMap, Header } from '@components/index';
 import * as S from './style';
-
+import logo from '@assets/logo/logo.svg';
+import notifications from '@assets/icons/notifications.svg';
 const Donation = () => {
   return (
     <>
+      <Header>
+        <img src={logo} alt="logo" />
+        <img className="right" src={notifications} alt="notifications" />
+      </Header>
       <S.Content>
         <section className="ranking">
           <Ranking />
@@ -41,7 +46,6 @@ const Donation = () => {
           <BoxDonationImg />
         </section>
       </S.Content>
-
       <Nav currentTab="기부" />
     </>
   );
