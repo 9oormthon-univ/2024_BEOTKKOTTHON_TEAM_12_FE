@@ -17,7 +17,7 @@ const DonationHistory = () => {
   const navigate = useNavigate();
   const [donationData, setDonationData] = useState<donationDataType[]>([]);
 
-  const userId = `1`;
+  const userId = `10`;
 
   const getDonationHistory = async () => {
     try {
