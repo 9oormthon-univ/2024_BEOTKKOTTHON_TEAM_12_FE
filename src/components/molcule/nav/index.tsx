@@ -1,8 +1,6 @@
 import * as S from './style';
 import chatting_green from '@assets/nav-icons/chatting_green.svg';
 import chatting_grey from '@assets/nav-icons/chatting_grey.svg';
-import donation_green from '@assets/nav-icons/donation_green.svg';
-import donation_grey from '@assets/nav-icons/donation_grey.svg';
 import home_green from '@assets/nav-icons/home_green.svg';
 import home_grey from '@assets/nav-icons/home_grey.svg';
 import magazine_green from '@assets/nav-icons/magazine_green.svg';
