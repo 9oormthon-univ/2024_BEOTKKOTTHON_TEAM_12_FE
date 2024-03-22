@@ -46,22 +46,6 @@ const SignUp: React.FC = () => {
     universityEmail: '',
   });
 
-  const styleTags = [
-    '심플베이직',
-    '캐주얼',
-    '모던시크',
-    '러블리',
-    '로맨틱',
-    '유니크',
-    '빈티지',
-    '페미닌',
-    '오피스룩',
-    '캠퍼스룩',
-    '스트릿',
-    '섹시글램',
-    '아메카지',
-  ];
-
   /*재학생 인증 */
   const postVerificationEmail = async () => {
     try {
@@ -313,11 +297,7 @@ const SignUp: React.FC = () => {
                 color={'var(--grey-7)'}
               ></TextLabel>
             </S.PasswordInputWrapper>
-            <TagInput
-              styleTags={styleTags}
-              label="스타일 태그 선택"
-              setButtonColor={setButtonColor}
-            />
+            <TagInput label="스타일 태그 선택" setButtonColor={setButtonColor} />
             <S.ButtonWrapper>
               <Button
                 handleOnClick={goToNextTab}

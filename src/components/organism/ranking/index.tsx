@@ -10,7 +10,7 @@ const Ranking = () => {
       <S.Header>
         <div className="title">
           <p>대학교별 환경 점수 TOP 5</p>
-          <img src={levelUrlArr(2)} alt="icon" />
+          <img src={levelUrlArr('새싹')} alt="icon" />
         </div>
         <p className="time">03.11 16:00 기준</p>
       </S.Header>

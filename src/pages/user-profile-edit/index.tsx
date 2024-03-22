@@ -81,7 +81,7 @@ const UserProfileEdit = () => {
         onChange={handleNickNameChange}
       />
       <ImageInput image={userProfileApiInfo.profile_image} />
-      <TagInput userStyleTags={userProfileApiInfo.style} />
+      <TagInput />
     </>
   );
 };

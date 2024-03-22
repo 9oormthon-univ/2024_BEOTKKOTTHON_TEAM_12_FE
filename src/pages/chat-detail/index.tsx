@@ -157,7 +157,7 @@ const ChatDetail = () => {
           <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
           <S.NickNameContainer>
             <TextLabel text={otherUser} size={18} $weight={700} />
-            <img src={levelUrlArr(1)} alt="level" />
+            <img src={levelUrlArr('새싹')} alt="level" />
           </S.NickNameContainer>
           <img
             src={kebab}
