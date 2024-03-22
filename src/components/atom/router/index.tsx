@@ -63,7 +63,7 @@ const Router = () => {
 
       {/* 채팅 */}
       <Route path="/chat-home" element={<ChatHome />} />
-      <Route path="/chat-detail/:id" element={<ChatDetail />} />
+      <Route path="/chat-detail" element={<ChatDetail />} />
 
       {/* 매거진 */}
       <Route path="magazine" element={<Magazine />} />

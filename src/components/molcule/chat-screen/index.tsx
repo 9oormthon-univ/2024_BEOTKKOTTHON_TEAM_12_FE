@@ -15,9 +15,10 @@ interface ChatScreenProps {
     isMine: boolean;
     profilePic: string;
   }[];
+  userImage: string;
 }
 
-const ChatScreen: React.FC<ChatScreenProps> = ({ messages }) => {
+const ChatScreen: React.FC<ChatScreenProps> = ({ messages, userImage }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,15 +31,16 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ messages }) => {
 
   return (
     <ChatContainer>
-      {messages.map((msg) => (
-        <ChatMessage
-          key={msg.id}
-          content={msg.content}
-          timestamp={msg.timestamp}
-          isMine={msg.isMine}
-          profilePic={msg.profilePic}
-        />
-      ))}
+      {messages &&
+        messages.map((msg) => (
+          <ChatMessage
+            key={msg.id}
+            content={msg.content}
+            timestamp={msg.timestamp}
+            isMine={msg.isMine}
+            profilePic={msg.profilePic ? msg.profilePic : userImage}
+          />
+        ))}
       {/* ref를 줄 div*/}
       <div ref={messagesEndRef} />
     </ChatContainer>
