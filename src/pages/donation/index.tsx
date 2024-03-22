@@ -49,7 +49,7 @@ const Donation = () => {
           </S.ImageWrapper>
         </section>
       </S.Content>
-      <Nav currentTab="기부" />
+      <Nav currentTab="홈" />
     </>
   );
 };

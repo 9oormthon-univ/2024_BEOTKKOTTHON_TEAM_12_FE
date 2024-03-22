@@ -4,6 +4,7 @@ import { Product } from 'src/types/types';
 import clothes from '@assets/onboarding/clothes.svg';
 import donation from '@assets/onboarding/donation.svg';
 import earth from '@assets/onboarding/earth.svg';
+import tag from '@assets/onboarding/tag.svg';
 
 // 카테고리, 최근 검색어
 export const categories = ['전체', '상의', '하의', '아우터', '원피스', '가방', '잡화', '기타'];
@@ -230,7 +231,7 @@ export const quizData = [
     point: 1,
     question:
       '환경을 위협하는 쓰레기를 배출하지 않고 책임감 있는 생간, 소비 등 다양한 방법을 통해 자원을 보존하는 것을 일컫는 용어는?',
-    list: ['세컨슈머', '콘슈머', '뉴제로', '시컨슈머', '마그네슘'],
+    list: ['세컨슈머', '콘슈머', '제로 웨이스트', '시컨슈머', '마그네슘'],
     answer: 3,
   },
 ];
@@ -256,6 +257,15 @@ export const onboardingData = [
     description: [
       '중고 거래와 기부를 하면 쌓이는 환경 점수!',
       '대학별 환경 점수 순위도 확인해보세요.',
+    ],
+  },
+  {
+    img_url: tag,
+    num: 4,
+    title: '나의 패션 취향을 알아주는 WEAR',
+    description: [
+      '나의 스타일 태그를 등록하고 패션 취향이',
+      '비슷한 사용자의 상품을 먼저 확인해보세요.',
     ],
   },
 ];

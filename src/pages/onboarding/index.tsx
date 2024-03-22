@@ -120,7 +120,7 @@ const Onboarding = () => {
         </S.DotContainer>
       </S.Content>
 
-      {activeIndex === 2 && (
+      {activeIndex === 3 && (
         <S.BoxButton>
           <Button
             width="100%"

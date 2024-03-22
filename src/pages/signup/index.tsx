@@ -411,7 +411,7 @@ const SignUp: React.FC = () => {
           {' '}
           <Header>
             <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={goToPreviousTab} />
-            <img src={x} className="right" alt="btn-back" onClick={() => navigate('/product')} />
+            <img src={x} className="right" alt="btn-back" onClick={() => navigate('/donation')} />
           </Header>
           <S.Container>
             <S.TabContainer>

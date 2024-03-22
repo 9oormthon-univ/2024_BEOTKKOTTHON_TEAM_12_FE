@@ -1,20 +1,20 @@
 import * as S from './style';
 import chatting_green from '@assets/nav-icons/chatting_green.svg';
 import chatting_grey from '@assets/nav-icons/chatting_grey.svg';
-import donation_green from '@assets/nav-icons/donation_green.svg';
-import donation_grey from '@assets/nav-icons/donation_grey.svg';
 import home_green from '@assets/nav-icons/home_green.svg';
 import home_grey from '@assets/nav-icons/home_grey.svg';
 import magazine_green from '@assets/nav-icons/magazine_green.svg';
 import magazine_grey from '@assets/nav-icons/magazine_grey.svg';
 import profile_green from '@assets/nav-icons/profile_green.svg';
 import profile_grey from '@assets/nav-icons/profile_grey.svg';
+import trade_green from '@assets/nav-icons/trade_green.svg';
+import trade_grey from '@assets/nav-icons/trade_grey.svg';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const names = ['홈', '기부', '매거진', '채팅', '프로필'];
-const greenNav = [home_green, donation_green, magazine_green, chatting_green, profile_green];
-const greyNav = [home_grey, donation_grey, magazine_grey, chatting_grey, profile_grey];
+const names = ['홈', '거래하기', '매거진', '채팅', '마이페이지'];
+const greenNav = [home_green, trade_green, magazine_green, chatting_green, profile_green];
+const greyNav = [home_grey, trade_grey, magazine_grey, chatting_grey, profile_grey];
 
 interface NavProps {
   currentTab: string;
@@ -51,10 +51,10 @@ const Nav: React.FC<NavProps> = ({ currentTab }) => {
 
     switch (i) {
       case 0:
-        navigate('/product');
+        navigate('/donation');
         break;
       case 1:
-        navigate('/donation');
+        navigate('/product');
         break;
       case 2:
         navigate('/magazine');
