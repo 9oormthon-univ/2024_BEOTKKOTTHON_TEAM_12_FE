@@ -35,7 +35,7 @@ const MyPage: React.FC = () => {
         <UserSection />
         <MenuItem />
       </S.MenuItemWrapper>
-      <Nav currentTab="프로필" />
+      <Nav currentTab="마이페이지" />
     </>
   );
 };

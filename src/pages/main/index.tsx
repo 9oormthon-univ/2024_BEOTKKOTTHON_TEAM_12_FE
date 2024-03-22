@@ -142,7 +142,7 @@ const Main = () => {
         </Link>
       </S.Content>
 
-      <Nav currentTab="홈" />
+      <Nav currentTab="거래하기" />
     </>
   );
 };
