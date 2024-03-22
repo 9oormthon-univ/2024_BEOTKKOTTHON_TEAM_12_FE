@@ -69,7 +69,8 @@ export const Link = styled.span`
 export const LinkWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  align-items: center;
+  width: 80%;
   margin-top: 15px;
 `;
 
