@@ -55,3 +55,7 @@ export const Text = styled.div`
     color: black;
   }
 `;
+
+export const MarginBox = styled.div`
+  margin-top: 10px;
+`;

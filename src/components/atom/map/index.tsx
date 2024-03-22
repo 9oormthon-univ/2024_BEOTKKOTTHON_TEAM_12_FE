@@ -100,10 +100,9 @@ const KakaoMap = () => {
   }, [mapRef]);
 
   const mapStyle = {
-    width: '335px',
-    height: '335px',
+    width: '100%',
+    height: '74svh',
     margin: '15px 0',
-    borderRadius: '10px',
   };
 
   return (
@@ -113,11 +112,17 @@ const KakaoMap = () => {
         {selectedPlace && (
           <PlaceInfo>
             <PlaceName>{selectedPlace.place_name}</PlaceName>
-            <hr />
+            <hr style={{ borderColor: 'var(--grey-4)' }} />
             <PlaceDetail>{selectedPlace.road_address_name}</PlaceDetail>
             <PlaceDetail>{selectedPlace.phone}</PlaceDetail>
             <a href={selectedPlace.place_url} target="_blank" rel="noreferrer">
-              <StyleBtn>카카오 지도로 보기</StyleBtn>
+              <StyledButton>
+                <StyledImage
+                  src="https://developers.kakao.com/tool/resource/static/img/logo/map/kakaomap_basic.png"
+                  alt="KakaoMap"
+                />
+                카카오 지도로 보기
+              </StyledButton>
             </a>
           </PlaceInfo>
         )}
@@ -134,28 +139,43 @@ const PlaceInfo = styled.div`
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
-  width: 250px;
+  width: 85%;
   padding: 20px;
   border-radius: 16px;
   background-color: white;
 `;
+
 const PlaceName = styled.div`
   font-size: 13px;
   font-weight: bold;
 `;
+
 const PlaceDetail = styled.div`
   font-size: 11px;
   margin-bottom: 10px;
 `;
-const StyleBtn = styled.button`
+
+const StyledButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: 16px 0;
+  padding: 16px 10px;
   border-radius: 10px;
-  font-size: 15px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  background-color: #f8e04c;
+  color: var(--grey-7);
+  font-weight: bold;
   transition: all 300ms ease-in-out;
-  background-color: var(--green-6);
-  color: white;
+  cursor: pointer;
+`;
+
+// Styled image inside the button
+const StyledImage = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  margin-left: -20px;
 `;
 
 const Loading = styled.div`
