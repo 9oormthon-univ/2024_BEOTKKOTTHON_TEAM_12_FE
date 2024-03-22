@@ -13,9 +13,10 @@ export class WebSocketAPI {
   }
 
   initializeWebSocketConnection(): void {
-    const serverUrl = '/ws-stomp';
+    const serverUrl = `${import.meta.env.VITE_SERVER_URL}/ws-stomp`;
     const ws = new SockJS(serverUrl);
     this.stompClient = Stomp.over(ws);
+
     this.stompClient.connect({}, this.onConnected, this.onError);
   }
 
@@ -25,10 +26,7 @@ export class WebSocketAPI {
   };
 
   onError = (error: string) => {
-    console.log(
-      'Could not connect to WebSocket server. Please refresh this page to try again!',
-      error
-    );
+    console.log('WebSocket server 연결 불가', error);
     this.connected = false; // 연결 상태 업데이트
   };
 
@@ -38,7 +36,7 @@ export class WebSocketAPI {
 
   subscribeToChatRoom(chatRoomId: string, callback: (message: any) => void): void {
     if (!this.connected) {
-      console.error('STOMP connection 안됨.');
+      console.error('STOMP connection 끊김.');
       return;
     }
     this.stompClient.subscribe(`/sub/api/chat/room/${chatRoomId}`, (response: any) => {
