@@ -50,10 +50,12 @@ const ProductDetail = () => {
   const handleOnSaleClick = async () => {
     if (product?.post_status === 'onSale') {
       await instance
-        .put(`/products/soldOut/${id}`, { id: id, product_stauts: 'soldOut' })
+        .put(`/products/soldOut/${userId}`, { id: id, product_stauts: 'soldOut' })
         .then((response) => {
           console.log('판매 완료 변경 성공', response);
+          alert('판매 완료로 변경하였습니다.');
           updateOnSale('soldOut');
+          console.log(product);
         })
         .catch((e) => {
           console.log('판매 완료 변경 실패', e);
@@ -73,14 +75,17 @@ const ProductDetail = () => {
 
   const handleHideClick = async () => {
     await instance
-      .put(`/products/private/${id}`, {
+      .put(`/products/private/${userId}/${id}`, {
         is_private: true,
       })
       .then((response) => {
         console.log('글 숨기기 성공', response);
+        alert('글 숨기기에 성공했습니다.');
+        navigate('/product');
       })
       .catch((e) => {
         console.log('글 숨기기 실패', e);
+        alert('글 숨기기에 실패했습니다. 다시 시도해주세요.');
       });
   };
 
