@@ -17,6 +17,7 @@ export const Image = styled.img`
 `;
 
 export const RemoveInput = styled.input`
+  opacity: 0;
   position: absolute;
   width: 1px;
   height: 1px;

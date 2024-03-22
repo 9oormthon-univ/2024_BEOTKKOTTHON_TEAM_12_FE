@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 import { salesData } from 'src/data/shared';
 import { instance } from 'src/apis';
 import { useProduct, useProductActions } from 'src/store/product';
-import { useUserProfileInfo } from 'src/store/userData';
+//import { useUserProfileInfo } from 'src/store/userData';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -25,9 +25,9 @@ const ProductDetail = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const product = useProduct();
   const { setProduct, updateOnSale } = useProductActions();
-  const userProfileInfo = useUserProfileInfo();
+  //const userProfileInfo = useUserProfileInfo();
 
-  const userId = 1;
+  const userId = '1';
 
   const getData = async () => {
     await instance
@@ -102,7 +102,7 @@ const ProductDetail = () => {
       });
     navigate('/product');
   };
-  console.log(userProfileInfo.nick_name);
+
   return (
     <>
       {' '}
@@ -129,13 +129,13 @@ const ProductDetail = () => {
       </Header>
       {product && (
         <>
-          {/* {openKebab && product.seller?.nick_name !== userProfileInfo.nick_name && (
+          {openKebab && product.seller?.id.toString() !== userId && (
             <BoxKebabList>
               <p>차단하기</p>
               <p className="red">신고하기</p>
             </BoxKebabList>
-          )} */}
-          {openKebab && (
+          )}
+          {openKebab && product.seller?.id.toString() === userId && (
             // {openKebab && product.seller?.nick_name === userProfileInfo.nick_name && (
             <BoxKebabList>
               <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>

@@ -19,7 +19,6 @@ export const BoxSlider = styled(Slider)<SizeProps>`
     height: ${(props) => props.$height};
     object-fit: cover;
 
-    border-radius: 10px;
     margin: 0 auto;
   }
 
