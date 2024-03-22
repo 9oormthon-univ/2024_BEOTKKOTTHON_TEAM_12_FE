@@ -5,21 +5,16 @@ import * as S from './style';
 import { Checkbox, Header, TextLabel } from '@components/index';
 import { instance } from 'src/apis';
 
+type donationDataType = {
+  id: number;
+  date: string;
+  clothes_count: number;
+  fashion_count: number;
+  is_donation_complete: boolean;
+};
+
 const DonationHistory = () => {
   const navigate = useNavigate();
-  const data = [
-    { date: '2024.03.20', record: '의류 56 / 잡화 0', status: '진행중' },
-    { date: '2024.03.23', record: '의류 56 / 잡화 0', status: '완료' },
-    { date: '2024.03.24', record: '의류 56 / 잡화 0', status: '완료' },
-  ];
-
-  type donationDataType = {
-    id: number;
-    date: string;
-    clothes_count: number;
-    fashion_count: number;
-    is_donation_complete: boolean;
-  };
   const [donationData, setDonationData] = useState<donationDataType[]>([]);
 
   const userId = `1`;
@@ -47,7 +42,12 @@ const DonationHistory = () => {
         <TextLabel text={'기부 내역'} size={18} $weight={500} />
       </Header>
       <S.TableHeader>
-        <TextLabel text={`총 ${data.length}개`} size={13} $weight={400} color={'var(--grey-6)'} />
+        <TextLabel
+          text={`총 ${donationData.length}개`}
+          size={13}
+          $weight={400}
+          color={'var(--grey-6)'}
+        />
         <Checkbox
           label="완료된 내역만 보기"
           id={'complete'}
