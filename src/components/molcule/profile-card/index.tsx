@@ -3,7 +3,7 @@ import * as S from './style';
 import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
 import defaultImg from '@assets/images/profile-default-image.svg';
 import arrow from '@assets/icons/arrow.svg';
-import profileIconLevel1 from '@assets/icons/profile-icon-level1.svg';
+import { levelUrlArr } from 'src/utils/levelUrlArr';
 import { useNavigate } from 'react-router-dom';
 import useStore from '../../../store/userData';
 
@@ -25,7 +25,7 @@ const ProfileCard: React.FC = () => {
       <S.MiddleContainer>
         <S.UserNameWrapper>
           <TextLabel text={userProfile.user_name} size={18} />
-          <S.Image src={profileIconLevel1} alt="profile level" />
+          <S.Image src={levelUrlArr(2)} alt="profile level" />
         </S.UserNameWrapper>
         <TextLabel text={userProfile.university_name} size={16} color="var(--grey-5)" />
 

@@ -3,8 +3,10 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 335px;
+  padding: 0px 33px 20px 33px;
   gap: 13px;
-  padding: 10px 0;
+  background-color: white;
 
   .otcan {
     background-color: #64bad2;

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ListItem from '@components/molcule/list-item';
 import { BlockUser } from 'src/types/types';
 import defaultImg from '@assets/images/profile-default-image.svg';
-import level1Icon from '@assets/icons/profile-icon-level1.svg';
+import { levelUrlArr } from 'src/utils/levelUrlArr';
 import { instance } from 'src/apis';
 import { useEffect, useState } from 'react';
 const BlockedUsers = () => {
@@ -15,7 +15,7 @@ const BlockedUsers = () => {
     {
       blocked_user_id: 1,
       blocked_user_name: '김스옹',
-      levelImg: level1Icon,
+      levelImg: levelUrlArr(2),
       blocked_user_profile_image: defaultImg,
     },
   ]);
