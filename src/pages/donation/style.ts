@@ -3,10 +3,18 @@ import styled from 'styled-components';
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
+
   align-items: center;
-  background-color: var(--grey-2);
+  margin-top: -15px;
+  height: calc(100svh - var(--nav-size) - var(--header-size));
   overflow-y: scroll;
+  overflow-x: hidden;
   -ms-overflow-style: none;
+
+  // IE와 Edge를 위한 스크롤바 숨기기
+  -ms-overflow-style: none;
+  // Firefox를 위한 스크롤바 숨기기
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
