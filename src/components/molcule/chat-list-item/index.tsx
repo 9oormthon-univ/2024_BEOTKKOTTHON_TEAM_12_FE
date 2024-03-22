@@ -12,19 +12,27 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatRooms }) => {
   return (
     <div>
       {chatRooms.map((chat) => (
-        <S.ChatItem key={chat.id} onClick={() => navigate(`/chat-detail/${chat.id}`)}>
-          <S.ChatImage src={chat.imageUrl} alt="Profile" />
+        <S.ChatItem
+          key={chat.id}
+          onClick={() =>
+            navigate(`/chat-detail`, {
+              state: { productId: chat.product_id, chatRoomId: chat.chat_room_id },
+            })
+          }
+        >
+          <S.ChatImage src={chat.user_profile_image} alt="Profile" />
           <S.ChatDetails>
             <S.SenderName>
-              {chat.senderName}
-              <img src={levelUrlArr('새싹')} alt="level" />
-              {/* <img src={levelUrlArr(1)} alt="level" /> */}
+
+              {chat.user_nick_name}
+              <img src={levelUrlArr(chat.user_level)} alt="level" />
+
             </S.SenderName>
-            <S.LastMessage>{chat.lastMessage}</S.LastMessage>
+            <S.LastMessage>{'마지막 메세지'}</S.LastMessage>
           </S.ChatDetails>
           <S.ChatRightContainer>
-            <S.Timestamp>{chat.timestamp}</S.Timestamp>
-            {chat.unreadCount > 0 && <S.UnreadCount>{chat.unreadCount}</S.UnreadCount>}
+            <S.Timestamp>{'보낸 시간'}</S.Timestamp>
+            {/* {chat.unreadCount > 0 && <S.UnreadCount>{chat.unreadCount}</S.UnreadCount>} */}
           </S.ChatRightContainer>
         </S.ChatItem>
       ))}

@@ -1,6 +1,14 @@
 import { BoxDonationImg, ContainerDonation } from '@components/index';
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
+export const ImageWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0px -33px -20px -33px;
+`;
 const DonationSelect = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -17,9 +25,9 @@ const DonationSelect = () => {
       to="/donation/notice"
       isDisabled={isDisabled}
     >
-      <section className="img">
+      <ImageWrapper className="img">
         <BoxDonationImg activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
-      </section>
+      </ImageWrapper>
     </ContainerDonation>
   );
 };

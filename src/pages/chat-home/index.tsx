@@ -1,44 +1,35 @@
 import { Header, Nav, Search, TextLabel } from '@components/index';
-import defualtImg from '@assets/images/profile-default-image.svg';
 import * as S from './style';
 import { ChatRoom } from 'src/types/types';
 import ChatListItem from '@components/molcule/chat-list-item';
+import { instance } from 'src/apis';
+import { useEffect, useState } from 'react';
 
 const ChatHome: React.FC = () => {
-  const chatRooms: ChatRoom[] = [
-    {
-      id: '1',
-      imageUrl: defualtImg,
-      senderName: '김스옹',
-      lastMessage: '어디서 만날까요?',
-      timestamp: '4일전',
-      unreadCount: 2,
-    },
-    {
-      id: '2',
-      imageUrl: defualtImg,
-      senderName: '김스옹',
-      lastMessage: '어디서 만날까요? djeltjdskndjkfbㅁㅇㅁㅇㅁㅇㅇjksbdfㅓㅜㅏㅓ늉률',
-      timestamp: '4일전',
-      unreadCount: 3,
-    },
-    {
-      id: '3',
-      imageUrl: defualtImg,
-      senderName: '김스옹',
-      lastMessage: '어디서 만날까요? djeltjdskndjkfbㅁㅇㅁㅇㅁㅇㅇjksbdfㅓㅜㅏㅓ늉률',
-      timestamp: '4일전',
-      unreadCount: 0,
-    },
-    {
-      id: '4',
-      imageUrl: defualtImg,
-      senderName: '김스옹',
-      lastMessage: '어디서 만날까요? ',
-      timestamp: '4일전',
-      unreadCount: 0,
-    },
-  ];
+  const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
+
+  const userId = '1';
+
+  const getChatList = async () => {
+    // 채팅 리스트 가져오기
+    const response = await instance.get(`/chat/rooms?userId=${userId}`);
+    console.log(response);
+    setChatRooms(
+      response.data.map((chatRoom: ChatRoom) => ({
+        id: chatRoom.id,
+        product_id: chatRoom.product_id,
+        chat_room_id: chatRoom.chat_room_id,
+        user_profile_image: chatRoom.user_profile_image,
+        user_level: chatRoom.user_level,
+        user_nick_name: chatRoom.user_nick_name,
+      }))
+    );
+  };
+
+  useEffect(() => {
+    getChatList();
+  }, []);
+
   return (
     <>
       <Header>

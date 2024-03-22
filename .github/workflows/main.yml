@@ -9,10 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout v2
+      - name: Checkout v2
         uses: actions/checkout@v2
 
-      - name: Install Dependence
+      - name: Setup .env for Vite
+        run: |
+          echo "VITE_SERVER_URL=${{ secrets.SERVER_URL }}" >> .env
+
+      - name: Install Dependencies
         run: npm install
         env:
           CI: false
@@ -20,13 +24,12 @@ jobs:
       - name: Build app
         run: npm run build
 
-      - name: Deploy To s3
+      - name: Deploy To S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
         run: |
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            build s3://wear-frontend
+            build/ s3://wear-frontend

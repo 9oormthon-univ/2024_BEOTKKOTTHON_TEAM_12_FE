@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import defaultImg from '@assets/images/product-default-img.png';
 import {
@@ -11,10 +11,11 @@ import {
 } from '@components/index';
 import arrow from '@assets/icons/arrow.svg';
 import kebab from '@assets/icons/kebab.svg';
-import { ProductListItem } from 'src/types/types';
-import productImg1 from '@assets/images/product-image1.svg';
-import { useState } from 'react';
+import productImage from '@assets/images/product-default-img.png';
+import { useEffect, useRef, useState } from 'react';
 import { levelUrlArr } from 'src/utils/levelUrlArr';
+import { instance } from 'src/apis';
+import { WebSocketAPI } from 'src/apis/websocket';
 
 interface Message {
   id: string;
@@ -24,118 +25,76 @@ interface Message {
   profilePic: string;
 }
 
+interface ProductInfo {
+  id: number;
+  price: number;
+  product_name: string;
+  product_image: string;
+}
+
+interface CustomerInfo {
+  id: number;
+  nickname: string;
+  level: string;
+  profile_image: string;
+}
+
 const ChatDetail = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { productId, chatRoomId } = location.state;
+  console.log(chatRoomId, productId);
   const [openKebab, setOpenKebab] = useState<boolean>(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      content: '안녕하세요!',
-      timestamp: '오후 12:00',
-      isMine: false,
-      profilePic: '',
-    },
-    {
-      id: '2',
-      content: '구매하고싶어요!',
-      timestamp: '오후 12:01',
-      isMine: false,
-      profilePic: '',
-    },
-    {
-      id: '3',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
-    {
-      id: '4',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
-    {
-      id: '5',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
-    {
-      id: '6',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
+  const [product, setProduct] = useState<ProductInfo>({
+    id: productId,
+    price: 15000,
+    product_name: 'string',
+    product_image: productImage,
+  });
+  const [otherUser, setOtherUser] = useState<CustomerInfo>({
+    id: 1,
+    nickname: '김스옹',
+    level: '씨앗',
+    profile_image: defaultImg,
+  });
+  const [messages, setMessages] = useState<Message[]>([]);
+  // webSocketAPI 인스턴스를 저장할 ref 생성
+  const webSocketAPIRef = useRef<WebSocketAPI | null>(null);
 
-    {
-      id: '7',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
-    {
-      id: '8',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
-    {
-      id: '9',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
-    {
-      id: '10',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
-    {
-      id: '11',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
-    {
-      id: '12',
-      content: '가능합니다!',
-      timestamp: '오후 12:01',
-      isMine: true,
-      profilePic: '',
-    },
-  ]);
+  useEffect(() => {
+    // webSocketAPI 인스턴스를 ref에 할당
+    webSocketAPIRef.current = new WebSocketAPI();
 
-  const product: ProductListItem = {
-    id: 5,
-    price: 10000,
-    product_name: '안입는 옷 처분해요',
-    product_status: '아주 좋아요',
-    post_status: 'soldOut',
-    product_image: productImg1,
-  };
+    webSocketAPIRef.current.subscribeToChatRoom(chatRoomId, (message) => {
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
 
-  const otherUser = '김스옹';
+    // 컴포넌트가 언마운트될 때 연결 종료
+    return () => {
+      if (webSocketAPIRef.current) {
+        webSocketAPIRef.current.disconnect();
+      }
+    };
+  }, [chatRoomId]);
 
   const handleSend = (message: File | string) => {
-    if (!message) return;
-    const newMessage = {
-      id: (messages.length + 1).toString(),
-      content: message,
-      timestamp: new Date().toLocaleTimeString().slice(0, 7),
-      isMine: true,
-      profilePic: '',
-    };
-    setMessages([...messages, newMessage]);
+    try {
+      if (!message) return;
+      const newMessage = {
+        id: (messages.length + 1).toString(),
+        content: message,
+        timestamp: new Date().toLocaleTimeString().slice(0, 7),
+        isMine: true,
+        profilePic: '',
+      };
+      setMessages([...messages, newMessage]);
+      if (typeof message === 'string' && webSocketAPIRef.current) {
+        // webSocketAPIRef를 통해 인스턴스에 접근하여 메시지 전송
+        webSocketAPIRef.current.sendMessage(chatRoomId, { content: message });
+      }
+    } catch (error) {
+      console.error('메시지 전송 중 오류 발생:', error);
+    }
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,15 +108,38 @@ const ChatDetail = () => {
     navigate(`/product/${product.id}`);
   };
 
-  //const { id } = useParams();
+  const getChatData = async () => {
+    const response = await instance.get(
+      `/chat/room/enter?roomId=${chatRoomId}&productId=${productId}`
+    );
+    console.log('채팅방 입장', response.data);
+    setProduct({
+      id: response.data.product_id,
+      price: response.data.price,
+      product_name: response.data.product_name,
+      product_image: response.data.product_image,
+    });
+    setOtherUser({
+      id: response.data.customer_id,
+      nickname: response.data.seller_nick_name,
+      level: response.data.seller_level,
+      profile_image: response.data.seller_profile_image,
+    });
+  };
+
+  useEffect(() => {
+    getChatData();
+  }, []);
+
   return (
     <S.Container>
       <S.ChatFixedHeader>
         <Header>
           <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
           <S.NickNameContainer>
-            <TextLabel text={otherUser} size={18} $weight={700} />
-            <img src={levelUrlArr('새싹')} alt="level" />
+            <TextLabel text={otherUser.nickname} size={18} $weight={700} />
+            <img src={levelUrlArr(otherUser.level)} alt="level" />
+
           </S.NickNameContainer>
           <img
             src={kebab}
@@ -185,7 +167,7 @@ const ChatDetail = () => {
 
       <S.Content>
         <S.SectionScroll>
-          <ChatScreen messages={messages} />
+          <ChatScreen messages={messages} userImage={otherUser.profile_image} />
         </S.SectionScroll>
       </S.Content>
       <ChatInput handleImageChange={handleImageChange} handleSend={handleSend} />

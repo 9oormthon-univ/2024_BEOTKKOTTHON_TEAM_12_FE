@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const BoxText = styled.div`
   margin: 41px 0px;
-
+  word-break: keep-all;
   .main-title {
     font-size: 16px;
     font-weight: bold;
+    margin-bottom: 10px;
     color: var(--green-6);
   }
 
@@ -16,6 +17,7 @@ export const BoxText = styled.div`
     color: #666666;
     line-height: 25px;
     list-style: disc;
+    word-break: keep-all;
 
     & > li {
       margin-bottom: 10px;
