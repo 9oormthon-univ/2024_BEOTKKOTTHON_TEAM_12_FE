@@ -50,19 +50,18 @@ const ProductDetail = () => {
   const handleOnSaleClick = async () => {
     if (product?.post_status === 'onSale') {
       await instance
-        .put(`/products/soldOut/${userId}`, { id: id, product_stauts: 'soldOut' })
+        .put(`/products/soldOut/${userId}`, { id: id, post_status: 'soldOut' })
         .then((response) => {
           console.log('판매 완료 변경 성공', response);
           alert('판매 완료로 변경하였습니다.');
           updateOnSale('soldOut');
-          console.log(product);
         })
         .catch((e) => {
           console.log('판매 완료 변경 실패', e);
         });
     } else {
       await instance
-        .put(`/products/soldOut/${id}`, { id: id, product_stauts: 'onSale' })
+        .put(`/products/soldOut/${id}`, { id: id, post_status: 'onSale' })
         .then((response) => {
           console.log('판매 중으로 변경 성공', response);
           updateOnSale('onSale');
