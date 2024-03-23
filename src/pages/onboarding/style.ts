@@ -18,6 +18,8 @@ export const BoxTitle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
+  margin-bottom: 10px;
 
   .title {
     font-size: 17px;
@@ -27,7 +29,7 @@ export const BoxTitle = styled.div`
   }
 
   .description {
-    height: 30px;
+    height: 25px;
     font-szie: 15px;
     color: var(--grey-7);
   }
@@ -59,8 +61,11 @@ export const BoxFlex = styled.div`
 `;
 
 export const BoxImage = styled.div`
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
   height: 300px;
 `;
 
