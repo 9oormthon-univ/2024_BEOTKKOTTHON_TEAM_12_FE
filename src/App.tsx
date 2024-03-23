@@ -1,7 +1,7 @@
-import { Router } from "components/index";
-import GlobalStyle from "./styles/GlobalStyle";
-import { useEffect, useState } from "react";
-import splash from "assets/logo/splash.svg";
+import { Router } from 'components/index';
+import GlobalStyle from './styles/GlobalStyle';
+import { useEffect, useState } from 'react';
+import splash from 'assets/logo/splash.svg';
 
 function App() {
   const [showSplash, setShowSplash] = useState<boolean>(true);
@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplash(false);
-    }, 1000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -20,15 +20,15 @@ function App() {
       {showSplash ? (
         <div
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
-            width: "100%",
-            height: "100%",
-            background: "white",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            width: '100%',
+            height: '100%',
+            background: 'white',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             zIndex: 1000,
           }}
         >

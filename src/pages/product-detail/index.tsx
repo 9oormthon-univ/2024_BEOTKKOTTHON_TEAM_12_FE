@@ -11,12 +11,15 @@ import * as S from './style';
 import arrow from 'assets/icons/left_btn.svg';
 import kebab from 'assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { Seller } from 'types/types';
 import { useEffect, useState } from 'react';
 import { salesData } from 'data/shared';
 import { instance } from 'apis';
 import { useProduct, useProductActions } from 'store/product';
+
 import useUserStore from 'store/userId';
+
 //import { useUserProfileInfo } from 'src/store/userData';
 
 const ProductDetail = () => {
@@ -29,6 +32,7 @@ const ProductDetail = () => {
   //const userProfileInfo = useUserProfileInfo();
 
   const userId = useUserStore((state: any) => state.userId);
+
 
   const getData = async () => {
     await instance
@@ -162,12 +166,10 @@ const ProductDetail = () => {
             <S.SectionScroll>
               <section className="product-image">
                 <Carousel $dot="13px" $width="100%" $height="314px">
-                  {/* 이미지 부분 리스트로 수정해야함 */}
-                  {/* {product.product_image.map((url, i) => (
+                  {product.product_image.map((url, i) => (
                     <img src={url} alt={`img-${i}`} key={i} />
-                  ))} */}
-
-                  <img src={product.product_image} alt={`img`} />
+                  ))}
+                  {/* <img src={product.product_image} alt={`img`} /> */}
                 </Carousel>
               </section>
 
