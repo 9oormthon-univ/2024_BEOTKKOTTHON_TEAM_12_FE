@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSearchData } from 'store/search';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
+import { instance } from 'apis';
 // import { instance } from 'src/apis';
 
 const SearchResult = () => {
@@ -21,10 +22,20 @@ const SearchResult = () => {
     setActiveCategory('전체');
   }, []);
 
+  const getSearchData = async () => {
+    await instance
+      .get(
+        `/products/search/category/sale?searchName=%EC%9E%90%EB%9D%BC?categoryName=%EC%A0%84%EC%B2%B4&postStatus=&pageNumber=0`
+      )
+      .then((res) => console.log(res))
+      .catch((e) => console.log(e));
+  };
+
   useEffect(() => {
-    const url = `/products?categoryName=${activeCategory}&postStatus=${clickedOnSale}&page=0/${searchData}`;
-    console.log(url);
+    // const url = `/products?categoryName=${activeCategory}&postStatus=${clickedOnSale}&page=0/${searchData}`;
+    // console.log(url);
     // const res = axios.get(url);
+    getSearchData();
   }, [activeCategory, clickedOnSale, searchData]);
 
   return (

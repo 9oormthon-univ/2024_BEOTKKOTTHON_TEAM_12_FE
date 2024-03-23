@@ -66,9 +66,8 @@ const FormTrade = () => {
       .then((res) => {
         console.log('폼 전송 성공', res);
       })
-      .catch((e) => console.log('폼 전송 실패', e));
-
-    console.log(formData);
+      .catch((e) => console.log('폼 전송 실패', e))
+      .finally(() => console.log({ ...sendData }));
     resetFormData();
     navigate('/product');
   };

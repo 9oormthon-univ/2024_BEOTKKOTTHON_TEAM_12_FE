@@ -37,7 +37,6 @@ const ProductDetail = () => {
       .then((response) => {
         console.log('데이터 가져오기 성공', response);
         setProduct({ ...response.data, product_image_list: response.data.product_image });
-        changeStrToArr(response.data.product_image);
       })
       .catch((e) => {
         console.log('데이터 가져오기 실패', e);
