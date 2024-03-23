@@ -3,16 +3,16 @@ import { create } from 'zustand';
 
 interface Actions {
   setFormData: (name: string, value: string | number | FileList) => void;
-  setShowImages: (urls: string) => void;
-  // setShowImages: (urls: string[]) => void;
+  // setShowImages: (urls: string) => void;
+  setShowImages: (urls: string[]) => void;
   receiveData: (data: Product) => void;
   resetFormData: () => void;
 }
 
 interface FormDataStore {
   formData: Product;
-  showImages: string;
-  // showImages: string[];
+  // showImages: string;
+  showImages: string[];
   actions: Actions;
 }
 
@@ -20,8 +20,8 @@ const initialFormData = {
   id: 0,
   product_name: '',
   price: 0,
-  product_image: '',
-  // product_image: [],
+  // product_image: '',
+  product_image: [],
   product_content: '',
   product_status: '',
   post_status: '판매중',
@@ -34,8 +34,8 @@ const initialFormData = {
 
 export const useFormDataStore = create<FormDataStore>((set) => ({
   formData: initialFormData,
-  showImages: '',
-  // showImages: [],
+  // showImages: '',
+  showImages: [],
   actions: {
     setFormData: (name, value) => {
       set((state) => ({
@@ -43,12 +43,12 @@ export const useFormDataStore = create<FormDataStore>((set) => ({
       }));
     },
 
-    setShowImages: (urls) => set(() => ({ showImages: urls })),
+    // setShowImages: (urls) => set(() => ({ showImages: urls })),
+    // receiveData: (data) => set(() => ({ formData: data, showImages: data.product_image })),
+    // resetFormData: () => set(() => ({ formData: initialFormData, showImages: '' })),
+    setShowImages: (urls) => set(() => ({ showImages: [...urls] })),
     receiveData: (data) => set(() => ({ formData: data, showImages: data.product_image })),
-    resetFormData: () => set(() => ({ formData: initialFormData, showImages: '' })),
-    // setShowImages: (urls) => set(() => ({ showImages: [...urls] })),
-    // receiveData: (data) => set(() => ({ formData: data, showImages: data.product_image_list })),
-    // resetFormData: () => set(() => ({ formData: initialFormData, showImages: [] })),
+    resetFormData: () => set(() => ({ formData: initialFormData, showImages: [] })),
   },
 }));
 

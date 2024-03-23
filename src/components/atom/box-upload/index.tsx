@@ -1,19 +1,36 @@
 import * as S from './style';
 import image from '@assets/icons/image.svg';
-// import { Dispatch, SetStateAction } from 'react';
+import { instance } from 'src/apis';
+import { Dispatch, SetStateAction } from 'react';
 import { useFormDataActions, useShowImages } from 'src/store/formData';
+import axios from 'axios';
 
-// interface BoxUploadProps {
-//   setFiles?: Dispatch<SetStateAction<FileList>>;
-// }
+interface BoxUploadProps {
+  setFiles?: Dispatch<SetStateAction<FileList>>;
+}
 
-const BoxUpload = () => {
-  // const BoxUpload = ({ setFiles }: BoxUploadProps) => {
+// const BoxUpload = () => {
+const BoxUpload = ({ setFiles }: BoxUploadProps) => {
   const showImages = useShowImages();
   const { setFormData, setShowImages } = useFormDataActions();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files as FileList;
+
+    // await axios({
+    //   method: 'post',
+    //   url: 'http://43.201.189.171:8080/api/upload',
+    //   data: files,
+    //   timeout: 10000,
+    // })
+    await instance
+      .post('/upload', { files: files })
+      .then((res) => {
+        console.log('파일 업로드 성공', res);
+      })
+      .catch((e) => {
+        console.log('파일 업로드 실패', e);
+      });
 
     if (files) {
       const imageLists = files;
@@ -26,9 +43,9 @@ const BoxUpload = () => {
       if (imageUrlLists.length > 5) {
         imageUrlLists = imageUrlLists.slice(0, 5);
       }
-      setShowImages(imageUrlLists[0]);
-      // setShowImages(imageUrlLists);
-      // setFiles(files);
+      setShowImages(imageUrlLists);
+      setShowImages(imageUrlLists);
+      setFiles(files);
       setFormData('product_image_list', files);
     }
   };

@@ -12,7 +12,7 @@ import Button from '@components/atom/button-trade';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { transformPrice } from 'src/utils/transformPrice';
 import { useFormData, useFormDataActions, useShowImages } from 'src/store/formData';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { instance } from 'src/apis';
 
 const FormTrade = () => {
@@ -35,11 +35,11 @@ const FormTrade = () => {
     }
   }, []);
 
-  // const [files, setFiles] = useState<FileList | null>(null);
-  const files = [
-    'https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg',
-    'https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg',
-  ];
+  const [files, setFiles] = useState<FileList | null>(null);
+  // const files = [
+  //   'https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg',
+  //   'https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg',
+  // ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,7 +53,7 @@ const FormTrade = () => {
     //   }
     // }
 
-    sendformData.append('product_image', files[0]);
+    // sendformData.append('product_image', files[0]);
     sendformData.append('product_name', formData.product_name);
     sendformData.append('category_name', formData.category);
     sendformData.append('product_status', formData.product_status);
@@ -62,7 +62,7 @@ const FormTrade = () => {
     sendformData.append('place', formData.place);
 
     const test = {
-      product_image: files[0],
+      // product_image: files[0],
       product_name: formData.product_name,
       category_name: formData.category,
       product_status: formData.product_status,
@@ -104,8 +104,8 @@ const FormTrade = () => {
         <p className="label">
           이미지 업로드 (<span className="sub">{showImages.length}</span>/5)
         </p>
-        <ListImage />
-        {/* <ListImage setFiles={setFiles} /> */}
+        {/* <ListImage /> */}
+        <ListImage setFiles={setFiles} />
       </FormGroup>
 
       <FormGroup>

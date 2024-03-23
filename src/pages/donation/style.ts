@@ -5,7 +5,6 @@ export const Content = styled.div`
   flex-direction: column;
 
   align-items: center;
-  margin-top: -15px;
   height: calc(100svh - var(--nav-size) - var(--header-size));
 
   background-color: var(--grey-2);
@@ -22,6 +21,7 @@ export const Content = styled.div`
   }
 
   .ranking {
+    margin-top: -14px;
     margin-bottom: 14px;
   }
 
