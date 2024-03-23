@@ -17,7 +17,7 @@ const Ranking = () => {
       </S.Header>
 
       <S.Graph>
-        <img src={ranking} alt="ranking" />
+        <img src={ranking} alt="ranking" style={{ width: '100%' }} />
       </S.Graph>
 
       <S.Text>

@@ -1,21 +1,16 @@
-import React from "react";
-import * as S from "./style";
-import defaultProfilePic from "assets/images/profile-default-image.svg";
+import React from 'react';
+import * as S from './style';
+import defaultProfilePic from 'assets/images/profile-default-image.svg';
 interface MessageProps {
   content: string | File;
-  timestamp: string;
-  isMine: boolean;
+  timestamp?: string;
+  isMine?: boolean;
   profilePic?: string;
 }
-const ChatMessage: React.FC<MessageProps> = ({
-  content,
-  timestamp,
-  isMine,
-  profilePic,
-}) => {
+const ChatMessage: React.FC<MessageProps> = ({ content, timestamp, isMine, profilePic }) => {
   // 파일을 위한 URL 생성 함수
   const renderContent = (content: string | File) => {
-    if (typeof content === "string") {
+    if (typeof content === 'string') {
       return content;
     } else {
       // File 객체를 위한 URL 생성
@@ -25,16 +20,9 @@ const ChatMessage: React.FC<MessageProps> = ({
     }
   };
   return (
-    <S.MessageContainer isMine={isMine}>
-      {!isMine && (
-        <S.Avatar
-          src={profilePic ? profilePic : defaultProfilePic}
-          alt="profile"
-        />
-      )}
-      <S.MessageBubble isMine={isMine}>
-        {renderContent(content)}
-      </S.MessageBubble>
+    <S.MessageContainer isMine={true}>
+      {!isMine && <S.Avatar src={profilePic ? profilePic : defaultProfilePic} alt="profile" />}
+      <S.MessageBubble isMine={true}>{renderContent(content)}</S.MessageBubble>
       <S.Timestamp>{timestamp}</S.Timestamp>
     </S.MessageContainer>
   );

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import arrow from "assets/icons/arrow.svg";
-import { useNavigate } from "react-router-dom";
-import * as S from "./style";
-import { Checkbox, Header, TextLabel } from "components/index";
-import { instance } from "apis";
+import { useEffect, useState } from 'react';
+import arrow from 'assets/icons/arrow.svg';
+import { useNavigate } from 'react-router-dom';
+import * as S from './style';
+import { Checkbox, Header, TextLabel } from 'components/index';
+import { instance } from 'apis';
+import useUserStore from 'store/userId';
 
 type donationDataType = {
   id: number;
@@ -17,15 +18,15 @@ const DonationHistory = () => {
   const navigate = useNavigate();
   const [donationData, setDonationData] = useState<donationDataType[]>([]);
 
-  const userId = `10`;
+  const userId = useUserStore((state: any) => state.userId);
 
   const getDonationHistory = async () => {
     try {
       const response = await instance.get(`/users/myDonations/${userId}`);
-      console.log("기부 내역 불러오기 성공:", response.data);
+      console.log('기부 내역 불러오기 성공:', response.data);
       setDonationData(response.data);
     } catch (error) {
-      console.error("기부 내역 불러오기 실패:", error);
+      console.error('기부 내역 불러오기 실패:', error);
     }
   };
 
@@ -38,27 +39,22 @@ const DonationHistory = () => {
   return (
     <S.Container>
       <Header>
-        <S.BtnLeft
-          src={arrow}
-          className="left"
-          alt="btn-back"
-          onClick={() => navigate(-1)}
-        />
-        <TextLabel text={"기부 내역"} size={18} $weight={500} />
+        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
+        <TextLabel text={'기부 내역'} size={18} $weight={500} />
       </Header>
       <S.TableHeader>
         <TextLabel
           text={`총 ${donationData.length}개`}
           size={13}
           $weight={400}
-          color={"var(--grey-6)"}
+          color={'var(--grey-6)'}
         />
         <Checkbox
           label="완료된 내역만 보기"
-          id={"complete"}
+          id={'complete'}
           checked={showCompletedOnly}
           setIsChecked={setShowCompletedOnly}
-          color={"var(--grey-6)"}
+          color={'var(--grey-6)'}
         />
       </S.TableHeader>
       <S.Table>
@@ -82,12 +78,10 @@ const DonationHistory = () => {
                   </S.TableCell>
                   <S.TableCell
                     style={{
-                      color: row.is_donation_complete
-                        ? "var(--green-primary)"
-                        : "",
+                      color: row.is_donation_complete ? 'var(--green-primary)' : '',
                     }}
                   >
-                    {row.is_donation_complete ? "완료" : "진행 중"}
+                    {row.is_donation_complete ? '완료' : '진행 중'}
                   </S.TableCell>
                 </S.TableRow>
               );
