@@ -4,6 +4,7 @@ import { ChatRoom } from 'types/types';
 import ChatListItem from 'components/molcule/chat-list-item';
 import { instance } from 'apis';
 import { useEffect, useState } from 'react';
+import wearProfile from 'assets/images/wear_profile.svg';
 
 const ChatHome: React.FC = () => {
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
@@ -25,6 +26,15 @@ const ChatHome: React.FC = () => {
     );
   };
 
+  const InfoMessage: ChatRoom[] = [
+    {
+      last_massage: `등록하신 <가져가세요> 상품이 5일동안 거래가`,
+      timestamp: '10:00',
+      user_profile_image: wearProfile,
+      user_nick_name: '팀 WEAR',
+    },
+  ];
+
   useEffect(() => {
     getChatList();
   }, []);
@@ -36,6 +46,7 @@ const ChatHome: React.FC = () => {
       </Header>
       <S.Container>
         <Search placeholder="닉네임, 상품 검색" />
+        <ChatListItem chatRooms={InfoMessage} isWear={true} />
         <ChatListItem chatRooms={chatRooms} />
       </S.Container>
       <Nav currentTab="채팅" />

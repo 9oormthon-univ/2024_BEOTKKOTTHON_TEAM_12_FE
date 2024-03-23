@@ -12,9 +12,9 @@ interface ChatScreenProps {
     id: number;
     chat_rood_id: number;
     message: string | File;
-    // timestamp: string;
-    // isMine: boolean;
-    // profilePic: string;
+    timestamp: string;
+    isMine: boolean;
+    profilePic: string;
   }[];
   userImage: string;
 }
@@ -37,9 +37,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ messages, userImage }) => {
           <ChatMessage
             key={msg.id}
             content={msg.message}
-            // timestamp={msg.timestamp ? msg.timestamp : '오전 10:00'}
-            //   isMine={msg.isMine}
-            //   profilePic={msg.profilePic ? msg.profilePic : userImage}
+            timestamp={msg.timestamp ? msg.timestamp : '오전 10:00'}
+            isMine={msg.isMine}
+            profilePic={msg.profilePic ? msg.profilePic : userImage}
           />
         ))}
       {/* ref를 줄 div*/}

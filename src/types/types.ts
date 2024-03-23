@@ -53,9 +53,11 @@ export interface Product {
 
 //채팅룸
 export interface ChatRoom {
-  product_id: string;
-  chat_room_id: string;
+  product_id?: string;
+  chat_room_id?: string;
   user_profile_image: string;
-  user_level: string;
+  user_level?: string;
   user_nick_name: string;
+  last_massage?: string;
+  timestamp?: string;
 }
