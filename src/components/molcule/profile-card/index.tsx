@@ -14,6 +14,7 @@ const ProfileCard: React.FC = () => {
   const onModifyProfile = () => {
     navigate('/mypage/profile-edit');
   };
+  console.log(userProfile);
 
   return (
     <S.ProfileCardWrapper>
