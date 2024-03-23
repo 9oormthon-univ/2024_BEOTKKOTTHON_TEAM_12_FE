@@ -1,7 +1,7 @@
 import * as S from './style';
 import image from '@assets/icons/image.svg';
 import { instance } from 'src/apis';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useFormDataActions, useShowImages } from 'src/store/formData';
 import axios from 'axios';
 
@@ -23,14 +23,27 @@ const BoxUpload = ({ setFiles }: BoxUploadProps) => {
     //   data: files,
     //   timeout: 10000,
     // })
-    await instance
-      .post('/upload', { files: files })
-      .then((res) => {
-        console.log('파일 업로드 성공', res);
-      })
-      .catch((e) => {
-        console.log('파일 업로드 실패', e);
-      });
+    console.log(files);
+
+    const formDataTest = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+      formDataTest.append('files', files[i]);
+    }
+
+    await axios
+      .post(
+        'http://43.201.189.171:8080/api/upload',
+        // { files: files },
+        formDataTest,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      )
+      .then((res) => console.log('상품 이미지 업로드 성공', res))
+      .catch((e) => console.log('상품 이미지 업로드 실패', e));
 
     if (files) {
       const imageLists = files;
