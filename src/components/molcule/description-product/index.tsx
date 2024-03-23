@@ -2,7 +2,6 @@ import { Product } from 'types/types';
 import * as S from './style';
 import stategrey from 'assets/icons/state_grey.svg';
 import stategreen from 'assets/icons/state_green.svg';
-import { useEffect } from 'react';
 
 interface DescriptionProductProps {
   product: Product;
@@ -12,10 +11,6 @@ interface DescriptionProductProps {
 
 const DescriptionProduct = ({ product }: DescriptionProductProps) => {
   const circleUrl = product.product_status === '아주 좋아요' ? stategreen : stategrey;
-
-  // useEffect(() =>
-  //   // 서버에서 해당 상품에 대한 정보 불러오기
-  //   {}, []);
 
   return (
     <S.Container>

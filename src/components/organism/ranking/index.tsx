@@ -1,8 +1,8 @@
-import * as S from "./style";
-import { levelUrlArr } from "utils/levelUrlArr";
-import ranking from "assets/donation/ranking.svg";
-import { Button } from "components/index";
-import { Link, useNavigate } from "react-router-dom";
+import * as S from './style';
+import { levelUrlArr } from 'utils/levelUrlArr';
+import ranking from 'assets/donation/ranking.png';
+import { Button } from 'components/index';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Ranking = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Ranking = () => {
       <S.Header>
         <div className="title">
           <p>대학교별 환경 점수 TOP 5</p>
-          <img src={levelUrlArr("새싹")} alt="icon" />
+          <img src={levelUrlArr('새싹')} alt="icon" />
         </div>
         <p className="time">03.11 16:00 기준</p>
       </S.Header>
@@ -37,12 +37,12 @@ const Ranking = () => {
         $padding="16px"
         children="직접 방문하여 기부하기 "
         handleOnClick={() => {
-          navigate("/donation/visit");
+          navigate('/donation/visit');
         }}
       />
 
       <S.MarginBox />
-      <Link to={"/donation/select"}>
+      <Link to={'/donation/select'}>
         <Button
           $bgcolor="var(--green-6)"
           color="white"

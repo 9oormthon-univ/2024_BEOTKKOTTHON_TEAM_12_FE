@@ -1,14 +1,10 @@
-import { FilterTrade, ListTag, ListTradeItems, Search } from "components/index";
-import * as S from "./style";
-import back from "assets/icons/left_btn.svg";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useSearchData } from "store/search";
-import {
-  useActiveCategory,
-  useClickedOnSale,
-  useProductListActions,
-} from "store/productListData";
+import { FilterTrade, ListTag, ListTradeItems, Search } from 'components/index';
+import * as S from './style';
+import back from 'assets/icons/left_btn.svg';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSearchData } from 'store/search';
+import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 // import { instance } from 'src/apis';
 
 const SearchResult = () => {
@@ -22,7 +18,7 @@ const SearchResult = () => {
   // };
 
   useEffect(() => {
-    setActiveCategory("전체");
+    setActiveCategory('전체');
   }, []);
 
   useEffect(() => {
@@ -34,10 +30,10 @@ const SearchResult = () => {
   return (
     <>
       <S.HeaderSearch>
-        <Link to={"/product"}>
-          <img src={back} width={"30px"} alt="btn-back" />
+        <Link to={'/product'}>
+          <img src={back} width={'30px'} alt="btn-back" />
         </Link>
-        <Link to={"/search"} className="search-input">
+        <Link to={'/search'} className="search-input">
           <Search />
         </Link>
       </S.HeaderSearch>
