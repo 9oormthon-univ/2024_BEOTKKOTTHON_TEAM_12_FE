@@ -1,6 +1,6 @@
-import { BoxDonationImg, ContainerDonation } from "components/index";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { BoxDonationImg, ContainerDonation } from 'components/index';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 export const ImageWrapper = styled.section`
   display: flex;
@@ -19,6 +19,7 @@ const DonationSelect = () => {
 
   return (
     <ContainerDonation
+      totalpage={4}
       page={0}
       header="기부할 단체를 선택해주세요"
       btn="다음"
@@ -26,10 +27,7 @@ const DonationSelect = () => {
       isDisabled={isDisabled}
     >
       <ImageWrapper className="img">
-        <BoxDonationImg
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
+        <BoxDonationImg activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       </ImageWrapper>
     </ContainerDonation>
   );
