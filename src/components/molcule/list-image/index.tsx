@@ -5,7 +5,7 @@ import { useFormDataActions, useShowImages } from 'src/store/formData';
 import { Dispatch, SetStateAction } from 'react';
 
 interface ListImageProps {
-  setFiles?: Dispatch<SetStateAction<FileList>>;
+  setFiles: Dispatch<SetStateAction<FileList | null>>;
 }
 
 // const ListImage = () => {
