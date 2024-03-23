@@ -1,9 +1,8 @@
 import { Button, TextLabel } from 'components/index';
 import * as S from './style';
-import React, { useRef, ChangeEvent, useState, useEffect } from 'react';
+import React, { useRef, ChangeEvent, useState } from 'react';
 import noImg from 'assets/images/profile-no-image.png';
-import useStore, { useUserProfileInfo } from '../../../store/userData';
-import { instance } from 'apis';
+import useStore from '../../../store/userData';
 import axios from 'axios';
 
 interface ImageInputProps {
@@ -14,7 +13,7 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
   const { userProfileInfo, updateUserProfileInfo } = useStore();
   // image prop이 있으면 사용하고, 없으면 noImg를 사용
   const [newImage, setNewImage] = useState(image || noImg);
-
+  console.log(newImage);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const getImgUrl = async (file: File) => {

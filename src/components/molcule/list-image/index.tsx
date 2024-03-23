@@ -2,7 +2,6 @@ import { BoxUpload } from 'components/index';
 import * as S from './style';
 import cancle from 'assets/icons/cancel.svg';
 import { useFormDataActions, useShowImages } from 'store/formData';
-import { Dispatch, SetStateAction } from 'react';
 
 const ListImage = () => {
   const showImages = useShowImages();

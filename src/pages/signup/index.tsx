@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
-import * as S from "./style";
-import {
-  Button,
-  Checkbox,
-  Header,
-  TagInput,
-  TextLabel,
-} from "components/index";
-import arrow from "assets/icons/arrow.svg";
-import x from "assets/icons/x.svg";
-import eyeOff from "assets/icons/eye-off.svg";
-import welcomeLogo from "assets/logo/welcome-logo.svg";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { instance } from "apis";
+import React, { useEffect, useState } from 'react';
+import * as S from './style';
+import { Button, Checkbox, Header, TagInput, TextLabel } from 'components/index';
+import arrow from 'assets/icons/arrow.svg';
+import x from 'assets/icons/x.svg';
+import eyeOff from 'assets/icons/eye-off.svg';
+import welcomeLogo from 'assets/logo/welcome-logo.svg';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { instance } from 'apis';
+import { useSigninFormActions, useSigninFormData } from 'store/signInData';
 
 interface FormData {
   userId: string;
@@ -21,6 +16,7 @@ interface FormData {
   validPassword: string;
   universityName: string;
   universityEmail: string;
+  styleTags: string[];
 }
 
 const SignUp: React.FC = () => {
@@ -40,17 +36,47 @@ const SignUp: React.FC = () => {
   const [allAgreed, setAllAgreed] = useState(false);
   //유효성 확인 후 버튼 색 변경
   const [buttonColor, setButtonColor] = useState({
-    backgroundColor: "var(--grey-2)",
-    color: "var(--grey-5)",
+    backgroundColor: 'var(--grey-2)',
+    color: 'var(--grey-5)',
   });
 
+  const { setSignInFormData } = useSigninFormActions();
+  const signinFormData = useSigninFormData();
+
   const [formData, setFormData] = useState<FormData>({
-    userId: "",
-    password: "",
-    validPassword: "",
-    universityName: "",
-    universityEmail: "",
+    userId: '',
+    password: '',
+    validPassword: '',
+    universityName: '',
+    universityEmail: '',
+    styleTags: [],
   });
+
+  const handleChangeStyleTag = (newStyleTag: string[]) => {
+    setFormData({
+      ...formData,
+      styleTags: newStyleTag,
+    });
+  };
+
+  /*회원가입 */
+  const postSignup = async () => {
+    console.log({
+      userId: signinFormData.userId,
+      password: signinFormData.password,
+      universityName: signinFormData.universityName,
+      universityEmail: signinFormData.universityEmail,
+      styleTags: formData.styleTags,
+    });
+    const response = await instance.post('/signup', {
+      userId: signinFormData.userId,
+      password: signinFormData.password,
+      universityName: signinFormData.universityName,
+      universityEmail: signinFormData.universityEmail,
+      styleTags: formData.styleTags,
+    });
+    console.log(response.data);
+  };
 
   /*재학생 인증 */
   const postVerificationEmail = async () => {
@@ -59,16 +85,16 @@ const SignUp: React.FC = () => {
         universityName: formData.universityName,
         email: formData.universityEmail,
       });
-      alert("인증번호가 발송되었습니다.");
-      navigate("/student-certification");
-      const response = await instance.post("/university/certify", {
+      alert('인증번호가 발송되었습니다.');
+      navigate('/student-certification');
+      const response = await instance.post('/university/certify', {
         universityName: formData.universityName,
         email: formData.universityEmail,
       });
 
       console.log(response.data);
     } catch (error) {
-      console.error("인증번호 발송 실패", error);
+      console.error('인증번호 발송 실패', error);
     }
   };
 
@@ -80,19 +106,23 @@ const SignUp: React.FC = () => {
       ...formData,
       [name]: value,
     });
+
+    setSignInFormData({
+      [name]: value,
+    });
     console.log(formData);
 
-    if (name === "universityEmail") {
+    if (name === 'universityEmail') {
       const isValid = isValidEmail(value);
       // 이메일 유효성 상태 업데이트
       setEmailValid(isValid);
       if (!isValid) {
-        console.log("유효하지 않은 이메일 형식입니다.");
+        console.log('유효하지 않은 이메일 형식입니다.');
         return; // 유효하지 않으면 여기서 함수 실행을 중단
       }
     }
 
-    if (name === "validPassword") {
+    if (name === 'validPassword') {
       if (formData.password === event.target.value) {
         setValidPassword(true);
       }
@@ -101,8 +131,7 @@ const SignUp: React.FC = () => {
 
   /*비밀번호 유효성 체크 */
   useEffect(() => {
-    const lengthCheck =
-      formData.password.length >= 8 && formData.password.length <= 16;
+    const lengthCheck = formData.password.length >= 8 && formData.password.length <= 16;
     const numberCheck = /\d/.test(formData.password);
     const uppercaseCheck = /[A-Z]/.test(formData.password);
 
@@ -135,23 +164,23 @@ const SignUp: React.FC = () => {
   useEffect(() => {
     if (formData.userId && validPassword) {
       setButtonColor({
-        backgroundColor: "var(--green-primary)",
-        color: "#ffffff",
+        backgroundColor: 'var(--green-primary)',
+        color: '#ffffff',
       });
     } else if (emailValid && formData.universityName) {
       setButtonColor({
-        backgroundColor: "var(--green-primary)",
-        color: "#ffffff",
+        backgroundColor: 'var(--green-primary)',
+        color: '#ffffff',
       });
     } else if (allAgreed) {
       setButtonColor({
-        backgroundColor: "var(--green-primary)",
-        color: "#ffffff",
+        backgroundColor: 'var(--green-primary)',
+        color: '#ffffff',
       });
     } else {
       setButtonColor({
-        backgroundColor: "var(--grey-2)",
-        color: "var(--grey-5)",
+        backgroundColor: 'var(--grey-2)',
+        color: 'var(--grey-5)',
       });
     }
   }, [allAgreed, emailValid, formData, validPassword]);
@@ -164,24 +193,24 @@ const SignUp: React.FC = () => {
           <>
             <S.PasswordInputWrapper>
               <TextLabel
-                text={"회원가입"}
+                text={'회원가입'}
                 size={24}
                 $weight={700}
-                color={"var(--grey-7)"}
+                color={'var(--grey-7)'}
               ></TextLabel>
             </S.PasswordInputWrapper>
 
             <S.PasswordInputWrapper>
               <TextLabel
-                text={"아이디"}
+                text={'아이디'}
                 size={16}
                 $weight={500}
-                color={"var(--grey-7)"}
+                color={'var(--grey-7)'}
               ></TextLabel>
 
               <S.LoginInput
                 name="userId"
-                type={"text"}
+                type={'text'}
                 placeholder="아이디 입력"
                 value={formData.userId}
                 onChange={handleInputChange}
@@ -190,24 +219,20 @@ const SignUp: React.FC = () => {
 
             <S.PasswordInputWrapper>
               <TextLabel
-                text={"비밀번호"}
+                text={'비밀번호'}
                 size={16}
                 $weight={500}
-                color={"var(--grey-7)"}
+                color={'var(--grey-7)'}
               ></TextLabel>
 
               <S.LoginInput
                 name="password"
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 placeholder="비밀번호"
                 value={formData.password}
                 onChange={handleInputChange}
               />
-              <S.EyeIcon
-                src={eyeOff}
-                alt="eye"
-                onClick={togglePasswordVisibility}
-              />
+              <S.EyeIcon src={eyeOff} alt="eye" onClick={togglePasswordVisibility} />
 
               <S.Checklist>
                 <S.CheckItem valid={uppercaseValid}>대문자</S.CheckItem>
@@ -218,27 +243,23 @@ const SignUp: React.FC = () => {
 
             <S.PasswordInputWrapper>
               <TextLabel
-                text={"비밀번호 확인"}
+                text={'비밀번호 확인'}
                 size={16}
                 $weight={500}
-                color={"var(--grey-7)"}
+                color={'var(--grey-7)'}
               ></TextLabel>
 
               <S.LoginInput
                 name="validPassword"
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 placeholder="비밀번호 재입력"
                 value={formData.validPassword}
                 onChange={handleInputChange}
               />
-              <S.EyeIcon
-                src={eyeOff}
-                alt="eye"
-                onClick={togglePasswordVisibility}
-              />
+              <S.EyeIcon src={eyeOff} alt="eye" onClick={togglePasswordVisibility} />
               {formData.validPassword && (
                 <S.PasswordError>
-                  {validPassword ? "" : "비밀번호가 일치하지 않습니다."}
+                  {validPassword ? '' : '비밀번호가 일치하지 않습니다.'}
                 </S.PasswordError>
               )}
             </S.PasswordInputWrapper>
@@ -260,48 +281,44 @@ const SignUp: React.FC = () => {
           <>
             <S.PasswordInputWrapper>
               <TextLabel
-                text={"재학생 인증"}
+                text={'재학생 인증'}
                 size={24}
                 $weight={700}
-                color={"var(--grey-7)"}
+                color={'var(--grey-7)'}
               ></TextLabel>
             </S.PasswordInputWrapper>
 
             <S.PasswordInputWrapper>
               <TextLabel
-                text={"학교 이름"}
+                text={'학교 이름'}
                 size={16}
                 $weight={500}
-                color={"var(--grey-7)"}
+                color={'var(--grey-7)'}
               ></TextLabel>
 
               <S.LoginInput
                 name="universityName"
-                type={"text"}
+                type={'text'}
                 placeholder="동국대학교"
                 value={formData.universityName}
                 onChange={handleInputChange}
               />
 
               <TextLabel
-                text={"학교 이메일"}
+                text={'학교 이메일'}
                 size={16}
                 $weight={500}
-                color={"var(--grey-7)"}
+                color={'var(--grey-7)'}
               ></TextLabel>
 
               <S.LoginInput
                 name="universityEmail"
-                type={"text"}
+                type={'text'}
                 placeholder="honggildong@dgu.ac.kr"
                 value={formData.universityEmail}
                 onChange={handleInputChange}
               />
-              {!emailValid && (
-                <S.PasswordError>
-                  유효하지 않은 이메일 형식입니다.
-                </S.PasswordError>
-              )}
+              {!emailValid && <S.PasswordError>유효하지 않은 이메일 형식입니다.</S.PasswordError>}
             </S.PasswordInputWrapper>
 
             <S.ButtonWrapper>
@@ -322,13 +339,14 @@ const SignUp: React.FC = () => {
           <>
             <S.PasswordInputWrapper>
               <TextLabel
-                text={"스타일 태그 선택"}
+                text={'스타일 태그 선택'}
                 size={24}
                 $weight={700}
-                color={"var(--grey-7)"}
+                color={'var(--grey-7)'}
               ></TextLabel>
             </S.PasswordInputWrapper>
             <TagInput
+              handleChangeStyleTag={handleChangeStyleTag}
               label="스타일 태그 선택"
               setButtonColor={setButtonColor}
             />
@@ -351,47 +369,43 @@ const SignUp: React.FC = () => {
           <>
             <S.PasswordInputWrapper>
               <TextLabel
-                text={"약관 동의"}
+                text={'약관 동의'}
                 size={24}
                 $weight={700}
-                color={"var(--grey-7)"}
+                color={'var(--grey-7)'}
               ></TextLabel>
               <S.AgreeWrapper>
                 <Checkbox
                   label=""
-                  id={"allAgree"}
+                  id={'allAgree'}
                   checked={allAgreed}
                   setIsChecked={setAllAgreed}
                 />
                 <S.ColumnWrapper>
                   <label htmlFor="allAgree">
                     <TextLabel
-                      text={"모두 동의합니다"}
+                      text={'모두 동의합니다'}
                       size={14}
                       $weight={700}
-                      color={"var(--grey-7)"}
+                      color={'var(--grey-7)'}
                     />
                     <TextLabel
                       text={
-                        "전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며, \n개별적으로도 동의를 선택하실 수 있습니다."
+                        '전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며, \n개별적으로도 동의를 선택하실 수 있습니다.'
                       }
                       size={12}
                       $weight={400}
-                      color={"var(--grey-5)"}
+                      color={'var(--grey-5)'}
                     />
                   </label>
                 </S.ColumnWrapper>
               </S.AgreeWrapper>
               <S.ChecklistColumn>
-                <S.CheckItemLarge valid={allAgreed}>
-                  (필수) 만 18세 이상입니다.
-                </S.CheckItemLarge>
+                <S.CheckItemLarge valid={allAgreed}>(필수) 만 18세 이상입니다.</S.CheckItemLarge>
                 <S.CheckItemLarge valid={allAgreed}>
                   (필수) 개인정보 수집 및 이용 동의
                 </S.CheckItemLarge>
-                <S.CheckItemLarge valid={allAgreed}>
-                  (필수) 서비스 이용약관 동의
-                </S.CheckItemLarge>
+                <S.CheckItemLarge valid={allAgreed}>(필수) 서비스 이용약관 동의</S.CheckItemLarge>
                 <S.CheckItemLarge valid={allAgreed}>
                   (선택) 혜택/이벤트 정보 수신 동의
                 </S.CheckItemLarge>
@@ -399,7 +413,10 @@ const SignUp: React.FC = () => {
             </S.PasswordInputWrapper>
             <S.ButtonWrapper>
               <Button
-                handleOnClick={goToNextTab}
+                handleOnClick={() => {
+                  goToNextTab();
+                  postSignup();
+                }}
                 children="완료"
                 width="100%"
                 $padding="16px"
@@ -416,7 +433,7 @@ const SignUp: React.FC = () => {
             <S.FlexCenter>
               <img src={welcomeLogo} alt="회원가입 완료" />
               <TextLabel
-                text={"회원가입이 완료되었습니다"}
+                text={'회원가입이 완료되었습니다'}
                 color="var(--green-primary)"
                 size={15}
                 $weight={500}
@@ -425,13 +442,13 @@ const SignUp: React.FC = () => {
             </S.FlexCenter>
             <S.ButtonWrapper>
               <Button
-                handleOnClick={() => navigate("/login")}
+                handleOnClick={() => navigate('/login')}
                 children="로그인 하러 가기"
                 width="100%"
                 $padding="16px"
                 fontSize="18px"
-                $bgcolor={"var(--green-primary)"}
-                color={"#ffffff"}
+                $bgcolor={'var(--green-primary)'}
+                color={'#ffffff'}
               />
             </S.ButtonWrapper>
           </>
@@ -446,20 +463,10 @@ const SignUp: React.FC = () => {
       {/*TAB */}
       {activeIndex < 4 && (
         <>
-          {" "}
+          {' '}
           <Header>
-            <S.BtnLeft
-              src={arrow}
-              className="left"
-              alt="btn-back"
-              onClick={goToPreviousTab}
-            />
-            <img
-              src={x}
-              className="right"
-              alt="btn-back"
-              onClick={() => navigate("/donation")}
-            />
+            <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={goToPreviousTab} />
+            <img src={x} className="right" alt="btn-back" onClick={() => navigate('/donation')} />
           </Header>
           <S.Container>
             <S.TabContainer>
@@ -476,11 +483,8 @@ const SignUp: React.FC = () => {
 
       {activeIndex < 4 && (
         <S.LoginText>
-          이미 회원이신가요?{" "}
-          <span
-            onClick={() => navigate("/login")}
-            style={{ color: "var(--green-primary)" }}
-          >
+          이미 회원이신가요?{' '}
+          <span onClick={() => navigate('/login')} style={{ color: 'var(--green-primary)' }}>
             로그인하기
           </span>
         </S.LoginText>

@@ -1,8 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './style';
+import userImage from 'assets/images/wear_profile.svg';
 import defaultImg from 'assets/images/product-default-img.png';
 import {
   BoxKebabList,
+  Button,
   ChatInput,
   ChatScreen,
   Header,
@@ -23,9 +25,9 @@ interface Message {
   id: number;
   chat_rood_id: number;
   message: string | File;
-  // timestamp: string;
-  // isMine: boolean;
-  // profilePic: string;
+  timestamp: string;
+  isMine: boolean;
+  profilePic: string;
 }
 
 interface ProductType {
@@ -45,7 +47,7 @@ interface CustomerInfo {
 const ChatDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { productId, chatRoomId } = location.state;
+  const { productId, chatRoomId, isWear } = location.state;
   console.log(chatRoomId, productId);
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [product, setProduct] = useState<ProductType>({
@@ -91,7 +93,9 @@ const ChatDetail = () => {
   };
 
   useEffect(() => {
-    connectHandler();
+    if (!isWear) {
+      connectHandler();
+    }
   }, [chatRoomId]);
 
   const handleSend = (message: File | string) => {
@@ -101,6 +105,9 @@ const ChatDetail = () => {
         id: messages.length + 1,
         chat_rood_id: chatRoomId,
         message: message,
+        timestamp: new Date().toLocaleTimeString().slice(0, 7),
+        isMine: true,
+        profilePic: otherUser.profile_image,
       };
       setMessages([...messages, newMessage]);
       if (typeof message === 'string' && client.current && client.current.connected) {
@@ -128,6 +135,7 @@ const ChatDetail = () => {
   };
 
   const getChatData = async () => {
+    if (isWear) return;
     const response = await instance.get(
       `/chat/room/enter?roomId=${chatRoomId}&productId=${productId}`
     );
@@ -147,50 +155,99 @@ const ChatDetail = () => {
   };
 
   useEffect(() => {
-    getChatData();
-  }, []);
+    if (!isWear) {
+      getChatData();
+    }
+  }, [isWear]);
 
+  const WearMessage: Message[] = [
+    {
+      id: 1,
+      chat_rood_id: 1,
+      message:
+        '안녕하세요, 등록하신 <ZARA 코트> 상품이\n 5일 동안 거래되지 않고 있어요.\n\n 웨어와 함께  필요한 곳에 기부하는건 어떨까요? 아래 기부하기 버튼을 누르시면 기부절차와 방법을 알려드릴게요🌱',
+      timestamp: '10:00',
+      isMine: false,
+      profilePic: userImage,
+    },
+  ];
   return (
-    <S.Container>
-      <S.ChatFixedHeader>
-        <Header>
-          <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
-          <S.NickNameContainer>
-            <TextLabel text={otherUser.nickname} size={18} $weight={700} />
-            <img src={levelUrlArr(otherUser.level)} alt="level" />
-          </S.NickNameContainer>
-          <img
-            src={kebab}
-            className="right"
-            alt="btn-back"
-            onClick={() => {
-              setOpenKebab(() => !openKebab);
-              console.log('openKebab:', openKebab);
-            }}
-          />
-        </Header>
-        {openKebab && (
-          <BoxKebabList>
-            <p>차단하기</p>
-            <p className="red">신고하기</p>
-          </BoxKebabList>
-        )}
-        <ProductInfo
-          imageUrl={product.product_image ? product.product_image : defaultImg}
-          productName={product.product_name}
-          price={product.price}
-          onClick={handleClickProduct}
-        />
-      </S.ChatFixedHeader>
+    <>
+      {isWear ? (
+        <div>
+          {' '}
+          <S.Container>
+            <S.ChatFixedHeader>
+              <Header>
+                <S.BtnLeft
+                  src={arrow}
+                  className="left"
+                  alt="btn-back"
+                  onClick={() => navigate(-1)}
+                />
+                <S.NickNameContainer>
+                  <TextLabel text={'팀 WEAR'} size={18} $weight={700} />
+                </S.NickNameContainer>
+              </Header>
+            </S.ChatFixedHeader>
+            <S.ChatScreenFixed>
+              <ChatScreen messages={WearMessage} userImage={userImage} />
+            </S.ChatScreenFixed>
 
-      <S.Content>
-        <S.SectionScroll>
-          <ChatScreen messages={messages} userImage={otherUser.profile_image} />
-        </S.SectionScroll>
-      </S.Content>
-      <ChatInput handleImageChange={handleImageChange} handleSend={handleSend} />
-    </S.Container>
+            <S.FooterFixed>
+              <Button
+                width={'100%'}
+                $padding={'16px 20px'}
+                children={'기부하기'}
+                $bgcolor={'var(--green-primary)'}
+                color={'white'}
+                handleOnClick={() => navigate('/donation')}
+              />
+            </S.FooterFixed>
+          </S.Container>
+        </div> // isWear가 true일 때 렌더링되는 내용
+      ) : (
+        <S.Container>
+          <S.ChatFixedHeader>
+            <Header>
+              <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
+              <S.NickNameContainer>
+                <TextLabel text={otherUser.nickname} size={18} $weight={700} />
+                <img src={levelUrlArr(otherUser.level)} alt="level" />
+              </S.NickNameContainer>
+              <img
+                src={kebab}
+                className="right"
+                alt="btn-back"
+                onClick={() => {
+                  setOpenKebab(() => !openKebab);
+                  console.log('openKebab:', openKebab);
+                }}
+              />
+            </Header>
+            {openKebab && (
+              <BoxKebabList>
+                <p>차단하기</p>
+                <p className="red">신고하기</p>
+              </BoxKebabList>
+            )}
+            <ProductInfo
+              imageUrl={product.product_image ? product.product_image : defaultImg}
+              productName={product.product_name}
+              price={product.price}
+              onClick={handleClickProduct}
+            />
+          </S.ChatFixedHeader>
+
+          <S.Content>
+            <S.SectionScroll>
+              <ChatScreen messages={messages} userImage={otherUser.profile_image} />
+            </S.SectionScroll>
+          </S.Content>
+          <ChatInput handleImageChange={handleImageChange} handleSend={handleSend} />
+        </S.Container>
+      )}
+    </>
   );
 };
-
 export default ChatDetail;

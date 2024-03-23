@@ -16,7 +16,9 @@ export const MessageBubble = styled.div<{ isMine: boolean }>`
   color: ${({ isMine }) => (isMine ? 'white' : 'var(--grey-7)')};
   margin: ${({ isMine }) => (isMine ? '0' : '0 0 0 10px')};
   position: relative;
-
+  font-size: 13px;
+  white-space: pre-line;
+  line-height: 1.5;
   & > img {
     max-width: 100%;
     max-height: 350px;

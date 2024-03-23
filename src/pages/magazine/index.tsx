@@ -1,6 +1,4 @@
-import { CarouselMagazine, Header, Nav } from 'components/index';
-import logo from 'assets/logo/logo.svg';
-import search from 'assets/icons/search.svg';
+import { CarouselMagazine, Nav } from 'components/index';
 import banner1 from 'assets/magazine/banner1.svg';
 import banner2 from 'assets/magazine/banner2.svg';
 import quiz from 'assets/magazine/quiz.svg';
