@@ -5,10 +5,12 @@ import logo from 'assets/logo/donation-logo.svg';
 import { instance } from 'apis';
 import { useCharityNumber, useDonationForm } from 'store/donationForm';
 import { useEffect } from 'react';
+import { useFormDataActions } from 'store/formData';
 
 const DonationFinish = () => {
   const donationForm = useDonationForm();
   const charityNumber = useCharityNumber();
+  const { resetFormData } = useFormDataActions();
 
   const userId = localStorage.getItem('userId');
 
@@ -28,6 +30,7 @@ const DonationFinish = () => {
       const response = await instance.post(`/donations/${userId}?charity=${charityNumber}`, {
         sendData,
       });
+      // resetFormData();
       console.log(response.data);
     } catch (error) {
       console.error('기부 데이터 저장 실패', error);
