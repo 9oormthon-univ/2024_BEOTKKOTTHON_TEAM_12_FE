@@ -1,6 +1,6 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import * as S from "./style";
-import defaultImg from "assets/images/product-default-img.png";
+import { useLocation, useNavigate } from 'react-router-dom';
+import * as S from './style';
+import defaultImg from 'assets/images/product-default-img.png';
 import {
   BoxKebabList,
   ChatInput,
@@ -8,23 +8,24 @@ import {
   Header,
   ProductInfo,
   TextLabel,
-} from "components/index";
-import arrow from "assets/icons/arrow.svg";
-import kebab from "assets/icons/kebab.svg";
-import productImage from "assets/images/product-default-img.png";
-import { useEffect, useRef, useState } from "react";
-import { levelUrlArr } from "utils/levelUrlArr";
-import { instance } from "apis";
+} from 'components/index';
+import arrow from 'assets/icons/arrow.svg';
+import kebab from 'assets/icons/kebab.svg';
+import productImage from 'assets/images/product-default-img.png';
+import { useEffect, useRef, useState } from 'react';
+import { levelUrlArr } from 'utils/levelUrlArr';
+import { instance } from 'apis';
 
-import SockJS from "sockjs-client";
-import { Stomp, CompatClient } from "@stomp/stompjs";
+import SockJS from 'sockjs-client';
+import { Stomp, CompatClient } from '@stomp/stompjs';
 
 interface Message {
-  id: string;
-  content: string | File;
-  timestamp: string;
-  isMine: boolean;
-  profilePic: string;
+  id: number;
+  chat_rood_id: number;
+  message: string | File;
+  // timestamp: string;
+  // isMine: boolean;
+  // profilePic: string;
 }
 
 interface ProductType {
@@ -50,13 +51,13 @@ const ChatDetail = () => {
   const [product, setProduct] = useState<ProductType>({
     id: productId,
     price: 15000,
-    product_name: "string",
+    product_name: 'string',
     product_image: productImage,
   });
   const [otherUser, setOtherUser] = useState<CustomerInfo>({
     id: 1,
-    nickname: "김스옹",
-    level: "씨앗",
+    nickname: '김스옹',
+    level: '씨앗',
     profile_image: defaultImg,
   });
   const [messages, setMessages] = useState<Message[]>([]);
@@ -73,21 +74,18 @@ const ChatDetail = () => {
     };
 
     client.current = Stomp.over(webSocketFactory);
-    console.log("client.current:", client.current);
+    console.log('client.current:', client.current);
     client.current.connect(
       {},
       () => {
-        console.log("연결 성공");
-        client.current?.subscribe(
-          `/sub/api/chat/room/${chatRoomId}`,
-          (message) => {
-            console.log(message);
-            // 메시지 처리 로직
-          }
-        );
+        console.log('연결 성공');
+        client.current?.subscribe(`/sub/api/chat/room/${chatRoomId}`, (message) => {
+          console.log('받은메세지', message);
+          // 메시지 처리 로직
+        });
       },
       (error: any) => {
-        console.error("연결 실패:", error);
+        console.error('연결 실패:', error);
       }
     );
   };
@@ -100,27 +98,21 @@ const ChatDetail = () => {
     try {
       if (!message) return;
       const newMessage = {
-        id: (messages.length + 1).toString(),
-        content: message,
-        timestamp: new Date().toLocaleTimeString().slice(0, 7),
-        isMine: true,
-        profilePic: "",
+        id: messages.length + 1,
+        chat_rood_id: chatRoomId,
+        message: message,
       };
       setMessages([...messages, newMessage]);
-      if (
-        typeof message === "string" &&
-        client.current &&
-        client.current.connected
-      ) {
+      if (typeof message === 'string' && client.current && client.current.connected) {
         client.current.send(
           `/pub/api/chat/message`,
           // JSON 형식으로 전송한다
           newMessage
         );
-        console.log("메시지 전송 완료:", newMessage);
+        console.log('메시지 전송 완료:', newMessage);
       }
     } catch (error) {
-      console.error("메시지 전송 중 오류 발생:", error);
+      console.error('메시지 전송 중 오류 발생:', error);
     }
   };
 
@@ -139,7 +131,7 @@ const ChatDetail = () => {
     const response = await instance.get(
       `/chat/room/enter?roomId=${chatRoomId}&productId=${productId}`
     );
-    console.log("채팅방 입장");
+    console.log('채팅방 입장');
     setProduct({
       id: response.data.product_id,
       price: response.data.price,
@@ -162,12 +154,7 @@ const ChatDetail = () => {
     <S.Container>
       <S.ChatFixedHeader>
         <Header>
-          <S.BtnLeft
-            src={arrow}
-            className="left"
-            alt="btn-back"
-            onClick={() => navigate(-1)}
-          />
+          <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
           <S.NickNameContainer>
             <TextLabel text={otherUser.nickname} size={18} $weight={700} />
             <img src={levelUrlArr(otherUser.level)} alt="level" />
@@ -178,7 +165,7 @@ const ChatDetail = () => {
             alt="btn-back"
             onClick={() => {
               setOpenKebab(() => !openKebab);
-              console.log("openKebab:", openKebab);
+              console.log('openKebab:', openKebab);
             }}
           />
         </Header>
@@ -201,10 +188,7 @@ const ChatDetail = () => {
           <ChatScreen messages={messages} userImage={otherUser.profile_image} />
         </S.SectionScroll>
       </S.Content>
-      <ChatInput
-        handleImageChange={handleImageChange}
-        handleSend={handleSend}
-      />
+      <ChatInput handleImageChange={handleImageChange} handleSend={handleSend} />
     </S.Container>
   );
 };

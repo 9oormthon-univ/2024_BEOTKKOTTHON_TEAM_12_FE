@@ -1,12 +1,13 @@
-import { Header, BoxQuiz, Button, ModalProduct } from "components/index";
-import * as S from "./style";
-import back from "assets/icons/left_btn.svg";
-import share from "assets/icons/share.svg";
-import main from "assets/magazine/quiz_page.svg";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { quizData } from "data/shared";
-import { instance } from "apis";
+import { Header, BoxQuiz, Button, ModalProduct } from 'components/index';
+import * as S from './style';
+import back from 'assets/icons/left_btn.svg';
+import share from 'assets/icons/share.svg';
+import main from 'assets/magazine/quiz_page.svg';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { quizData } from 'data/shared';
+import { instance } from 'apis';
+import useUserStore from 'store/userId';
 
 let totalPoints = 0;
 
@@ -20,8 +21,7 @@ const QuizPage = () => {
 
   const navigate = useNavigate();
 
-  // 유저 아이디 수정 필요
-  const userId = 1;
+  const userId = useUserStore((state: any) => state.userId);
 
   useEffect(() => {
     setIsDisabled(submitAnswer.some((item) => item === 0));
@@ -42,10 +42,10 @@ const QuizPage = () => {
     await instance
       .post(`magazine/${userId}?score=${totalPoints}`)
       .then((response) => {
-        console.log("퀴즈 점수 등록 성공", response);
+        console.log('퀴즈 점수 등록 성공', response);
       })
       .catch((e) => {
-        console.log("퀴즈 점수 등록 실패", e);
+        console.log('퀴즈 점수 등록 실패', e);
       });
 
     setOpenModal(true);
@@ -59,12 +59,7 @@ const QuizPage = () => {
   return (
     <>
       <Header>
-        <img
-          className="left"
-          src={back}
-          alt="back"
-          onClick={() => navigate("/magazine")}
-        />
+        <img className="left" src={back} alt="back" onClick={() => navigate('/magazine')} />
         <img className="right" src={share} alt="share" />
       </Header>
 
@@ -91,7 +86,7 @@ const QuizPage = () => {
             $borderRadius="8px"
             fontSize="16px"
             $padding="16px"
-            handleOnClick={() => navigate("/magazine")}
+            handleOnClick={() => navigate('/magazine')}
           >
             다음 기회에 또 만나요
           </Button>
@@ -99,7 +94,7 @@ const QuizPage = () => {
           <Button
             width="100%"
             color="white"
-            $bgcolor={isDisabled ? "var(--grey-3)" : "var(--green-6)"}
+            $bgcolor={isDisabled ? 'var(--grey-3)' : 'var(--green-6)'}
             $borderRadius="8px"
             fontSize="16px"
             $padding="16px"

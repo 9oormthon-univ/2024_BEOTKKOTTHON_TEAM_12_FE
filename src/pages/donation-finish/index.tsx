@@ -1,26 +1,23 @@
-import { Link } from "react-router-dom";
-import * as S from "./style";
-import { Button } from "components/index";
-import logo from "assets/logo/donation-logo.svg";
-import { instance } from "apis";
-import { useCharityNumber, useDonationForm } from "store/donationForm";
-import { useEffect } from "react";
+import { Link } from 'react-router-dom';
+import * as S from './style';
+import { Button } from 'components/index';
+import logo from 'assets/logo/donation-logo.svg';
+import { instance } from 'apis';
+import { useCharityNumber, useDonationForm } from 'store/donationForm';
+import { useEffect } from 'react';
+import useUserStore from 'store/userId';
 
 const DonationFinish = () => {
   const donationForm = useDonationForm();
   const charityNumber = useCharityNumber();
-  const userId = "1";
+
+  const userId = useUserStore((state: any) => state.userId);
 
   const sendData = {
     user_name: donationForm.name,
-    address: donationForm.addr1 + " " + donationForm.addr2,
-    phone:
-      donationForm.phone1 +
-      "-" +
-      donationForm.phone2 +
-      "-" +
-      donationForm.phone3,
-    email: donationForm.email1 + "@" + donationForm.email2,
+    address: donationForm.addr1 + ' ' + donationForm.addr2,
+    phone: donationForm.phone1 + '-' + donationForm.phone2 + '-' + donationForm.phone3,
+    email: donationForm.email1 + '@' + donationForm.email2,
     donation_item: donationForm.sort,
     clothes_count: donationForm.clothes_num,
     fashion_count: donationForm.goods_num,
@@ -29,15 +26,12 @@ const DonationFinish = () => {
 
   const postDonationData = async () => {
     try {
-      const response = await instance.post(
-        `/donations/${userId}?charity=${charityNumber}`,
-        {
-          sendData,
-        }
-      );
+      const response = await instance.post(`/donations/${userId}?charity=${charityNumber}`, {
+        sendData,
+      });
       console.log(response.data);
     } catch (error) {
-      console.error("기부 데이터 저장 실패", error);
+      console.error('기부 데이터 저장 실패', error);
     }
   };
 
@@ -58,7 +52,7 @@ const DonationFinish = () => {
         </div>
       </S.Container>
 
-      <Link to={"/donation"}>
+      <Link to={'/donation'}>
         <S.BtnNext>
           <Button
             width="100%"

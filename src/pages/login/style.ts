@@ -54,11 +54,11 @@ export const Divider = styled.span`
 `;
 
 export const Link = styled.span`
-  font-family: 'Noto Sans KR';
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
   color: var(--grey-5);
+
   cursor: pointer;
 
   &:hover {
