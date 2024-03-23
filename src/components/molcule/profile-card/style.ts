@@ -14,6 +14,8 @@ export const ProfileCardWrapper = styled.div`
 export const RightContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 30%;
 `;
 
 export const MiddleContainer = styled.div`

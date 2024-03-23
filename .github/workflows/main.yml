@@ -15,6 +15,7 @@ jobs:
       - name: Setup .env for Vite
         run: |
           echo "VITE_SERVER_URL=${{ secrets.VITE_SERVER_URL }}" >> .env
+          echo "VITE_SOCKET_SERVER_URL=${{ secrets.VITE_SOCKET_SERVER_URL }}" >> .env
 
       - name: Install Dependencies
         run: npm install

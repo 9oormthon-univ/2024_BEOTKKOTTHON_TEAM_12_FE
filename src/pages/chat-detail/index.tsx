@@ -66,7 +66,7 @@ const ChatDetail = () => {
   const client = useRef<CompatClient | null>(null);
 
   const connectHandler = () => {
-    const serverUrl = `${import.meta.env.VITE_SERVER_URL}/ws-stomp`;
+    const serverUrl = `${import.meta.env.VITE_SOCKET_SERVER_URL}/ws-stomp`;
 
     const webSocketFactory = () => {
       return new SockJS(serverUrl);
@@ -75,8 +75,8 @@ const ChatDetail = () => {
     client.current = Stomp.over(webSocketFactory);
     console.log('client.current:', client.current);
     client.current.connect(
+      {},
       () => {
-        // 첫 번째 인자로 빈 객체 전달
         console.log('연결 성공');
         client.current?.subscribe(`/sub/api/chat/room/${chatRoomId}`, (message) => {
           console.log(message);
@@ -84,7 +84,6 @@ const ChatDetail = () => {
         });
       },
       (error: any) => {
-        // 에러 핸들링 콜백
         console.error('연결 실패:', error);
       }
     );

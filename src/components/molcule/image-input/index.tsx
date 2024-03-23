@@ -3,6 +3,7 @@ import * as S from './style';
 import React, { useRef, ChangeEvent, useState, useEffect } from 'react';
 import noImg from '@assets/images/profile-no-image.png';
 import useStore from '../../../store/userData';
+import { instance } from 'src/apis';
 
 interface ImageInputProps {
   image: string;
@@ -21,6 +22,7 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
       const imageUrl = URL.createObjectURL(file);
       setNewImage(imageUrl);
       updateUserProfileInfo({ profile_image: imageUrl });
+      getImageUrl();
       console.log(userProfileInfo);
     }
   };
@@ -35,13 +37,19 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
   }, [newImage]);
 
   const handleClickUpload = () => {
+    fileInputRef.current?.focus();
     fileInputRef.current?.click();
+  };
+
+  const getImageUrl = async () => {
+    const response = await instance.post(`/upload`, [newImage]);
+    console.log(response);
   };
 
   return (
     <S.ImageWrapper>
       <TextLabel text="프로필 이미지 변경" size={16} color="var(--grey-7)" />
-      <S.BoxUpload htmlFor="img">
+      <S.BoxUpload htmlFor="imgInput" onClick={handleClickUpload}>
         <S.Image src={newImage} alt="img" />
       </S.BoxUpload>
 
@@ -55,9 +63,9 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
       />
 
       <S.RemoveInput
+        id="imgInput"
         as="input"
         type="file"
-        id="img"
         name="imgs"
         accept="image/*"
         multiple
