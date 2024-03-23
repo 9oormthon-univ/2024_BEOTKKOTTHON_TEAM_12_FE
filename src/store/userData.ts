@@ -56,8 +56,8 @@ const useStore = create<StoreState>((set) => ({
           profile_image: noImg,
           level: '새싹',
           next_level: '목화',
-          point: 10,
-          remain_level_point: 50,
+          point: 20,
+          remain_level_point: 80,
         },
       });
       console.log('마이페이지 불러오기 성공', response.data);
@@ -72,8 +72,8 @@ const useStore = create<StoreState>((set) => ({
           profile_image: noImg,
           level: '새싹',
           next_level: '목화',
-          point: 10,
-          remain_level_point: 50,
+          point: 20,
+          remain_level_point: 80,
         },
       });
     }
