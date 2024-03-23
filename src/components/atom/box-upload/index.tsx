@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const BoxUpload = () => {
   const showImages = useShowImages();
-  const { setFormData, setShowImages, changeImgFileToString } = useFormDataActions();
+  const { setFormData, setShowImages } = useFormDataActions();
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files as FileList;

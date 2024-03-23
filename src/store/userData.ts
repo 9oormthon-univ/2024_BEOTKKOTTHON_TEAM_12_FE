@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import noImg from '../assets/images/profile-no-image.png';
 import { instance } from '../apis/index';
 
 interface UserProfileInfo {
