@@ -32,7 +32,7 @@ const Main = () => {
     try {
       await instance
         .get(
-          `/products/catego111ry?categoryName=${activeCategory}&postStatus=${clickedOnSale}&pageNumber=0`
+          `/products/category?categoryName=${activeCategory}&postStatus=${clickedOnSale}&pageNumber=0`
         )
         .then(function (response) {
           // 성공한 경우 실행
