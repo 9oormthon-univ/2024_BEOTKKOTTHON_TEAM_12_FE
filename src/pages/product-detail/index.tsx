@@ -11,7 +11,7 @@ import * as S from './style';
 import arrow from 'assets/icons/left_btn.svg';
 import kebab from 'assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Seller } from 'types/types';
+import { Product, Seller } from 'types/types';
 import { useEffect, useState } from 'react';
 import { salesData } from 'data/shared';
 import { instance } from 'apis';
@@ -24,7 +24,7 @@ const ProductDetail = () => {
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const product = useProduct();
-  const { setProduct, updateOnSale } = useProductActions();
+  const { setProduct, updateOnSale, changeStringToArr } = useProductActions();
   //const userProfileInfo = useUserProfileInfo();
 
   const userId = '1';
@@ -35,6 +35,8 @@ const ProductDetail = () => {
       .then((response) => {
         console.log('데이터 가져오기 성공', response);
         setProduct(response.data);
+        changeStringToArr(response.data.product_image);
+        console.log(product?.product_image);
       })
       .catch((e) => {
         console.log('데이터 가져오기 실패', e);
@@ -164,7 +166,6 @@ const ProductDetail = () => {
                   {product.product_image.map((url, i) => (
                     <img src={url} alt={`img-${i}`} key={i} />
                   ))}
-
                   {/* <img src={product.product_image} alt={`img`} /> */}
                 </Carousel>
               </section>

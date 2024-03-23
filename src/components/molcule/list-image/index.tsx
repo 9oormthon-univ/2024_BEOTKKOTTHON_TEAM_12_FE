@@ -4,11 +4,7 @@ import cancle from 'assets/icons/cancel.svg';
 import { useFormDataActions, useShowImages } from 'store/formData';
 import { Dispatch, SetStateAction } from 'react';
 
-interface ListImageProps {
-  setFiles: Dispatch<SetStateAction<FileList | null>>;
-}
-
-const ListImage = ({ setFiles }: ListImageProps) => {
+const ListImage = () => {
   const showImages = useShowImages();
   const { setShowImages } = useFormDataActions();
 
@@ -19,7 +15,7 @@ const ListImage = ({ setFiles }: ListImageProps) => {
 
   return (
     <S.Container>
-      <BoxUpload setFiles={setFiles} />
+      <BoxUpload />
 
       {showImages.map((img, i) => (
         <S.BoxImage key={i}>

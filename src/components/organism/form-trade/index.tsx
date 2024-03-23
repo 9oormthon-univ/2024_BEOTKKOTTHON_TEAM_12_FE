@@ -25,6 +25,16 @@ const FormTrade = () => {
   const { setFormData, receiveData, resetFormData } = useFormDataActions();
 
   const isEdit = location.pathname.includes('edit');
+  const userId = 1;
+
+  const disabled = !(
+    formData.product_name &&
+    formData.category &&
+    formData.product_status &&
+    formData.product_content &&
+    formData.price &&
+    formData.place
+  );
 
   useEffect(() => {
     resetFormData();
@@ -36,25 +46,24 @@ const FormTrade = () => {
     }
   }, []);
 
-  const [files, setFiles] = useState<FileList | null>(null);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formSubmit = new FormData();
 
-    // const test = {
-    //   product_image: files[0],
-    //   product_name: formData.product_name,
-    //   category_name: formData.category,
-    //   product_status: formData.product_status,
-    //   product_content: formData.product_content,
-    //   price: formData.price,
-    //   place: formData.place,
-    // };
-    const formDataTest = new FormData();
+    const sendData = {
+      product_image: formData.product_image,
+      product_name: formData.product_name,
+      category_name: formData.category,
+      product_status: formData.product_status,
+      product_content: formData.product_content,
+      price: formData.price,
+      place: formData.place,
+    };
 
-    for (let i = 0; i < (files as FileList).length; i++) {
-      formDataTest.append('files', (files as FileList)[i]);
-    }
+    await instance
+      .post(`/products/new/${userId}`, sendData)
+      .then((res) => console.log('폼 전송 성공', res))
+      .catch((e) => console.log('폼 전송 실패', e));
 
     console.log(formData);
     resetFormData();
@@ -67,7 +76,7 @@ const FormTrade = () => {
         <p className="label">
           이미지 업로드 (<span className="sub">{showImages.length}</span>/5)
         </p>
-        <ListImage setFiles={setFiles} />
+        <ListImage />
       </FormGroup>
 
       <FormGroup>
@@ -129,7 +138,15 @@ const FormTrade = () => {
         <ListTradeForm list={placeList} type={'place'} />
       </FormGroup>
 
-      {isEdit ? <Button color="primary">수정 완료</Button> : <Button>등록하기</Button>}
+      {isEdit ? (
+        <Button color={disabled ? '' : 'primary'} disabled={disabled}>
+          수정 완료
+        </Button>
+      ) : (
+        <Button color={disabled ? '' : 'primary'} disabled={disabled}>
+          등록하기
+        </Button>
+      )}
     </form>
   );
 };

@@ -4,13 +4,9 @@ import { Dispatch, SetStateAction } from 'react';
 import { useFormDataActions, useShowImages } from 'store/formData';
 import axios from 'axios';
 
-interface BoxUploadProps {
-  setFiles: Dispatch<SetStateAction<FileList | null>>;
-}
-
-const BoxUpload = ({ setFiles }: BoxUploadProps) => {
+const BoxUpload = () => {
   const showImages = useShowImages();
-  const { setFormData, setShowImages } = useFormDataActions();
+  const { setFormData, setShowImages, changeImgFileToString } = useFormDataActions();
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files as FileList;
@@ -26,7 +22,10 @@ const BoxUpload = ({ setFiles }: BoxUploadProps) => {
           'Content-Type': 'multipart/form-data',
         },
       })
-      .then((res) => console.log('상품 이미지 업로드 성공', res))
+      .then((res) => {
+        console.log('상품 이미지 업로드 성공', res);
+        changeImgFileToString(res.data);
+      })
       .catch((e) => console.log('상품 이미지 업로드 실패', e));
 
     if (files) {
@@ -42,7 +41,6 @@ const BoxUpload = ({ setFiles }: BoxUploadProps) => {
       }
       setShowImages(imageUrlLists);
       setShowImages(imageUrlLists);
-      setFiles(files);
       setFormData('product_image_list', files);
     }
   };
