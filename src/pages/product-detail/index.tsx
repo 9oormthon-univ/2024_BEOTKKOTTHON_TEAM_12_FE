@@ -11,11 +11,15 @@ import * as S from './style';
 import arrow from 'assets/icons/left_btn.svg';
 import kebab from 'assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Product, Seller } from 'types/types';
+
+import { Seller } from 'types/types';
 import { useEffect, useState } from 'react';
 import { salesData } from 'data/shared';
 import { instance } from 'apis';
 import { useProduct, useProductActions } from 'store/product';
+
+import useUserStore from 'store/userId';
+
 //import { useUserProfileInfo } from 'src/store/userData';
 
 const ProductDetail = () => {
@@ -27,7 +31,8 @@ const ProductDetail = () => {
   const { setProduct, updateOnSale } = useProductActions();
   //const userProfileInfo = useUserProfileInfo();
 
-  const userId = '1';
+  const userId = useUserStore((state: any) => state.userId);
+
 
   const getData = async () => {
     await instance

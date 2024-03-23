@@ -1,14 +1,16 @@
-import { Header, Nav, Search, TextLabel } from "components/index";
-import * as S from "./style";
-import { ChatRoom } from "types/types";
-import ChatListItem from "components/molcule/chat-list-item";
-import { instance } from "apis";
-import { useEffect, useState } from "react";
+import { Header, Nav, Search, TextLabel } from 'components/index';
+import * as S from './style';
+import { ChatRoom } from 'types/types';
+import ChatListItem from 'components/molcule/chat-list-item';
+import { instance } from 'apis';
+import { useEffect, useState } from 'react';
+import useUserStore from '../../store/userId';
 
 const ChatHome: React.FC = () => {
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
 
-  const userId = "1";
+  const userId = useUserStore((state: any) => state.userId);
+  console.log(userId);
 
   const getChatList = async () => {
     // 채팅 리스트 가져오기

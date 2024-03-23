@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import * as S from "./style";
-import logo from "assets/logo/big-logo.svg";
-import eyeOff from "assets/icons/eye-off.svg";
-import { Button, Checkbox, TextLabel } from "components/index";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import * as S from './style';
+import logo from 'assets/logo/big-logo.svg';
+import eyeOff from 'assets/icons/eye-off.svg';
+import { Button, Checkbox, TextLabel } from 'components/index';
+import { useNavigate } from 'react-router-dom';
+import { instance } from 'apis';
+import useUserStore from '../../store/userId';
 
 interface FormData {
   userId: string;
@@ -11,35 +13,53 @@ interface FormData {
 }
 
 const Login = () => {
+  const navigate = useNavigate();
+  const userId = useUserStore((state: any) => state.userId);
+  const setUserId = useUserStore((state: any) => state.setUserId);
+
   const handleFindId = () => {
-    console.log("아이디찾기");
+    console.log('아이디찾기');
   };
 
   const handleSignIn = () => {
-    navigate("/signup");
+    navigate('/signup');
   };
 
-  const handleLogin = () => {
-    console.log("로그인");
-    navigate("/donation");
+  const handleLogin = async () => {
+    console.log('로그인');
+    console.log(formData);
+    const response = await instance.post('/login', {
+      user_id: formData.userId, // 'userId'를 'user_id'로 변
+      user_password: formData.password,
+    });
+
+    if (response.data.id) {
+      // 로그인 성공 처리
+      setUserId(response.data.id); // 스토어의 유저 ID 업데이트
+      console.log('로그인 성공, 유저 ID:', userId);
+      navigate('/donation');
+    } else {
+      // 로그인 실패 처리
+      alert('로그인 실패');
+      navigate('/login');
+    }
   };
 
   const hadleNewPassword = () => {
-    console.log("비밀번호 재설정");
+    console.log('비밀번호 재설정');
   };
 
-  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
-    userId: "",
-    password: "",
+    userId: '',
+    password: '',
   });
 
   const [autoLoginChecked, setAutoLoginChecked] = useState(false);
   const [saveIdChecked, setSaveIdChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [buttonColor, setButtonColor] = useState({
-    backgroundColor: "var(--grey-2)",
-    color: "var(--grey-5)",
+    backgroundColor: 'var(--grey-2)',
+    color: 'var(--grey-5)',
   });
 
   const handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,13 +83,13 @@ const Login = () => {
   useEffect(() => {
     if (formData.userId && formData.password) {
       setButtonColor({
-        backgroundColor: "var(--green-primary)",
-        color: "#ffffff",
+        backgroundColor: 'var(--green-primary)',
+        color: '#ffffff',
       });
     } else {
       setButtonColor({
-        backgroundColor: "var(--grey-2)",
-        color: "var(--grey-5)",
+        backgroundColor: 'var(--grey-2)',
+        color: 'var(--grey-5)',
       });
     }
   }, [formData]);
@@ -86,28 +106,24 @@ const Login = () => {
         />
         <S.PasswordInputWrapper>
           <S.LoginInput
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             placeholder="비밀번호"
             value={formData.password}
             onChange={handlePasswordChange}
           />
-          <S.EyeIcon
-            src={eyeOff}
-            alt="eye"
-            onClick={togglePasswordVisibility}
-          />
+          <S.EyeIcon src={eyeOff} alt="eye" onClick={togglePasswordVisibility} />
         </S.PasswordInputWrapper>
       </S.LoginBox>
 
       <S.CheckboxWrapper>
         <Checkbox
-          id={"autoLogin"}
+          id={'autoLogin'}
           label="자동 로그인"
           checked={autoLoginChecked}
           setIsChecked={setAutoLoginChecked}
         />
         <Checkbox
-          id={"saveId"}
+          id={'saveId'}
           label="아이디 저장"
           checked={saveIdChecked}
           setIsChecked={setSaveIdChecked}
@@ -122,20 +138,29 @@ const Login = () => {
         fontSize="18px"
         $bgcolor={buttonColor.backgroundColor}
         color={buttonColor.color}
+        disabled={!formData.userId || !formData.password}
       />
 
       <S.LinkWrapper>
-        <S.Link onClick={handleFindId}>아이디 찾기</S.Link>
+        <S.Link onClick={handleFindId}>
+          <TextLabel text={'아이디 찾기'} size={12} color="var(--grey-5)" />
+        </S.Link>
         <S.Divider>|</S.Divider>
-        <S.Link onClick={hadleNewPassword}>비밀번호 재설정</S.Link>
+        <S.Link onClick={hadleNewPassword}>
+          {' '}
+          <TextLabel text={'비밀번호 재설정'} size={12} color="var(--grey-5)" />
+        </S.Link>
         <S.Divider>|</S.Divider>
-        <S.Link onClick={handleSignIn}>회원가입</S.Link>
+        <S.Link onClick={handleSignIn}>
+          {' '}
+          <TextLabel text={'회원가입'} size={12} color="var(--grey-5)" />
+        </S.Link>
       </S.LinkWrapper>
 
       <S.LoginMessage>
         <TextLabel
           text={
-            "로그인하면 웨어 이용약관에 동의하는 것으로 간주합니다. \n웨어의 회원 정보 처리 방식은 개인정보 처리방침 및 쿠키 정책에서 확인해보세요."
+            '로그인하면 웨어 이용약관에 동의하는 것으로 간주합니다. \n웨어의 회원 정보 처리 방식은 개인정보 처리방침 및 쿠키 정책에서 확인해보세요.'
           }
           size={9}
           $weight={300}

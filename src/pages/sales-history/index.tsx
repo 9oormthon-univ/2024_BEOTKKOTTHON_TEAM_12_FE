@@ -6,17 +6,18 @@ import {
   ModalProduct,
   Tab,
   TextLabel,
-} from "components/index";
-import React, { useEffect, useState } from "react";
-import arrow from "assets/icons/arrow.svg";
-import * as S from "./style";
-import { TabItemProps, ProductListItem, ProductProp } from "../../types/types";
-import { useNavigate } from "react-router";
-import productImg1 from "assets/images/product-image1.svg";
-import productImg2 from "assets/images/product-image2.svg";
-import productImg3 from "assets/images/product-image3.svg";
-import { Link } from "react-router-dom";
-import { instance } from "../../apis/index";
+} from 'components/index';
+import React, { useEffect, useState } from 'react';
+import arrow from 'assets/icons/arrow.svg';
+import * as S from './style';
+import { TabItemProps, ProductListItem, ProductProp } from '../../types/types';
+import { useNavigate } from 'react-router';
+import productImg1 from 'assets/images/product-image1.svg';
+import productImg2 from 'assets/images/product-image2.svg';
+import productImg3 from 'assets/images/product-image3.svg';
+import { Link } from 'react-router-dom';
+import { instance } from '../../apis/index';
+import useUserStore from 'store/userId';
 
 const SalesHistory = () => {
   const navigate = useNavigate();
@@ -25,21 +26,19 @@ const SalesHistory = () => {
     {
       id: 2,
       price: 10000,
-      product_name: "안입는 옷 처분해요",
-      product_status: "아주 좋아요",
-      post_status: "onSale",
+      product_name: '안입는 옷 처분해요',
+      product_status: '아주 좋아요',
+      post_status: 'onSale',
       product_image: productImg1,
     },
   ]);
-  const [salesCompletedData, setSalesCompletedData] = useState<
-    ProductListItem[]
-  >([
+  const [salesCompletedData, setSalesCompletedData] = useState<ProductListItem[]>([
     {
       id: 4,
       price: 10000,
-      product_name: "H&M 티셔츠팔아요",
-      product_status: "아주 좋아요",
-      post_status: "soldOut",
+      product_name: 'H&M 티셔츠팔아요',
+      product_status: '아주 좋아요',
+      post_status: 'soldOut',
       product_image: productImg2,
     },
   ]);
@@ -48,51 +47,47 @@ const SalesHistory = () => {
     {
       id: 3,
       price: 10000,
-      product_name: "ZARA 티셔츠 팔아요",
-      product_status: "아주 좋아요",
-      post_status: "hidden",
+      product_name: 'ZARA 티셔츠 팔아요',
+      product_status: '아주 좋아요',
+      post_status: 'hidden',
       product_image: productImg3,
     },
   ]);
 
   // const salesCompletedData = products.filter((product) => product.post_status === '판매완료');
-  const userId = "1";
+  const userId = useUserStore((state: any) => state.userId);
 
   /*판매중인 상품 불러오기 */
   const getSalesProducts = async () => {
     try {
       const response = await instance.get(`/users/myProducts/onSale/${userId}`);
-      console.log("판매중인 상품 불러오기 성공:", response.data);
+      console.log('판매중인 상품 불러오기 성공:', response.data);
       setSalesData(response.data);
     } catch (error) {
-      console.log("판매중 데이터 불러오기 실패", error);
+      console.log('판매중 데이터 불러오기 실패', error);
     }
   };
 
   /**판매완료 된 상품 불러오기 */
   const getSalesCompletedProducts = async () => {
     try {
-      const response = await instance.get(
-        `/users/myProducts/soldOut/${userId}`
-      );
-      console.log("판매완료 상품 불러오기 성공:", response.data);
+      const response = await instance.get(`/users/myProducts/soldOut/${userId}`);
+      console.log('판매완료 상품 불러오기 성공:', response.data);
       setSalesCompletedData(response.data);
       //setSalesCompletedData(response.data);
     } catch (error) {
-      console.log("판매완료 데이터 불러오기 실패", error);
+      console.log('판매완료 데이터 불러오기 실패', error);
     }
   };
 
   /*숨김 상품 불러오기 */
   const getHiddenItems = async () => {
     try {
-      const response = await instance.get(
-        `/users/myProducts/private/${userId}`
-      );
-      console.log("숨김 상품 불러오기 성공:", response.data);
+      const response = await instance.get(`/users/myProducts/private/${userId}`);
+      console.log('숨김 상품 불러오기 성공:', response.data);
       setHiddenItemsData(response.data);
     } catch (error) {
-      console.log("숨김 상품 불러오기 실패", error);
+      console.log('숨김 상품 불러오기 실패', error);
     }
   };
 
@@ -100,19 +95,16 @@ const SalesHistory = () => {
   const postSalesCompleted = async (productId: number) => {
     const productStatus = {
       id: productId,
-      post_status: "soldOut",
+      post_status: 'soldOut',
     };
-    console.log("판매완료로 변경할 상품 id:", productStatus);
+    console.log('판매완료로 변경할 상품 id:', productStatus);
     try {
-      const response = await instance.put(
-        `/users/myProducts/onSale/${userId}`,
-        { productStatus }
-      );
-      console.log("상품 상태 변경 성공:", response.data);
+      const response = await instance.put(`/users/myProducts/onSale/${userId}`, { productStatus });
+      console.log('상품 상태 변경 성공:', response.data);
       getSalesProducts();
       getSalesCompletedProducts();
     } catch (error) {
-      console.log("상품 상태 변경 실패", error);
+      console.log('상품 상태 변경 실패', error);
     }
   };
 
@@ -146,7 +138,7 @@ const SalesHistory = () => {
                   <p>판매완료로 변경할까요?</p>
                 </ModalProduct>
               )}
-              <BoxItemTrade product={item} width={"160px"} />
+              <BoxItemTrade product={item} width={'160px'} />
               <Button
                 children="판매 완료하기"
                 width="100%"
@@ -166,7 +158,7 @@ const SalesHistory = () => {
       <S.Container>
         {productData.length > 0 ? (
           productData.map((item: ProductListItem) => (
-            <BoxItemTrade product={item} width={"160px"} />
+            <BoxItemTrade product={item} width={'160px'} />
           ))
         ) : (
           <S.NoItemContainer>내역이 없습니다.</S.NoItemContainer>
@@ -177,20 +169,18 @@ const SalesHistory = () => {
 
   const tabData: TabItemProps[] = [
     {
-      label: "판매중",
-      count: 4,
+      label: '판매중',
+      count: salesData.length,
       ContentComponent: () => <SalesInProgress productData={salesData} />,
     },
     {
-      label: "판매 완료",
-      count: 1,
-      ContentComponent: () => (
-        <SalesCompleted productData={salesCompletedData} />
-      ),
+      label: '판매 완료',
+      count: salesCompletedData.length,
+      ContentComponent: () => <SalesCompleted productData={salesCompletedData} />,
     },
     {
-      label: "숨김",
-      count: 2,
+      label: '숨김',
+      count: hiddenItemsData.length,
       ContentComponent: () => <SalesCompleted productData={hiddenItemsData} />,
     },
   ];
@@ -198,17 +188,12 @@ const SalesHistory = () => {
     <>
       <Header>
         <TextLabel text="판매내역" size={16} $weight={700} />
-        <S.BackIcon
-          className="left"
-          src={arrow}
-          alt="go back"
-          onClick={() => navigate(-1)}
-        />
+        <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
       </Header>
 
       <S.Content>
         <Tab tabs={tabData} />
-        <Link to={"/product/new"}>
+        <Link to={'/product/new'}>
           <ButtonPlus $bottom="20px" />
         </Link>
       </S.Content>
