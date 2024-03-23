@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: var(--content-size);
+  height: calc(var(--content-size) + var(--header-size));
   padding: 0 20px;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -17,6 +17,7 @@ export const Content = styled.div`
   }
 
   .carousel {
+    border-radius: 10px;
     margin-top: 2px;
   }
 
