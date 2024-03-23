@@ -14,9 +14,6 @@ const UserProfileEdit = () => {
     user_name: '',
     nick_name: '',
     profile_image: '',
-    user_name: '',
-    nick_name: '',
-    profile_image: '',
     style: [],
   });
 
@@ -59,7 +56,6 @@ const UserProfileEdit = () => {
         alert('저장되었습니다.');
         alert('저장되었습니다.');
       })
-      .catch((e) => console.log('프로필 수정 실패', e));
       .catch((e) => console.log('프로필 수정 실패', e));
   };
 
