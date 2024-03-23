@@ -1,24 +1,24 @@
-import React from "react";
-import * as S from "./style";
-import { ProfileAvatar, ProfileButton, TextLabel } from "../../index";
-import defaultImg from "assets/images/profile-default-image.svg";
-import arrow from "assets/icons/arrow.svg";
-import { levelUrlArr } from "utils/levelUrlArr";
-import { useNavigate } from "react-router-dom";
-import { useUserProfileInfo } from "../../../store/userData";
+import React from 'react';
+import * as S from './style';
+import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
+import defaultImg from 'assets/images/profile-default-image.svg';
+import arrow from 'assets/icons/arrow.svg';
+import { levelUrlArr } from 'utils/levelUrlArr';
+import { useNavigate } from 'react-router-dom';
+import { useUserProfileInfo } from '../../../store/userData';
 
 const ProfileCard: React.FC = () => {
   const navigate = useNavigate();
   const userProfile = useUserProfileInfo();
 
   const onModifyProfile = () => {
-    navigate("/mypage/profile-edit");
+    navigate('/mypage/profile-edit');
   };
 
   return (
     <S.ProfileCardWrapper>
       <S.RightContainer>
-        <ProfileAvatar imageUrl={defaultImg} />
+        <ProfileAvatar imageUrl={userProfile.profile_image} />
       </S.RightContainer>
 
       <S.MiddleContainer>
@@ -26,11 +26,7 @@ const ProfileCard: React.FC = () => {
           <TextLabel text={userProfile.user_name} size={18} />
           <S.Image src={levelUrlArr(userProfile.level)} alt="profile level" />
         </S.UserNameWrapper>
-        <TextLabel
-          text={userProfile.university_name}
-          size={16}
-          color="var(--grey-5)"
-        />
+        <TextLabel text={userProfile.university_name} size={16} color="var(--grey-5)" />
 
         <S.ButtonContainer>
           {userProfile.style.map((style, index) => (

@@ -19,9 +19,9 @@ const Ranking = () => {
 
           <img src={levelUrlArr('새싹')} alt="icon" />
         </div>
-        <p className="time">
+        <div className="time">
           <TextLabel text={'03.11 16:00 기준'} size={12} $weight={300} color="var(--grey-5)" />
-        </p>
+        </div>
       </S.Header>
 
       <S.Graph>

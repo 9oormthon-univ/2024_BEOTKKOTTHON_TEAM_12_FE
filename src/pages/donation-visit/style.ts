@@ -32,7 +32,7 @@ export const BoxText = styled.div`
   margin: 41px 0;
   word-break: keep-all;
   .main-title {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;
     color: var(--green-6);
