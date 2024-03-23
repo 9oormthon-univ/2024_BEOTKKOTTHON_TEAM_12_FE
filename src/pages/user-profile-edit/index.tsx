@@ -1,33 +1,28 @@
-import * as S from "./style";
-import arrow from "assets/icons/arrow.svg";
-import {
-  Header,
-  TextLabel,
-  TextInput,
-  ImageInput,
-  TagInput,
-} from "components/index";
-import { useNavigate } from "react-router-dom";
-import useStore, { useUserProfileInfo } from "../../store/userData";
-import { instance } from "../../apis/index";
-import { useEffect, useState } from "react";
+import * as S from './style';
+import arrow from 'assets/icons/arrow.svg';
+import { Header, TextLabel, TextInput, ImageInput, TagInput } from 'components/index';
+import { useNavigate } from 'react-router-dom';
+import useStore, { useUserProfileInfo } from '../../store/userData';
+import { instance } from '../../apis/index';
+import { useEffect, useState } from 'react';
+import useUserStore from 'store/userId';
 
 const UserProfileEdit = () => {
   const navigate = useNavigate();
   const { updateUserProfileInfo } = useStore();
   const userProfileInfo = useUserProfileInfo();
   const [userProfileApiInfo, setUserProfileApiInfo] = useState({
-    user_name: "",
-    nick_name: "",
-    profile_image: "",
+    user_name: '',
+    nick_name: '',
+    profile_image: '',
     style: [],
   });
 
-  const userId = "1";
+  const userId = useUserStore((state: any) => state.userId);
 
   const getData = async () => {
     await instance.get(`/users/profile/${userId}`).then((res) => {
-      console.log("프로필 수정", res);
+      console.log('프로필 수정', res);
       setUserProfileApiInfo({
         user_name: res.data.user_name,
         nick_name: res.data.nick_name,
@@ -53,12 +48,12 @@ const UserProfileEdit = () => {
         style: [...userProfileInfo.style],
       })
       .then((res) => {
-        console.log("프로필 수정 성공", res.data);
+        console.log('프로필 수정 성공', res.data);
         updateUserProfileInfo(res.data);
 
-        alert("저장되었습니다.");
+        alert('저장되었습니다.');
       })
-      .catch((e) => console.log("프로필 수정 실패", e));
+      .catch((e) => console.log('프로필 수정 실패', e));
   };
 
   const handleNickNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,12 +65,7 @@ const UserProfileEdit = () => {
     <>
       <Header>
         <TextLabel text="내 프로필" size={18} $weight={700} />
-        <S.BackIcon
-          className="left"
-          src={arrow}
-          alt="go back"
-          onClick={() => navigate(-1)}
-        />
+        <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
         <TextLabel
           className="right "
           onClick={postChangeProfileInfo}

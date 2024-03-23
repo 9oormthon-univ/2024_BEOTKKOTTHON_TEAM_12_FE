@@ -1,7 +1,7 @@
 import * as S from './style';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import ranking from 'assets/donation/ranking.png';
-import { Button } from 'components/index';
+import { Button, TextLabel } from 'components/index';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Ranking = () => {
@@ -10,10 +10,18 @@ const Ranking = () => {
     <S.Container>
       <S.Header>
         <div className="title">
-          <p>대학교별 환경 점수 TOP 5</p>
+          <TextLabel
+            text="대학교별 환경 점수 TOP 5"
+            size={16}
+            $weight={700}
+            color="var(--grey-7)"
+          />
+
           <img src={levelUrlArr('새싹')} alt="icon" />
         </div>
-        <p className="time">03.11 16:00 기준</p>
+        <p className="time">
+          <TextLabel text={'03.11 16:00 기준'} size={12} $weight={300} color="var(--grey-5)" />
+        </p>
       </S.Header>
 
       <S.Graph>

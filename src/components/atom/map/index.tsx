@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { BeatLoader } from 'react-spinners';
 import styled from 'styled-components';
 
 declare global {
@@ -107,7 +108,11 @@ const KakaoMap = () => {
 
   return (
     <>
-      {isLoaded ? null : <Loading>지도 불러오는 중...</Loading>}
+      {isLoaded ? null : (
+        <Loading>
+          <BeatLoader color="var(--green-primary)" />
+        </Loading>
+      )}
       <div ref={mapRef} style={mapStyle}>
         {selectedPlace && (
           <PlaceInfo>
@@ -179,11 +184,9 @@ const StyledImage = styled.img`
 `;
 
 const Loading = styled.div`
-  width: 335px;
-  height: 335px;
+  width: 100%;
+  height: 74svh;
   margin: 15px 0;
-  border-radius: 10px;
-  background-color: var(--grey-2);
   display: flex;
   justify-content: center;
   align-items: center;

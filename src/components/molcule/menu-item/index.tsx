@@ -41,15 +41,25 @@ const MenuItem: React.FC = () => {
               <S.MenuItem key={itemIndex}>
                 <S.MenuItemWrapper>
                   {sectionIndex === 0 && item === '계정 정보' ? (
-                    <Link to="/mypage/account-info">{item}</Link>
+                    <Link to="/mypage/account-info">
+                      <TextLabel text={item} size={16} $weight={300} />
+                    </Link>
                   ) : sectionIndex === 0 && item === '차단한 사용자' ? (
-                    <Link to="/mypage/blocked-users">{item}</Link>
+                    <Link to="/mypage/blocked-users">
+                      <TextLabel text={item} size={16} $weight={300} />
+                    </Link>
                   ) : sectionIndex === 1 && item === '판매 내역' ? (
-                    <Link to="/mypage/sales-history">{item}</Link>
+                    <Link to="/mypage/sales-history">
+                      <TextLabel text={item} size={16} $weight={300} />
+                    </Link>
                   ) : sectionIndex === 1 && item === '구매 내역' ? (
-                    <Link to="/mypage/purchase-history">{item}</Link>
+                    <Link to="/mypage/purchase-history">
+                      <TextLabel text={item} size={16} $weight={300} />
+                    </Link>
                   ) : sectionIndex === 1 && item === '기부 내역' ? (
-                    <Link to="/mypage/donation-history">{item}</Link>
+                    <Link to="/mypage/donation-history">
+                      <TextLabel text={item} size={16} $weight={300} />
+                    </Link>
                   ) : (
                     <TextLabel text={item} size={16} $weight={300} />
                   )}

@@ -138,14 +138,23 @@ const Login = () => {
         fontSize="18px"
         $bgcolor={buttonColor.backgroundColor}
         color={buttonColor.color}
+        disabled={!formData.userId || !formData.password}
       />
 
       <S.LinkWrapper>
-        <S.Link onClick={handleFindId}>아이디 찾기</S.Link>
+        <S.Link onClick={handleFindId}>
+          <TextLabel text={'아이디 찾기'} size={12} color="var(--grey-5)" />
+        </S.Link>
         <S.Divider>|</S.Divider>
-        <S.Link onClick={hadleNewPassword}>비밀번호 재설정</S.Link>
+        <S.Link onClick={hadleNewPassword}>
+          {' '}
+          <TextLabel text={'비밀번호 재설정'} size={12} color="var(--grey-5)" />
+        </S.Link>
         <S.Divider>|</S.Divider>
-        <S.Link onClick={handleSignIn}>회원가입</S.Link>
+        <S.Link onClick={handleSignIn}>
+          {' '}
+          <TextLabel text={'회원가입'} size={12} color="var(--grey-5)" />
+        </S.Link>
       </S.LinkWrapper>
 
       <S.LoginMessage>

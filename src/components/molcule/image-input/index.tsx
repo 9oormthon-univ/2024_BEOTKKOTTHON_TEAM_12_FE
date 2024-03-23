@@ -1,9 +1,9 @@
-import { Button, TextLabel } from "components/index";
-import * as S from "./style";
-import React, { useRef, ChangeEvent, useState, useEffect } from "react";
-import noImg from "assets/images/profile-no-image.png";
-import useStore from "../../../store/userData";
-import { instance } from "apis";
+import { Button, TextLabel } from 'components/index';
+import * as S from './style';
+import React, { useRef, ChangeEvent, useState, useEffect } from 'react';
+import noImg from 'assets/images/profile-no-image.png';
+import useStore from '../../../store/userData';
+import { instance } from 'apis';
 
 interface ImageInputProps {
   image: string;
@@ -42,8 +42,9 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
   };
 
   const getImageUrl = async () => {
-    const response = await instance.post(`/upload`, [newImage]);
-    console.log(response);
+    console.log(newImage);
+    //const response = await instance.post(`/upload`, [newImage]);
+    //console.log(response);
   };
 
   return (
