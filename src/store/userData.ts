@@ -27,7 +27,7 @@ const useStore = create<StoreState>((set) => ({
     nick_name: '',
     university_name: '',
     style: [],
-    profile_image: noImg,
+    profile_image: '',
     level: '',
     next_level: '',
     point: 0,
