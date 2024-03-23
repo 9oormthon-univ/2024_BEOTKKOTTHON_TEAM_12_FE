@@ -6,7 +6,6 @@ import {
   BoxKebabList,
   Button,
   ChatInput,
-  ChatMessage,
   ChatScreen,
   Header,
   ProductInfo,
@@ -121,23 +120,6 @@ const ChatDetail = () => {
       }
     } catch (error) {
       console.error('메시지 전송 중 오류 발생:', error);
-    }
-  };
-
-  const showNotification = (message: any) => {
-    // 브라우저의 Notification API를 사용하여 알림을 표시
-    if (Notification.permission === 'granted') {
-      new Notification('새로운 채팅 메시지', {
-        body: message.content,
-      });
-    } else if (Notification.permission !== 'denied') {
-      Notification.requestPermission().then(function (permission) {
-        if (permission === 'granted') {
-          new Notification('새로운 채팅 메시지', {
-            body: message.content,
-          });
-        }
-      });
     }
   };
 

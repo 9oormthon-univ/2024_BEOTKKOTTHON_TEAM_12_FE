@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style';
 import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
-import defaultImg from 'assets/images/profile-default-image.svg';
+
 import arrow from 'assets/icons/arrow.svg';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { useNavigate } from 'react-router-dom';

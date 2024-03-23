@@ -7,22 +7,19 @@ import {
   ListTag,
 } from 'components/index';
 import * as S from './style';
-import { placeList, priceList, salesData } from 'data/shared';
+import { placeList, priceList } from 'data/shared';
 import Button from 'components/atom/button-trade';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
 import { useFormData, useFormDataActions, useShowImages } from 'store/formData';
-import { useEffect, useState } from 'react';
 import { instance } from 'apis';
-import axios from 'axios';
 
 const FormTrade = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const formData = useFormData();
   const showImages = useShowImages();
-  const { setFormData, receiveData, resetFormData } = useFormDataActions();
+  const { setFormData, resetFormData } = useFormDataActions();
 
   const isEdit = location.pathname.includes('edit');
   const userId = 1;
@@ -49,7 +46,6 @@ const FormTrade = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formSubmit = new FormData();
 
     const sendData = {
       product_image: formData.product_image,
