@@ -17,7 +17,6 @@ import productImg2 from 'assets/images/product-image2.svg';
 import productImg3 from 'assets/images/product-image3.svg';
 import { Link } from 'react-router-dom';
 import { instance } from '../../apis/index';
-import useUserStore from 'store/userId';
 
 const SalesHistory = () => {
   const navigate = useNavigate();
@@ -55,7 +54,7 @@ const SalesHistory = () => {
   ]);
 
   // const salesCompletedData = products.filter((product) => product.post_status === '판매완료');
-  const userId = useUserStore((state: any) => state.userId);
+  const userId = localStorage.getItem('userId');
 
   /*판매중인 상품 불러오기 */
   const getSalesProducts = async () => {
