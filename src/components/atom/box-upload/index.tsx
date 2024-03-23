@@ -6,7 +6,7 @@ import { useFormDataActions, useShowImages } from 'src/store/formData';
 import axios from 'axios';
 
 interface BoxUploadProps {
-  setFiles?: Dispatch<SetStateAction<FileList>>;
+  setFiles: Dispatch<SetStateAction<FileList | null>>;
 }
 
 // const BoxUpload = () => {
