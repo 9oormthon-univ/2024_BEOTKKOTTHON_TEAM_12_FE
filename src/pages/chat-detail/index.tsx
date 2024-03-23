@@ -183,7 +183,7 @@ const ChatDetail = () => {
       id: 1,
       chat_rood_id: 1,
       message:
-        '안녕하세요, 등록하신 <ZARA 코트> 상품이 5일 동안 거래되지 않고 있어요.\n\n 웨어와 함께  필요한 곳에 기부하는건 어떨까요? 아래 기부하기 버튼을 누르시면 기부절차와 방법을 알려드릴게요🌱',
+        '안녕하세요, 등록하신 <ZARA 코트> 상품이\n 5일 동안 거래되지 않고 있어요.\n\n 웨어와 함께  필요한 곳에 기부하는건 어떨까요? 아래 기부하기 버튼을 누르시면 기부절차와 방법을 알려드릴게요🌱',
       timestamp: '10:00',
       isMine: false,
       profilePic: userImage,
@@ -215,7 +215,7 @@ const ChatDetail = () => {
             <S.FooterFixed>
               <Button
                 width={'100%'}
-                $padding={'15px 20px'}
+                $padding={'16px 20px'}
                 children={'기부하기'}
                 $bgcolor={'var(--green-primary)'}
                 color={'white'}
