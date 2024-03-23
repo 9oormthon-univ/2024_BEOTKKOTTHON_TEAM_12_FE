@@ -25,18 +25,18 @@ interface DonationStore {
 }
 
 const initialFormData = {
-  name: '',
-  addr1: '',
-  addr2: '',
-  phone1: '',
-  phone2: '',
-  phone3: '',
-  email1: '',
-  email2: '',
-  sort: '',
-  clothes_num: 0,
-  goods_num: 0,
-  box_num: 0,
+  name: '김고은',
+  addr1: '서울특별시 서대문구',
+  addr2: '웨어아파트 101동 101호',
+  phone1: '010',
+  phone2: '1234',
+  phone3: '1234',
+  email1: 'wear',
+  email2: 'wear.com',
+  sort: '상의',
+  clothes_num: 18,
+  goods_num: 5,
+  box_num: 2,
 };
 
 export const useDonationStore = create<DonationStore>((set) => ({
