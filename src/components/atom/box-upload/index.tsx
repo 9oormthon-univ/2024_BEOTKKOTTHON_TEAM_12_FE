@@ -42,5 +42,4 @@ const BoxUpload = () => {
     </S.Container>
   );
 };
-
 export default BoxUpload;
