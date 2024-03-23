@@ -13,6 +13,20 @@ export const ChatFixedHeader = styled.div`
   z-index: 100;
 `;
 
+export const ChatScreenFixed = styled.div`
+  position: fixed;
+  top: 60px;
+  width: 400px;
+`;
+
+export const FooterFixed = styled.div`
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 370px;
+`;
+
 export const BtnLeft = styled.img`
   margin-left: 10px;
   transform: rotate(180deg);

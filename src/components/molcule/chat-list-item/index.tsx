@@ -1,13 +1,16 @@
-import React from "react";
-import { ChatRoom } from "types/types";
+import React from 'react';
+import { ChatRoom } from 'types/types';
 
-import * as S from "./style";
-import { useNavigate } from "react-router-dom";
-import { levelUrlArr } from "utils/levelUrlArr";
+import * as S from './style';
+import { useNavigate } from 'react-router-dom';
+import { levelUrlArr } from 'utils/levelUrlArr';
+import TextLabel from 'components/atom/text-label';
+
 interface ChatListItemProps {
   chatRooms: ChatRoom[];
+  isWear?: boolean;
 }
-const ChatListItem: React.FC<ChatListItemProps> = ({ chatRooms }) => {
+const ChatListItem: React.FC<ChatListItemProps> = ({ chatRooms, isWear }) => {
   const navigate = useNavigate();
   return (
     <div>
@@ -17,6 +20,7 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatRooms }) => {
           onClick={() =>
             navigate(`/chat-detail`, {
               state: {
+                isWear: isWear,
                 productId: chat.product_id,
                 chatRoomId: chat.chat_room_id,
               },
@@ -26,13 +30,17 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatRooms }) => {
           <S.ChatImage src={chat.user_profile_image} alt="Profile" />
           <S.ChatDetails>
             <S.SenderName>
-              {chat.user_nick_name}
-              <img src={levelUrlArr(chat.user_level)} alt="level" />
+              <TextLabel
+                text={chat.user_nick_name}
+                $weight={chat.user_level ? 500 : 700}
+                size={14}
+              />
+              {chat.user_level && <img src={levelUrlArr(chat.user_level)} alt="level" />}
             </S.SenderName>
-            <S.LastMessage>{"마지막 메세지"}</S.LastMessage>
+            <S.LastMessage>{chat.last_massage ? chat.last_massage : ''}</S.LastMessage>
           </S.ChatDetails>
           <S.ChatRightContainer>
-            <S.Timestamp>{"보낸 시간"}</S.Timestamp>
+            <S.Timestamp>{chat.timestamp ? chat.timestamp : ''}</S.Timestamp>
             {/* {chat.unreadCount > 0 && <S.UnreadCount>{chat.unreadCount}</S.UnreadCount>} */}
           </S.ChatRightContainer>
         </S.ChatItem>

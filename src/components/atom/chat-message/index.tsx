@@ -4,7 +4,7 @@ import defaultProfilePic from 'assets/images/profile-default-image.svg';
 interface MessageProps {
   content: string | File;
   timestamp?: string;
-  isMine?: boolean;
+  isMine: boolean;
   profilePic?: string;
 }
 const ChatMessage: React.FC<MessageProps> = ({ content, timestamp, isMine, profilePic }) => {
@@ -19,10 +19,11 @@ const ChatMessage: React.FC<MessageProps> = ({ content, timestamp, isMine, profi
       return <img src={fileUrl} alt="user-content" />;
     }
   };
+  console.log(isMine, profilePic, defaultProfilePic);
   return (
-    <S.MessageContainer isMine={true}>
+    <S.MessageContainer isMine={isMine}>
       {!isMine && <S.Avatar src={profilePic ? profilePic : defaultProfilePic} alt="profile" />}
-      <S.MessageBubble isMine={true}>{renderContent(content)}</S.MessageBubble>
+      <S.MessageBubble isMine={isMine}>{renderContent(content)}</S.MessageBubble>
       <S.Timestamp>{timestamp}</S.Timestamp>
     </S.MessageContainer>
   );
