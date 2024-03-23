@@ -29,6 +29,7 @@ import DonationHistory from 'pages/donation-history';
 import LevelInfo from 'pages/level-info';
 import DonationVisit from 'pages/donation-visit';
 import DonationHomeless from 'pages/donation-homeless';
+import DonationHomelessMap from 'pages/donation-homeless-map';
 
 const Router = () => {
   return (
@@ -80,6 +81,7 @@ const Router = () => {
       <Route path="/donation/finish" element={<DonationFinish />} />
       <Route path="/donation/visit" element={<DonationVisit />} />
       <Route path="/donation/homeless" element={<DonationHomeless />} />
+      <Route path="/donation/homeless/map" element={<DonationHomelessMap />} />
 
       {/* <Routes path="*" element={<div>Not Found</div>} /> */}
     </Routes>

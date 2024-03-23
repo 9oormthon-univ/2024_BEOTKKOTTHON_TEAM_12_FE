@@ -23,7 +23,11 @@ type Place = {
   y: string;
 };
 
-const KakaoMap = () => {
+interface KakaoMapProps {
+  str: string;
+}
+
+const KakaoMap = ({ str }: KakaoMapProps) => {
   const { kakao } = window;
   const mapRef = useRef<HTMLDivElement>(null);
   const [selectedPlace, setSelectedPlace] = useState<Place | null>();
@@ -48,7 +52,7 @@ const KakaoMap = () => {
       setSelectedPlace(null);
     });
 
-    places.keywordSearch('아름다운가게', placesSearchCB, {
+    places.keywordSearch(str, placesSearchCB, {
       useMapBounds: true,
     });
 

@@ -8,7 +8,7 @@ const DonationHomeless = () => {
       page={0}
       header="WEAR의 첫 번째 기부 동행"
       btn="다음"
-      to="/donation/form-basic"
+      to="/donation/homeless/map"
     >
       <S.MainText>
         <TextLabel
