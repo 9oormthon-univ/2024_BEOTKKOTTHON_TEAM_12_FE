@@ -5,12 +5,10 @@ import logo from 'assets/logo/donation-logo.svg';
 import { instance } from 'apis';
 import { useCharityNumber, useDonationForm } from 'store/donationForm';
 import { useEffect } from 'react';
-import { useFormDataActions } from 'store/formData';
 
 const DonationFinish = () => {
   const donationForm = useDonationForm();
   const charityNumber = useCharityNumber();
-  const { resetFormData } = useFormDataActions();
 
   const userId = localStorage.getItem('userId');
 
