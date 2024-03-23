@@ -12,8 +12,6 @@ const ProgressBar = () => {
     point: currentExp,
     remain_level_point: remainLevelExp,
   } = useUserProfileInfo();
-
-  const progressWidth = (currentExp / (currentExp + remainLevelExp)) * 100 + '%';
   const navigate = useNavigate();
 
   const onHelpClick = () => {
@@ -37,7 +35,8 @@ const ProgressBar = () => {
         color="var(--grey-5)"
       />
       <S.ProgressBarContainer>
-        <S.Progress width={progressWidth} />
+        {/* <S.Progress width={progressWidth} /> */}
+        <S.Progress width={`${100 - remainLevelExp}%`} />
       </S.ProgressBarContainer>
       <S.ProgressLabel>{`현재 ${currentExp} 포인트`}</S.ProgressLabel>
     </S.ProgressBarCard>
