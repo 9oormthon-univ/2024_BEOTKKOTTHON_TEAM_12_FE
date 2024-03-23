@@ -18,8 +18,6 @@ import { salesData } from 'data/shared';
 import { instance } from 'apis';
 import { useProduct, useProductActions } from 'store/product';
 
-import useUserStore from 'store/userId';
-
 //import { useUserProfileInfo } from 'src/store/userData';
 
 const ProductDetail = () => {
@@ -31,8 +29,7 @@ const ProductDetail = () => {
   const { setProduct, updateOnSale } = useProductActions();
   //const userProfileInfo = useUserProfileInfo();
 
-  const userId = useUserStore((state: any) => state.userId);
-
+  const userId = localStorage.getItem('userId');
 
   const getData = async () => {
     await instance

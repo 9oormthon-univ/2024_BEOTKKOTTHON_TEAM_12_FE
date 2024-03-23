@@ -4,7 +4,6 @@ import arrow from 'assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { instance } from '../../apis/index';
-import useUserStore from 'store/userId';
 
 const AccountInfo = () => {
   const [accountInfo, setAccountInfo] = useState({
@@ -13,7 +12,7 @@ const AccountInfo = () => {
     university_email: '',
   });
 
-  const userId = useUserStore((state: any) => state.userId);
+  const userId = localStorage.getItem('userId');
 
   /*계정 정보 가져오는 api 호출 */
   const getAccountInfo = async () => {

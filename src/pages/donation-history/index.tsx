@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import { Checkbox, Header, TextLabel } from 'components/index';
 import { instance } from 'apis';
-import useUserStore from 'store/userId';
 
 type donationDataType = {
   id: number;
@@ -18,7 +17,7 @@ const DonationHistory = () => {
   const navigate = useNavigate();
   const [donationData, setDonationData] = useState<donationDataType[]>([]);
 
-  const userId = useUserStore((state: any) => state.userId);
+  const userId = localStorage.getItem('userId');
 
   const getDonationHistory = async () => {
     try {
