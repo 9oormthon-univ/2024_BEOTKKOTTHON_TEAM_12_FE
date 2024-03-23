@@ -23,7 +23,7 @@ const BoxUpload = () => {
       })
       .then((res) => {
         console.log('상품 이미지 업로드 성공', res);
-        changeImgFileToString(res.data);
+        setFormData('product_image', res.data);
       })
       .catch((e) => console.log('상품 이미지 업로드 실패', e));
 
@@ -40,7 +40,6 @@ const BoxUpload = () => {
       }
       setShowImages(imageUrlLists);
       setShowImages(imageUrlLists);
-      setFormData('product_image_list', files);
     }
   };
 

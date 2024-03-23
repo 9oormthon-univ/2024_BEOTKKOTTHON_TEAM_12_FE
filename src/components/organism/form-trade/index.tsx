@@ -36,15 +36,16 @@ const FormTrade = () => {
     formData.place
   );
 
-  useEffect(() => {
-    resetFormData();
+  // useEffect(() => {
+  //   resetFormData();
 
-    if (isEdit) {
-      // edit 페이지
-      // 서버에서 데이터 받아와서 receivedData에 저장
-      receiveData(salesData[Number(id) - 1]);
-    }
-  }, []);
+  //   if (isEdit) {
+
+  //     // edit 페이지
+  //     // 서버에서 데이터 받아와서 receivedData에 저장
+  //     receiveData(salesData[Number(id) - 1]);
+  //   }
+  // }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,7 +63,9 @@ const FormTrade = () => {
 
     await instance
       .post(`/products/new/${userId}`, sendData)
-      .then((res) => console.log('폼 전송 성공', res))
+      .then((res) => {
+        console.log('폼 전송 성공', res);
+      })
       .catch((e) => console.log('폼 전송 실패', e));
 
     console.log(formData);

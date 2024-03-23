@@ -19,8 +19,10 @@ const UserProfileEdit = () => {
 
   const userId = localStorage.getItem('userId');
 
+
   const getData = async () => {
     await instance.get(`/users/profile/${userId}`).then((res) => {
+      console.log('프로필 수정', res);
       console.log('프로필 수정', res);
       setUserProfileApiInfo({
         user_name: res.data.user_name,
@@ -39,17 +41,20 @@ const UserProfileEdit = () => {
   const postChangeProfileInfo = async () => {
     console.log({
       ...userProfileApiInfo,
+      profile_image: userProfileInfo.profile_image,
       style: [...userProfileInfo.style],
     });
     await instance
       .put(`/users/profile/${userId}`, {
         ...userProfileApiInfo,
+        profile_image: userProfileInfo.profile_image,
         style: [...userProfileInfo.style],
       })
       .then((res) => {
         console.log('프로필 수정 성공', res.data);
-        updateUserProfileInfo(res.data);
+        // updateUserProfileInfo(res.data);
 
+        alert('저장되었습니다.');
         alert('저장되었습니다.');
       })
       .catch((e) => console.log('프로필 수정 실패', e));
@@ -64,6 +69,7 @@ const UserProfileEdit = () => {
     <>
       <Header>
         <TextLabel text="내 프로필" size={18} $weight={700} />
+        <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
         <TextLabel
           className="right "
