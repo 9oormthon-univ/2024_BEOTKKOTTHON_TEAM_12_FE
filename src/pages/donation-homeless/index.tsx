@@ -15,7 +15,7 @@ const DonationHomeless = () => {
           className="title"
           text="우리 지역 노숙인의 ‘홀로서기’를 응원해주세요."
           color="white"
-          size={15}
+          size={13}
         ></TextLabel>
         <p className="description">
           사람들이 바쁘게 오가는 서울역 광장 앞, 각자의 목적지로 빠르게 걸어가는 사람들 사이에서

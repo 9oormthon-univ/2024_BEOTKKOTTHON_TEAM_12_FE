@@ -4,7 +4,7 @@ import logo from 'assets/logo/big-logo.svg';
 import eyeOff from 'assets/icons/eye-off.svg';
 import { Button, Checkbox, TextLabel } from 'components/index';
 import { useNavigate } from 'react-router-dom';
-import { instance } from 'apis';
+// import { instance } from 'apis';
 
 interface FormData {
   userId: string;
@@ -25,21 +25,22 @@ const Login = () => {
   const handleLogin = async () => {
     console.log('로그인');
     console.log(formData);
-    const response = await instance.post('/login', {
-      user_id: formData.userId,
-      user_password: formData.password,
-    });
+    // const response = await instance.post('/login', {
+    //   user_id: formData.userId,
+    //   user_password: formData.password,
+    // });
+    navigate('/donation');
 
-    if (response.data.id) {
-      // 로그인 성공 처리
-      localStorage.setItem('userId', response.data.id);
+    // if (response.data.id) {
+    //   // 로그인 성공 처리
+    //   localStorage.setItem('userId', response.data.id);
 
-      navigate('/donation');
-    } else {
-      // 로그인 실패 처리
-      alert('로그인 실패');
-      navigate('/login');
-    }
+    //   navigate('/donation');
+    // } else {
+    //   // 로그인 실패 처리
+    //   alert('로그인 실패');
+    //   navigate('/login');
+    // }
   };
 
   const hadleNewPassword = () => {
