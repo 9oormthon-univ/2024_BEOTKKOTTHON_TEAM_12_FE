@@ -40,6 +40,15 @@ export const MapWrapper = styled.div`
   padding: 20px 33px;
   gap: 5px;
   background-color: white;
+
+  .homeless {
+    padding: 22px 0;
+
+    & > img {
+      width: 100%;
+      cursor: pointer;
+    }
+  }
 `;
 export const ImageWrapper = styled.div`
   padding: 0px 33px 20px 33px;

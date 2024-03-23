@@ -28,3 +28,24 @@ export const BoxText = styled.div`
     }
   }
 `;
+
+export const MainText = styled.div`
+  background-color: var(--grey-2);
+  padding: 16px 20px;
+
+  .description {
+    color: var(--grey-7);
+    font-size: 12px;
+    line-height: 24px;
+  }
+
+  .title {
+    width: fit-content;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 20px;
+    background-color: var(--green-6);
+    color: white;
+    margin-bottom: 10px;
+  }
+`;
