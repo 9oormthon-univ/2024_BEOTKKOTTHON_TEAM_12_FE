@@ -1,12 +1,13 @@
-import * as S from "./style";
-import close from "assets/icons/close_large.svg";
-import Header from "../header";
-import { BoxDonationDot, Button } from "components/index";
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import arrow from "assets/icons/arrow.svg";
+import * as S from './style';
+import close from 'assets/icons/close_large.svg';
+import Header from '../header';
+import { BoxDonationDot, Button } from 'components/index';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import arrow from 'assets/icons/arrow.svg';
 
 interface ContainerDonationProps {
+  totalpage: number;
   page: number;
   header: string;
   btn: string;
@@ -16,6 +17,7 @@ interface ContainerDonationProps {
 }
 
 const ContainerDonation = ({
+  totalpage,
   page,
   header,
   btn,
@@ -28,24 +30,14 @@ const ContainerDonation = ({
     <>
       <Header>
         {page !== 0 && (
-          <S.BackIcon
-            className="left"
-            src={arrow}
-            alt="go back"
-            onClick={() => navigate(-1)}
-          />
+          <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
         )}
-        <img
-          src={close}
-          className="right"
-          alt="close"
-          onClick={() => navigate("/donation")}
-        />
+        <img src={close} className="right" alt="close" onClick={() => navigate('/donation')} />
       </Header>
 
       <S.Container>
         <section className="dot">
-          <BoxDonationDot num={page} />
+          <BoxDonationDot totalpage={totalpage} num={page} />
         </section>
 
         <section className="title">
@@ -60,7 +52,7 @@ const ContainerDonation = ({
           <Button
             width="100%"
             color="white"
-            $bgcolor={isDisabled ? "var(--grey-3)" : "var(--green-6)"}
+            $bgcolor={isDisabled ? 'var(--grey-3)' : 'var(--green-6)'}
             $borderRadius="8px"
             fontSize="16px"
             $fontWeight="bold"

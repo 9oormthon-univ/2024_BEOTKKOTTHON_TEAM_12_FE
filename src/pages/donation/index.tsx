@@ -1,15 +1,12 @@
-import {
-  BoxDonationImg,
-  Nav,
-  Ranking,
-  TextLabel,
-  Header,
-} from "components/index";
-import * as S from "./style";
-import logo from "assets/logo/logo.svg";
-import notifications from "assets/icons/notifications.svg";
+import { BoxDonationImg, Nav, Ranking, TextLabel, Header } from 'components/index';
+import * as S from './style';
+import logo from 'assets/logo/logo.svg';
+import homeless from 'assets/donation/homeless.svg';
+import notifications from 'assets/icons/notifications.svg';
+import { useNavigate } from 'react-router';
 
 const Donation = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Header>
@@ -23,12 +20,10 @@ const Donation = () => {
 
         <section className="partner">
           <S.MapWrapper>
-            <TextLabel
-              text="함께하는 기부 단체"
-              size={16}
-              $weight={700}
-              color="var(--grey-7)"
-            />
+            <div className="homeless">
+              <img src={homeless} alt="homeless" onClick={() => navigate('/donation/homeless')} />
+            </div>
+            <TextLabel text="함께하는 기부 단체" size={16} $weight={700} color="var(--grey-7)" />
             <TextLabel
               text="총 3개의 기부단체와 함께하고 있어요!"
               size={12}
