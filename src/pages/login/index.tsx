@@ -5,7 +5,6 @@ import eyeOff from 'assets/icons/eye-off.svg';
 import { Button, Checkbox, TextLabel } from 'components/index';
 import { useNavigate } from 'react-router-dom';
 import { instance } from 'apis';
-import useUserStore from '../../store/userId';
 
 interface FormData {
   userId: string;
@@ -14,8 +13,6 @@ interface FormData {
 
 const Login = () => {
   const navigate = useNavigate();
-  const userId = useUserStore((state: any) => state.userId);
-  const setUserId = useUserStore((state: any) => state.setUserId);
 
   const handleFindId = () => {
     console.log('아이디찾기');
@@ -29,14 +26,14 @@ const Login = () => {
     console.log('로그인');
     console.log(formData);
     const response = await instance.post('/login', {
-      user_id: formData.userId, // 'userId'를 'user_id'로 변
+      user_id: formData.userId,
       user_password: formData.password,
     });
 
     if (response.data.id) {
       // 로그인 성공 처리
-      setUserId(response.data.id); // 스토어의 유저 ID 업데이트
-      console.log('로그인 성공, 유저 ID:', userId);
+      localStorage.setItem('userId', response.data.id);
+
       navigate('/donation');
     } else {
       // 로그인 실패 처리

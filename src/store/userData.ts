@@ -46,7 +46,7 @@ const useStore = create<StoreState>((set) => ({
   initUserProfileInfo: async () => {
     try {
       // 로그인시 받아올 userId
-      const userId = '1';
+      const userId = localStorage.getItem('userId');
       const response = await instance.get(`/users/${userId}`);
       set({ userProfileInfo: response.data });
 

@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { quizData } from 'data/shared';
 import { instance } from 'apis';
-import useUserStore from 'store/userId';
 
 let totalPoints = 0;
 
@@ -21,7 +20,7 @@ const QuizPage = () => {
 
   const navigate = useNavigate();
 
-  const userId = useUserStore((state: any) => state.userId);
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     setIsDisabled(submitAnswer.some((item) => item === 0));

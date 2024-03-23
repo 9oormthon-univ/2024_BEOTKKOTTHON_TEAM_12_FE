@@ -8,11 +8,11 @@ import defaultImg from 'assets/images/profile-default-image.svg';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { instance } from 'apis';
 import { useEffect, useState } from 'react';
-import useUserStore from 'store/userId';
+
 const BlockedUsers = () => {
   const navigate = useNavigate();
 
-  const userId = useUserStore((state: any) => state.userId);
+  const userId = localStorage.getItem('userId');
   const [blockedUserList, setBlockedUserList] = useState<BlockUser[]>([
     {
       blocked_user_id: 1,

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import * as S from './style';
 import { UserSection, MenuItem, Nav } from 'components/index';
 import useStore from '../../store/userData';
-import useUserStore from '../../store/userId';
 import { instance } from 'apis';
 const MyPage: React.FC = () => {
   const { updateUserProfileInfo } = useStore();
@@ -12,7 +11,7 @@ const MyPage: React.FC = () => {
   // }, [initUserProfileInfo]);
 
   // 로그인된 사용자 id 필요
-  const userId = useUserStore((state: any) => state.userId);
+  const userId = localStorage.getItem('userId');
 
   const getData = async () => {
     await instance

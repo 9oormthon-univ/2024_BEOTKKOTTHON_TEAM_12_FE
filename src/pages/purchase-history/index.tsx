@@ -6,7 +6,6 @@ import productImg1 from 'assets/images/product-image1.svg';
 import { ProductListItem, ProductProp } from 'types/types';
 import { useNavigate } from 'react-router';
 import { instance } from 'apis';
-import useUserStore from '../../store/userId';
 
 const PurchaseHistory = () => {
   const navigate = useNavigate();
@@ -29,7 +28,7 @@ const PurchaseHistory = () => {
     },
   ]);
 
-  const userId = useUserStore((state: any) => state.userId);
+  const userId = localStorage.getItem('userId');
   /*구매한 상품 불러오기 */
   const getPurchaseHistory = async () => {
     console.log('구매 내역 불러오기');

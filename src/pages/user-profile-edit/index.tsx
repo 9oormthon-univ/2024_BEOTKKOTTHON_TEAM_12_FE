@@ -17,7 +17,8 @@ const UserProfileEdit = () => {
     style: [],
   });
 
-  const userId = '1';
+  const userId = localStorage.getItem('userId');
+
 
   const getData = async () => {
     await instance.get(`/users/profile/${userId}`).then((res) => {
