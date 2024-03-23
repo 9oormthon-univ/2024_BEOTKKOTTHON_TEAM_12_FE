@@ -102,6 +102,7 @@ const Onboarding = () => {
               <S.BoxImage>
                 <img src={data.img_url} alt={`img-${index}`} />
               </S.BoxImage>
+
               <S.BoxTitle>
                 <S.Circle>{data.num}</S.Circle>
                 <p className="title">{data.title}</p>

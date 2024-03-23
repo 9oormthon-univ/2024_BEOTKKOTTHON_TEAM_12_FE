@@ -18,6 +18,7 @@ export const Content = styled.div`
 
   .carousel {
     margin-top: 2px;
+    border-radius: 10px;
   }
 
   .carousel,
