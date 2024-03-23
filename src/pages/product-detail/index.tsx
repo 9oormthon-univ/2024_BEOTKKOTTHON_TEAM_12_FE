@@ -26,7 +26,7 @@ const ProductDetail = () => {
   const [openKebab, setOpenKebab] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const product = useProduct();
-  const { setProduct, updateOnSale } = useProductActions();
+  const { setProduct, updateOnSale, changeStrToArr } = useProductActions();
   //const userProfileInfo = useUserProfileInfo();
 
   const userId = localStorage.getItem('userId');
@@ -36,7 +36,8 @@ const ProductDetail = () => {
       .get(`/products/${id}`)
       .then((response) => {
         console.log('데이터 가져오기 성공', response);
-        setProduct(response.data);
+        setProduct({ ...response.data, product_image_list: response.data.product_image });
+        changeStrToArr(response.data.product_image);
       })
       .catch((e) => {
         console.log('데이터 가져오기 실패', e);
@@ -166,7 +167,6 @@ const ProductDetail = () => {
                   {product.product_image.map((url, i) => (
                     <img src={url} alt={`img-${i}`} key={i} />
                   ))}
-                  {/* <img src={product.product_image} alt={`img`} /> */}
                 </Carousel>
               </section>
 

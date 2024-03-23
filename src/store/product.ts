@@ -4,6 +4,7 @@ import { create } from 'zustand';
 interface Actions {
   setProduct: (newProducts: Product) => void;
   updateOnSale: (status: string) => void;
+  changeStrToArr: (str: string) => void;
 }
 
 interface ProductsStore {
@@ -19,6 +20,19 @@ export const useProductStore = create<ProductsStore>((set) => ({
       set((state) => ({
         product: state.product ? { ...state.product, post_status: status } : null,
       })),
+    changeStrToArr: (str) => {
+      const content = str.slice(1, -1);
+      const splitArray = content.split(',');
+
+      set((state) => ({
+        product: state.product
+          ? {
+              ...state.product,
+              product_image: splitArray.map((s) => s.trim().replace(/^"(.*)"$/, '$1')),
+            }
+          : null,
+      }));
+    },
   },
 }));
 
