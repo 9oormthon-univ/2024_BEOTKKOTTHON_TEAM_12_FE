@@ -6,16 +6,16 @@ import {
   FooterProductDetail,
   Header,
   ModalProduct,
-} from "components/index";
-import * as S from "./style";
-import arrow from "assets/icons/left_btn.svg";
-import kebab from "assets/icons/kebab.svg";
-import { useNavigate, useParams } from "react-router-dom";
-import { Seller } from "types/types";
-import { useEffect, useState } from "react";
-import { salesData } from "data/shared";
-import { instance } from "apis";
-import { useProduct, useProductActions } from "store/product";
+} from 'components/index';
+import * as S from './style';
+import arrow from 'assets/icons/left_btn.svg';
+import kebab from 'assets/icons/kebab.svg';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Seller } from 'types/types';
+import { useEffect, useState } from 'react';
+import { salesData } from 'data/shared';
+import { instance } from 'apis';
+import { useProduct, useProductActions } from 'store/product';
 //import { useUserProfileInfo } from 'src/store/userData';
 
 const ProductDetail = () => {
@@ -27,17 +27,17 @@ const ProductDetail = () => {
   const { setProduct, updateOnSale } = useProductActions();
   //const userProfileInfo = useUserProfileInfo();
 
-  const userId = "1";
+  const userId = '1';
 
   const getData = async () => {
     await instance
       .get(`/products/${id}`)
       .then((response) => {
-        console.log("데이터 가져오기 성공", response);
+        console.log('데이터 가져오기 성공', response);
         setProduct(response.data);
       })
       .catch((e) => {
-        console.log("데이터 가져오기 실패", e);
+        console.log('데이터 가져오기 실패', e);
         setProduct(salesData[0]);
       });
   };
@@ -48,30 +48,30 @@ const ProductDetail = () => {
   }, []);
 
   const handleOnSaleClick = async () => {
-    if (product?.post_status === "onSale") {
+    if (product?.post_status === 'onSale') {
       await instance
         .put(`/products/soldOut/${userId}`, {
           id: id,
-          product_stauts: "soldOut",
+          product_stauts: 'soldOut',
         })
         .then((response) => {
-          console.log("판매 완료 변경 성공", response);
-          alert("판매 완료로 변경하였습니다.");
-          updateOnSale("soldOut");
+          console.log('판매 완료 변경 성공', response);
+          alert('판매 완료로 변경하였습니다.');
+          updateOnSale('soldOut');
           console.log(product);
         })
         .catch((e) => {
-          console.log("판매 완료 변경 실패", e);
+          console.log('판매 완료 변경 실패', e);
         });
     } else {
       await instance
-        .put(`/products/soldOut/${id}`, { id: id, product_stauts: "onSale" })
+        .put(`/products/soldOut/${id}`, { id: id, product_stauts: 'onSale' })
         .then((response) => {
-          console.log("판매 중으로 변경 성공", response);
-          updateOnSale("onSale");
+          console.log('판매 중으로 변경 성공', response);
+          updateOnSale('onSale');
         })
         .catch((e) => {
-          console.log("판매 중으로 변경 실패", e);
+          console.log('판매 중으로 변경 실패', e);
         });
     }
   };
@@ -82,13 +82,13 @@ const ProductDetail = () => {
         is_private: true,
       })
       .then((response) => {
-        console.log("글 숨기기 성공", response);
-        alert("글 숨기기에 성공했습니다.");
-        navigate("/product");
+        console.log('글 숨기기 성공', response);
+        alert('글 숨기기에 성공했습니다.');
+        navigate('/product');
       })
       .catch((e) => {
-        console.log("글 숨기기 실패", e);
-        alert("글 숨기기에 실패했습니다. 다시 시도해주세요.");
+        console.log('글 숨기기 실패', e);
+        alert('글 숨기기에 실패했습니다. 다시 시도해주세요.');
       });
   };
 
@@ -97,18 +97,18 @@ const ProductDetail = () => {
     await instance
       .delete(`/products/delete/${userId}/${product?.id}`)
       .then((response) => {
-        console.log("글 삭제 성공", response);
-        navigate("/product");
+        console.log('글 삭제 성공', response);
+        navigate('/product');
       })
       .catch((e) => {
-        console.log("글 삭제 실패", e);
+        console.log('글 삭제 실패', e);
       });
-    navigate("/product");
+    navigate('/product');
   };
 
   return (
     <>
-      {" "}
+      {' '}
       {openModal && (
         <ModalProduct
           select1="취소"
@@ -122,12 +122,7 @@ const ProductDetail = () => {
         </ModalProduct>
       )}
       <Header>
-        <S.BtnLeft
-          src={arrow}
-          className="left"
-          alt="btn-back"
-          onClick={() => navigate(-1)}
-        />
+        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
         <img
           src={kebab}
           className="right"
@@ -147,7 +142,7 @@ const ProductDetail = () => {
             // {openKebab && product.seller?.nick_name === userProfileInfo.nick_name && (
             <BoxKebabList>
               <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
-              {product.post_status === "onSale" ? (
+              {product.post_status === 'onSale' ? (
                 <p onClick={handleOnSaleClick}>판매 완료로 변경</p>
               ) : (
                 <p onClick={handleOnSaleClick}>판매 중으로 변경</p>
@@ -166,12 +161,11 @@ const ProductDetail = () => {
             <S.SectionScroll>
               <section className="product-image">
                 <Carousel $dot="13px" $width="100%" $height="314px">
-                  {/* 이미지 부분 리스트로 수정해야함 */}
-                  {/* {product.product_image.map((url, i) => (
+                  {product.product_image.map((url, i) => (
                     <img src={url} alt={`img-${i}`} key={i} />
-                  ))} */}
+                  ))}
 
-                  <img src={product.product_image} alt={`img`} />
+                  {/* <img src={product.product_image} alt={`img`} /> */}
                 </Carousel>
               </section>
 
@@ -182,7 +176,7 @@ const ProductDetail = () => {
           </S.Content>
           <FooterProductDetail product={product} />
         </>
-      )}{" "}
+      )}{' '}
     </>
   );
 };

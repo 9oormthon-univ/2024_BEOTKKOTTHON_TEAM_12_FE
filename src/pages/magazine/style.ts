@@ -17,6 +17,7 @@ export const Content = styled.div`
   }
 
   .carousel {
+    border-radius: 10px;
     margin-top: 2px;
   }
 

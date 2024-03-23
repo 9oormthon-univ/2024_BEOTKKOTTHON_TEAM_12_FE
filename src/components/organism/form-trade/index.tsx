@@ -5,15 +5,16 @@ import {
   ListImage,
   ListTradeForm,
   ListTag,
-} from "components/index";
-import * as S from "./style";
-import { placeList, priceList, salesData } from "data/shared";
-import Button from "components/atom/button-trade";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { transformPrice } from "utils/transformPrice";
-import { useFormData, useFormDataActions, useShowImages } from "store/formData";
-import { useEffect } from "react";
-import { instance } from "apis";
+} from 'components/index';
+import * as S from './style';
+import { placeList, priceList, salesData } from 'data/shared';
+import Button from 'components/atom/button-trade';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { transformPrice } from 'utils/transformPrice';
+import { useFormData, useFormDataActions, useShowImages } from 'store/formData';
+import { useEffect, useState } from 'react';
+import { instance } from 'apis';
+import axios from 'axios';
 
 const FormTrade = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const FormTrade = () => {
   const showImages = useShowImages();
   const { setFormData, receiveData, resetFormData } = useFormDataActions();
 
-  const isEdit = location.pathname.includes("edit");
+  const isEdit = location.pathname.includes('edit');
 
   useEffect(() => {
     resetFormData();
@@ -35,67 +36,29 @@ const FormTrade = () => {
     }
   }, []);
 
-  // const [files, setFiles] = useState<FileList | null>(null);
-  const files = [
-    "https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg",
-    "https://i.pinimg.com/564x/0c/d4/28/0cd428a2882445d366bd88df08a7b3b2.jpg",
-  ];
+  const [files, setFiles] = useState<FileList | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const sendformData = new FormData();
-
-    // if (files) {
-    //   //request로 보내야할 데이터를 formData에 넣어서 보냈다.
-    //   for (let i = 0; i < files.length; i++) {
-    //     sendformData.append('product_image', files[i]);
-    //   }
-    // }
-
-    sendformData.append("product_image", files[0]);
-    sendformData.append("product_name", formData.product_name);
-    sendformData.append("category_name", formData.category);
-    sendformData.append("product_status", formData.product_status);
-    sendformData.append("product_content", formData.product_content);
-    sendformData.append("price", formData.price.toString());
-    sendformData.append("place", formData.place);
-
-    const test = {
-      product_image: files[0],
-      product_name: formData.product_name,
-      category_name: formData.category,
-      product_status: formData.product_status,
-      product_content: formData.product_content,
-      price: formData.price,
-      place: formData.place,
-    };
-    // for (const [key, value] of sendformData.entries()) {
-    //   console.log(key, value);
-    // }
-
-    // const config = {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data',
-    //   },
+    // const test = {
+    //   product_image: files[0],
+    //   product_name: formData.product_name,
+    //   category_name: formData.category,
+    //   product_status: formData.product_status,
+    //   product_content: formData.product_content,
+    //   price: formData.price,
+    //   place: formData.place,
     // };
+    const formDataTest = new FormData();
 
-    try {
-      await instance
-        .post(`products/new/1`, test)
-        // .post(`http://43.201.189.171:8080/api/products/new/1`, sendformData, config)
-        .then(function (response) {
-          // 성공한 경우 실행
-          console.log("성공", response);
-        });
-    } catch (e) {
-      console.log("실패", e);
-      console.log(...sendformData);
+    for (let i = 0; i < (files as FileList).length; i++) {
+      formDataTest.append('files', (files as FileList)[i]);
     }
 
     console.log(formData);
     resetFormData();
-    navigate("/product");
+    navigate('/product');
   };
 
   return (
@@ -104,8 +67,7 @@ const FormTrade = () => {
         <p className="label">
           이미지 업로드 (<span className="sub">{showImages.length}</span>/5)
         </p>
-        <ListImage />
-        {/* <ListImage setFiles={setFiles} /> */}
+        <ListImage setFiles={setFiles} />
       </FormGroup>
 
       <FormGroup>
@@ -114,7 +76,7 @@ const FormTrade = () => {
           <input
             name="product_name"
             value={formData.product_name}
-            onChange={(e) => setFormData("product_name", e.target.value)}
+            onChange={(e) => setFormData('product_name', e.target.value)}
             placeholder="제목을 입력해주세요."
           />
         </BoxInput>
@@ -136,7 +98,7 @@ const FormTrade = () => {
           name="product_content"
           value={formData.product_content}
           placeholder="상품에 대한 설명을 써주세요."
-          onChange={(e) => setFormData("product_content", e.target.value)}
+          onChange={(e) => setFormData('product_content', e.target.value)}
         />
       </FormGroup>
 
@@ -146,13 +108,11 @@ const FormTrade = () => {
           <input
             name="price"
             value={transformPrice(formData.price as number)}
-            onChange={(e) =>
-              setFormData("price", Number(e.target.value.replace(/,/g, "")))
-            }
+            onChange={(e) => setFormData('price', Number(e.target.value.replace(/,/g, '')))}
           />
           <p>원</p>
         </S.InputNum>
-        <ListTradeForm list={priceList} type={"price"} />
+        <ListTradeForm list={priceList} type={'price'} />
       </FormGroup>
 
       <FormGroup>
@@ -162,18 +122,14 @@ const FormTrade = () => {
             name="place"
             value={formData.place}
             placeholder="위치를 입력해주세요."
-            onChange={(e) => setFormData("place", e.target.value)}
+            onChange={(e) => setFormData('place', e.target.value)}
           />
         </BoxInput>
         <S.LabelPlace>성균관 대학교 추천 장소</S.LabelPlace>
-        <ListTradeForm list={placeList} type={"place"} />
+        <ListTradeForm list={placeList} type={'place'} />
       </FormGroup>
 
-      {isEdit ? (
-        <Button color="primary">수정 완료</Button>
-      ) : (
-        <Button>등록하기</Button>
-      )}
+      {isEdit ? <Button color="primary">수정 완료</Button> : <Button>등록하기</Button>}
     </form>
   );
 };

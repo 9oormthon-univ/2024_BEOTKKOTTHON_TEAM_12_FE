@@ -1,19 +1,33 @@
-import * as S from "./style";
-import image from "assets/icons/image.svg";
-// import { Dispatch, SetStateAction } from 'react';
-import { useFormDataActions, useShowImages } from "store/formData";
+import * as S from './style';
+import image from 'assets/icons/image.svg';
+import { Dispatch, SetStateAction } from 'react';
+import { useFormDataActions, useShowImages } from 'store/formData';
+import axios from 'axios';
 
-// interface BoxUploadProps {
-//   setFiles?: Dispatch<SetStateAction<FileList>>;
-// }
+interface BoxUploadProps {
+  setFiles: Dispatch<SetStateAction<FileList | null>>;
+}
 
-const BoxUpload = () => {
-  // const BoxUpload = ({ setFiles }: BoxUploadProps) => {
+const BoxUpload = ({ setFiles }: BoxUploadProps) => {
   const showImages = useShowImages();
   const { setFormData, setShowImages } = useFormDataActions();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files as FileList;
+    const sendImgData = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+      sendImgData.append('files', files[i]);
+    }
+
+    await axios
+      .post('http://43.201.189.171:8080/api/upload', sendImgData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((res) => console.log('상품 이미지 업로드 성공', res))
+      .catch((e) => console.log('상품 이미지 업로드 실패', e));
 
     if (files) {
       const imageLists = files;
@@ -26,10 +40,10 @@ const BoxUpload = () => {
       if (imageUrlLists.length > 5) {
         imageUrlLists = imageUrlLists.slice(0, 5);
       }
-      setShowImages(imageUrlLists[0]);
-      // setShowImages(imageUrlLists);
-      // setFiles(files);
-      setFormData("product_image_list", files);
+      setShowImages(imageUrlLists);
+      setShowImages(imageUrlLists);
+      setFiles(files);
+      setFormData('product_image_list', files);
     }
   };
 
