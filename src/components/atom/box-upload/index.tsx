@@ -1,6 +1,5 @@
 import * as S from './style';
 import image from 'assets/icons/image.svg';
-import { Dispatch, SetStateAction } from 'react';
 import { useFormDataActions, useShowImages } from 'store/formData';
 import axios from 'axios';
 
