@@ -6,6 +6,11 @@ import donation from 'assets/onboarding/donation.svg';
 import earth from 'assets/onboarding/earth.svg';
 import tag from 'assets/onboarding/tag.svg';
 
+import productImg1 from 'assets/images/product-image1.svg';
+import productImg2 from 'assets/images/product-image2.svg';
+import productImg3 from 'assets/images/product-image3.svg';
+import productImg4 from 'assets/images/product-image4.svg';
+
 // 카테고리, 최근 검색어
 export const categories = ['전체', '상의', '하의', '아우터', '원피스', '가방', '잡화', '기타'];
 export const searches = ['자라', 'H&M', '지오다노', '유니클로', '에잇세컨즈'];
@@ -284,4 +289,62 @@ export const styleTags = [
   '스트릿',
   '섹시글램',
   '아메카지',
+];
+
+// 상품 리스트 데이터
+export const productList = [
+  {
+    id: 1,
+    price: 10000,
+    product_name: 'H&M 티셔츠 팔아요',
+    product_status: '아주 좋아요',
+    post_status: 'onSale',
+    product_image: productImg1,
+    is_selected: false,
+  },
+  {
+    id: 2,
+    price: 20000,
+    product_name: '안입는 옷 처분',
+    product_status: '아주 좋아요',
+    post_status: 'soldOut',
+    product_image: productImg2,
+    is_selected: false,
+  },
+  {
+    id: 3,
+    price: 30000,
+    product_name: 'ZARA 티셔츠',
+    product_status: '아주 좋아요',
+    post_status: 'onSale',
+    product_image: productImg3,
+    is_selected: false,
+  },
+  {
+    id: 4,
+    price: 15000,
+    product_name: '지오다노 티',
+    product_status: '보통이에요',
+    post_status: 'onSale',
+    product_image: productImg4,
+    is_selected: false,
+  },
+  {
+    id: 5,
+    price: 5,
+    product_name: 'RAV4',
+    product_status: '아주 좋아요',
+    post_status: 'onSale',
+    product_image: productImg2,
+    is_selected: false,
+  },
+  {
+    id: 6,
+    price: 6,
+    product_name: 'Grand Am',
+    product_status: '아주 좋아요',
+    post_status: 'onSale',
+    product_image: productImg1,
+    is_selected: false,
+  },
 ];
