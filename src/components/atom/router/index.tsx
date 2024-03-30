@@ -13,7 +13,7 @@ import ProductDetail from 'pages/productPage/product-detail';
 import ChatHome from 'pages/chat-home';
 import ProductEdit from 'pages/productPage/product-edit';
 import ChatDetail from 'pages/chat-detail';
-import Magazine from 'pages/magazinePage/magazine';
+import Magazine from 'pages/magazinePage/main';
 import QuizPage from 'pages/magazinePage/quiz/quiz';
 import Login from 'pages/login';
 import Onboarding from 'pages/onboarding';
