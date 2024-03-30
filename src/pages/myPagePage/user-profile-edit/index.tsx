@@ -5,11 +5,36 @@ import { useNavigate } from 'react-router-dom';
 import { useUserProfileActions, useUserProfileInfo } from '../../../store/userData';
 import { instance } from '../../../apis/index';
 import { useEffect, useState } from 'react';
+import { userId, userProfile } from 'data/shared';
+import { useQuery } from '@tanstack/react-query';
+
+const getUserProfileData = async () => {
+  try {
+    const response = await instance.get(`/users/profile/${userId}`);
+    console.log('프로필 정보 불러오기 성공', response.data);
+    return response.data;
+  } catch (e) {
+    console.error('프로필 정보 불러오기 실패', e);
+    return userProfile;
+  }
+};
 
 const UserProfileEdit = () => {
   const navigate = useNavigate();
-  const { updateUserProfileInfo } = useUserProfileActions();
   const userProfileInfo = useUserProfileInfo();
+  const { updateUserProfileInfo } = useUserProfileActions();
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['user', 'profile-edit'],
+    queryFn: getUserProfileData,
+  });
+
+  useEffect(() => {
+    if (data) {
+      updateUserProfileInfo(data);
+    }
+  }, [data]);
+
   const [userProfileApiInfo, setUserProfileApiInfo] = useState({
     user_name: '',
     nick_name: '',
@@ -17,41 +42,17 @@ const UserProfileEdit = () => {
     style: [],
   });
 
-  const userId = localStorage.getItem('userId');
-
-  const getData = async () => {
-    await instance.get(`/users/profile/${userId}`).then((res) => {
-      console.log('프로필 수정', res);
-      console.log('프로필 수정', res);
-      setUserProfileApiInfo({
-        user_name: res.data.user_name,
-        nick_name: res.data.nick_name,
-        profile_image: res.data.profile_image,
-        style: res.data.style,
-      });
-    });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   /*프로필 정보를 저장하는 api 호출 */
   const postChangeProfileInfo = async () => {
-    console.log({
-      ...userProfileApiInfo,
-      profile_image: userProfileInfo.profile_image,
-      style: [...userProfileInfo.style],
-    });
     await instance
       .put(`/users/profile/${userId}`, {
-        ...userProfileApiInfo,
+        user_name: userProfileInfo.user_name,
+        nick_name: userProfileInfo.nick_name,
         profile_image: userProfileInfo.profile_image,
         style: [...userProfileInfo.style],
       })
       .then((res) => {
         console.log('프로필 수정 성공', res.data);
-        // updateUserProfileInfo(res.data);
 
         alert('저장되었습니다.');
         alert('저장되었습니다.');
@@ -59,7 +60,7 @@ const UserProfileEdit = () => {
       .catch((e) => console.log('프로필 수정 실패', e));
   };
 
-  const handleNickNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateUserProfileInfo({ nick_name: e.target.value });
     setUserProfileApiInfo({ ...userProfileApiInfo, nick_name: e.target.value });
   };
@@ -81,11 +82,11 @@ const UserProfileEdit = () => {
       </Header>
       <TextInput
         label="닉네임"
-        value={userProfileApiInfo.nick_name}
+        value={userProfileInfo.nick_name}
         labelSize={16}
-        onChange={handleNickNameChange}
+        onChange={handleChangeNickname}
       />
-      <ImageInput image={userProfileApiInfo.profile_image} />
+      <ImageInput image={userProfileInfo.profile_image} />
       <TagInput />
     </>
   );

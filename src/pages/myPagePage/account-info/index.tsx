@@ -29,7 +29,7 @@ const AccountInfo = () => {
   });
 
   const { data, error, isLoading } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['user', 'account-info'],
     queryFn: getAccountInfo,
   });
 
