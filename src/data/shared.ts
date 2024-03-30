@@ -25,6 +25,7 @@ export const userProfile = {
   user_name: '김서영',
   nick_name: '김스옹',
   university_name: '성균관대학교 서울캠퍼스',
+  university_email: 'wear@wear.com',
   style: ['캐주얼', '빈티지', '페미닌'],
   profile_image: noImg,
   level: '새싹',

@@ -2,7 +2,7 @@ import { Header, TextLabel, TextInput } from 'components/index';
 import * as S from './style';
 import arrow from 'assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { instance } from '../../../apis/index';
 import { userProfile } from 'data/shared';
 import { useQuery } from '@tanstack/react-query';
@@ -22,16 +22,26 @@ const getAccountInfo = async () => {
 
 const AccountInfo = () => {
   const navigate = useNavigate();
+  const [accountInfo, setAccountInfo] = useState({
+    user_name: '',
+    university_name: '',
+    university_email: '',
+  });
+
   const { data, error, isLoading } = useQuery({
     queryKey: ['user'],
     queryFn: getAccountInfo,
   });
 
-  const [accountInfo, setAccountInfo] = useState({
-    user_name: data.user_name,
-    university_name: data.university_name,
-    university_email: data.university_email,
-  });
+  useEffect(() => {
+    if (data) {
+      setAccountInfo({
+        user_name: data.user_name,
+        university_name: data.university_name,
+        university_email: data.university_email,
+      });
+    }
+  }, [data]);
 
   /*계정 정보를 저장하는 api 호출 */
   const postChangeAccountInfo = async () => {
