@@ -4,6 +4,7 @@ import {
   Header,
   ListTag,
   ListTradeItems,
+  Loading,
   Nav,
   Search,
 } from 'components/index';
@@ -16,6 +17,19 @@ import { useSearchActions } from 'store/search';
 import { instance } from 'apis';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 import { productList } from 'data/shared';
+import { useQuery } from '@tanstack/react-query';
+
+async function getProductListData(category: string, onSale: string | null) {
+  try {
+    const response = await instance.get(
+      `/products/category?categoryName=${category}&postStatus=${onSale}&pageNumber=0`
+    );
+    console.log('물품 리스트 불러오기 성공', response);
+    return response.data.content;
+  } catch (e) {
+    console.log('물품 리스트 불러오기 실패 ', e);
+  }
+}
 
 const ProductMain = () => {
   const navigate = useNavigate();
@@ -25,31 +39,21 @@ const ProductMain = () => {
   const { setActiveCategory } = useProductListActions();
   const { setInitialProductList } = useProductListActions();
 
-  const getProductListData = async () => {
-    try {
-      await instance
-        .get(
-          `/products/category?categoryName=${activeCategory}&postStatus=${clickedOnSale}&pageNumber=0`
-        )
-        .then(function (response) {
-          // 성공한 경우 실행
-          console.log('물품 리스트 불러오기 성공', response);
-          setInitialProductList(response.data.content);
-        });
-    } catch (e) {
-      console.log('물품 리스트 불러오기 실패 ', e);
-      setInitialProductList(productList);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['products', activeCategory, clickedOnSale],
+    queryFn: () => getProductListData(activeCategory, clickedOnSale),
+  });
+
+  useEffect(() => {
+    if (data) {
+      setInitialProductList(data);
     }
-  };
+  }, [data]);
 
   useEffect(() => {
     changeSearchData('');
     setActiveCategory('전체');
   }, []);
-
-  useEffect(() => {
-    getProductListData();
-  }, [activeCategory, clickedOnSale]);
 
   return (
     <>
@@ -72,7 +76,14 @@ const ProductMain = () => {
         </section>
 
         <section className="items">
-          <ListTradeItems />
+          {error && <S.Error>상품을 불러오지 못했습니다.</S.Error>}
+          {isLoading ? (
+            <S.IsLoading>
+              <Loading />
+            </S.IsLoading>
+          ) : (
+            <ListTradeItems />
+          )}
         </section>
 
         <Link to={'/product/new'}>

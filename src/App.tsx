@@ -7,7 +7,17 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 function App() {
   const [showSplash, setShowSplash] = useState<boolean>(true);
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      // react-query 전역 설정
+      queries: {
+        refetchOnWindowFocus: false,
+        retryOnMount: true,
+        refetchOnReconnect: false,
+        retry: false,
+      },
+    },
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
