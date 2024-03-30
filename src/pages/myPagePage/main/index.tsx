@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import * as S from './style';
-import { UserSection, MenuItem, Nav } from 'components/index';
+import { UserSection, MenuItem, Nav, Loading } from 'components/index';
 import { useUserProfileActions } from '../../../store/userData';
 import { userProfile } from 'data/shared';
 import { instance } from 'apis';
@@ -35,8 +35,14 @@ const MyPageMain: React.FC = () => {
   return (
     <>
       <S.MenuItemWrapper>
-        <UserSection />
-        <MenuItem />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <UserSection />
+            <MenuItem />
+          </>
+        )}
       </S.MenuItemWrapper>
       <Nav currentTab="마이페이지" />
     </>

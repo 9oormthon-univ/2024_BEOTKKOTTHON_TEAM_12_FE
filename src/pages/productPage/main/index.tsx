@@ -77,13 +77,7 @@ const ProductMain = () => {
 
         <section className="items">
           {error && <S.Error>상품을 불러오지 못했습니다.</S.Error>}
-          {isLoading ? (
-            <S.IsLoading>
-              <Loading />
-            </S.IsLoading>
-          ) : (
-            <ListTradeItems />
-          )}
+          {isLoading ? <Loading /> : <ListTradeItems />}
         </section>
 
         <Link to={'/product/new'}>
