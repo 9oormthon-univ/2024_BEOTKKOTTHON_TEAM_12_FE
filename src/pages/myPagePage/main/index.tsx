@@ -3,7 +3,7 @@ import * as S from './style';
 import { UserSection, MenuItem, Nav } from 'components/index';
 import useStore from '../../../store/userData';
 
-const MyPage: React.FC = () => {
+const MyPageMain: React.FC = () => {
   const { initUserProfileInfo } = useStore();
 
   // useEffect(() => {
@@ -25,4 +25,4 @@ const MyPage: React.FC = () => {
   );
 };
 
-export default MyPage;
+export default MyPageMain;

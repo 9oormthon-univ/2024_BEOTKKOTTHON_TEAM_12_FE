@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import MyPage from 'pages/myPagePage/mypage';
+import MyPageMain from 'pages/myPagePage/main';
 import Main from 'pages/productPage/main';
 import SalesHistory from 'pages/myPagePage/sales-history';
 import SearchPage from 'pages/searchPage/search';
@@ -53,7 +53,7 @@ const Router = () => {
       <Route path="/search/result" element={<SearchResult />} />
 
       {/* 마이페이지 */}
-      <Route path="/mypage" element={<MyPage />} />
+      <Route path="/mypage" element={<MyPageMain />} />
       <Route path="/mypage/sales-history" element={<SalesHistory />} />
       <Route path="/mypage/purchase-history" element={<PurchaseHistory />} />
       <Route path="/mypage/account-info" element={<AccountInfo />} />
