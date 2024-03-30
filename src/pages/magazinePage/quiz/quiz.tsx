@@ -1,6 +1,5 @@
-import { Header, BoxQuiz, Button, ModalProduct } from 'components/index';
+import { Header, BoxQuiz, Button, ModalProduct, ButtonBack } from 'components/index';
 import * as S from './style';
-import back from 'assets/icons/left_btn.svg';
 import share from 'assets/icons/share.svg';
 import main from 'assets/magazine/quiz_page.svg';
 import { useNavigate } from 'react-router-dom';
@@ -54,7 +53,7 @@ const QuizPage = () => {
   return (
     <>
       <Header>
-        <img className="left" src={back} alt="back" onClick={() => navigate('/magazine')} />
+        <ButtonBack className="left" onClick={() => navigate('/magazine')} />
         <img className="right" src={share} alt="share" />
       </Header>
 

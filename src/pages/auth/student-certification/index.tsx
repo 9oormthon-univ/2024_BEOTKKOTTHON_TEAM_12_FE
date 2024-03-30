@@ -1,7 +1,6 @@
 import * as S from './style';
 import logo from 'assets/logo/logo.svg';
-import { Button, Header, TextInput, TextLabel } from 'components/index';
-import arrow from 'assets/icons/arrow.svg';
+import { Button, ButtonBack, Header, TextInput, TextLabel } from 'components/index';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { instance } from 'apis';
@@ -56,7 +55,7 @@ const StudentCertification = () => {
   return (
     <>
       <Header>
-        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
+        <ButtonBack className="left" onClick={() => navigate(-1)} />
       </Header>
       <S.Container>
         <S.Logo src={logo} alt="logo"></S.Logo>

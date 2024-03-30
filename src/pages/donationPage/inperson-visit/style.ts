@@ -7,10 +7,6 @@ export const Container = styled.div`
   font-family: 'Noto Sans KR';
 `;
 
-export const BtnLeft = styled.img`
-  transform: rotate(180deg);
-`;
-
 export const TabContainer = styled.div`
   display: flex;
   align-items: flex-start;

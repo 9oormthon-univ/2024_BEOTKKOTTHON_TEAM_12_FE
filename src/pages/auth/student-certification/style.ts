@@ -12,10 +12,6 @@ export const Container = styled.div`
   font-family: 'Noto Sans KR';
 `;
 
-export const BtnLeft = styled.img`
-  transform: rotate(180deg);
-`;
-
 export const Logo = styled.img`
   width: 148px;
   margin-top: 10px;

@@ -5,13 +5,13 @@ import defaultImg from 'assets/images/product-default-img.png';
 import {
   BoxKebabList,
   Button,
+  ButtonBack,
   ChatInput,
   ChatScreen,
   Header,
   ProductInfo,
   TextLabel,
 } from 'components/index';
-import arrow from 'assets/icons/arrow.svg';
 import kebab from 'assets/icons/kebab.svg';
 import productImage from 'assets/images/product-default-img.png';
 import { useEffect, useRef, useState } from 'react';
@@ -179,12 +179,7 @@ const ChatDetail = () => {
           <S.Container>
             <S.ChatFixedHeader>
               <Header>
-                <S.BtnLeft
-                  src={arrow}
-                  className="left"
-                  alt="btn-back"
-                  onClick={() => navigate(-1)}
-                />
+                <ButtonBack className="left" $marginLeft="10px" onClick={() => navigate(-1)} />
                 <S.NickNameContainer>
                   <TextLabel text={'팀 WEAR'} size={18} $weight={700} />
                 </S.NickNameContainer>
@@ -210,7 +205,7 @@ const ChatDetail = () => {
         <S.Container>
           <S.ChatFixedHeader>
             <Header>
-              <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
+              <ButtonBack className="left" $marginLeft="10px" onClick={() => navigate(-1)} />
               <S.NickNameContainer>
                 <TextLabel text={otherUser.nickname} size={18} $weight={700} />
                 <img src={levelUrlArr(otherUser.level)} alt="level" />
