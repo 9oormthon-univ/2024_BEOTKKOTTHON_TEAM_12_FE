@@ -12,18 +12,20 @@ interface StoreState {
   actions: UserProfileInfoActions;
 }
 
+const initialUser = {
+  user_name: '',
+  nick_name: '',
+  university_name: '',
+  style: [],
+  profile_image: noImg,
+  level: '',
+  next_level: '',
+  point: 0,
+  remain_level_point: 0,
+};
+
 const useStore = create<StoreState>((set) => ({
-  userProfileInfo: {
-    user_name: '',
-    nick_name: '',
-    university_name: '',
-    style: [],
-    profile_image: noImg,
-    level: '',
-    next_level: '',
-    point: 0,
-    remain_level_point: 0,
-  },
+  userProfileInfo: initialUser,
   actions: {
     updateUserProfileInfo: (newProfile) =>
       set((state) => ({

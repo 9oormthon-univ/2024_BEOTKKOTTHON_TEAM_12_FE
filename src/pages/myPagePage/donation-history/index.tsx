@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import arrow from 'assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
-import { Checkbox, Header, TextLabel } from 'components/index';
+import { ButtonBack, Checkbox, Header, TextLabel } from 'components/index';
 import { instance } from 'apis';
 
 type donationDataType = {
@@ -38,7 +38,7 @@ const DonationHistory = () => {
   return (
     <S.Container>
       <Header>
-        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
+        <ButtonBack className="left" $marginLeft="10px" onClick={() => navigate(-1)} />
         <TextLabel text={'기부 내역'} size={18} $weight={500} />
       </Header>
       <S.TableHeader>

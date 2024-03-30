@@ -27,11 +27,6 @@ export const FooterFixed = styled.div`
   width: 370px;
 `;
 
-export const BtnLeft = styled.img`
-  margin-left: 10px;
-  transform: rotate(180deg);
-`;
-
 export const NickNameContainer = styled.div`
   display: flex;
   align-items: center;

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import * as S from './style';
-import arrow from 'assets/icons/arrow.svg';
 import x from 'assets/icons/x.svg';
-import { Header, BoxNoticeItem, TextLabel, Button, KakaoMap } from 'components/index';
+import { Header, BoxNoticeItem, TextLabel, Button, KakaoMap, ButtonBack } from 'components/index';
 import { useNavigate } from 'react-router-dom';
 
 const DonationInpersonVisit = () => {
@@ -88,11 +87,7 @@ const DonationInpersonVisit = () => {
   return (
     <>
       <Header>
-        {activeIndex === 0 ? (
-          ''
-        ) : (
-          <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={goToPreviousTab} />
-        )}
+        {activeIndex === 0 ? '' : <ButtonBack className="left" onClick={goToPreviousTab} />}
 
         <img src={x} className="right" alt="btn-back" onClick={() => navigate('/donation')} />
       </Header>

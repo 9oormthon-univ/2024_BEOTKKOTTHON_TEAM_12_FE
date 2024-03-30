@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { Button, Checkbox, Header, TagInput, TextLabel } from 'components/index';
-import arrow from 'assets/icons/arrow.svg';
+import { Button, ButtonBack, Checkbox, Header, TagInput, TextLabel } from 'components/index';
 import x from 'assets/icons/x.svg';
 import eyeOff from 'assets/icons/eye-off.svg';
 import welcomeLogo from 'assets/logo/welcome-logo.svg';
@@ -465,7 +464,7 @@ const SignUp: React.FC = () => {
         <>
           {' '}
           <Header>
-            <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={goToPreviousTab} />
+            <ButtonBack className="left" $marginLeft="5px" onClick={goToPreviousTab} />
             <img src={x} className="right" alt="btn-back" onClick={() => navigate('/donation')} />
           </Header>
           <S.Container>

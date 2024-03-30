@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-export const BtnLeft = styled.img`
-  transform: translateX(11px);
-`;
-
 export const Content = styled.div`
   display: flex;
   flex-direction: column;

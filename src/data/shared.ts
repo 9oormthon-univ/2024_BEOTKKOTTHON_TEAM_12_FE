@@ -12,6 +12,9 @@ import productImg4 from 'assets/images/product-image4.svg';
 
 import noImg from '../assets/images/profile-no-image.png';
 
+// 유저 id
+export const userId = 1;
+
 // 카테고리, 최근 검색어
 export const categories = ['전체', '상의', '하의', '아우터', '원피스', '가방', '잡화', '기타'];
 export const searches = ['자라', 'H&M', '지오다노', '유니클로', '에잇세컨즈'];
@@ -25,6 +28,7 @@ export const userProfile = {
   user_name: '김서영',
   nick_name: '김스옹',
   university_name: '성균관대학교 서울캠퍼스',
+  university_email: 'wear@wear.com',
   style: ['캐주얼', '빈티지', '페미닌'],
   profile_image: noImg,
   level: '새싹',

@@ -1,6 +1,7 @@
 import {
   BoxKebabList,
   BoxProductProfile,
+  ButtonBack,
   Carousel,
   DescriptionProduct,
   FooterProductDetail,
@@ -8,7 +9,6 @@ import {
   ModalProduct,
 } from 'components/index';
 import * as S from './style';
-import arrow from 'assets/icons/left_btn.svg';
 import kebab from 'assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -125,11 +125,11 @@ const ProductDetail = () => {
         </ModalProduct>
       )}
       <Header>
-        <S.BtnLeft src={arrow} className="left" alt="btn-back" onClick={() => navigate(-1)} />
+        <ButtonBack className="left" $marginLeft="10px" onClick={() => navigate(-1)} />
         <img
           src={kebab}
           className="right"
-          alt="btn-back"
+          alt="btn-kebab"
           onClick={() => setOpenKebab(!openKebab)}
         />
       </Header>

@@ -3,11 +3,6 @@ export const Container = styled.div`
   background: white;
 `;
 
-export const BtnLeft = styled.img`
-  margin-left: 10px;
-  transform: rotate(180deg);
-`;
-
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
