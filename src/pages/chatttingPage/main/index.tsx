@@ -6,7 +6,7 @@ import ChatListItem from 'components/molcule/chat-list-item';
 // import { useEffect, useState } from 'react';
 import wearProfile from 'assets/images/wear_profile.svg';
 
-const ChatHome: React.FC = () => {
+const ChattingMain: React.FC = () => {
   // const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
 
   //const userId = localStorage.getItem('userId');
@@ -54,4 +54,4 @@ const ChatHome: React.FC = () => {
   );
 };
 
-export default ChatHome;
+export default ChattingMain;

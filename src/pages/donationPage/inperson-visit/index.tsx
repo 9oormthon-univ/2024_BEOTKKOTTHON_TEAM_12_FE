@@ -5,7 +5,7 @@ import x from 'assets/icons/x.svg';
 import { Header, BoxNoticeItem, TextLabel, Button, KakaoMap } from 'components/index';
 import { useNavigate } from 'react-router-dom';
 
-const DonationVisit = () => {
+const DonationInpersonVisit = () => {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   /*다음 절차로 이동 */
@@ -108,4 +108,4 @@ const DonationVisit = () => {
   );
 };
 
-export default DonationVisit;
+export default DonationInpersonVisit;

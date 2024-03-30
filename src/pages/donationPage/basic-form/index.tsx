@@ -1,7 +1,7 @@
 import { ContainerDonation, FormDonationBasic } from 'components/index';
 import { useState } from 'react';
 
-const DonationFormBasic = () => {
+const DonationBasicForm = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   return (
     <ContainerDonation
@@ -17,4 +17,4 @@ const DonationFormBasic = () => {
   );
 };
 
-export default DonationFormBasic;
+export default DonationBasicForm;
