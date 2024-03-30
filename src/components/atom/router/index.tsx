@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import MyPageMain from 'pages/myPagePage/main';
-import Main from 'pages/productPage/main';
+import ProductMain from 'pages/productPage/main';
 import SalesHistory from 'pages/myPagePage/sales-history';
-import SearchPage from 'pages/searchPage/search';
-import SearchResult from 'pages/searchPage/search-result';
+import SearchPage from 'pages/productPage/search';
+import SearchResult from 'pages/productPage/search-result';
 import PurchaseHistory from 'pages/myPagePage/purchase-history';
 import ProductNew from 'pages/productPage/product-new';
 import AccountInfo from 'pages/myPagePage/account-info';
@@ -45,7 +45,7 @@ const Router = () => {
       <Route path="/" element={<Onboarding />} />
 
       {/* 중고 거래 */}
-      <Route path="/product" element={<Main />} />
+      <Route path="/product" element={<ProductMain />} />
       <Route path="/product/new" element={<ProductNew />} />
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/product/edit/:id" element={<ProductEdit />} />

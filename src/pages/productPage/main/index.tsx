@@ -20,7 +20,7 @@ import { useSearchActions } from 'store/search';
 import { instance } from 'apis';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 
-const Main = () => {
+const ProductMain = () => {
   const navigate = useNavigate();
   const clickedOnSale = useClickedOnSale();
   const { changeSearchData } = useSearchActions();
@@ -143,4 +143,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default ProductMain;
