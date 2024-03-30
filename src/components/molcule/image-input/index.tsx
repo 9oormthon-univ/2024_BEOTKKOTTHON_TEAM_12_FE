@@ -14,7 +14,6 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
   const { updateUserProfileInfo } = useUserProfileActions();
   // image prop이 있으면 사용하고, 없으면 noImg를 사용
   const [newImage, setNewImage] = useState(image || noImg);
-  console.log(newImage);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const getImgUrl = async (file: File) => {

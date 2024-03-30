@@ -2,7 +2,6 @@ import * as S from './style';
 import arrow from 'assets/icons/arrow.svg';
 import { Header, TextLabel, TextInput, ImageInput, TagInput } from 'components/index';
 import { useNavigate } from 'react-router-dom';
-import { useUserProfileActions, useUserProfileInfo } from '../../../store/userData';
 import { instance } from '../../../apis/index';
 import { useEffect, useState } from 'react';
 import { userId, userProfile } from 'data/shared';
@@ -21,8 +20,12 @@ const getUserProfileData = async () => {
 
 const UserProfileEdit = () => {
   const navigate = useNavigate();
-  const userProfileInfo = useUserProfileInfo();
-  const { updateUserProfileInfo } = useUserProfileActions();
+  const [userInfo, setUserInfo] = useState({
+    user_name: '',
+    nick_name: '',
+    profile_image: '',
+    style: [],
+  });
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['user', 'profile-edit'],
@@ -31,26 +34,14 @@ const UserProfileEdit = () => {
 
   useEffect(() => {
     if (data) {
-      updateUserProfileInfo(data);
+      setUserInfo({ ...data });
     }
   }, [data]);
-
-  const [userProfileApiInfo, setUserProfileApiInfo] = useState({
-    user_name: '',
-    nick_name: '',
-    profile_image: '',
-    style: [],
-  });
 
   /*프로필 정보를 저장하는 api 호출 */
   const postChangeProfileInfo = async () => {
     await instance
-      .put(`/users/profile/${userId}`, {
-        user_name: userProfileInfo.user_name,
-        nick_name: userProfileInfo.nick_name,
-        profile_image: userProfileInfo.profile_image,
-        style: [...userProfileInfo.style],
-      })
+      .put(`/users/profile/${userId}`, userInfo)
       .then((res) => {
         console.log('프로필 수정 성공', res.data);
 
@@ -61,33 +52,36 @@ const UserProfileEdit = () => {
   };
 
   const handleChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
-    updateUserProfileInfo({ nick_name: e.target.value });
-    setUserProfileApiInfo({ ...userProfileApiInfo, nick_name: e.target.value });
+    setUserInfo({ ...userInfo, nick_name: e.target.value });
   };
 
   return (
     <>
-      <Header>
-        <TextLabel text="내 프로필" size={18} $weight={700} />
-        <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
-        <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
-        <TextLabel
-          className="right "
-          onClick={postChangeProfileInfo}
-          text="저장"
-          size={18}
-          $weight={700}
-          color="var(--grey-5)"
-        />
-      </Header>
-      <TextInput
-        label="닉네임"
-        value={userProfileInfo.nick_name}
-        labelSize={16}
-        onChange={handleChangeNickname}
-      />
-      <ImageInput image={userProfileInfo.profile_image} />
-      <TagInput />
+      {!isLoading && (
+        <>
+          <Header>
+            <TextLabel text="내 프로필" size={18} $weight={700} />
+            <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
+            <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
+            <TextLabel
+              className="right "
+              onClick={postChangeProfileInfo}
+              text="저장"
+              size={18}
+              $weight={700}
+              color="var(--grey-5)"
+            />
+          </Header>
+          <TextInput
+            label="닉네임"
+            value={userInfo.nick_name}
+            labelSize={16}
+            onChange={handleChangeNickname}
+          />
+          <ImageInput image={userInfo.profile_image} />
+          <TagInput />
+        </>
+      )}
     </>
   );
 };
