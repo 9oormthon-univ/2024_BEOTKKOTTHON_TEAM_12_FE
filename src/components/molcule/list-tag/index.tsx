@@ -1,18 +1,14 @@
-import { categories } from "data/shared";
-import { useEffect, useState } from "react";
-import { BoxTag, Tag } from "components/index";
-import { useFormData, useFormDataActions } from "store/formData";
-import {
-  useActiveCategory,
-  useProductListActions,
-} from "store/productListData";
-// 받아온 정보와 일치하는 카테고리 색상
+import { categories } from 'data/shared';
+import { useEffect, useState } from 'react';
+import { BoxTag, Tag } from 'components/index';
+import { useFormDataActions } from 'store/formData';
+import { useActiveCategory, useProductListActions } from 'store/productListData';
+
 interface ListTagProps {
   isform?: boolean;
 }
 
 const ListTag = ({ isform }: ListTagProps) => {
-  const formData = useFormData();
   const { setFormData } = useFormDataActions();
 
   const activeCategory = useActiveCategory();
@@ -23,6 +19,12 @@ const ListTag = ({ isform }: ListTagProps) => {
   const [scrollLeft, setScrollLeft] = useState(0);
 
   const list = isform ? categories.slice(1) : categories;
+
+  useEffect(() => {
+    if (isform) {
+      setActiveCategory('');
+    }
+  }, []);
 
   // 마우스 이벤트 핸들러
   const startDragging = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -45,18 +47,10 @@ const ListTag = ({ isform }: ListTagProps) => {
 
   const handleClick = (category: string) => {
     if (isform) {
-      setFormData("category", category);
+      setFormData('category', category);
     }
     setActiveCategory(category);
   };
-
-  useEffect(() => {
-    if (isform) {
-      // setActiveCategory(formData.category as string);
-    } else {
-      console.log("list-tag / activeCategory", activeCategory);
-    }
-  }, [formData.category, isform]);
 
   return (
     <BoxTag
