@@ -75,3 +75,12 @@ export interface UserProfileInfo {
   point: number;
   remain_level_point: number;
 }
+
+// 퀴즈
+export interface Quiz {
+  title_num: number;
+  point: number;
+  question: string;
+  list: string[];
+  answer: number;
+}

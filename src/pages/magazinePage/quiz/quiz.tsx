@@ -9,18 +9,14 @@ import { quizData } from 'data/shared';
 import { instance } from 'apis';
 
 let totalPoints = 0;
+const userId = 1;
 
 const QuizPage = () => {
-  const answer = [3, 3];
-  const quizDatas = [...quizData];
+  const navigate = useNavigate();
   const [submitAnswer, setSubmitAnswer] = useState<number[]>([0, 0]);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [markAnswer, setMarkAnswer] = useState<boolean>(false);
-
-  const navigate = useNavigate();
-
-  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     setIsDisabled(submitAnswer.some((item) => item === 0));
@@ -32,7 +28,7 @@ const QuizPage = () => {
 
   const handleClickShowAnswer = async () => {
     for (let i = 0; i < submitAnswer.length; i++) {
-      if (submitAnswer[i] === answer[i]) {
+      if (submitAnswer[i] === quizData[i].answer) {
         totalPoints += 1;
       }
     }
@@ -65,7 +61,7 @@ const QuizPage = () => {
       <S.Content>
         <img src={main} alt="main-img" />
 
-        {quizDatas.map((quiz, index) => (
+        {quizData.map((quiz, index) => (
           <BoxQuiz
             key={index}
             quiz={quiz}
@@ -77,32 +73,18 @@ const QuizPage = () => {
       </S.Content>
 
       <S.BtnAnswer>
-        {markAnswer ? (
-          <Button
-            width="100%"
-            color="white"
-            $bgcolor="var(--green-6)"
-            $borderRadius="8px"
-            fontSize="16px"
-            $padding="16px"
-            handleOnClick={() => navigate('/magazine')}
-          >
-            다음 기회에 또 만나요
-          </Button>
-        ) : (
-          <Button
-            width="100%"
-            color="white"
-            $bgcolor={isDisabled ? 'var(--grey-3)' : 'var(--green-6)'}
-            $borderRadius="8px"
-            fontSize="16px"
-            $padding="16px"
-            disabled={isDisabled}
-            handleOnClick={handleClickShowAnswer}
-          >
-            정답 확인
-          </Button>
-        )}
+        <Button
+          width="100%"
+          color="white"
+          $bgcolor={isDisabled ? 'var(--grey-3)' : 'var(--green-6)'}
+          $borderRadius="8px"
+          fontSize="16px"
+          $padding="16px"
+          disabled={isDisabled && !markAnswer}
+          handleOnClick={markAnswer ? () => navigate('/magazine') : handleClickShowAnswer}
+        >
+          {markAnswer ? '다음 기회에 또 만나요' : '정답 확인'}
+        </Button>
       </S.BtnAnswer>
 
       {openModal && (
