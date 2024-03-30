@@ -2,13 +2,13 @@ import * as S from './style';
 import arrow from 'assets/icons/arrow.svg';
 import { Header, TextLabel, TextInput, ImageInput, TagInput } from 'components/index';
 import { useNavigate } from 'react-router-dom';
-import useStore, { useUserProfileInfo } from '../../../store/userData';
+import { useUserProfileActions, useUserProfileInfo } from '../../../store/userData';
 import { instance } from '../../../apis/index';
 import { useEffect, useState } from 'react';
 
 const UserProfileEdit = () => {
   const navigate = useNavigate();
-  const { updateUserProfileInfo } = useStore();
+  const { updateUserProfileInfo } = useUserProfileActions();
   const userProfileInfo = useUserProfileInfo();
   const [userProfileApiInfo, setUserProfileApiInfo] = useState({
     user_name: '',

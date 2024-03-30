@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import * as S from './style';
 import { Tag, TextLabel } from 'components/index';
-import useStore from '../../../store/userData';
+import { useUserProfileActions, useUserProfileInfo } from '../../../store/userData';
 import { styleTags } from 'data/shared';
 
 interface TagInputProps {
@@ -11,7 +11,8 @@ interface TagInputProps {
 }
 
 const TagInput: React.FC<TagInputProps> = ({ label, handleChangeStyleTag, setButtonColor }) => {
-  const { userProfileInfo, updateUserStyleTags } = useStore();
+  const userProfileInfo = useUserProfileInfo();
+  const { updateUserStyleTags } = useUserProfileActions();
 
   const toggleTag = useCallback(
     (tag: string) => {
