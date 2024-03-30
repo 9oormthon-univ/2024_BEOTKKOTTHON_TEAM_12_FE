@@ -6,6 +6,7 @@ import { instance } from '../../../apis/index';
 import { useEffect, useState } from 'react';
 import { userId, userProfile } from 'data/shared';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 const getUserProfileData = async () => {
   try {
