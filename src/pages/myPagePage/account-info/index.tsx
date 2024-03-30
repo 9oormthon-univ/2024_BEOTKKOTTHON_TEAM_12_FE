@@ -2,34 +2,36 @@ import { Header, TextLabel, TextInput } from 'components/index';
 import * as S from './style';
 import arrow from 'assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { instance } from '../../../apis/index';
+import { userProfile } from 'data/shared';
+import { useQuery } from '@tanstack/react-query';
+
+const userId = 1;
+
+const getAccountInfo = async () => {
+  try {
+    const response = await instance.get(`/users/userInfo/${userId}`);
+    console.log('계정 정보 불러오기 성공:', response.data);
+    return response.data;
+  } catch (e) {
+    console.error('계정 정보 불러오기 실패', e);
+    return userProfile;
+  }
+};
 
 const AccountInfo = () => {
-  const [accountInfo, setAccountInfo] = useState({
-    user_name: '',
-    university_name: '',
-    university_email: '',
+  const navigate = useNavigate();
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['user'],
+    queryFn: getAccountInfo,
   });
 
-  const userId = localStorage.getItem('userId');
-
-  /*계정 정보 가져오는 api 호출 */
-  const getAccountInfo = async () => {
-    console.log('계정 정보 가져오기');
-    try {
-      const response = await instance.get(`/users/userInfo/${userId}`);
-      console.log('계정 정보 불러오기 성공:', response.data);
-      setAccountInfo(response.data);
-    } catch (error) {
-      console.error('계정 정보 불러오기 실패:', error);
-      setAccountInfo({
-        user_name: '김서영',
-        university_name: '성균관대학교 서울캠퍼스',
-        university_email: 'kimseoyoung@skku.edu',
-      });
-    }
-  };
+  const [accountInfo, setAccountInfo] = useState({
+    user_name: data.user_name,
+    university_name: data.university_name,
+    university_email: data.university_email,
+  });
 
   /*계정 정보를 저장하는 api 호출 */
   const postChangeAccountInfo = async () => {
@@ -51,16 +53,6 @@ const AccountInfo = () => {
       console.error('서버에 저장하는 중 오류 발생:', error);
       alert('오류가 발생했습니다. 다시 시도해주세요.');
     }
-  };
-
-  useEffect(() => {
-    getAccountInfo();
-  }, []);
-
-  const navigate = useNavigate();
-
-  const changeUniversity = () => {
-    console.log('학교 변경하기');
   };
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,7 +83,7 @@ const AccountInfo = () => {
         <TextInput
           label="학교"
           labelSize={16}
-          value={accountInfo.university_email}
+          value={accountInfo.university_name}
           readonly={true}
         />
         <TextInput
@@ -100,7 +92,7 @@ const AccountInfo = () => {
           value={accountInfo.university_email}
           readonly={true}
         />
-        <S.Link onClick={changeUniversity}>학교 변경하기</S.Link>
+        <S.Link>학교 변경하기</S.Link>
       </S.InputWrapper>
     </>
   );
