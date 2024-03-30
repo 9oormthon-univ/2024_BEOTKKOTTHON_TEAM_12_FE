@@ -1,17 +1,20 @@
 import React, { useCallback, useEffect } from 'react';
 import * as S from './style';
 import { Tag, TextLabel } from 'components/index';
-import useStore from '../../../store/userData';
+import { useUserProfileActions, useUserProfileInfo } from '../../../store/userData';
 import { styleTags } from 'data/shared';
 
 interface TagInputProps {
   label?: string;
   handleChangeStyleTag?: (tag: string[]) => void;
-  setButtonColor?: React.Dispatch<React.SetStateAction<{ backgroundColor: string; color: string }>>;
+  setButtonColor?: React.Dispatch<
+    React.SetStateAction<{ $backgroundColor: string; color: string }>
+  >;
 }
 
 const TagInput: React.FC<TagInputProps> = ({ label, handleChangeStyleTag, setButtonColor }) => {
-  const { userProfileInfo, updateUserStyleTags } = useStore();
+  const userProfileInfo = useUserProfileInfo();
+  const { updateUserStyleTags } = useUserProfileActions();
 
   const toggleTag = useCallback(
     (tag: string) => {
@@ -30,8 +33,8 @@ const TagInput: React.FC<TagInputProps> = ({ label, handleChangeStyleTag, setBut
     // userProfileInfo.style 배열의 길이에 따라 버튼 색상을 변경
     const buttonColors =
       userProfileInfo.style.length > 0
-        ? { backgroundColor: 'var(--green-primary)', color: '#ffffff' }
-        : { backgroundColor: 'var(--grey-2)', color: 'var(--grey-5)' };
+        ? { $backgroundColor: 'var(--green-primary)', color: '#ffffff' }
+        : { $backgroundColor: 'var(--grey-2)', color: 'var(--grey-5)' };
 
     setButtonColor && setButtonColor(buttonColors);
   }, [userProfileInfo.style, setButtonColor]);

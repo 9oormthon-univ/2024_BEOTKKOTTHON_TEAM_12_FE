@@ -22,6 +22,7 @@ export { default as ChatMessage } from './atom/chat-message';
 export { default as BoxDonationDot } from './atom/box-donation-dot';
 export { default as Checkbox } from './atom/checkbox';
 export { default as KakaoMap } from './atom/map';
+export { default as Loading } from './atom/loading';
 //Molcule
 export { default as Carousel } from './molcule/carousel';
 export { default as ProfileCard } from './molcule/profile-card';

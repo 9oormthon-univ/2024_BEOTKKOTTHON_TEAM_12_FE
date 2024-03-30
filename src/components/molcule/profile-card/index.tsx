@@ -35,7 +35,7 @@ const ProfileCard: React.FC = () => {
               key={index}
               children={style}
               color="var(--grey-6)"
-              borderColor="var(--grey-3)"
+              $borderColor="var(--grey-3)"
             />
           ))}
         </S.ButtonContainer>

@@ -2,7 +2,7 @@ import { Button, TextLabel } from 'components/index';
 import * as S from './style';
 import React, { useRef, ChangeEvent, useState } from 'react';
 import noImg from 'assets/images/profile-no-image.png';
-import useStore from '../../../store/userData';
+import { useUserProfileActions, useUserProfileInfo } from '../../../store/userData';
 import axios from 'axios';
 
 interface ImageInputProps {
@@ -10,7 +10,8 @@ interface ImageInputProps {
 }
 
 const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
-  const { userProfileInfo, updateUserProfileInfo } = useStore();
+  const userProfileInfo = useUserProfileInfo();
+  const { updateUserProfileInfo } = useUserProfileActions();
   // image prop이 있으면 사용하고, 없으면 noImg를 사용
   const [newImage, setNewImage] = useState(image || noImg);
   console.log(newImage);

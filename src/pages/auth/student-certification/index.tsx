@@ -35,19 +35,19 @@ const StudentCertification = () => {
   const [verificationCode, setVerificationCode] = useState('');
   //유효성 확인 후 버튼 색 변경
   const [buttonColor, setButtonColor] = useState({
-    backgroundColor: 'var(--grey-2)',
+    $backgroundColor: 'var(--grey-2)',
     color: 'var(--grey-5)',
   });
   /*모든 조건 만족하면 버튼 색 변경 */
   useEffect(() => {
     if (verificationCode.length === 6) {
       setButtonColor({
-        backgroundColor: 'var(--green-primary)',
+        $backgroundColor: 'var(--green-primary)',
         color: '#ffffff',
       });
     } else {
       setButtonColor({
-        backgroundColor: 'var(--grey-2)',
+        $backgroundColor: 'var(--grey-2)',
         color: 'var(--grey-5)',
       });
     }
@@ -88,7 +88,7 @@ const StudentCertification = () => {
           width="100%"
           $padding="16px"
           fontSize="18px"
-          $bgcolor={buttonColor.backgroundColor}
+          $bgcolor={buttonColor.$backgroundColor}
           color={buttonColor.color}
         />
       </S.ButtonWrapper>

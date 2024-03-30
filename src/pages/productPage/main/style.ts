@@ -27,3 +27,13 @@ export const Content = styled.div`
     }
   }
 `;
+
+export const Error = styled.div`
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--grey-7);
+`;

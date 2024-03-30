@@ -56,7 +56,7 @@ const Login = () => {
   const [saveIdChecked, setSaveIdChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [buttonColor, setButtonColor] = useState({
-    backgroundColor: 'var(--grey-2)',
+    $backgroundColor: 'var(--grey-2)',
     color: 'var(--grey-5)',
   });
 
@@ -81,12 +81,12 @@ const Login = () => {
   useEffect(() => {
     if (formData.userId && formData.password) {
       setButtonColor({
-        backgroundColor: 'var(--green-primary)',
+        $backgroundColor: 'var(--green-primary)',
         color: '#ffffff',
       });
     } else {
       setButtonColor({
-        backgroundColor: 'var(--grey-2)',
+        $backgroundColor: 'var(--grey-2)',
         color: 'var(--grey-5)',
       });
     }
@@ -134,7 +134,7 @@ const Login = () => {
         width="335px"
         $padding="16px"
         fontSize="18px"
-        $bgcolor={buttonColor.backgroundColor}
+        $bgcolor={buttonColor.$backgroundColor}
         color={buttonColor.color}
         disabled={!formData.userId || !formData.password}
       />
