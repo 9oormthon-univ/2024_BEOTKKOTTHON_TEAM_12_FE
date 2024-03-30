@@ -10,10 +10,10 @@ import AccountInfo from 'pages/myPagePage/account-info';
 import UserProfileEdit from 'pages/myPagePage/user-profile-edit';
 import BlockedUsers from 'pages/myPagePage/blocked-users';
 import ProductDetail from 'pages/productPage/product-detail';
-import ChatHome from 'pages/chat-home';
+import ChattingMain from 'pages/chatttingPage/main';
 import ProductEdit from 'pages/productPage/product-edit';
-import ChatDetail from 'pages/chat-detail';
-import Magazine from 'pages/magazinePage/main';
+import ChatDetail from 'pages/chatttingPage/chat-detail';
+import MagazineMain from 'pages/magazinePage/main';
 import QuizPage from 'pages/magazinePage/quiz/quiz';
 import Login from 'pages/login';
 import Onboarding from 'pages/onboarding';
@@ -65,11 +65,11 @@ const Router = () => {
       <Route path="/mypage/level-info" element={<LevelInfo />} />
 
       {/* 채팅 */}
-      <Route path="/chat-home" element={<ChatHome />} />
+      <Route path="/chat-home" element={<ChattingMain />} />
       <Route path="/chat-detail" element={<ChatDetail />} />
 
       {/* 매거진 */}
-      <Route path="magazine" element={<Magazine />} />
+      <Route path="magazine" element={<MagazineMain />} />
       <Route path="magazine/quiz" element={<QuizPage />} />
 
       {/* 기부 */}

@@ -5,7 +5,7 @@ import quiz from 'assets/magazine/quiz.svg';
 import * as S from './style';
 import { Link } from 'react-router-dom';
 
-const Magazine = () => {
+const MagazineMain = () => {
   return (
     <>
       <S.Content>
@@ -33,4 +33,4 @@ const Magazine = () => {
   );
 };
 
-export default Magazine;
+export default MagazineMain;
