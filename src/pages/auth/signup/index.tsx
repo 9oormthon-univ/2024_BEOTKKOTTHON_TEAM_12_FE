@@ -36,7 +36,7 @@ const SignUp: React.FC = () => {
   const [allAgreed, setAllAgreed] = useState(false);
   //유효성 확인 후 버튼 색 변경
   const [buttonColor, setButtonColor] = useState({
-    backgroundColor: 'var(--grey-2)',
+    $backgroundColor: 'var(--grey-2)',
     color: 'var(--grey-5)',
   });
 
@@ -164,22 +164,22 @@ const SignUp: React.FC = () => {
   useEffect(() => {
     if (formData.userId && validPassword) {
       setButtonColor({
-        backgroundColor: 'var(--green-primary)',
+        $backgroundColor: 'var(--green-primary)',
         color: '#ffffff',
       });
     } else if (emailValid && formData.universityName) {
       setButtonColor({
-        backgroundColor: 'var(--green-primary)',
+        $backgroundColor: 'var(--green-primary)',
         color: '#ffffff',
       });
     } else if (allAgreed) {
       setButtonColor({
-        backgroundColor: 'var(--green-primary)',
+        $backgroundColor: 'var(--green-primary)',
         color: '#ffffff',
       });
     } else {
       setButtonColor({
-        backgroundColor: 'var(--grey-2)',
+        $backgroundColor: 'var(--grey-2)',
         color: 'var(--grey-5)',
       });
     }
@@ -270,7 +270,7 @@ const SignUp: React.FC = () => {
                 width="100%"
                 $padding="16px"
                 fontSize="18px"
-                $bgcolor={buttonColor.backgroundColor}
+                $bgcolor={buttonColor.$backgroundColor}
                 color={buttonColor.color}
               />
             </S.ButtonWrapper>
@@ -328,7 +328,7 @@ const SignUp: React.FC = () => {
                 width="100%"
                 $padding="16px"
                 fontSize="18px"
-                $bgcolor={buttonColor.backgroundColor}
+                $bgcolor={buttonColor.$backgroundColor}
                 color={buttonColor.color}
               />
             </S.ButtonWrapper>
@@ -357,7 +357,7 @@ const SignUp: React.FC = () => {
                 width="100%"
                 $padding="16px"
                 fontSize="18px"
-                $bgcolor={buttonColor.backgroundColor}
+                $bgcolor={buttonColor.$backgroundColor}
                 color={buttonColor.color}
               />
             </S.ButtonWrapper>
@@ -421,7 +421,7 @@ const SignUp: React.FC = () => {
                 width="100%"
                 $padding="16px"
                 fontSize="18px"
-                $bgcolor={buttonColor.backgroundColor}
+                $bgcolor={buttonColor.$backgroundColor}
                 color={buttonColor.color}
               />
             </S.ButtonWrapper>
