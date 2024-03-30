@@ -3,7 +3,7 @@ import * as S from './style';
 import arrow from 'assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { instance } from '../../apis/index';
+import { instance } from '../../../apis/index';
 
 const AccountInfo = () => {
   const [accountInfo, setAccountInfo] = useState({

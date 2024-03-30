@@ -9,7 +9,7 @@ export const ImageWrapper = styled.section`
 
   padding: 0px -33px -20px -33px;
 `;
-const DonationSelect = () => {
+const DonationSelectGroup = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
@@ -33,4 +33,4 @@ const DonationSelect = () => {
   );
 };
 
-export default DonationSelect;
+export default DonationSelectGroup;

@@ -6,7 +6,7 @@ import { instance } from 'apis';
 import { useCharityNumber, useDonationForm } from 'store/donationForm';
 import { useEffect } from 'react';
 
-const DonationFinish = () => {
+const DonationFinishForm = () => {
   const donationForm = useDonationForm();
   const charityNumber = useCharityNumber();
 
@@ -70,4 +70,4 @@ const DonationFinish = () => {
   );
 };
 
-export default DonationFinish;
+export default DonationFinishForm;

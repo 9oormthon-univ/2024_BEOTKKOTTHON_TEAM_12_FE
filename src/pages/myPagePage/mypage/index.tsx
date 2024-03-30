@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import * as S from './style';
 import { UserSection, MenuItem, Nav } from 'components/index';
-import useStore from '../../store/userData';
+import useStore from '../../../store/userData';
 
 const MyPage: React.FC = () => {
   const { initUserProfileInfo } = useStore();

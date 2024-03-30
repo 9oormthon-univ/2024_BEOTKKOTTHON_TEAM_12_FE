@@ -2,8 +2,8 @@ import * as S from './style';
 import arrow from 'assets/icons/arrow.svg';
 import { Header, TextLabel, TextInput, ImageInput, TagInput } from 'components/index';
 import { useNavigate } from 'react-router-dom';
-import useStore, { useUserProfileInfo } from '../../store/userData';
-import { instance } from '../../apis/index';
+import useStore, { useUserProfileInfo } from '../../../store/userData';
+import { instance } from '../../../apis/index';
 import { useEffect, useState } from 'react';
 
 const UserProfileEdit = () => {
@@ -18,7 +18,6 @@ const UserProfileEdit = () => {
   });
 
   const userId = localStorage.getItem('userId');
-
 
   const getData = async () => {
     await instance.get(`/users/profile/${userId}`).then((res) => {

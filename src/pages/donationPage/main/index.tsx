@@ -5,7 +5,7 @@ import homeless from 'assets/donation/homeless.svg';
 import notifications from 'assets/icons/notifications.svg';
 import { useNavigate } from 'react-router';
 
-const Donation = () => {
+const DonationMain = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -42,4 +42,4 @@ const Donation = () => {
   );
 };
 
-export default Donation;
+export default DonationMain;
