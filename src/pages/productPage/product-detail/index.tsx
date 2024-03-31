@@ -14,11 +14,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Seller } from 'types/types';
 import { useEffect, useState } from 'react';
-import { salesData } from 'data/shared';
+import { userId } from 'data/shared';
 import { instance } from 'apis';
 import { useProduct, useProductActions } from 'store/product';
+import { useQuery } from '@tanstack/react-query';
 
-//import { useUserProfileInfo } from 'src/store/userData';
+async function getProductDetailData(id: string | undefined) {
+  try {
+    const response = await instance.get(`/products/${id}`);
+    console.log('데이터 가져오기 성공', response);
+    return response.data.content;
+  } catch (e) {
+    console.log('데이터 가져오기 실패', e);
+  }
+}
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -27,28 +36,18 @@ const ProductDetail = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const product = useProduct();
   const { setProduct, updateOnSale, changeStrToArr } = useProductActions();
-  //const userProfileInfo = useUserProfileInfo();
 
-  const userId = localStorage.getItem('userId');
-
-  const getData = async () => {
-    await instance
-      .get(`/products/${id}`)
-      .then((response) => {
-        console.log('데이터 가져오기 성공', response);
-        setProduct({ ...response.data, product_image_list: response.data.product_image });
-        changeStrToArr(response.data.product_image);
-      })
-      .catch((e) => {
-        console.log('데이터 가져오기 실패', e);
-        setProduct(salesData[0]);
-      });
-  };
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['products', 'product-detail'],
+    queryFn: () => getProductDetailData(id),
+  });
 
   useEffect(() => {
-    // 데이터 저장
-    getData();
-  }, []);
+    if (data) {
+      setProduct(data);
+      changeStrToArr(data.product_image);
+    }
+  }, [data]);
 
   const handleOnSaleClick = async () => {
     if (product?.post_status === 'onSale') {
@@ -135,14 +134,13 @@ const ProductDetail = () => {
       </Header>
       {product && (
         <>
-          {openKebab && product.seller?.id.toString() !== userId && (
+          {openKebab && product.seller?.id !== userId && (
             <BoxKebabList>
               <p>차단하기</p>
               <p className="red">신고하기</p>
             </BoxKebabList>
           )}
-          {openKebab && product.seller?.id.toString() === userId && (
-            // {openKebab && product.seller?.nick_name === userProfileInfo.nick_name && (
+          {openKebab && product.seller?.id === userId && (
             <BoxKebabList>
               <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
               {product.post_status === 'onSale' ? (

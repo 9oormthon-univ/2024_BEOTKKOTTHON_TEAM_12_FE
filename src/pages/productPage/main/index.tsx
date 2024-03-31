@@ -16,7 +16,6 @@ import { useEffect } from 'react';
 import { useSearchActions } from 'store/search';
 import { instance } from 'apis';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
-import { productList } from 'data/shared';
 import { useQuery } from '@tanstack/react-query';
 
 async function getProductListData(category: string, onSale: string | null) {
