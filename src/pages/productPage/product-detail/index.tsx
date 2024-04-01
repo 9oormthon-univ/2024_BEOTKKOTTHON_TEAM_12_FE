@@ -84,7 +84,7 @@ const ProductDetail = () => {
   const product = useProduct();
   const { setProduct, updateOnSale, changeStrToArr } = useProductActions();
 
-  const { data, error, isLoading } = useQuery({
+  const productDetailQuery = useQuery({
     queryKey: ['products', 'product-detail'],
     queryFn: () => getProductDetailData(id),
   });
@@ -102,11 +102,11 @@ const ProductDetail = () => {
   });
 
   useEffect(() => {
-    if (data) {
-      setProduct(data);
-      changeStrToArr(data.product_image);
+    if (productDetailQuery.data) {
+      setProduct(productDetailQuery.data);
+      changeStrToArr(productDetailQuery.data.product_image);
     }
-  }, [data]);
+  }, [productDetailQuery.data]);
 
   const handleOnSaleClick = async () => {
     onSaleMutation.mutate();
@@ -118,7 +118,6 @@ const ProductDetail = () => {
     navigate('/product');
   };
 
-  /**게시글 삭제 api 호출 */
   const handleDeleteProduct = async () => {
     deleteMutation.mutate();
     navigate('/product');
