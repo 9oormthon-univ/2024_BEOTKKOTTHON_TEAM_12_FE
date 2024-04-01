@@ -12,12 +12,12 @@ import * as S from './style';
 import kebab from 'assets/icons/kebab.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Seller } from 'types/types';
+import { Product, Seller } from 'types/types';
 import { useEffect, useState } from 'react';
 import { userId } from 'data/shared';
 import { instance } from 'apis';
 import { useProduct, useProductActions } from 'store/product';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 async function getProductDetailData(id: string | undefined) {
   try {
@@ -26,6 +26,53 @@ async function getProductDetailData(id: string | undefined) {
     return response.data.content;
   } catch (e) {
     console.log('데이터 가져오기 실패', e);
+  }
+}
+
+async function putOnSaleData(id: string, status: string) {
+  const isOnSale = status === 'onSale';
+  try {
+    const response = await instance.put(`/products/soldOut/${userId}`, {
+      id: id,
+      product_stauts: isOnSale ? 'soldOut' : 'onSale',
+    });
+    if (isOnSale) {
+      console.log('판매 완료 변경 성공', response);
+      alert('판매 완료로 변경하였습니다.');
+    } else {
+      console.log('판매 중으로 변경 성공', response);
+      alert('판매 중으로 변경하였습니다.');
+    }
+  } catch (error) {
+    if (isOnSale) {
+      console.log('판매 완료 변경 실패', error);
+    } else {
+      console.log('판매 중으로 변경 실패', error);
+    }
+  }
+}
+
+async function putHideData(id: string) {
+  try {
+    const response = await instance.put(`/products/private/${userId}/${id}`, {
+      is_private: true,
+    });
+    console.log('글 숨기기 성공', response);
+    alert('게시물을 정상적으로 숨겼습니다.');
+  } catch (error) {
+    console.log('글 숨기기 실패', error);
+    alert('게시물을 숨기지 못했습니다.');
+  }
+}
+
+async function deleteData(id: string) {
+  try {
+    const response = await instance.delete(`/products/delete/${userId}/${id}`);
+    console.log('글 삭제 성공', response);
+    alert('게시물을 삭제했습니다.');
+  } catch (error) {
+    console.log('글 숨기기 실패', error);
+    alert('게시물을 삭제하지 못했습니다.');
   }
 }
 
@@ -42,6 +89,18 @@ const ProductDetail = () => {
     queryFn: () => getProductDetailData(id),
   });
 
+  const onSaleMutation = useMutation({
+    mutationFn: () => putOnSaleData(id as string, (product as Product).post_status),
+  });
+
+  const hideMutation = useMutation({
+    mutationFn: () => putHideData(id as string),
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: () => deleteData(id as string),
+  });
+
   useEffect(() => {
     if (data) {
       setProduct(data);
@@ -50,61 +109,18 @@ const ProductDetail = () => {
   }, [data]);
 
   const handleOnSaleClick = async () => {
-    if (product?.post_status === 'onSale') {
-      await instance
-        .put(`/products/soldOut/${userId}`, {
-          id: id,
-          product_stauts: 'soldOut',
-        })
-        .then((response) => {
-          console.log('판매 완료 변경 성공', response);
-          alert('판매 완료로 변경하였습니다.');
-          updateOnSale('soldOut');
-          console.log(product);
-        })
-        .catch((e) => {
-          console.log('판매 완료 변경 실패', e);
-        });
-    } else {
-      await instance
-        .put(`/products/soldOut/${id}`, { id: id, product_stauts: 'onSale' })
-        .then((response) => {
-          console.log('판매 중으로 변경 성공', response);
-          updateOnSale('onSale');
-        })
-        .catch((e) => {
-          console.log('판매 중으로 변경 실패', e);
-        });
-    }
+    onSaleMutation.mutate();
+    updateOnSale(product?.post_status === 'onSale' ? 'soldOut' : 'onSale');
   };
 
   const handleHideClick = async () => {
-    await instance
-      .put(`/products/private/${userId}/${id}`, {
-        is_private: true,
-      })
-      .then((response) => {
-        console.log('글 숨기기 성공', response);
-        alert('글 숨기기에 성공했습니다.');
-        navigate('/product');
-      })
-      .catch((e) => {
-        console.log('글 숨기기 실패', e);
-        alert('글 숨기기에 실패했습니다. 다시 시도해주세요.');
-      });
+    hideMutation.mutate();
+    navigate('/product');
   };
 
   /**게시글 삭제 api 호출 */
   const handleDeleteProduct = async () => {
-    await instance
-      .delete(`/products/delete/${userId}/${product?.id}`)
-      .then((response) => {
-        console.log('글 삭제 성공', response);
-        navigate('/product');
-      })
-      .catch((e) => {
-        console.log('글 삭제 실패', e);
-      });
+    deleteMutation.mutate();
     navigate('/product');
   };
 
