@@ -4,11 +4,21 @@ import share from 'assets/icons/share.svg';
 import main from 'assets/magazine/quiz_page.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { quizData } from 'data/shared';
+import { quizData, userId } from 'data/shared';
 import { instance } from 'apis';
+import { useMutation } from '@tanstack/react-query';
 
 let totalPoints = 0;
-const userId = 1;
+
+const postQuizData = async (totalPoints: number) => {
+  try {
+    const response = await instance.post(`magazine/${userId}?score=${totalPoints}`);
+    console.log('퀴즈 점수 등록 성공', response);
+    return response.data;
+  } catch (error) {
+    console.log('퀴즈 점수 등록 실패', error);
+  }
+};
 
 const QuizPage = () => {
   const navigate = useNavigate();
@@ -16,6 +26,10 @@ const QuizPage = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [markAnswer, setMarkAnswer] = useState<boolean>(false);
+
+  const { data, status, mutate } = useMutation({
+    mutationFn: postQuizData,
+  });
 
   useEffect(() => {
     setIsDisabled(submitAnswer.some((item) => item === 0));
@@ -31,17 +45,8 @@ const QuizPage = () => {
         totalPoints += 1;
       }
     }
-
     // 총합 totalpoint를 서버에 전송
-    await instance
-      .post(`magazine/${userId}?score=${totalPoints}`)
-      .then((response) => {
-        console.log('퀴즈 점수 등록 성공', response);
-      })
-      .catch((e) => {
-        console.log('퀴즈 점수 등록 실패', e);
-      });
-
+    mutate(totalPoints);
     setOpenModal(true);
   };
 
