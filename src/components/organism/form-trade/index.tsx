@@ -9,22 +9,21 @@ import {
 import * as S from './style';
 import { placeList, priceList } from 'data/shared';
 import Button from 'components/atom/button-trade';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
-import { useFormData, useFormDataActions, useShowImages } from 'store/formData';
-import { TradeFormData } from 'types/types';
+import { useFormDataActions, useShowImages } from 'store/formData';
+import { Product, TradeFormData } from 'types/types';
 
 interface FormTradeProps {
   handleSubmitAction: (sendData: TradeFormData) => void;
+  btnText: string;
+  formData: Product;
 }
 
-const FormTrade = ({ handleSubmitAction }: FormTradeProps) => {
+const FormTrade = ({ handleSubmitAction, btnText, formData }: FormTradeProps) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const formData = useFormData();
   const showImages = useShowImages();
   const { setFormData, resetFormData } = useFormDataActions();
-  const isEdit = location.pathname.includes('edit');
 
   const disabled = !(
     formData.product_name &&
@@ -120,15 +119,9 @@ const FormTrade = ({ handleSubmitAction }: FormTradeProps) => {
         <ListTradeForm list={placeList} type={'place'} />
       </FormGroup>
 
-      {isEdit ? (
-        <Button color={disabled ? '' : 'primary'} disabled={disabled}>
-          수정 완료
-        </Button>
-      ) : (
-        <Button color={disabled ? '' : 'primary'} disabled={disabled}>
-          등록하기
-        </Button>
-      )}
+      <Button color={disabled ? '' : 'primary'} disabled={disabled}>
+        {btnText}
+      </Button>
     </form>
   );
 };

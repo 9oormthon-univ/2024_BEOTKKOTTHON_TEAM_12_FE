@@ -23,7 +23,7 @@ async function getProductDetailData(id: string | undefined) {
   try {
     const response = await instance.get(`/products/${id}`);
     console.log('데이터 가져오기 성공', response);
-    return response.data.content;
+    return response.data;
   } catch (e) {
     console.log('데이터 가져오기 실패', e);
   }

@@ -6,6 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
 import { TradeFormData } from 'types/types';
+import { useFormData } from 'store/formData';
 
 const postNewProductData = async (sendData: TradeFormData) => {
   try {
@@ -21,8 +22,9 @@ const postNewProductData = async (sendData: TradeFormData) => {
 
 const ProductNew = () => {
   const navigate = useNavigate();
+  const formData = useFormData();
   const productDetailMutation = useMutation({
-    mutationFn: postNewProductData,
+    mutationFn: (sendData: TradeFormData) => postNewProductData(sendData),
   });
 
   return (
@@ -33,7 +35,11 @@ const ProductNew = () => {
       </Header>
 
       <S.Content>
-        <FormTrade handleSubmitAction={productDetailMutation.mutate} />
+        <FormTrade
+          formData={formData}
+          handleSubmitAction={productDetailMutation.mutate}
+          btnText={'등록하기'}
+        />
       </S.Content>
     </>
   );
