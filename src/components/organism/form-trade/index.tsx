@@ -12,17 +12,19 @@ import Button from 'components/atom/button-trade';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
 import { useFormData, useFormDataActions, useShowImages } from 'store/formData';
-import { instance } from 'apis';
+import { TradeFormData } from 'types/types';
 
-const FormTrade = () => {
+interface FormTradeProps {
+  handleSubmitAction: (sendData: TradeFormData) => void;
+}
+
+const FormTrade = ({ handleSubmitAction }: FormTradeProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const formData = useFormData();
   const showImages = useShowImages();
   const { setFormData, resetFormData } = useFormDataActions();
-
   const isEdit = location.pathname.includes('edit');
-  const userId = 1;
 
   const disabled = !(
     formData.product_name &&
@@ -33,21 +35,10 @@ const FormTrade = () => {
     formData.place
   );
 
-  // useEffect(() => {
-  //   resetFormData();
-
-  //   if (isEdit) {
-
-  //     // edit 페이지
-  //     // 서버에서 데이터 받아와서 receivedData에 저장
-  //     receiveData(salesData[Number(id) - 1]);
-  //   }
-  // }, []);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const sendData = {
+    handleSubmitAction({
       product_image: formData.product_image,
       product_name: formData.product_name,
       category_name: formData.category,
@@ -55,17 +46,10 @@ const FormTrade = () => {
       product_content: formData.product_content,
       price: formData.price,
       place: formData.place,
-    };
+    });
 
-    await instance
-      .post(`/products/new/${userId}`, sendData)
-      .then((res) => {
-        console.log('폼 전송 성공', res);
-      })
-      .catch((e) => console.log('폼 전송 실패', e))
-      .finally(() => console.log({ ...sendData }));
+    navigate(-1);
     resetFormData();
-    navigate('/product');
   };
 
   return (
