@@ -29,9 +29,13 @@ const ProductDetail = () => {
     }
   }, [productDetailQuery.data]);
 
+  if (!product) {
+    // 404 페이지로 대체 가능
+    return <div>상품이 존재하지 않습니다.</div>;
+  }
+
   return (
     <>
-      {' '}
       <Header>
         <ButtonBack className="left" $marginLeft="10px" />
         <img
@@ -41,32 +45,30 @@ const ProductDetail = () => {
           onClick={() => setOpenKebab(!openKebab)}
         />
       </Header>
-      {product && (
-        <>
-          <KebabProductDetail openKebab={openKebab} product={product} id={id as string} />
 
-          <S.Content>
-            <section className="profile">
-              <BoxProductProfile user={product.seller as Seller} />
-            </section>
+      <KebabProductDetail openKebab={openKebab} product={product} id={id as string} />
 
-            <S.SectionScroll>
-              <section className="product-image">
-                <Carousel $dot="13px" $width="100%" $height="314px">
-                  {product.product_image.map((url, i) => (
-                    <img src={url} alt={`img-${i}`} key={i} />
-                  ))}
-                </Carousel>
-              </section>
+      <S.Content>
+        <section className="profile">
+          <BoxProductProfile user={product.seller as Seller} />
+        </section>
 
-              <section className="description">
-                <DescriptionProduct product={product} />
-              </section>
-            </S.SectionScroll>
-          </S.Content>
-          <FooterProductDetail product={product} />
-        </>
-      )}{' '}
+        <S.SectionScroll>
+          <section className="product-image">
+            <Carousel $dot="13px" $width="100%" $height="314px">
+              {product.product_image.map((url, i) => (
+                <img src={url} alt={`img-${i}`} key={i} />
+              ))}
+            </Carousel>
+          </section>
+
+          <section className="description">
+            <DescriptionProduct product={product} />
+          </section>
+        </S.SectionScroll>
+      </S.Content>
+
+      <FooterProductDetail product={product} />
     </>
   );
 };
