@@ -95,3 +95,15 @@ export interface TradeFormData {
   price: number;
   place: string;
 }
+
+// 기부 폼 전송
+export interface DonationFormData {
+  user_name: string;
+  address: string;
+  phone: string;
+  email: string;
+  donation_item: string;
+  clothes_count: number;
+  fashion_count: number;
+  box_count: number;
+}

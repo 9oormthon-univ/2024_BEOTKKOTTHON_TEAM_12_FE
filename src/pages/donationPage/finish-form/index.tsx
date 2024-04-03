@@ -5,12 +5,22 @@ import logo from 'assets/logo/donation-logo.svg';
 import { instance } from 'apis';
 import { useCharityNumber, useDonationForm } from 'store/donationForm';
 import { useEffect } from 'react';
+import { userId } from 'data/shared';
+import { useMutation } from '@tanstack/react-query';
+import { DonationFormData } from 'types/types';
 
 const DonationFinishForm = () => {
   const donationForm = useDonationForm();
   const charityNumber = useCharityNumber();
 
-  const userId = localStorage.getItem('userId');
+  const donationFormMutation = useMutation({
+    mutationFn: (sendData: DonationFormData) =>
+      instance.post(`/donations/${userId}?charity=${charityNumber}`, {
+        sendData,
+      }),
+    onSuccess: (res) => console.log('기부 데이터 저장 성공', res.data),
+    onError: (error) => console.error('기부 데이터 저장 실패', error),
+  });
 
   const sendData = {
     user_name: donationForm.name,
@@ -23,20 +33,8 @@ const DonationFinishForm = () => {
     box_count: donationForm.box_num,
   };
 
-  const postDonationData = async () => {
-    try {
-      const response = await instance.post(`/donations/${userId}?charity=${charityNumber}`, {
-        sendData,
-      });
-      // resetFormData();
-      console.log(response.data);
-    } catch (error) {
-      console.error('기부 데이터 저장 실패', error);
-    }
-  };
-
   useEffect(() => {
-    postDonationData();
+    donationFormMutation.mutate(sendData);
   }, []);
 
   return (

@@ -52,30 +52,6 @@ async function putOnSaleData(id: string, status: string) {
   }
 }
 
-async function putHideData(id: string) {
-  try {
-    const response = await instance.put(`/products/private/${userId}/${id}`, {
-      is_private: true,
-    });
-    console.log('글 숨기기 성공', response);
-    alert('게시물을 정상적으로 숨겼습니다.');
-  } catch (error) {
-    console.log('글 숨기기 실패', error);
-    alert('게시물을 숨기지 못했습니다.');
-  }
-}
-
-async function deleteData(id: string) {
-  try {
-    const response = await instance.delete(`/products/delete/${userId}/${id}`);
-    console.log('글 삭제 성공', response);
-    alert('게시물을 삭제했습니다.');
-  } catch (error) {
-    console.log('글 숨기기 실패', error);
-    alert('게시물을 삭제하지 못했습니다.');
-  }
-}
-
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -95,13 +71,32 @@ const ProductDetail = () => {
   });
 
   const hideMutation = useMutation({
-    mutationFn: () => putHideData(id as string),
-    onSuccess: () => navigate('/product'),
+    mutationFn: () =>
+      instance.put(`/products/private/${userId}/${id}`, {
+        is_private: true,
+      }),
+    onSuccess: (res) => {
+      console.log('글 숨기기 성공', res);
+      alert('게시물을 정상적으로 숨겼습니다.');
+      navigate('/product');
+    },
+    onError: (error) => {
+      console.log('글 숨기기 실패', error);
+      alert('게시물을 숨기지 못했습니다.');
+    },
   });
 
   const deleteMutation = useMutation({
-    mutationFn: () => deleteData(id as string),
-    onSuccess: () => navigate('/product'),
+    mutationFn: () => instance.delete(`/products/delete/${userId}/${id}`),
+    onSuccess: (res) => {
+      console.log('글 삭제 성공', res);
+      alert('게시물을 삭제했습니다.');
+      navigate('/product');
+    },
+    onError: (error) => {
+      console.log('글 숨기기 실패', error);
+      alert('게시물을 삭제하지 못했습니다.');
+    },
   });
 
   useEffect(() => {

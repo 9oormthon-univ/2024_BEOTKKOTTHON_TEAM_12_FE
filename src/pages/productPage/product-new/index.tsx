@@ -8,18 +8,15 @@ import { userId } from 'data/shared';
 import { TradeFormData } from 'types/types';
 import { useFormData } from 'store/formData';
 
-const postNewProductData = async (sendData: TradeFormData) => {
-  const response = await instance.post(`/products/new/${userId}`, sendData);
-  console.log('상품 등록에 성공했습니다.', response);
-  alert('상품 등록에 성공했습니다.');
-  return response.data;
-};
-
 const ProductNew = () => {
   const navigate = useNavigate();
   const formData = useFormData();
   const productDetailMutation = useMutation({
-    mutationFn: (sendData: TradeFormData) => postNewProductData(sendData),
+    mutationFn: (sendData: TradeFormData) => instance.post(`/products/new/${userId}`, sendData),
+    onSuccess: (res) => {
+      console.log('상품 등록에 성공했습니다.', res);
+      alert('상품 등록에 성공했습니다.');
+    },
     onError: (error) => {
       console.log('상품 등록에 실패했습니다.', error);
       alert('상품 등록에 실패했습니다.');

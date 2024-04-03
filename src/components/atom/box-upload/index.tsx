@@ -4,23 +4,21 @@ import { useFormDataActions, useShowImages } from 'store/formData';
 import { instance } from 'apis';
 import { useMutation } from '@tanstack/react-query';
 
-const postImgData = async (sendImgData: FormData) => {
-  const response = await instance.post('http://43.201.189.171:8080/api/upload', sendImgData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
-  console.log('상품 이미지 업로드 성공', response);
-  return response.data;
-};
-
 const BoxUpload = () => {
   const showImages = useShowImages();
   const { setFormData, setShowImages } = useFormDataActions();
 
   const ImgUploadMutation = useMutation({
-    mutationFn: (sendData: FormData) => postImgData(sendData),
-    onSuccess: (data) => setFormData('product_image', data),
+    mutationFn: (sendData: FormData) =>
+      instance.post('http://43.201.189.171:8080/api/upload', sendData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
+    onSuccess: (res) => {
+      console.log('상품 이미지 업로드 성공', res.data);
+      setFormData('product_image', res.data);
+    },
     onError: (error) => console.log('상품 이미지 업로드 실패', error),
   });
 

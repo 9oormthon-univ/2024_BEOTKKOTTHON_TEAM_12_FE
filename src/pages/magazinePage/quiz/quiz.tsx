@@ -10,12 +10,6 @@ import { useMutation } from '@tanstack/react-query';
 
 let totalPoints = 0;
 
-const postQuizData = async (totalPoints: number) => {
-  const response = await instance.post(`magazine/${userId}?score=${totalPoints}`);
-  console.log('퀴즈 점수 등록 성공', response);
-  return response.data;
-};
-
 const QuizPage = () => {
   const navigate = useNavigate();
   const [submitAnswer, setSubmitAnswer] = useState<number[]>([0, 0]);
@@ -24,7 +18,8 @@ const QuizPage = () => {
   const [markAnswer, setMarkAnswer] = useState<boolean>(false);
 
   const quizMutation = useMutation({
-    mutationFn: postQuizData,
+    mutationFn: (totalPoints: number) => instance.post(`magazine/${userId}?score=${totalPoints}`),
+    onSuccess: (res) => console.log('퀴즈 점수 등록 성공', res.data),
     onError: (error) => console.log('퀴즈 점수 등록 실패', error),
   });
 
