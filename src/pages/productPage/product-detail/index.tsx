@@ -91,14 +91,17 @@ const ProductDetail = () => {
 
   const onSaleMutation = useMutation({
     mutationFn: () => putOnSaleData(id as string, (product as Product).post_status),
+    onSuccess: () => updateOnSale(product?.post_status === 'onSale' ? 'soldOut' : 'onSale'),
   });
 
   const hideMutation = useMutation({
     mutationFn: () => putHideData(id as string),
+    onSuccess: () => navigate('/product'),
   });
 
   const deleteMutation = useMutation({
     mutationFn: () => deleteData(id as string),
+    onSuccess: () => navigate('/product'),
   });
 
   useEffect(() => {
@@ -110,17 +113,14 @@ const ProductDetail = () => {
 
   const handleOnSaleClick = async () => {
     onSaleMutation.mutate();
-    updateOnSale(product?.post_status === 'onSale' ? 'soldOut' : 'onSale');
   };
 
   const handleHideClick = async () => {
     hideMutation.mutate();
-    navigate('/product');
   };
 
   const handleDeleteProduct = async () => {
     deleteMutation.mutate();
-    navigate('/product');
   };
 
   return (
