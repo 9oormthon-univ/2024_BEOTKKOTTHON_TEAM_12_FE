@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom';
 import { Seller } from 'types/types';
 import { useEffect, useState } from 'react';
 import { useProduct, useProductActions } from 'store/product';
-import { useProductDetailQuery } from 'hooks/useProductDetailQuery';
+import { useProductDetailQuery } from 'hooks/queries/product-detail/useProductDetailQuery';
 
 const ProductDetail = () => {
   const { id } = useParams();
