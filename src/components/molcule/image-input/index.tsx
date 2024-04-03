@@ -2,9 +2,7 @@ import { Button, TextLabel } from 'components/index';
 import * as S from './style';
 import React, { useRef, ChangeEvent, useState } from 'react';
 import noImg from 'assets/images/profile-no-image.png';
-import axios from 'axios';
-import { instance } from 'apis';
-import { useMutation } from '@tanstack/react-query';
+import { useImgUploadMutation } from 'hooks/queries/image-upload/useImgUploadMutaion';
 
 interface ImageInputProps {
   image: string;
@@ -13,25 +11,12 @@ interface ImageInputProps {
 const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
   const [img, setImg] = useState(image || noImg);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const ImgUploadMutation = useMutation({
-    mutationFn: (sendData: FormData) =>
-      instance.post('http://43.201.189.171:8080/api/upload', sendData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }),
-    onSuccess: (res) => {
-      console.log('상품 이미지 업로드 성공', res.data);
-      setImg(res.data);
-    },
-    onError: (error) => console.log('상품 이미지 업로드 실패', error),
-  });
+  const { mutate: ImgUploadMutation } = useImgUploadMutation(setImg);
 
   const getImgUrl = async (file: File) => {
     const sendImgData = new FormData();
     sendImgData.append('files', file);
-    ImgUploadMutation.mutate(sendImgData);
+    ImgUploadMutation(sendImgData);
   };
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {

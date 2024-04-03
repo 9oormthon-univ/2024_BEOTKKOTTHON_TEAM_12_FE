@@ -1,26 +1,12 @@
 import * as S from './style';
 import image from 'assets/icons/image.svg';
 import { useFormDataActions, useShowImages } from 'store/formData';
-import { instance } from 'apis';
-import { useMutation } from '@tanstack/react-query';
+import { useImgUploadMutation } from 'hooks/queries/image-upload/useImgUploadMutaion';
 
 const BoxUpload = () => {
   const showImages = useShowImages();
-  const { setFormData, setShowImages } = useFormDataActions();
-
-  const ImgUploadMutation = useMutation({
-    mutationFn: (sendData: FormData) =>
-      instance.post('http://43.201.189.171:8080/api/upload', sendData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }),
-    onSuccess: (res) => {
-      console.log('상품 이미지 업로드 성공', res.data);
-      setFormData('product_image', res.data);
-    },
-    onError: (error) => console.log('상품 이미지 업로드 실패', error),
-  });
+  const { setShowImages } = useFormDataActions();
+  const { mutate: ImgUploadMutation } = useImgUploadMutation();
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files as FileList;
@@ -31,7 +17,7 @@ const BoxUpload = () => {
         sendImgData.append('files', files[i]);
       }
 
-      ImgUploadMutation.mutate(sendImgData);
+      ImgUploadMutation(sendImgData);
 
       const imageLists = files;
       let imageUrlLists = [...showImages];
@@ -43,7 +29,6 @@ const BoxUpload = () => {
       if (imageUrlLists.length > 5) {
         imageUrlLists = imageUrlLists.slice(0, 5);
       }
-      setShowImages(imageUrlLists);
       setShowImages(imageUrlLists);
     }
   };

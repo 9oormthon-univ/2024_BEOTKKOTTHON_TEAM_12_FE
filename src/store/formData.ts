@@ -2,7 +2,7 @@ import { Product } from 'types/types';
 import { create } from 'zustand';
 
 interface Actions {
-  setFormData: (name: string, value: string | number | FileList) => void;
+  setFormData: (name: string, value: string | number) => void;
   setShowImages: (urls: string[]) => void;
   changeImgFileToString: (strArr: string[]) => void;
   receiveData: (data: Product) => void;
