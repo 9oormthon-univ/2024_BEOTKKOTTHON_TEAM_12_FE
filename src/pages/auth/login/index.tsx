@@ -99,14 +99,14 @@ const Login = () => {
         <S.LoginInput
           type="text"
           placeholder="아이디"
-          value={'test123'}
+          value={formData.userId}
           onChange={handleIdChange}
         />
         <S.PasswordInputWrapper>
           <S.LoginInput
             type={showPassword ? 'text' : 'password'}
             placeholder="비밀번호"
-            value={'testtest123'}
+            value={formData.password}
             onChange={handlePasswordChange}
           />
           <S.EyeIcon src={eyeOff} alt="eye" onClick={togglePasswordVisibility} />

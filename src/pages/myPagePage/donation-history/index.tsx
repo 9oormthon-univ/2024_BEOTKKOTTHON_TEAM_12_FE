@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import arrow from 'assets/icons/arrow.svg';
-import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import { ButtonBack, Checkbox, Header, TextLabel } from 'components/index';
 import { instance } from 'apis';
@@ -14,7 +12,6 @@ type donationDataType = {
 };
 
 const DonationHistory = () => {
-  const navigate = useNavigate();
   const [donationData, setDonationData] = useState<donationDataType[]>([]);
 
   const userId = localStorage.getItem('userId');
@@ -38,7 +35,7 @@ const DonationHistory = () => {
   return (
     <S.Container>
       <Header>
-        <ButtonBack className="left" $marginLeft="10px" onClick={() => navigate(-1)} />
+        <ButtonBack className="left" $marginLeft="10px" />
         <TextLabel text={'기부 내역'} size={18} $weight={500} />
       </Header>
       <S.TableHeader>

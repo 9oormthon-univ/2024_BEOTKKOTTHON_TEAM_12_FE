@@ -1,4 +1,5 @@
 import back from 'assets/icons/arrow.svg';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface ButtonBackProps {
@@ -15,6 +16,7 @@ const BackImg = styled.img<{ $marginLeft: string; $width: string }>`
 `;
 
 const ButtonBack = ({ className, onClick, $marginLeft, $width }: ButtonBackProps) => {
+  const navigate = useNavigate();
   return (
     <BackImg
       className={className}
@@ -22,7 +24,7 @@ const ButtonBack = ({ className, onClick, $marginLeft, $width }: ButtonBackProps
       $width={$width || ''}
       src={back}
       alt="back"
-      onClick={onClick}
+      onClick={onClick ? onClick : () => navigate(-1)}
     />
   );
 };

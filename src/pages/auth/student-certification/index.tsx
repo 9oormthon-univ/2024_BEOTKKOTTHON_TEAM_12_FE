@@ -55,7 +55,7 @@ const StudentCertification = () => {
   return (
     <>
       <Header>
-        <ButtonBack className="left" onClick={() => navigate(-1)} />
+        <ButtonBack className="left" />
       </Header>
       <S.Container>
         <S.Logo src={logo} alt="logo"></S.Logo>

@@ -1,33 +1,28 @@
-import { Product } from 'types/types';
+import { TradeFormData } from 'types/types';
 import { create } from 'zustand';
 
 interface Actions {
-  setFormData: (name: string, value: string | number | FileList) => void;
+  setFormData: (name: string, value: string | number) => void;
   setShowImages: (urls: string[]) => void;
   changeImgFileToString: (strArr: string[]) => void;
-  receiveData: (data: Product) => void;
+  receiveData: (data: TradeFormData) => void;
   resetFormData: () => void;
 }
 
 interface FormDataStore {
-  formData: Product;
+  formData: TradeFormData;
   showImages: string[];
   actions: Actions;
 }
 
 const initialFormData = {
-  id: 0,
   product_name: '',
   price: 0,
   product_image: [],
   product_content: '',
   product_status: '',
-  post_status: '판매중',
   place: '',
-  is_private: false,
-  category: '',
-  wish: '',
-  count: '',
+  category_name: '',
 };
 
 export const useFormDataStore = create<FormDataStore>((set) => ({
