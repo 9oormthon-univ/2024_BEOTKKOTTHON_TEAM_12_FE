@@ -10,15 +10,10 @@ import { useFormData, useFormDataActions } from 'store/formData';
 import { useEffect } from 'react';
 
 const putProductEditData = async (id: string, sendData: TradeFormData) => {
-  try {
-    const response = await instance.put(`/products/edit/${userId}/${id}`, sendData);
-    console.log('상품 수정에 성공했습니다.', response);
-    alert('상품 수정에 성공했습니다.');
-    return response.data;
-  } catch (error) {
-    console.log('상품 수정에 실패했습니다.', error);
-    alert('상품 수정에 실패했습니다.');
-  }
+  const response = await instance.put(`/products/edit/${userId}/${id}`, sendData);
+  console.log('상품 수정에 성공했습니다.', response);
+  alert('상품 수정에 성공했습니다.');
+  return response.data;
 };
 
 const getProductDetailData = async (id: string | undefined) => {
@@ -43,6 +38,10 @@ const ProductEdit = () => {
 
   const productEditMutation = useMutation({
     mutationFn: (sendData: TradeFormData) => putProductEditData(id as string, sendData),
+    onError: (error) => {
+      console.log('상품 수정에 실패했습니다.', error);
+      alert('상품 수정에 실패했습니다.');
+    },
   });
 
   useEffect(() => {
