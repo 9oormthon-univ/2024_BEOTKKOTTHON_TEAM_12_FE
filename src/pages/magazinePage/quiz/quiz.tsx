@@ -11,13 +11,9 @@ import { useMutation } from '@tanstack/react-query';
 let totalPoints = 0;
 
 const postQuizData = async (totalPoints: number) => {
-  try {
-    const response = await instance.post(`magazine/${userId}?score=${totalPoints}`);
-    console.log('퀴즈 점수 등록 성공', response);
-    return response.data;
-  } catch (error) {
-    console.log('퀴즈 점수 등록 실패', error);
-  }
+  const response = await instance.post(`magazine/${userId}?score=${totalPoints}`);
+  console.log('퀴즈 점수 등록 성공', response);
+  return response.data;
 };
 
 const QuizPage = () => {
@@ -27,8 +23,9 @@ const QuizPage = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [markAnswer, setMarkAnswer] = useState<boolean>(false);
 
-  const { data, status, mutate } = useMutation({
+  const quizMutation = useMutation({
     mutationFn: postQuizData,
+    onError: (error) => console.log('퀴즈 점수 등록 실패', error),
   });
 
   useEffect(() => {
@@ -46,7 +43,7 @@ const QuizPage = () => {
       }
     }
     // 총합 totalpoint를 서버에 전송
-    mutate(totalPoints);
+    quizMutation.mutate(totalPoints);
     setOpenModal(true);
   };
 
