@@ -50,7 +50,7 @@ const QuizPage = () => {
   return (
     <>
       <Header>
-        <ButtonBack className="left" onClick={() => navigate('/magazine')} />
+        <ButtonBack className="left" />
         <img className="right" src={share} alt="share" />
       </Header>
 

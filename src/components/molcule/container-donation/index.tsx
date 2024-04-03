@@ -28,9 +28,7 @@ const ContainerDonation = ({
   return (
     <>
       <Header>
-        {page !== 0 && (
-          <ButtonBack className="left" $marginLeft="10px" onClick={() => navigate(-1)} />
-        )}
+        {page !== 0 && <ButtonBack className="left" $marginLeft="10px" />}
         <img src={close} className="right" alt="close" onClick={() => navigate('/donation')} />
       </Header>
 

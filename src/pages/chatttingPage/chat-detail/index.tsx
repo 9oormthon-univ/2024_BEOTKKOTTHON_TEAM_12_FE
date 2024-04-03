@@ -179,7 +179,7 @@ const ChatDetail = () => {
           <S.Container>
             <S.ChatFixedHeader>
               <Header>
-                <ButtonBack className="left" $marginLeft="10px" onClick={() => navigate(-1)} />
+                <ButtonBack className="left" $marginLeft="10px" />
                 <S.NickNameContainer>
                   <TextLabel text={'팀 WEAR'} size={18} $weight={700} />
                 </S.NickNameContainer>
@@ -205,7 +205,7 @@ const ChatDetail = () => {
         <S.Container>
           <S.ChatFixedHeader>
             <Header>
-              <ButtonBack className="left" $marginLeft="10px" onClick={() => navigate(-1)} />
+              <ButtonBack className="left" $marginLeft="10px" />
               <S.NickNameContainer>
                 <TextLabel text={otherUser.nickname} size={18} $weight={700} />
                 <img src={levelUrlArr(otherUser.level)} alt="level" />
