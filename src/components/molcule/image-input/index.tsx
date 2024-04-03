@@ -13,16 +13,12 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { mutate: ImgUploadMutation } = useImgUploadMutation(setImg);
 
-  const getImgUrl = async (file: File) => {
-    const sendImgData = new FormData();
-    sendImgData.append('files', file);
-    ImgUploadMutation(sendImgData);
-  };
-
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      getImgUrl(file);
+      const sendImgData = new FormData();
+      sendImgData.append('files', file);
+      ImgUploadMutation(sendImgData);
     }
   };
 

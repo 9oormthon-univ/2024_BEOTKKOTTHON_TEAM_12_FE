@@ -2,39 +2,14 @@ import { Link } from 'react-router-dom';
 import * as S from './style';
 import { Button } from 'components/index';
 import logo from 'assets/logo/donation-logo.svg';
-import { instance } from 'apis';
-import { useCharityNumber, useDonationForm } from 'store/donationForm';
 import { useEffect } from 'react';
-import { userId } from 'data/shared';
-import { useMutation } from '@tanstack/react-query';
-import { DonationFormData } from 'types/types';
+import { useDonationMutation } from 'hooks/queries/donation/useDonationMutation';
 
 const DonationFinishForm = () => {
-  const donationForm = useDonationForm();
-  const charityNumber = useCharityNumber();
-
-  const donationFormMutation = useMutation({
-    mutationFn: (sendData: DonationFormData) =>
-      instance.post(`/donations/${userId}?charity=${charityNumber}`, {
-        sendData,
-      }),
-    onSuccess: (res) => console.log('기부 데이터 저장 성공', res.data),
-    onError: (error) => console.error('기부 데이터 저장 실패', error),
-  });
-
-  const sendData = {
-    user_name: donationForm.name,
-    address: donationForm.addr1 + ' ' + donationForm.addr2,
-    phone: donationForm.phone1 + '-' + donationForm.phone2 + '-' + donationForm.phone3,
-    email: donationForm.email1 + '@' + donationForm.email2,
-    donation_item: donationForm.sort,
-    clothes_count: donationForm.clothes_num,
-    fashion_count: donationForm.goods_num,
-    box_count: donationForm.box_num,
-  };
+  const { mutate: donationFormMutation } = useDonationMutation();
 
   useEffect(() => {
-    donationFormMutation.mutate(sendData);
+    donationFormMutation();
   }, []);
 
   return (
