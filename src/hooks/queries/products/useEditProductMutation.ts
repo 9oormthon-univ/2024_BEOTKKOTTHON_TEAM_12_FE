@@ -3,7 +3,7 @@ import { instance } from 'apis';
 import { userId } from 'data/shared';
 import { TradeFormData } from 'types/types';
 
-export const useProductEditMutation = (id: string) => {
+export const useEditProductMutation = (id: string) => {
   return useMutation({
     mutationFn: (sendData: TradeFormData) =>
       instance.put(`/products/edit/${userId}/${id}`, sendData),

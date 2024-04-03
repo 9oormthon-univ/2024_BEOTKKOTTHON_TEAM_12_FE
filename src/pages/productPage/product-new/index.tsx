@@ -2,26 +2,13 @@ import { FormTrade, Header } from 'components/index';
 import * as S from './style';
 import close from 'assets/icons/close_large.svg';
 import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { userId } from 'data/shared';
-import { TradeFormData } from 'types/types';
 import { useFormData } from 'store/formData';
+import { useNewProductMutation } from 'hooks/queries/products/useNewProductMutation';
 
 const ProductNew = () => {
   const navigate = useNavigate();
   const formData = useFormData();
-  const productDetailMutation = useMutation({
-    mutationFn: (sendData: TradeFormData) => instance.post(`/products/new/${userId}`, sendData),
-    onSuccess: (res) => {
-      console.log('상품 등록에 성공했습니다.', res);
-      alert('상품 등록에 성공했습니다.');
-    },
-    onError: (error) => {
-      console.log('상품 등록에 실패했습니다.', error);
-      alert('상품 등록에 실패했습니다.');
-    },
-  });
+  const { mutate: newProductMutation } = useNewProductMutation();
 
   return (
     <>
@@ -33,7 +20,7 @@ const ProductNew = () => {
       <S.Content>
         <FormTrade
           formData={formData}
-          handleSubmitAction={productDetailMutation.mutate}
+          handleSubmitAction={newProductMutation}
           btnText={'등록하기'}
         />
       </S.Content>

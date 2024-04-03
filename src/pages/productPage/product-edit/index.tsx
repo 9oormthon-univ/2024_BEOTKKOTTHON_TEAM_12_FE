@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useFormData, useFormDataActions } from 'store/formData';
 import { useEffect } from 'react';
 import { useProductDetailQuery } from 'hooks/queries/products/useProductDetailQuery';
-import { useProductEditMutation } from 'hooks/queries/products/useProductEditMutation';
+import { useEditProductMutation } from 'hooks/queries/products/useEditProductMutation';
 
 const ProductEdit = () => {
   const { id } = useParams();
@@ -13,7 +13,7 @@ const ProductEdit = () => {
   const formData = useFormData();
   const { receiveData, changeImgFileToString } = useFormDataActions();
   const productDetailQuery = useProductDetailQuery(id as string);
-  const { mutate: productEditMutation } = useProductEditMutation(id as string);
+  const { mutate: editProductMutation } = useEditProductMutation(id as string);
 
   useEffect(() => {
     receiveData(productDetailQuery.data);
@@ -36,7 +36,7 @@ const ProductEdit = () => {
       <S.Content>
         <FormTrade
           formData={formData}
-          handleSubmitAction={() => productEditMutation(formData)}
+          handleSubmitAction={() => editProductMutation(formData)}
           btnText={'수정 완료'}
         />
       </S.Content>
