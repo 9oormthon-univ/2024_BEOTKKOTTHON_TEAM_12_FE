@@ -12,12 +12,12 @@ import Button from 'components/atom/button-trade';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
 import { useFormDataActions, useShowImages } from 'store/formData';
-import { Product, TradeFormData } from 'types/types';
+import { TradeFormData } from 'types/types';
 
 interface FormTradeProps {
   handleSubmitAction: (sendData: TradeFormData) => void;
   btnText: string;
-  formData: Product;
+  formData: TradeFormData;
 }
 
 const FormTrade = ({ handleSubmitAction, btnText, formData }: FormTradeProps) => {
@@ -27,7 +27,7 @@ const FormTrade = ({ handleSubmitAction, btnText, formData }: FormTradeProps) =>
 
   const disabled = !(
     formData.product_name &&
-    formData.category &&
+    formData.category_name &&
     formData.product_status &&
     formData.product_content &&
     formData.price &&
@@ -40,7 +40,7 @@ const FormTrade = ({ handleSubmitAction, btnText, formData }: FormTradeProps) =>
     handleSubmitAction({
       product_image: formData.product_image,
       product_name: formData.product_name,
-      category_name: formData.category,
+      category_name: formData.category_name,
       product_status: formData.product_status,
       product_content: formData.product_content,
       price: formData.price,

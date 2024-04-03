@@ -1,11 +1,11 @@
 import BoxKebabList from 'components/atom/box-kebab-list';
 import { userId } from 'data/shared';
-import { useHideMutation } from 'hooks/queries/product-detail/useHideMutation';
-import { useOnSaleMutation } from 'hooks/queries/product-detail/useOnSaleMutation';
+import { useHideMutation } from 'hooks/queries/products/useHideMutation';
+import { useOnSaleMutation } from 'hooks/queries/products/useOnSaleMutation';
 import { useNavigate } from 'react-router-dom';
 import { Product } from 'types/types';
 import ModalProduct from '../modal-product';
-import { useDeleteMutation } from 'hooks/queries/product-detail/useDeleteMutation';
+import { useDeleteMutation } from 'hooks/queries/products/useDeleteMutation';
 import { useState } from 'react';
 
 interface KebabProductDetailProps {

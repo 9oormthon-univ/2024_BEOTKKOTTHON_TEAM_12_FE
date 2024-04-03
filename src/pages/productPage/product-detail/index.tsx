@@ -11,23 +11,15 @@ import * as S from './style';
 import kebab from 'assets/icons/kebab.svg';
 import { useParams } from 'react-router-dom';
 import { Seller } from 'types/types';
-import { useEffect, useState } from 'react';
-import { useProduct, useProductActions } from 'store/product';
-import { useProductDetailQuery } from 'hooks/queries/product-detail/useProductDetailQuery';
+import { useState } from 'react';
+import { useProduct } from 'store/product';
+import { useProductDetailQuery } from 'hooks/queries/products/useProductDetailQuery';
 
 const ProductDetail = () => {
   const { id } = useParams();
+  useProductDetailQuery(id as string);
   const product = useProduct();
   const [openKebab, setOpenKebab] = useState<boolean>(false);
-  const { setProduct, changeStrToArr } = useProductActions();
-  const productDetailQuery = useProductDetailQuery(id as string);
-
-  useEffect(() => {
-    if (productDetailQuery.data) {
-      setProduct(productDetailQuery.data);
-      changeStrToArr(productDetailQuery.data.product_image);
-    }
-  }, [productDetailQuery.data]);
 
   if (!product) {
     // 404 페이지로 대체 가능

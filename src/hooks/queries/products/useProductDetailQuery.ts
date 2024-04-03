@@ -1,7 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
+import { useEffect } from 'react';
+import { useProductActions } from 'store/product';
 
 export const useProductDetailQuery = (id: string) => {
+  const { setProduct, changeStrToArr } = useProductActions();
+
   const getProductDetailData = async (id: string | undefined) => {
     try {
       const response = await instance.get(`/products/${id}`);
@@ -12,8 +16,17 @@ export const useProductDetailQuery = (id: string) => {
     }
   };
 
-  return useQuery({
+  const productDetailQuery = useQuery({
     queryKey: ['products', 'product-detail', id],
     queryFn: () => getProductDetailData(id),
   });
+
+  useEffect(() => {
+    if (productDetailQuery.data) {
+      setProduct(productDetailQuery.data);
+      changeStrToArr(productDetailQuery.data.product_image);
+    }
+  }, [productDetailQuery.data]);
+
+  return productDetailQuery;
 };
