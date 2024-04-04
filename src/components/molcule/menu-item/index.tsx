@@ -4,26 +4,38 @@ import { TextLabel, Toggle } from '../..';
 import * as S from './style';
 import { Link } from 'react-router-dom';
 
-const MenuItem: React.FC = () => {
-  const menuContent = [
-    {
-      title: '내 정보',
-      list: ['계정 정보', '비밀번호 재설정', '차단한 사용자'],
-    },
-    {
-      title: '나의 거래',
-      list: ['관심 목록', '판매 내역', '구매 내역', '기부 내역'],
-    },
-    {
-      title: '알림 설정',
-      list: ['채팅 알림'],
-    },
-    {
-      title: '고객 지원',
-      list: ['문의하기', '서비스 정보'],
-    },
-  ];
+const menuContent = [
+  {
+    title: '내 정보',
+    list: [
+      { name: '계정 정보', to: '/mypage/account-info' },
+      { name: '비밀번호 재설정', to: '' },
+      { name: '차단한 사용자', to: '/mypage/blocked-users' },
+    ],
+  },
+  {
+    title: '나의 거래',
+    list: [
+      { name: '관심 목록', to: '' },
+      { name: '판매 내역', to: '/mypage/sales-history' },
+      { name: '구매 내역', to: '/mypage/purchase-history' },
+      { name: '기부 내역', to: '/mypage/donation-history' },
+    ],
+  },
+  {
+    title: '알림 설정',
+    list: [{ name: '채팅 알림', to: '' }],
+  },
+  {
+    title: '고객 지원',
+    list: [
+      { name: '문의하기', to: '' },
+      { name: '서비스 정보', to: '' },
+    ],
+  },
+];
 
+const MenuItem: React.FC = () => {
   const handleLogout = () => {
     console.log('로그아웃');
   };
@@ -32,51 +44,40 @@ const MenuItem: React.FC = () => {
   };
 
   return (
-    <S.MenuWrapper>
+    <S.Container>
       {menuContent.map((section, sectionIndex) => (
-        <S.MenuSection key={sectionIndex}>
-          <TextLabel text={section.title} size={17} $weight={800} />
+        <React.Fragment key={sectionIndex}>
+          <TextLabel size={18} $weight={800}>
+            {section.title}
+          </TextLabel>
+
           <S.MenuItemList>
             {section.list.map((item, itemIndex) => (
-              <S.MenuItem key={itemIndex}>
+              <li key={itemIndex}>
                 <S.MenuItemWrapper>
-                  {sectionIndex === 0 && item === '계정 정보' ? (
-                    <Link to="/mypage/account-info">
-                      <TextLabel text={item} size={16} $weight={300} />
+                  {
+                    <Link to={item.to}>
+                      <TextLabel size={16} $weight={300}>
+                        {item.name}
+                      </TextLabel>
                     </Link>
-                  ) : sectionIndex === 0 && item === '차단한 사용자' ? (
-                    <Link to="/mypage/blocked-users">
-                      <TextLabel text={item} size={16} $weight={300} />
-                    </Link>
-                  ) : sectionIndex === 1 && item === '판매 내역' ? (
-                    <Link to="/mypage/sales-history">
-                      <TextLabel text={item} size={16} $weight={300} />
-                    </Link>
-                  ) : sectionIndex === 1 && item === '구매 내역' ? (
-                    <Link to="/mypage/purchase-history">
-                      <TextLabel text={item} size={16} $weight={300} />
-                    </Link>
-                  ) : sectionIndex === 1 && item === '기부 내역' ? (
-                    <Link to="/mypage/donation-history">
-                      <TextLabel text={item} size={16} $weight={300} />
-                    </Link>
-                  ) : (
-                    <TextLabel text={item} size={16} $weight={300} />
-                  )}
+                  }
+
                   {sectionIndex === 2 && <Toggle />}
                 </S.MenuItemWrapper>
-              </S.MenuItem>
+              </li>
             ))}
             {sectionIndex !== 3 && <S.ListLine />}
           </S.MenuItemList>
-        </S.MenuSection>
+        </React.Fragment>
       ))}
-      <S.FooterWrapper>
+
+      <S.Footer>
         <S.Link onClick={handleLogout}>로그아웃</S.Link>
-        <S.Divider>|</S.Divider>
+        <span>|</span>
         <S.Link onClick={handleWithdrawal}>탈퇴하기</S.Link>
-      </S.FooterWrapper>
-    </S.MenuWrapper>
+      </S.Footer>
+    </S.Container>
   );
 };
 

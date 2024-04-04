@@ -7,22 +7,22 @@ interface ToggleProps {
 
 const ToggleWrapper = styled.div<ToggleProps>`
   position: relative;
-  width: 50px;
-  height: 25px;
+  width: 36px;
+  height: 18px;
   border-radius: 25px;
   background-color: ${({ $isOn }) => ($isOn ? 'var(--green-primary)' : 'var(--grey-4)')};
 `;
 
 const ToggleButton = styled.div<ToggleProps>`
   position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 21px;
-  height: 21px;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background-color: white;
   transition: transform 0.3s ease;
-  transform: ${({ $isOn }) => ($isOn ? 'translateX(25px)' : 'translateX(0)')};
+  transform: ${({ $isOn }) => ($isOn ? 'translateX(18px)' : 'translateX(0)')};
 `;
 
 const Toggle = () => {

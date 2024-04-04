@@ -6,7 +6,7 @@ console.log('REACT_APP_SERVER_URL', REACT_APP_SERVER_URL);
 export const instance = axios.create({
   baseURL: REACT_APP_SERVER_URL,
   withCredentials: true,
-  timeout: 5000,
+  timeout: 2000,
   headers: {
     'Content-Type': 'application/json',
   },

@@ -2,68 +2,20 @@ import { Header, TextLabel, TextInput } from 'components/index';
 import * as S from './style';
 import arrow from 'assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { instance } from '../../../apis/index';
-import { userProfile } from 'data/shared';
-import { useQuery } from '@tanstack/react-query';
-
-const userId = 1;
-
-const getAccountInfo = async () => {
-  try {
-    const response = await instance.get(`/users/userInfo/${userId}`);
-    console.log('계정 정보 불러오기 성공:', response.data);
-    return response.data;
-  } catch (e) {
-    console.error('계정 정보 불러오기 실패', e);
-    return userProfile;
-  }
-};
+import { useState } from 'react';
+import { useAccountInfoQuery } from 'hooks/queries/user/useAccountInfoQuery';
+import { useChangeAccountMutation } from 'hooks/queries/user/useChangeAccountMutation';
 
 const AccountInfo = () => {
   const navigate = useNavigate();
+  const { mutate: changeAccountInfo } = useChangeAccountMutation();
   const [accountInfo, setAccountInfo] = useState({
     user_name: '',
     university_name: '',
     university_email: '',
   });
 
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['user', 'account-info'],
-    queryFn: getAccountInfo,
-  });
-
-  useEffect(() => {
-    if (data) {
-      setAccountInfo({
-        user_name: data.user_name,
-        university_name: data.university_name,
-        university_email: data.university_email,
-      });
-    }
-  }, [data]);
-
-  /*계정 정보를 저장하는 api 호출 */
-  const postChangeAccountInfo = async () => {
-    console.log('저장하기');
-    try {
-      console.log(accountInfo);
-      const response = await instance.put(`/users/userInfo/update/${userId}`, {
-        accountInfo,
-      });
-      if (response.status === 200) {
-        alert('저장되었습니다.');
-      } else {
-        // 서버에서 예상치 못한 응답을 받았을 경우
-        console.error('서버 상태 업데이트 실패:', response);
-        alert('저장에 실패했습니다. 다시 시도해주세요.');
-      }
-    } catch (error) {
-      // 네트워크 오류나 서버 오류 등의 예외 처리
-      console.error('서버에 저장하는 중 오류 발생:', error);
-      alert('오류가 발생했습니다. 다시 시도해주세요.');
-    }
-  };
+  useAccountInfoQuery(setAccountInfo);
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAccountInfo({ ...accountInfo, user_name: e.target.value });
@@ -76,7 +28,7 @@ const AccountInfo = () => {
         <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
         <S.HederLeft
           className="right "
-          onClick={postChangeAccountInfo}
+          onClick={() => changeAccountInfo()}
           text="저장"
           size={18}
           $weight={700}

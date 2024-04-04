@@ -14,36 +14,35 @@ const ProfileCard: React.FC = () => {
   const onModifyProfile = () => {
     navigate('/mypage/profile-edit');
   };
-  console.log(userProfile);
 
   return (
     <S.ProfileCardWrapper>
-      <S.RightContainer>
-        <ProfileAvatar imageUrl={userProfile.profile_image} />
-      </S.RightContainer>
+      <ProfileAvatar imageUrl={userProfile.profile_image} />
 
       <S.MiddleContainer>
         <S.UserNameWrapper>
-          <TextLabel text={userProfile.user_name} size={18} />
-          <S.Image src={levelUrlArr(userProfile.level)} alt="profile level" />
+          <TextLabel size={16} color="var(--grey-7)">
+            {userProfile.user_name}
+          </TextLabel>
+          <img
+            src={levelUrlArr(userProfile.level)}
+            alt="profile level"
+            width="11px"
+            height="11px"
+          />
         </S.UserNameWrapper>
-        <TextLabel text={userProfile.university_name} size={16} color="var(--grey-5)" />
+        <TextLabel size={14} color="var(--grey-5)">
+          {userProfile.university_name}
+        </TextLabel>
 
         <S.ButtonContainer>
           {userProfile.style.map((style, index) => (
-            <ProfileButton
-              key={index}
-              children={style}
-              color="var(--grey-6)"
-              $borderColor="var(--grey-3)"
-            />
+            <ProfileButton key={index}>{style}</ProfileButton>
           ))}
         </S.ButtonContainer>
       </S.MiddleContainer>
 
-      <S.LeftContainer>
-        <S.Image src={arrow} alt="프로필 수정" onClick={onModifyProfile} />
-      </S.LeftContainer>
+      <S.BtnArrow src={arrow} alt="프로필 수정" onClick={onModifyProfile} />
     </S.ProfileCardWrapper>
   );
 };

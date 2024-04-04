@@ -1,33 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface ProfileButtonProps {
-  color?: string;
-  $borderColor?: string;
-  $bgcolor?: string;
-  children?: React.ReactNode;
-}
-
-const ButtonWrapper = styled.button<ProfileButtonProps>`
+const ButtonWrapper = styled.button`
   width: fit-content;
-  padding: 3px 8px;
+  padding: 3px 10px;
   border-radius: 20px;
-  border: 1px solid ${({ $borderColor }) => $borderColor || 'var(--grey-3)'};
-  background-color: ${({ $bgcolor }) => $bgcolor || 'var(--grey-1)'};
-  color: ${({ color }) => color || 'var(--grey-7)'};
+  border: 1px solid var(--grey-3);
+  background-color: var(--grey-1);
+  font-size: 13px;
+  color: var(--grey-6);
 `;
 
-const ProfileButton: React.FC<ProfileButtonProps> = ({
-  children,
-  color,
-  $borderColor,
-  $bgcolor,
-}) => {
-  return (
-    <ButtonWrapper $bgcolor={$bgcolor} color={color} $borderColor={$borderColor}>
-      {children}
-    </ButtonWrapper>
-  );
+interface ProfileButtonProps {
+  children: React.ReactNode;
+}
+
+const ProfileButton = ({ children }: ProfileButtonProps) => {
+  return <ButtonWrapper>{children}</ButtonWrapper>;
 };
 
 export default ProfileButton;

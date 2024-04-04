@@ -1,77 +1,55 @@
 import styled from 'styled-components';
-export {
-  MenuWrapper,
-  MenuSection,
-  MenuItemList,
-  MenuItem,
-  ListLine,
-  Divider,
-  Link,
-  FooterWrapper,
-  MenuItemWrapper,
-};
-const MenuWrapper = styled.div`
+
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding-top: 20px;
+  padding: 33px 24px 0;
   margin-top: 5px;
   background-color: #fff;
 `;
 
-const MenuSection = styled.div`
-  margin-bottom: 24px;
-  padding: 0 20px;
-  cursor: pointer;
-`;
-
-const MenuItemList = styled.ul`
+export const MenuItemList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   list-style: none;
   padding: 0;
-  margin-top: 20px;
+  margin-top: 24px;
 `;
 
-const MenuItem = styled.li`
-  padding: 8px 0;
-`;
-
-const ListLine = styled.div`
-  width: 100%;
-  margin-top: 15px;
-  border-top: 1px solid var(--grey-2);
-`;
-
-const FooterWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
-`;
-
-const Divider = styled.span`
-  color: var(--grey-4);
-  margin: 0 8px;
-`;
-
-const Link = styled.span`
-  color: var(--grey-4);
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const MenuItemWrapper = styled.div`
+export const MenuItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   font-family: 'Noto Sans KR';
   & > a {
     font-weight: 300;
     text-decoration: none;
     color: var(--grey-7);
+  }
+`;
+
+export const ListLine = styled.div`
+  width: 100%;
+  margin: 25px 0;
+  border-top: 1px solid var(--grey-2);
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 41px;
+  padding: 17.5px;
+  font-size: 14px;
+  color: var(--grey-4);
+`;
+
+export const Link = styled.span`
+  cursor: pointer;
+  margin: 0 15px;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
