@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import * as S from './style';
+import { useProductList } from 'store/productListData';
 interface TabItemProps {
   label: string;
-  count: number;
   ContentComponent: React.ComponentType;
 }
 
@@ -11,6 +11,7 @@ interface TabProps {
 }
 
 const Tab: React.FC<TabProps> = ({ tabs }) => {
+  const productList = useProductList();
   const [activeTab, setActiveTab] = useState(tabs[0].label);
 
   return (
@@ -22,13 +23,13 @@ const Tab: React.FC<TabProps> = ({ tabs }) => {
             isActive={activeTab === tab.label}
             onClick={() => setActiveTab(tab.label)}
           >
-            {tab.label} {tab.count}
+            {tab.label} {productList.length}
           </S.TabItemButton>
         ))}
       </S.TabsContainer>
       {tabs.map((tab) => (
         <S.TabPanel key={tab.label} isActive={activeTab === tab.label}>
-          <tab.ContentComponent />
+          {activeTab === tab.label && <tab.ContentComponent />}
         </S.TabPanel>
       ))}
     </>

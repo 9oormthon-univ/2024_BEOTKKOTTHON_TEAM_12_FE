@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface TabItemProps {
   label: string;
-  count: number;
+  // count: number;
   ContentComponent: React.ComponentType;
 }
 /*상품 리스트에만 사용되는 제품 타입 */
