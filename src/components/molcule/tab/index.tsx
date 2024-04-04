@@ -1,37 +1,28 @@
 import React, { useState } from 'react';
 import * as S from './style';
 import { useProductList } from 'store/productListData';
-interface TabItemProps {
-  label: string;
-  ContentComponent: React.ComponentType;
-}
+import { ListSalesCompleted, ListSalesHidden, ListSalesInprogress } from 'components';
 
-interface TabProps {
-  tabs: TabItemProps[];
-}
-
-const Tab: React.FC<TabProps> = ({ tabs }) => {
+const Tab = () => {
   const productList = useProductList();
-  const [activeTab, setActiveTab] = useState(tabs[0].label);
+  const tabs = ['판매중', '판매 완료', '숨김'];
+  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
     <>
       <S.TabsContainer>
         {tabs.map((tab) => (
-          <S.TabItemButton
-            key={tab.label}
-            isActive={activeTab === tab.label}
-            onClick={() => setActiveTab(tab.label)}
-          >
-            {tab.label} {productList.length}
+          <S.TabItemButton key={tab} isActive={activeTab === tab} onClick={() => setActiveTab(tab)}>
+            {tab} {productList.length}
           </S.TabItemButton>
         ))}
       </S.TabsContainer>
-      {tabs.map((tab) => (
-        <S.TabPanel key={tab.label} isActive={activeTab === tab.label}>
-          {activeTab === tab.label && <tab.ContentComponent />}
-        </S.TabPanel>
-      ))}
+
+      <S.TabPanel>
+        {activeTab === tabs[0] && <ListSalesInprogress />}
+        {activeTab === tabs[1] && <ListSalesCompleted />}
+        {activeTab === tabs[2] && <ListSalesHidden />}
+      </S.TabPanel>
     </>
   );
 };
