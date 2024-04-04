@@ -13,6 +13,5 @@ export const SaleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 160px;
-  gap: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 `;

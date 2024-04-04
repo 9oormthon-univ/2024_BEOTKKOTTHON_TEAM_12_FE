@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ width: string }>`
-  width: ${({ width }) => width};
-  margin-bottom: 15px;
+interface ContainerProps {
+  $marginBottom?: string;
+}
+
+export const Container = styled.div<ContainerProps>`
+  width: 160px;
+  margin-bottom: ${(props) => props.$marginBottom || '15px'};
   cursor: pointer;
 `;
 

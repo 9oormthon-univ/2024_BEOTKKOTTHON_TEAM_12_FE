@@ -10,10 +10,10 @@ import { changeStringToArr } from 'utils/changeStringToArr';
 
 interface SaleItemProps {
   product: ProductListItem;
-  width?: string;
+  $marginBottom?: string;
 }
 
-const BoxItemTrade: React.FC<SaleItemProps> = ({ product, width }) => {
+const BoxItemTrade: React.FC<SaleItemProps> = ({ product, $marginBottom }) => {
   const navigate = useNavigate();
   const soldState = product.post_status === 'soldOut';
   const circleUrl = product.product_status === '아주 좋아요' ? stategreen : stategrey;
@@ -22,7 +22,7 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ product, width }) => {
     navigate(`/product/${product.id}`);
   };
   return (
-    <S.Container width={width || '48%'} onClick={handleClick}>
+    <S.Container $marginBottom={$marginBottom} onClick={handleClick}>
       <S.BoxImage
         //   이미지 한장만 주는지, 배열로 주는지에 따라 로직 변경
         //   상품 리스트 보여주는 곳들의 product_image 전달 형식 통일 시켜야함

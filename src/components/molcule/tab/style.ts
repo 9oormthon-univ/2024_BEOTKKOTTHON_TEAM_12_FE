@@ -24,6 +24,6 @@ export const TabItemButton = styled.button<{ isActive: boolean }>`
 `;
 
 export const TabPanel = styled.div<{ isActive: boolean }>`
-  display: ${({ isActive }) => (isActive ? 'block' : 'none')};
+  // display: ${({ isActive }) => (isActive ? 'block' : 'none')};
   padding: 20px;
 `;

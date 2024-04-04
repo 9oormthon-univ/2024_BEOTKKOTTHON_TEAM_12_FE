@@ -15,9 +15,7 @@ const ListSalesCompleted = () => {
   return (
     <S.Container>
       {productList.length > 0 ? (
-        productList.map((item: ProductListItem) => (
-          <BoxItemTrade key={item.id} product={item} width={'160px'} />
-        ))
+        productList.map((item: ProductListItem) => <BoxItemTrade key={item.id} product={item} />)
       ) : (
         <BoxNoItem />
       )}

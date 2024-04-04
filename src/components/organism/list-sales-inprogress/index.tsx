@@ -37,8 +37,13 @@ const ListSalesInprogress: React.FC = () => {
                 <p>판매완료로 변경할까요?</p>
               </ModalProduct>
             )}
-            <BoxItemTrade product={item} width={'160px'} />
-            <Button width="100%" handleOnClick={() => setOpenModal(!openModal)}>
+            <BoxItemTrade product={item} $marginBottom="12px" />
+            <Button
+              width="100%"
+              $padding="8px 10px"
+              fontSize="12px"
+              handleOnClick={() => setOpenModal(!openModal)}
+            >
               판매 완료하기
             </Button>
           </S.SaleWrapper>
