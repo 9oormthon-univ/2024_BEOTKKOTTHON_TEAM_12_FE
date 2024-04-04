@@ -9,6 +9,7 @@ interface TextLabelProps {
   className?: string;
   $textAlign?: string;
   children?: React.ReactNode;
+  $letterSpacing?: string;
   onClick?: () => void;
 }
 
@@ -17,6 +18,7 @@ const TextLabelWrapper = styled.div<{
   $weight?: number;
   color?: string;
   $textAlign?: string;
+  $letterSpacing?: string;
 }>`
   color: ${({ color }) => color || 'var(--grey-7)'};
   font-size: ${({ size }) => `${size}px`};
@@ -25,7 +27,7 @@ const TextLabelWrapper = styled.div<{
   text-align: ${({ $textAlign }) => $textAlign || 'left'};
   white-space: pre-line;
   line-height: 130%;
-  letter-spacing: -0.28px;
+  letter-spacing: ${({ $letterSpacing }) => $letterSpacing || '-0.28px'};
   /*드래그 방지 */
   user-select: none;
   -webkit-user-select: none;
@@ -42,6 +44,7 @@ const TextLabel: React.FC<TextLabelProps> = ({
   onClick,
   $textAlign,
   children,
+  $letterSpacing,
 }) => {
   return (
     <TextLabelWrapper
@@ -51,6 +54,7 @@ const TextLabel: React.FC<TextLabelProps> = ({
       color={color}
       onClick={onClick}
       $textAlign={$textAlign}
+      $letterSpacing={$letterSpacing}
     >
       {text}
       {children}
