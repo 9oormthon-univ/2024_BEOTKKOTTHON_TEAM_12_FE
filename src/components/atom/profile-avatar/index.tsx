@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const RoundImage = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
+  margin: 5px;
   border-radius: 50%;
 `;
 

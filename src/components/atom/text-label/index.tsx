@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface TextLabelProps {
-  text: string;
+  text?: string;
   size: number;
   $weight?: number;
   color?: string;
   className?: string;
   $textAlign?: string;
+  children?: React.ReactNode;
   onClick?: () => void;
 }
 
@@ -40,6 +41,7 @@ const TextLabel: React.FC<TextLabelProps> = ({
   className,
   onClick,
   $textAlign,
+  children,
 }) => {
   return (
     <TextLabelWrapper
@@ -51,6 +53,7 @@ const TextLabel: React.FC<TextLabelProps> = ({
       $textAlign={$textAlign}
     >
       {text}
+      {children}
     </TextLabelWrapper>
   );
 };
