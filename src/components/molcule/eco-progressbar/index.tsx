@@ -2,7 +2,7 @@ import * as S from './style';
 import helpIcon from 'assets/icons/help.svg';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { TextLabel } from 'components/index';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useUserProfileInfo } from 'store/userData';
 
 const ProgressBar = () => {
@@ -13,34 +13,31 @@ const ProgressBar = () => {
     remain_level_point: remainLevelExp,
   } = useUserProfileInfo();
 
-  const navigate = useNavigate();
-
-  const onHelpClick = () => {
-    navigate('/mypage/level-info');
-  };
-
   return (
-    <S.ProgressBarCard>
+    <S.Container>
       <S.ProgressBarHeader>
         <S.UserLevelWrapper>
-          <TextLabel text={`Lv.${level}`} size={20} $weight={800} color="var(--green-primary)" />
-          <S.Image src={levelUrlArr(level)} alt="profile level" />
+          <TextLabel size={18} $weight={800} color="var(--green-6)">
+            Lv. {level}
+          </TextLabel>
+          <img src={levelUrlArr(level)} width="11px" height="11.3px" alt="profile level" />
         </S.UserLevelWrapper>
-        <S.Image src={helpIcon} alt="help icon" onClick={onHelpClick} />
+
+        <Link to={'/mypage/level-info'}>
+          <S.Image src={helpIcon} alt="help icon" />
+        </Link>
       </S.ProgressBarHeader>
 
-      <TextLabel
-        text={`다음 ${nextLevel}레벨까지 ${remainLevelExp}포인트 남았어요!`}
-        size={13}
-        $weight={300}
-        color="var(--grey-5)"
-      />
+      <TextLabel size={12} $weight={300} color="var(--grey-5)">
+        다음 {nextLevel}레벨까지 {remainLevelExp}포인트 남았어요!
+      </TextLabel>
+
       <S.ProgressBarContainer>
-        {/* <S.Progress width={progressWidth} /> */}
         <S.Progress width={`${100 - remainLevelExp}%`} />
       </S.ProgressBarContainer>
+
       <S.ProgressLabel>{`현재 ${currentExp} 포인트`}</S.ProgressLabel>
-    </S.ProgressBarCard>
+    </S.Container>
   );
 };
 
