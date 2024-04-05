@@ -3,8 +3,13 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 20px;
   font-family: 'Noto Sans KR';
+`;
+
+export const Padding30px = styled.div`
+  padding: 0 30px;
 `;
 
 export const TabContainer = styled.div`
@@ -35,6 +40,7 @@ export const PasswordInputWrapper = styled.div`
 
 export const LoginInput = styled.input`
   display: flex;
+  width: 335px;
   height: 51px;
   padding: 10px 17px;
   margin-bottom: 16px;
@@ -56,14 +62,14 @@ export const LoginInput = styled.input`
   }
 `;
 
-export const EyeIcon = styled.img`
-  position: absolute;
-  right: 33px;
-  top: 63px;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
+export const LoginBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  gap: 7px;
+  font-family: 'Noto Sans KR';
 `;
 
 /**
@@ -94,15 +100,17 @@ export const PasswordError = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-  width: 100%;
-  padding: 0 20px;
+  position: absolute;
+  bottom: 80px;
+  width: 355px;
   box-sizing: border-box;
 `;
 
 export const ChecklistColumn = styled.ul`
   display: flex;
   flex-direction: column;
-
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 20px;
   border-top: 1px solid var(--grey-3);
   gap: 10px;
@@ -132,6 +140,7 @@ export const AgreeWrapper = styled.div`
   align-items: flex-start;
   gap: 8px;
   margin-top: 20px;
+  padding-bottom: 10px;
 `;
 
 export const LoginText = styled.div`

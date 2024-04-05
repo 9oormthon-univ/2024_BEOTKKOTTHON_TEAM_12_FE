@@ -1,15 +1,5 @@
 import styled from 'styled-components';
 
-export const LoginWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100svh;
-  padding: 20px;
-  font-family: 'Noto Sans KR';
-`;
-
 export const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,31 +34,6 @@ export const LoginInput = styled.input`
     border: 1px solid var(--green-primary);
   }
 `;
-export const Divider = styled.span`
-  color: var(--grey-4);
-  margin: 0 8px;
-`;
-
-export const Link = styled.span`
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  color: var(--grey-5);
-
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-export const LinkWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  margin-top: 15px;
-`;
 
 export const CheckboxWrapper = styled.div`
   display: flex;
@@ -77,8 +42,4 @@ export const CheckboxWrapper = styled.div`
   max-width: 335px;
   margin-bottom: 60px;
   gap: 7px;
-`;
-
-export const LoginMessage = styled.div`
-  margin-top: 80px;
 `;
