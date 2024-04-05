@@ -56,6 +56,7 @@ export { default as ChatInput } from './molcule/chat-input';
 export { default as ChatScreen } from './molcule/chat-screen';
 export { default as ContainerDonation } from './molcule/container-donation';
 export { default as KebabProductDetail } from './molcule/kebab-product-detail';
+export { default as ListBlockUser } from './molcule/list-block-user';
 //Organism
 export { default as UserSection } from './organism/user-section';
 export { default as ListTradeItems } from './organism/list-trade-items';
