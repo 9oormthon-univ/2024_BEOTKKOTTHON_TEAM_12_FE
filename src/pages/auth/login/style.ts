@@ -81,4 +81,8 @@ export const CheckboxWrapper = styled.div`
 
 export const LoginMessage = styled.div`
   margin-top: 80px;
+
+  & span {
+    color: var(--grey-5);
+  }
 `;

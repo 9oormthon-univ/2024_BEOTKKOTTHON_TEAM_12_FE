@@ -23,13 +23,12 @@ const DonationMain = () => {
             <div className="homeless">
               <img src={homeless} alt="homeless" onClick={() => navigate('/donation/homeless')} />
             </div>
-            <TextLabel text="함께하는 기부 단체" size={16} $weight={700} color="var(--grey-7)" />
-            <TextLabel
-              text="총 3개의 기부단체와 함께하고 있어요!"
-              size={12}
-              $weight={400}
-              color="var(--grey-7)"
-            />
+            <TextLabel size={16} $weight={700} color="var(--grey-7)">
+              함께하는 기부 단체
+            </TextLabel>
+            <TextLabel size={12} $weight={400} color="var(--grey-7)">
+              총 3개의 기부단체와 함께하고 있어요!
+            </TextLabel>
           </S.MapWrapper>
 
           <S.ImageWrapper>

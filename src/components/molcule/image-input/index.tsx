@@ -29,7 +29,9 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
 
   return (
     <S.ImageWrapper>
-      <TextLabel text="프로필 이미지 변경" size={16} color="var(--grey-7)" />
+      <TextLabel size={16} color="var(--grey-7)">
+        프로필 이미지 변경
+      </TextLabel>
       <S.BoxUpload htmlFor="imgInput" onClick={handleClickUpload}>
         <S.Image src={img} alt="img" />
       </S.BoxUpload>

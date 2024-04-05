@@ -1,4 +1,4 @@
-import { Header, TextLabel, TextInput } from 'components/index';
+import { Header, TextLabel, TextInput, ButtonBack } from 'components/index';
 import * as S from './style';
 import arrow from 'assets/icons/arrow.svg';
 import { useNavigate } from 'react-router-dom';
@@ -24,16 +24,19 @@ const AccountInfo = () => {
   return (
     <>
       <Header>
-        <TextLabel text="계정 정보" size={18} $weight={700} />
-        <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
-        <S.HederLeft
-          className="right "
+        <TextLabel size={18} $weight={700}>
+          계정 정보
+        </TextLabel>
+        <ButtonBack className="left" $marginLeft="10px" />
+        <TextLabel
+          className="right"
           onClick={() => changeAccountInfo()}
-          text="저장"
           size={18}
           $weight={700}
           color="var(--grey-5)"
-        />
+        >
+          저장
+        </TextLabel>
       </Header>
       <S.InputWrapper>
         <TextInput

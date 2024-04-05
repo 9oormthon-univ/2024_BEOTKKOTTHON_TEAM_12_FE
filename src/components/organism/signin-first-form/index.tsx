@@ -42,12 +42,16 @@ const SigninFirstForm: React.FC<SigninFirstFormProps> = ({
   return (
     <>
       <S.Padding30px>
-        <TextLabel text={'회원가입'} size={24} $weight={700} color={'var(--grey-7)'}></TextLabel>
+        <TextLabel size={24} $weight={700} color={'var(--grey-7)'}>
+          회원가입
+        </TextLabel>
       </S.Padding30px>
 
       <S.Container>
         <S.PasswordInputWrapper>
-          <TextLabel text={'아이디'} size={16} $weight={500} color={'var(--grey-7)'}></TextLabel>
+          <TextLabel size={16} $weight={500} color={'var(--grey-7)'}>
+            아이디
+          </TextLabel>
 
           <S.LoginInput
             name="userId"
@@ -56,7 +60,9 @@ const SigninFirstForm: React.FC<SigninFirstFormProps> = ({
             value={formData.userId}
             onChange={handleInputChange}
           />
-          <TextLabel text={'비밀번호'} size={16} $weight={500} color={'var(--grey-7)'}></TextLabel>
+          <TextLabel size={16} $weight={500} color={'var(--grey-7)'}>
+            비밀번호
+          </TextLabel>
         </S.PasswordInputWrapper>
 
         <S.LoginBox>
@@ -69,12 +75,9 @@ const SigninFirstForm: React.FC<SigninFirstFormProps> = ({
             <S.CheckItem valid={numberValid}>숫자</S.CheckItem>
             <S.CheckItem valid={lengthValid}>8~16자 이내</S.CheckItem>
           </S.Checklist>
-          <TextLabel
-            text={'비밀번호 확인'}
-            size={16}
-            $weight={500}
-            color={'var(--grey-7)'}
-          ></TextLabel>
+          <TextLabel size={16} $weight={500} color={'var(--grey-7)'}>
+            비밀번호 확인
+          </TextLabel>
 
           <S.LoginInput
             name="validPassword"

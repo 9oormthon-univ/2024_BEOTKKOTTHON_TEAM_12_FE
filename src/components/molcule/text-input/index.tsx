@@ -1,6 +1,6 @@
-import React from "react";
-import * as S from "./style";
-import { TextLabel } from "components/index";
+import React from 'react';
+import * as S from './style';
+import { TextLabel } from 'components/index';
 interface TextInputProps {
   label: string;
   labelSize: number;
@@ -21,7 +21,7 @@ const TextInput: React.FC<TextInputProps> = ({
   return (
     <>
       <S.InputContainer>
-        <TextLabel text={label} size={labelSize} />
+        <TextLabel size={labelSize}>{label}</TextLabel>
         <S.StyledBoxInput
           name="title"
           readOnly={readonly}

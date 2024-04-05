@@ -42,11 +42,15 @@ const SigninSecondForm: React.FC<SigninSecondFormProps> = ({
   return (
     <>
       <S.Padding30px>
-        <TextLabel text={'재학생 인증'} size={24} $weight={700} color={'var(--grey-7)'}></TextLabel>
+        <TextLabel size={24} $weight={700} color={'var(--grey-7)'}>
+          재학생 인증
+        </TextLabel>
       </S.Padding30px>
       <S.Container>
         <S.PasswordInputWrapper>
-          <TextLabel text={'학교 이름'} size={16} $weight={500} color={'var(--grey-7)'}></TextLabel>
+          <TextLabel size={16} $weight={500} color={'var(--grey-7)'}>
+            학교 이름
+          </TextLabel>
 
           <S.LoginInput
             name="universityName"
@@ -56,12 +60,9 @@ const SigninSecondForm: React.FC<SigninSecondFormProps> = ({
             onChange={handleInputChange}
           />
 
-          <TextLabel
-            text={'학교 이메일'}
-            size={16}
-            $weight={500}
-            color={'var(--grey-7)'}
-          ></TextLabel>
+          <TextLabel size={16} $weight={500} color={'var(--grey-7)'}>
+            학교 이메일
+          </TextLabel>
 
           <S.LoginInput
             name="universityEmail"

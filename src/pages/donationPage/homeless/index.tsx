@@ -11,12 +11,9 @@ const DonationHomeless = () => {
       to="/donation/homeless/map"
     >
       <S.MainText>
-        <TextLabel
-          className="title"
-          text="우리 지역 노숙인의 ‘홀로서기’를 응원해주세요."
-          color="white"
-          size={13}
-        ></TextLabel>
+        <TextLabel className="title" color="white" size={13}>
+          우리 지역 노숙인의 ‘홀로서기’를 응원해주세요.
+        </TextLabel>
         <p className="description">
           사람들이 바쁘게 오가는 서울역 광장 앞, 각자의 목적지로 빠르게 걸어가는 사람들 사이에서
           드문드문 멈춰 있는 이들이 눈에 띄었습니다. 어딘가로 가려는 것도 아니고, 누군가를 기다리는

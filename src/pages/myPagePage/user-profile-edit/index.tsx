@@ -1,6 +1,6 @@
 import * as S from './style';
 import arrow from 'assets/icons/arrow.svg';
-import { Header, TextLabel, TextInput, ImageInput, TagInput } from 'components/index';
+import { Header, TextLabel, TextInput, ImageInput, TagInput, ButtonBack } from 'components/index';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useProfileEditQuery } from 'hooks/queries/user/useProfileEditQuery';
@@ -27,17 +27,19 @@ const UserProfileEdit = () => {
       {!profileEditQuery.isLoading && (
         <>
           <Header>
-            <TextLabel text="내 프로필" size={18} $weight={700} />
-            <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
-            <S.BackIcon className="left" src={arrow} alt="go back" onClick={() => navigate(-1)} />
+            <TextLabel size={18} $weight={700}>
+              내 프로필
+            </TextLabel>
+            <ButtonBack className="left" $marginLeft="10px" />
             <TextLabel
-              className="right "
+              className="right"
               onClick={() => changeProfile(userInfo)}
-              text="저장"
               size={18}
               $weight={700}
               color="var(--grey-5)"
-            />
+            >
+              저장
+            </TextLabel>
           </Header>
           <TextInput
             label="닉네임"

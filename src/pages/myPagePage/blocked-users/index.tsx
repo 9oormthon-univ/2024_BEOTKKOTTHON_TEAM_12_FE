@@ -4,7 +4,9 @@ const BlockedUsers = () => {
   return (
     <>
       <Header>
-        <TextLabel text="차단한 사용자" size={18} $weight={700} />
+        <TextLabel size={18} $weight={700}>
+          차단한 사용자
+        </TextLabel>
         <ButtonBack className="left" $marginLeft="10px" />
       </Header>
       <ListBlockUser />

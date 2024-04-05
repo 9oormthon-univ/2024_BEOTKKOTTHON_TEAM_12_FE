@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface TextLabelProps {
-  text?: string;
   size: number;
   $weight?: number;
   color?: string;
@@ -36,7 +35,6 @@ const TextLabelWrapper = styled.div<{
 `;
 
 const TextLabel: React.FC<TextLabelProps> = ({
-  text,
   size,
   $weight,
   color,
@@ -56,7 +54,6 @@ const TextLabel: React.FC<TextLabelProps> = ({
       $textAlign={$textAlign}
       $letterSpacing={$letterSpacing}
     >
-      {text}
       {children}
     </TextLabelWrapper>
   );
