@@ -108,6 +108,16 @@ export interface DonationFormData {
   box_count: number;
 }
 
+//회원가입 폼 데이터
+export interface SigninFormData {
+  userId: '';
+  password: '';
+  validPassword: '';
+  universityName: '';
+  universityEmail: '';
+  styleTags: string[];
+}
+
 // 기부 목록 타입
 export interface DonationDataType {
   id: number;

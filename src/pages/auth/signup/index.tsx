@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { Button, ButtonBack, Checkbox, Header, TagInput, TextLabel } from 'components/index';
+import {
+  Button,
+  ButtonBack,
+  Checkbox,
+  Header,
+  SigninFirstForm,
+  SigninSecondForm,
+  TagInput,
+  TextLabel,
+} from 'components/index';
 import x from 'assets/icons/x.svg';
-import eyeOff from 'assets/icons/eye-off.svg';
 import welcomeLogo from 'assets/logo/welcome-logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { instance } from 'apis';
 import { useSigninFormActions, useSigninFormData } from 'store/signInData';
-
-interface FormData {
-  userId: string;
-  password: string;
-  validPassword: string;
-  universityName: string;
-  universityEmail: string;
-  styleTags: string[];
-}
+import { SigninFormData } from 'types/types';
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
@@ -25,12 +25,9 @@ const SignUp: React.FC = () => {
   //재학생 탭 갔다올 때 location 확인
   const [activeIndex, setActiveIndex] = useState(state?.tab || 0);
   //아이디, 비밀번호, 이메일 유효성 확인
-  const [showPassword, setShowPassword] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
   const [emailValid, setEmailValid] = useState(true);
-  const [lengthValid, setLengthValid] = useState(false);
-  const [numberValid, setNumberValid] = useState(false);
-  const [uppercaseValid, setUppercaseValid] = useState(false);
+
   //약관 동의 체크박스
   const [allAgreed, setAllAgreed] = useState(false);
   //유효성 확인 후 버튼 색 변경
@@ -42,7 +39,7 @@ const SignUp: React.FC = () => {
   const { setSignInFormData } = useSigninFormActions();
   const signinFormData = useSigninFormData();
 
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<SigninFormData>({
     userId: '',
     password: '',
     validPassword: '',
@@ -77,26 +74,6 @@ const SignUp: React.FC = () => {
     console.log(response.data);
   };
 
-  /*재학생 인증 */
-  const postVerificationEmail = async () => {
-    try {
-      console.log({
-        universityName: formData.universityName,
-        email: formData.universityEmail,
-      });
-      alert('인증번호가 발송되었습니다.');
-      navigate('/student-certification');
-      const response = await instance.post('/university/certify', {
-        universityName: formData.universityName,
-        email: formData.universityEmail,
-      });
-
-      console.log(response.data);
-    } catch (error) {
-      console.error('인증번호 발송 실패', error);
-    }
-  };
-
   /*입력창 변경시 */
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -109,7 +86,6 @@ const SignUp: React.FC = () => {
     setSignInFormData({
       [name]: value,
     });
-    console.log(formData);
 
     if (name === 'universityEmail') {
       const isValid = isValidEmail(value);
@@ -126,22 +102,6 @@ const SignUp: React.FC = () => {
         setValidPassword(true);
       }
     }
-  };
-
-  /*비밀번호 유효성 체크 */
-  useEffect(() => {
-    const lengthCheck = formData.password.length >= 8 && formData.password.length <= 16;
-    const numberCheck = /\d/.test(formData.password);
-    const uppercaseCheck = /[A-Z]/.test(formData.password);
-
-    setLengthValid(lengthCheck);
-    setNumberValid(numberCheck);
-    setUppercaseValid(uppercaseCheck);
-  }, [formData.password]);
-
-  /**비밀번호 보이는 버튼 */
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
   };
 
   /*이메일 유효성 체크 */
@@ -189,190 +149,68 @@ const SignUp: React.FC = () => {
     switch (activeIndex) {
       case 0: // 아이디와 비밀번호 입력 탭
         return (
-          <>
-            <S.PasswordInputWrapper>
-              <TextLabel
-                text={'회원가입'}
-                size={24}
-                $weight={700}
-                color={'var(--grey-7)'}
-              ></TextLabel>
-            </S.PasswordInputWrapper>
-
-            <S.PasswordInputWrapper>
-              <TextLabel
-                text={'아이디'}
-                size={16}
-                $weight={500}
-                color={'var(--grey-7)'}
-              ></TextLabel>
-
-              <S.LoginInput
-                name="userId"
-                type={'text'}
-                placeholder="아이디 입력"
-                value={formData.userId}
-                onChange={handleInputChange}
-              />
-            </S.PasswordInputWrapper>
-
-            <S.PasswordInputWrapper>
-              <TextLabel
-                text={'비밀번호'}
-                size={16}
-                $weight={500}
-                color={'var(--grey-7)'}
-              ></TextLabel>
-
-              <S.LoginInput
-                name="password"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="비밀번호"
-                value={formData.password}
-                onChange={handleInputChange}
-              />
-              <S.EyeIcon src={eyeOff} alt="eye" onClick={togglePasswordVisibility} />
-
-              <S.Checklist>
-                <S.CheckItem valid={uppercaseValid}>대문자</S.CheckItem>
-                <S.CheckItem valid={numberValid}>숫자</S.CheckItem>
-                <S.CheckItem valid={lengthValid}>8~16자 이내</S.CheckItem>
-              </S.Checklist>
-            </S.PasswordInputWrapper>
-
-            <S.PasswordInputWrapper>
-              <TextLabel
-                text={'비밀번호 확인'}
-                size={16}
-                $weight={500}
-                color={'var(--grey-7)'}
-              ></TextLabel>
-
-              <S.LoginInput
-                name="validPassword"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="비밀번호 재입력"
-                value={formData.validPassword}
-                onChange={handleInputChange}
-              />
-              <S.EyeIcon src={eyeOff} alt="eye" onClick={togglePasswordVisibility} />
-              {formData.validPassword && (
-                <S.PasswordError>
-                  {validPassword ? '' : '비밀번호가 일치하지 않습니다.'}
-                </S.PasswordError>
-              )}
-            </S.PasswordInputWrapper>
-            <S.ButtonWrapper>
-              <Button
-                handleOnClick={goToNextTab}
-                children="다음"
-                width="100%"
-                $padding="16px"
-                fontSize="18px"
-                $bgcolor={buttonColor.$backgroundColor}
-                color={buttonColor.color}
-              />
-            </S.ButtonWrapper>
-          </>
+          <SigninFirstForm
+            formData={formData}
+            handleInputChange={handleInputChange}
+            goToNextTab={goToNextTab}
+            validPassword={validPassword}
+            buttonColor={buttonColor}
+          />
         );
       case 1: // 재학생 인증 탭
         return (
-          <>
-            <S.PasswordInputWrapper>
-              <TextLabel
-                text={'재학생 인증'}
-                size={24}
-                $weight={700}
-                color={'var(--grey-7)'}
-              ></TextLabel>
-            </S.PasswordInputWrapper>
-
-            <S.PasswordInputWrapper>
-              <TextLabel
-                text={'학교 이름'}
-                size={16}
-                $weight={500}
-                color={'var(--grey-7)'}
-              ></TextLabel>
-
-              <S.LoginInput
-                name="universityName"
-                type={'text'}
-                placeholder="동국대학교"
-                value={formData.universityName}
-                onChange={handleInputChange}
-              />
-
-              <TextLabel
-                text={'학교 이메일'}
-                size={16}
-                $weight={500}
-                color={'var(--grey-7)'}
-              ></TextLabel>
-
-              <S.LoginInput
-                name="universityEmail"
-                type={'text'}
-                placeholder="honggildong@dgu.ac.kr"
-                value={formData.universityEmail}
-                onChange={handleInputChange}
-              />
-              {!emailValid && <S.PasswordError>유효하지 않은 이메일 형식입니다.</S.PasswordError>}
-            </S.PasswordInputWrapper>
-
-            <S.ButtonWrapper>
-              <Button
-                handleOnClick={postVerificationEmail}
-                children="다음"
-                width="100%"
-                $padding="16px"
-                fontSize="18px"
-                $bgcolor={buttonColor.$backgroundColor}
-                color={buttonColor.color}
-              />
-            </S.ButtonWrapper>
-          </>
+          <SigninSecondForm
+            formData={formData}
+            handleInputChange={handleInputChange}
+            emailValid={emailValid}
+            buttonColor={buttonColor}
+          />
         );
       case 2: //스타일 태그 선택 탭
         return (
           <>
-            <S.PasswordInputWrapper>
+            <S.Padding30px>
               <TextLabel
                 text={'스타일 태그 선택'}
                 size={24}
                 $weight={700}
                 color={'var(--grey-7)'}
               ></TextLabel>
-            </S.PasswordInputWrapper>
-            <TagInput
-              handleChangeStyleTag={handleChangeStyleTag}
-              label="스타일 태그 선택"
-              setButtonColor={setButtonColor}
-            />
-            <S.ButtonWrapper>
-              <Button
-                handleOnClick={goToNextTab}
-                children="다음"
-                width="100%"
-                $padding="16px"
-                fontSize="18px"
-                $bgcolor={buttonColor.$backgroundColor}
-                color={buttonColor.color}
+            </S.Padding30px>
+
+            <S.Container>
+              <TagInput
+                handleChangeStyleTag={handleChangeStyleTag}
+                label="스타일 태그 선택"
+                setButtonColor={setButtonColor}
               />
-            </S.ButtonWrapper>
+              <S.ButtonWrapper>
+                <Button
+                  handleOnClick={goToNextTab}
+                  children="다음"
+                  width="100%"
+                  $padding="16px"
+                  fontSize="18px"
+                  $bgcolor={buttonColor.$backgroundColor}
+                  color={buttonColor.color}
+                />
+              </S.ButtonWrapper>
+            </S.Container>
           </>
         );
 
       case 3: //약관 동의
         return (
           <>
-            <S.PasswordInputWrapper>
+            <S.Padding30px>
               <TextLabel
                 text={'약관 동의'}
                 size={24}
                 $weight={700}
                 color={'var(--grey-7)'}
               ></TextLabel>
+            </S.Padding30px>
+            <S.Container>
               <S.AgreeWrapper>
                 <Checkbox
                   label=""
@@ -409,21 +247,21 @@ const SignUp: React.FC = () => {
                   (선택) 혜택/이벤트 정보 수신 동의
                 </S.CheckItemLarge>
               </S.ChecklistColumn>
-            </S.PasswordInputWrapper>
-            <S.ButtonWrapper>
-              <Button
-                handleOnClick={() => {
-                  goToNextTab();
-                  postSignup();
-                }}
-                children="완료"
-                width="100%"
-                $padding="16px"
-                fontSize="18px"
-                $bgcolor={buttonColor.$backgroundColor}
-                color={buttonColor.color}
-              />
-            </S.ButtonWrapper>
+              <S.ButtonWrapper>
+                <Button
+                  handleOnClick={() => {
+                    goToNextTab();
+                    postSignup();
+                  }}
+                  children="완료"
+                  width="100%"
+                  $padding="16px"
+                  fontSize="18px"
+                  $bgcolor={buttonColor.$backgroundColor}
+                  color={buttonColor.color}
+                />
+              </S.ButtonWrapper>
+            </S.Container>
           </>
         );
       case 4: //회원가입 완료
@@ -438,18 +276,18 @@ const SignUp: React.FC = () => {
                 $weight={500}
                 $textAlign="center"
               />
+              <S.ButtonWrapper>
+                <Button
+                  handleOnClick={() => navigate('/login')}
+                  children="로그인 하러 가기"
+                  width="100%"
+                  $padding="16px"
+                  fontSize="18px"
+                  $bgcolor={'var(--green-primary)'}
+                  color={'#ffffff'}
+                />
+              </S.ButtonWrapper>
             </S.FlexCenter>
-            <S.ButtonWrapper>
-              <Button
-                handleOnClick={() => navigate('/login')}
-                children="로그인 하러 가기"
-                width="100%"
-                $padding="16px"
-                fontSize="18px"
-                $bgcolor={'var(--green-primary)'}
-                color={'#ffffff'}
-              />
-            </S.ButtonWrapper>
           </>
         );
       default:
