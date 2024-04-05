@@ -51,6 +51,6 @@ export const TableHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
-  padding: 0 20px;
+  margin-top: 14px;
+  padding: 0 30px;
 `;

@@ -36,23 +36,26 @@ const DonationHistory = () => {
     <S.Container>
       <Header>
         <ButtonBack className="left" $marginLeft="10px" />
-        <TextLabel text={'기부 내역'} size={18} $weight={500} />
+        <TextLabel size={18} $weight={500}>
+          기부 내역
+        </TextLabel>
       </Header>
+
       <S.TableHeader>
-        <TextLabel
-          text={`총 ${donationData.length}개`}
-          size={13}
-          $weight={400}
-          color={'var(--grey-6)'}
-        />
+        <TextLabel size={13} $weight={400} color={'var(--grey-6)'}>
+          총 {donationData.length}개
+        </TextLabel>
         <Checkbox
           label="완료된 내역만 보기"
           id={'complete'}
+          $circleSize="15px"
+          $fontSize={13}
           checked={showCompletedOnly}
           setIsChecked={setShowCompletedOnly}
           color={'var(--grey-6)'}
         />
       </S.TableHeader>
+
       <S.Table>
         <S.TableHead>
           <S.TableRow>
