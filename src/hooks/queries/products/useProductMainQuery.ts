@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
+import { salesData } from 'data/shared';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 
@@ -12,6 +13,7 @@ const getProductListData = async (category: string, onSale: string | null) => {
     return response.data.content;
   } catch (e) {
     console.log('물품 리스트 불러오기 실패 ', e);
+    return salesData;
   }
 };
 
