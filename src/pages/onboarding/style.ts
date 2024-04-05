@@ -54,7 +54,7 @@ export const BoxFlex = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0 0 auto; /* Flex 아이템이 자동으로 크기를 조절하지 않도록 설정 */
-  margin-top: 50px;
+  // margin-top: 50px;
   width: 100%;
   height: auto;
   scroll-snap-align: start; /* 스크롤 단위로 스냅하도록 설정 */
@@ -65,7 +65,7 @@ export const BoxImage = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 300px;
+  height: 250px;
 `;
 
 export const DotContainer = styled.div`
@@ -97,5 +97,5 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: calc(var(--header-size) + var(--content-size));
+  height: calc(100svh - 86px);
 `;

@@ -1,8 +1,8 @@
-import * as S from "./style";
-import { Button } from "components/index";
-import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { onboardingData } from "data/shared";
+import * as S from './style';
+import { Button } from 'components/index';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { onboardingData } from 'data/shared';
 
 const Onboarding = () => {
   const navigate = useNavigate();
@@ -18,9 +18,7 @@ const Onboarding = () => {
 
   const handleScroll = () => {
     if (carouselRef.current !== null) {
-      const index = Math.round(
-        carouselRef.current.scrollLeft / carouselRef.current.offsetWidth
-      );
+      const index = Math.round(carouselRef.current.scrollLeft / carouselRef.current.offsetWidth);
       setActiveIndex(index);
     }
   };
@@ -29,7 +27,7 @@ const Onboarding = () => {
     if (carouselRef.current !== null) {
       carouselRef.current.scrollTo({
         left: index * carouselRef.current.offsetWidth,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
 
       setTimeout(() => {
@@ -52,8 +50,7 @@ const Onboarding = () => {
 
     // 오른쪽으로 충분히 스와이프 했다면 이전 슬라이드로 이동
     if (direction > threshold) {
-      const newIndex =
-        activeIndex + 1 < onboardingData.length ? activeIndex + 1 : activeIndex;
+      const newIndex = activeIndex + 1 < onboardingData.length ? activeIndex + 1 : activeIndex;
       handleDotClick(newIndex);
     }
     // 왼쪽으로 충분히 스와이프 했다면 다음 슬라이드로 이동
@@ -79,8 +76,7 @@ const Onboarding = () => {
     const direction = startX - endX;
 
     if (direction > threshold) {
-      const newIndex =
-        activeIndex + 1 < onboardingData.length ? activeIndex + 1 : activeIndex;
+      const newIndex = activeIndex + 1 < onboardingData.length ? activeIndex + 1 : activeIndex;
       handleDotClick(newIndex);
     } else if (direction < -threshold) {
       const newIndex = activeIndex - 1 >= 0 ? activeIndex - 1 : activeIndex;
@@ -119,17 +115,10 @@ const Onboarding = () => {
         <S.DotContainer>
           {onboardingData.map((_, index) => {
             const bol = index === activeIndex;
-            return (
-              <S.Dot
-                key={index}
-                $bol={bol}
-                onClick={() => handleDotClick(index)}
-              />
-            );
+            return <S.Dot key={index} $bol={bol} onClick={() => handleDotClick(index)} />;
           })}
         </S.DotContainer>
       </S.Content>
-
       {activeIndex === 3 && (
         <S.BoxButton>
           <Button
@@ -138,7 +127,7 @@ const Onboarding = () => {
             color="white"
             $padding="16px"
             $fontWeight="bold"
-            handleOnClick={() => navigate("/login")}
+            handleOnClick={() => navigate('/login')}
           >
             시작하기
           </Button>
