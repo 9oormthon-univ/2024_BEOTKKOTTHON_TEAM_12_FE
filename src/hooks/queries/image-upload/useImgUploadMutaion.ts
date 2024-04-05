@@ -4,7 +4,7 @@ import { SetStateAction } from 'react';
 import { useFormDataActions } from 'store/formData';
 
 const postImgUpload = async (sendData: FormData) => {
-  const response = await instance.post('http://43.201.189.171:8080/api/upload', sendData, {
+  const response = await instance.post('/upload', sendData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },

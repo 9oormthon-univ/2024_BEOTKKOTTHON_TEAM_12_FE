@@ -1,4 +1,4 @@
-import { ButtonBack, FilterTrade, ListTag, ListTradeItems, Search } from 'components/index';
+import { FilterTrade, ListTag, ListTradeItems, Search } from 'components/index';
 import * as S from './style';
 import back from 'assets/icons/arrow_left_alt.svg';
 import { Link } from 'react-router-dom';
