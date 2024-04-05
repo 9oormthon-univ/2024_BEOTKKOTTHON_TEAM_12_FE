@@ -11,7 +11,7 @@ const DonationHomeless = () => {
       to="/donation/homeless/map"
     >
       <S.MainText>
-        <TextLabel className="title" color="white" size={13}>
+        <TextLabel className="green-title" color="white" size={16}>
           우리 지역 노숙인의 ‘홀로서기’를 응원해주세요.
         </TextLabel>
         <p className="description">
@@ -24,7 +24,7 @@ const DonationHomeless = () => {
         <p className="main-title">더 큰 나눔을 위해 판매 가능한 물품을 기부해주세요.</p>
         <ul className="notice-list">
           <li>
-            기부물품은 센터로 입고된 후에는 다시 찾기 어려우므로 기부하기 전에 한번 더 확인해주세요.{' '}
+            기부물품은 센터로 입고된 후에는 다시 찾기 어려우므로 기부하기 전에 한번 더 확인해주세요.
           </li>
         </ul>
       </S.BoxText>

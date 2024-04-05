@@ -30,22 +30,27 @@ export const BoxText = styled.div`
 `;
 
 export const MainText = styled.div`
-  background-color: var(--grey-2);
   padding: 16px 20px;
+  background-color: var(--grey-2);
+  margin-left: -20px;
+  margin-right: -20px;
 
-  .description {
-    color: var(--grey-7);
-    font-size: 12px;
-    line-height: 24px;
-  }
-
-  .title {
+  .green-title {
     width: fit-content;
     font-size: 15px;
     font-weight: bold;
     line-height: 20px;
+    letter-spacing: -0.4px;
     background-color: var(--green-6);
     color: white;
     margin-bottom: 10px;
+  }
+
+  .description {
+    color: var(--grey-7);
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: -1px;
   }
 `;
