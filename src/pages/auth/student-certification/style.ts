@@ -18,6 +18,8 @@ export const Logo = styled.img`
 `;
 
 export const ButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 80px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;

@@ -107,3 +107,13 @@ export interface DonationFormData {
   fashion_count: number;
   box_count: number;
 }
+
+//회원가입 폼 데이터
+export interface SigninFormData {
+  userId: '';
+  password: '';
+  validPassword: '';
+  universityName: '';
+  universityEmail: '';
+  styleTags: string[];
+}
