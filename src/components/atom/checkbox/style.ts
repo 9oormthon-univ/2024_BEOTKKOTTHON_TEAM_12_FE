@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import checkIcon from "assets/icons/check-icon.svg";
+import styled from 'styled-components';
+import checkIcon from 'assets/icons/check-icon.svg';
 
 export const CheckboxContainer = styled.div`
   display: flex;
@@ -10,20 +10,20 @@ export const CheckboxContainer = styled.div`
 export const CheckboxLabel = styled.label<{
   color?: string;
 }>`
-  margin-left: 8px;
+  margin-left: 2px;
   font-size: 12px;
-  color: ${({ color }) => color || "var(--grey-7)"};
+  color: ${({ color }) => color || 'var(--grey-7)'};
   user-select: none;
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
 `;
 
-export const CustomCheckbox = styled.input`
+export const CustomCheckbox = styled.input<{ $circleSize: string }>`
   position: relative;
   display: flex;
   align-items: center;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: ${(props) => props.$circleSize || '18px'};
+  height: ${(props) => props.$circleSize || '18px'};
   border-radius: 50%;
   border: 1px solid var(--grey-4);
   cursor: pointer;
@@ -36,7 +36,7 @@ export const CustomCheckbox = styled.input`
   }
 
   &::before {
-    content: "";
+    content: '';
     color: transparent;
     display: block;
     width: inherit;
@@ -47,12 +47,12 @@ export const CustomCheckbox = styled.input`
   }
 
   &:checked::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 55%;
-    left: 50%;
-    width: 15px;
-    height: 15px;
+    left: 55%;
+    width: ${(props) => (props.$circleSize ? '13px' : '15px')};
+    height: ${(props) => (props.$circleSize ? '13px' : '15px')};
 
     background-image: url(${checkIcon});
     background-size: contain;
