@@ -1,36 +1,32 @@
 import { useEffect, useState } from 'react';
 import * as S from './style';
-import { ButtonBack, Checkbox, Header, TextLabel } from 'components/index';
-import { instance } from 'apis';
-
-type donationDataType = {
-  id: number;
-  date: string;
-  clothes_count: number;
-  fashion_count: number;
-  is_donation_complete: boolean;
-};
+import {
+  ButtonBack,
+  Checkbox,
+  Header,
+  Loading,
+  TableDonationHistory,
+  TextLabel,
+} from 'components/index';
+import { useDonationHistoryQuery } from 'hooks/queries/user/useDonationHistoryQuery';
+import { DonationDataType } from 'types/types';
+import { useCompletedDonationHistoryQuery } from 'hooks/queries/user/useCompletedDonationHistoryQuery';
 
 const DonationHistory = () => {
-  const [donationData, setDonationData] = useState<donationDataType[]>([]);
-
-  const userId = localStorage.getItem('userId');
-
-  const getDonationHistory = async () => {
-    try {
-      const response = await instance.get(`/users/myDonations/${userId}`);
-      console.log('기부 내역 불러오기 성공:', response.data);
-      setDonationData(response.data);
-    } catch (error) {
-      console.error('기부 내역 불러오기 실패:', error);
-    }
-  };
+  const [donationData, setDonationData] = useState<DonationDataType[]>([]);
+  const donationHistoryQuery = useDonationHistoryQuery();
+  const completedDonationHistoryQuery = useCompletedDonationHistoryQuery();
+  const [showCompletedOnly, setShowCompletedOnly] = useState(false);
 
   useEffect(() => {
-    getDonationHistory();
-  }, []);
+    if (showCompletedOnly && completedDonationHistoryQuery.data) {
+      setDonationData(completedDonationHistoryQuery.data);
+    } else if (!showCompletedOnly && donationHistoryQuery.data) {
+      setDonationData(donationHistoryQuery.data);
+    }
+  }, [showCompletedOnly, completedDonationHistoryQuery.data, donationHistoryQuery.data]);
 
-  const [showCompletedOnly, setShowCompletedOnly] = useState(false);
+  if (donationHistoryQuery.isLoading || completedDonationHistoryQuery.isLoading) return <Loading />;
 
   return (
     <S.Container>
@@ -56,37 +52,7 @@ const DonationHistory = () => {
         />
       </S.TableHeader>
 
-      <S.Table>
-        <S.TableHead>
-          <S.TableRow>
-            <S.TableHeaderCell>기증일자</S.TableHeaderCell>
-            <S.TableHeaderCell>기증내역</S.TableHeaderCell>
-            <S.TableHeaderCell>진행상태</S.TableHeaderCell>
-          </S.TableRow>
-        </S.TableHead>
-        <tbody>
-          {donationData
-            .filter((row) => !showCompletedOnly || row.is_donation_complete)
-            .map((row, index) => {
-              console.log(row);
-              return (
-                <S.TableRow key={index}>
-                  <S.TableCell>{row.date}</S.TableCell>
-                  <S.TableCell>
-                    의류 {row.clothes_count} / 잡화 {row.fashion_count}
-                  </S.TableCell>
-                  <S.TableCell
-                    style={{
-                      color: row.is_donation_complete ? 'var(--green-primary)' : '',
-                    }}
-                  >
-                    {row.is_donation_complete ? '완료' : '진행 중'}
-                  </S.TableCell>
-                </S.TableRow>
-              );
-            })}
-        </tbody>
-      </S.Table>
+      <TableDonationHistory donationData={donationData} />
     </S.Container>
   );
 };

@@ -107,3 +107,12 @@ export interface DonationFormData {
   fashion_count: number;
   box_count: number;
 }
+
+// 기부 목록 타입
+export interface DonationDataType {
+  id: number;
+  date: string;
+  clothes_count: number;
+  fashion_count: number;
+  is_donation_complete: boolean;
+}
