@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as S from './style';
-import {
-  ButtonBack,
-  Checkbox,
-  Header,
-  Loading,
-  TableDonationHistory,
-  TextLabel,
-} from 'components/index';
+import { ButtonBack, Checkbox, Header, TableDonationHistory, TextLabel } from 'components/index';
 import { useDonationHistoryQuery } from 'hooks/queries/user/useDonationHistoryQuery';
 import { DonationDataType } from 'types/types';
 import { useCompletedDonationHistoryQuery } from 'hooks/queries/user/useCompletedDonationHistoryQuery';
@@ -26,7 +19,7 @@ const DonationHistory = () => {
     }
   }, [showCompletedOnly, completedDonationHistoryQuery.data, donationHistoryQuery.data]);
 
-  if (donationHistoryQuery.isLoading || completedDonationHistoryQuery.isLoading) return <Loading />;
+  const isLoading = donationHistoryQuery.isLoading || completedDonationHistoryQuery.isLoading;
 
   return (
     <S.Container>
@@ -52,7 +45,7 @@ const DonationHistory = () => {
         />
       </S.TableHeader>
 
-      <TableDonationHistory donationData={donationData} />
+      <TableDonationHistory isLoading={isLoading} donationData={donationData} />
     </S.Container>
   );
 };
