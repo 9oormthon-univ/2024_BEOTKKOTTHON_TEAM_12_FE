@@ -23,7 +23,9 @@ const DonationInpersonVisit = () => {
       case 0: // 아이디와 비밀번호 입력 탭
         return (
           <S.TabContent>
-            <TextLabel text="기부시 주의사항을 확인해주세요" size={21} $weight={700} />
+            <TextLabel size={21} $weight={700}>
+              기부시 주의사항을 확인해주세요
+            </TextLabel>
             <S.BoxText>
               <p className="main-title">더 큰 나눔을 위해 판매 가능한 물품을 기부해주세요.</p>
               <ul className="notice-list">
@@ -70,11 +72,9 @@ const DonationInpersonVisit = () => {
         return (
           <>
             <S.TabContent>
-              <TextLabel
-                text={'내 위치에서 가까운 기부 장소를\n 알려드릴게요'}
-                size={21}
-                $weight={700}
-              />
+              <TextLabel size={21} $weight={700}>
+                내 위치에서 가까운 기부 장소를 알려드릴게요
+              </TextLabel>
             </S.TabContent>
             <KakaoMap str={'아름다운 가게'} />
           </>

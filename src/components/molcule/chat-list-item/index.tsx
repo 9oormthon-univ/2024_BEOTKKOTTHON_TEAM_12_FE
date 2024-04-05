@@ -30,11 +30,9 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatRooms, isWear }) => {
           <S.ChatImage src={chat.user_profile_image} alt="Profile" />
           <S.ChatDetails>
             <S.SenderName>
-              <TextLabel
-                text={chat.user_nick_name}
-                $weight={chat.user_level ? 500 : 700}
-                size={14}
-              />
+              <TextLabel $weight={chat.user_level ? 500 : 700} size={14}>
+                {chat.user_nick_name}
+              </TextLabel>
               {chat.user_level && <img src={levelUrlArr(chat.user_level)} alt="level" />}
             </S.SenderName>
             <S.LastMessage>{chat.last_massage ? chat.last_massage : ''}</S.LastMessage>

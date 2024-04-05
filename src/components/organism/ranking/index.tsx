@@ -10,17 +10,16 @@ const Ranking = () => {
     <S.Container>
       <S.Header>
         <div className="title">
-          <TextLabel
-            text="대학교별 환경 점수 TOP 5"
-            size={16}
-            $weight={700}
-            color="var(--grey-7)"
-          />
+          <TextLabel size={16} $weight={700} color="var(--grey-7)">
+            대학교별 환경 점수 TOP 5
+          </TextLabel>
 
           <img src={levelUrlArr('새싹')} alt="icon" />
         </div>
         <div className="time">
-          <TextLabel text={'03.11 16:00 기준'} size={12} $weight={300} color="var(--grey-5)" />
+          <TextLabel size={12} $weight={300} color="var(--grey-5)">
+            03.11 16:00 기준
+          </TextLabel>
         </div>
       </S.Header>
 

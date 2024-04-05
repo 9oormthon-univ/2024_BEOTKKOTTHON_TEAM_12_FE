@@ -170,12 +170,9 @@ const SignUp: React.FC = () => {
         return (
           <>
             <S.Padding30px>
-              <TextLabel
-                text={'스타일 태그 선택'}
-                size={24}
-                $weight={700}
-                color={'var(--grey-7)'}
-              ></TextLabel>
+              <TextLabel size={24} $weight={700} color={'var(--grey-7)'}>
+                스타일 태그 선택
+              </TextLabel>
             </S.Padding30px>
 
             <S.Container>
@@ -203,12 +200,9 @@ const SignUp: React.FC = () => {
         return (
           <>
             <S.Padding30px>
-              <TextLabel
-                text={'약관 동의'}
-                size={24}
-                $weight={700}
-                color={'var(--grey-7)'}
-              ></TextLabel>
+              <TextLabel size={24} $weight={700} color={'var(--grey-7)'}>
+                약관 동의
+              </TextLabel>
             </S.Padding30px>
             <S.Container>
               <S.AgreeWrapper>
@@ -220,20 +214,13 @@ const SignUp: React.FC = () => {
                 />
                 <S.ColumnWrapper>
                   <label htmlFor="allAgree">
-                    <TextLabel
-                      text={'모두 동의합니다'}
-                      size={14}
-                      $weight={700}
-                      color={'var(--grey-7)'}
-                    />
-                    <TextLabel
-                      text={
-                        '전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며, \n개별적으로도 동의를 선택하실 수 있습니다.'
-                      }
-                      size={12}
-                      $weight={400}
-                      color={'var(--grey-5)'}
-                    />
+                    <TextLabel size={14} $weight={700} color={'var(--grey-7)'}>
+                      모두 동의합니다
+                    </TextLabel>
+                    <TextLabel size={12} $weight={400} color={'var(--grey-5)'}>
+                      <p>전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며,</p>
+                      <p>개별적으로도 동의를 선택하실 수 있습니다.</p>
+                    </TextLabel>
                   </label>
                 </S.ColumnWrapper>
               </S.AgreeWrapper>
@@ -269,13 +256,9 @@ const SignUp: React.FC = () => {
           <>
             <S.FlexCenter>
               <img src={welcomeLogo} alt="회원가입 완료" />
-              <TextLabel
-                text={'회원가입이 완료되었습니다'}
-                color="var(--green-primary)"
-                size={15}
-                $weight={500}
-                $textAlign="center"
-              />
+              <TextLabel color="var(--green-primary)" size={15} $weight={500} $textAlign="center">
+                회원가입이 완료되었습니다
+              </TextLabel>
               <S.ButtonWrapper>
                 <Button
                   handleOnClick={() => navigate('/login')}
