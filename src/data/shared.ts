@@ -23,20 +23,6 @@ export const searches = ['자라', 'H&M', '지오다노', '유니클로', '에�
 export const priceList = ['+1,000원', '+3,000원', '+5,000원', '+10,000원'];
 export const placeList = ['정문', '올레사거리', '후문', '혜화역'];
 
-// 유저 정보
-export const userProfile = {
-  user_name: '김서영',
-  nick_name: '김스옹',
-  university_name: '성균관대학교 서울캠퍼스',
-  university_email: 'wear@wear.com',
-  style: ['캐주얼', '빈티지', '페미닌'],
-  profile_image: noImg,
-  level: '새싹',
-  next_level: '목화',
-  point: 20,
-  remain_level_point: 80,
-};
-
 // 판매 상품 데이터
 export const salesData: Product[] = [
   {

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ProductListItem } from 'types/types';
 import * as S from './style';
 import ModalProduct from 'components/molcule/modal-product';
 import BoxItemTrade from 'components/molcule/box-item-trade';
@@ -9,6 +8,7 @@ import { useSalesProductQuery } from 'hooks/queries/user/useSalesProductQuery';
 import { useProductList } from 'store/productListData';
 import { usePostSalesCompletedMutation } from 'hooks/queries/user/usePostSalesCompletedMutation';
 import { Loading } from 'components';
+import { ProductListItem } from 'types/productType';
 
 const ListSalesInprogress: React.FC = () => {
   const salesProductQuery = useSalesProductQuery();
