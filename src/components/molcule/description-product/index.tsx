@@ -1,13 +1,11 @@
-import { Product } from 'types/types';
 import * as S from './style';
 import stategrey from 'assets/icons/state_grey.svg';
 import stategreen from 'assets/icons/state_green.svg';
+import { ProductDetailItem } from 'types/productType';
 
 interface DescriptionProductProps {
-  product: Product;
+  product: ProductDetailItem;
 }
-
-// product를 사용하는 것이 아닌 서버에서 보내온 정보를 사용
 
 const DescriptionProduct = ({ product }: DescriptionProductProps) => {
   const circleUrl = product.product_status === '아주 좋아요' ? stategreen : stategrey;
@@ -20,7 +18,7 @@ const DescriptionProduct = ({ product }: DescriptionProductProps) => {
         <img src={circleUrl} alt="none-trade" />
 
         <p className="state">상품 상태 : {product.product_status}</p>
-        <p className="time">30분 전</p>
+        <p className="time">{product.time}</p>
       </S.SubTitle>
 
       <p className="description">{product.product_content}</p>

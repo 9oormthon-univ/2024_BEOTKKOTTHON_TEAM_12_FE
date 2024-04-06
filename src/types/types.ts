@@ -1,31 +1,15 @@
 import React from 'react';
+import { ProductListItem } from './productType';
 
 export interface TabItemProps {
   label: string;
   // count: number;
   ContentComponent: React.ComponentType;
 }
-/*상품 리스트에만 사용되는 제품 타입 */
-export interface ProductListItem {
-  id: number;
-  price: number;
-  product_name: string;
-  product_status: string;
-  post_status: string;
-  product_image: string;
-  is_selected?: boolean;
-}
+
 /**리스트에 필요한 상품 데이터 prop */
 export interface ProductProp {
   productData: ProductListItem[];
-}
-
-/*차단한 사용자 타입 */
-export interface BlockUser {
-  blocked_user_id: number;
-  blocked_user_name: string;
-  levelImg: string;
-  blocked_user_profile_image: string;
 }
 
 export interface Seller {

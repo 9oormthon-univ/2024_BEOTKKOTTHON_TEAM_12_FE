@@ -1,4 +1,3 @@
-import { Product } from 'types/types';
 import * as S from './style';
 import heart from 'assets/icons/heart.svg';
 import { Button } from 'components/index';
@@ -6,9 +5,10 @@ import { transformPrice } from 'utils/transformPrice';
 import { useNavigate } from 'react-router-dom';
 import { instance } from 'apis';
 import { useEffect, useState } from 'react';
+import { ProductDetailItem } from 'types/productType';
 
 interface FooterProductDetailProps {
-  product: Product;
+  product: ProductDetailItem;
 }
 
 const FooterProductDetail = ({ product }: FooterProductDetailProps) => {

@@ -1,5 +1,5 @@
-import { ProductListItem } from "types/types";
-import { create } from "zustand";
+import { ProductListItem } from 'types/productType';
+import { create } from 'zustand';
 
 interface Actions {
   setInitialProductList: (newProductList: ProductListItem[]) => void;
@@ -16,26 +16,21 @@ interface ProductListDataStore {
 
 export const useProductListData = create<ProductListDataStore>((set) => ({
   productList: [],
-  activeCategory: "전체",
+  activeCategory: '전체',
   clickedOnSale: null,
 
   actions: {
-    setInitialProductList: (newProductList) =>
-      set(() => ({ productList: [...newProductList] })),
+    setInitialProductList: (newProductList) => set(() => ({ productList: [...newProductList] })),
     setActiveCategory: (category) => set(() => ({ activeCategory: category })),
     setClickedOnSale: () =>
       set((state) => ({
-        clickedOnSale: state.clickedOnSale === null ? "onSale" : null,
+        clickedOnSale: state.clickedOnSale === null ? 'onSale' : null,
       })),
   },
 }));
 
-export const useProductList = () =>
-  useProductListData((state) => state.productList);
-export const useActiveCategory = () =>
-  useProductListData((state) => state.activeCategory);
-export const useClickedOnSale = () =>
-  useProductListData((state) => state.clickedOnSale);
+export const useProductList = () => useProductListData((state) => state.productList);
+export const useActiveCategory = () => useProductListData((state) => state.activeCategory);
+export const useClickedOnSale = () => useProductListData((state) => state.clickedOnSale);
 
-export const useProductListActions = () =>
-  useProductListData((state) => state.actions);
+export const useProductListActions = () => useProductListData((state) => state.actions);

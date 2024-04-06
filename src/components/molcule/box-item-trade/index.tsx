@@ -1,4 +1,3 @@
-import { ProductListItem } from 'types/types';
 import * as S from './style';
 import stategrey from 'assets/icons/state_grey.svg';
 import stategreen from 'assets/icons/state_green.svg';
@@ -6,7 +5,7 @@ import defaultImg from 'assets/images/product-default-img.png';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
 import { truncatedName } from 'utils/truncatedName';
-import { changeStringToArr } from 'utils/changeStringToArr';
+import { ProductListItem } from 'types/productType';
 
 interface SaleItemProps {
   product: ProductListItem;
@@ -32,18 +31,12 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ product, $marginBottom }) => {
         //     : defaultImg
         // }
 
-        src={
-          product.product_image
-            ? product.product_image.includes('[')
-              ? changeStringToArr(product.product_image)[0].slice(1, -1)
-              : product.product_image
-            : defaultImg
-        }
+        src={product.product_image ? product.product_image[0] : defaultImg}
       />
       <S.BoxDescription>
         <S.Title>
           <p className="name">{truncatedName(product.product_name)}</p>
-          <p className="time">30분 전</p>
+          <p className="time">{product.time}</p>
         </S.Title>
 
         <S.State>

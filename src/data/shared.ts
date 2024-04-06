@@ -5,13 +5,6 @@ import donation from 'assets/onboarding/donation.svg';
 import earth from 'assets/onboarding/earth.svg';
 import tag from 'assets/onboarding/tag.svg';
 
-import productImg1 from 'assets/images/product-image1.svg';
-import productImg2 from 'assets/images/product-image2.svg';
-import productImg3 from 'assets/images/product-image3.svg';
-import productImg4 from 'assets/images/product-image4.svg';
-
-import noImg from '../assets/images/profile-no-image.png';
-
 // 유저 id
 export const userId = 1;
 
@@ -22,20 +15,6 @@ export const searches = ['자라', 'H&M', '지오다노', '유니클로', '에�
 // 상품 등록 폼 태그
 export const priceList = ['+1,000원', '+3,000원', '+5,000원', '+10,000원'];
 export const placeList = ['정문', '올레사거리', '후문', '혜화역'];
-
-// 유저 정보
-export const userProfile = {
-  user_name: '김서영',
-  nick_name: '김스옹',
-  university_name: '성균관대학교 서울캠퍼스',
-  university_email: 'wear@wear.com',
-  style: ['캐주얼', '빈티지', '페미닌'],
-  profile_image: noImg,
-  level: '새싹',
-  next_level: '목화',
-  point: 20,
-  remain_level_point: 80,
-};
 
 // 판매 상품 데이터
 export const salesData: Product[] = [
@@ -298,62 +277,4 @@ export const styleTags = [
   '스트릿',
   '섹시글램',
   '아메카지',
-];
-
-// 상품 리스트 데이터
-export const productList = [
-  {
-    id: 1,
-    price: 10000,
-    product_name: 'H&M 티셔츠 팔아요',
-    product_status: '아주 좋아요',
-    post_status: 'onSale',
-    product_image: productImg1,
-    is_selected: false,
-  },
-  {
-    id: 2,
-    price: 20000,
-    product_name: '안입는 옷 처분',
-    product_status: '아주 좋아요',
-    post_status: 'soldOut',
-    product_image: productImg2,
-    is_selected: false,
-  },
-  {
-    id: 3,
-    price: 30000,
-    product_name: 'ZARA 티셔츠',
-    product_status: '아주 좋아요',
-    post_status: 'onSale',
-    product_image: productImg3,
-    is_selected: false,
-  },
-  {
-    id: 4,
-    price: 15000,
-    product_name: '지오다노 티',
-    product_status: '보통이에요',
-    post_status: 'onSale',
-    product_image: productImg4,
-    is_selected: false,
-  },
-  {
-    id: 5,
-    price: 5,
-    product_name: 'RAV4',
-    product_status: '아주 좋아요',
-    post_status: 'onSale',
-    product_image: productImg2,
-    is_selected: false,
-  },
-  {
-    id: 6,
-    price: 6,
-    product_name: 'Grand Am',
-    product_status: '아주 좋아요',
-    post_status: 'onSale',
-    product_image: productImg1,
-    is_selected: false,
-  },
 ];

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import * as S from './style';
 import { Tag, TextLabel } from 'components/index';
-import { useUserProfileActions, useUserProfileInfo } from '../../../store/userData';
+import { useUserProfileActions } from '../../../store/userData';
 import { styleTags } from 'data/shared';
 import { useQueryClient } from '@tanstack/react-query';
 import { MypageUserType } from 'types/userType';
