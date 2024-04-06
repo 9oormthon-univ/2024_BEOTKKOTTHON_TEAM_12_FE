@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId, userProfile } from 'data/shared';
+import { userId } from 'data/shared';
+import { mypageUserDummyData } from 'data/user';
 import { useEffect } from 'react';
 import { useUserProfileActions } from 'store/userData';
 
@@ -11,7 +12,8 @@ const getUserData = async () => {
     return response.data;
   } catch (e) {
     console.error('마이페이지 불러오기 실패', e);
-    return userProfile;
+    const data = mypageUserDummyData();
+    return data;
   }
 };
 

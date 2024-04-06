@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { Checkbox, PasswordInput, Button } from '../../index';
 import { useNavigate } from 'react-router-dom';
+import { loginUserDummyData } from 'data/user';
 
 interface FormData {
   userId: string;
@@ -10,12 +11,16 @@ interface FormData {
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const user = loginUserDummyData();
   const [autoLoginChecked, setAutoLoginChecked] = useState(false);
   const [saveIdChecked, setSaveIdChecked] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
-    userId: '',
-    password: '',
+    // 로그인 기능 완성 시 복구 예정
+    // userId: '',
+    // password: '',
+    userId: user.user_created_id,
+    password: user.user_password,
   });
 
   const [buttonColor, setButtonColor] = useState({
