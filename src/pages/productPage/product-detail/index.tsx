@@ -10,10 +10,10 @@ import {
 import * as S from './style';
 import kebab from 'assets/icons/kebab.svg';
 import { useParams } from 'react-router-dom';
-import { Seller } from 'types/types';
 import { useState } from 'react';
 import { useProduct } from 'store/product';
 import { useProductDetailQuery } from 'hooks/queries/products/useProductDetailQuery';
+import { Seller } from 'types/productType';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -42,7 +42,7 @@ const ProductDetail = () => {
 
       <S.Content>
         <section className="profile">
-          <BoxProductProfile user={product.seller as Seller} />
+          <BoxProductProfile seller={product.seller as Seller} />
         </section>
 
         <S.SectionScroll>

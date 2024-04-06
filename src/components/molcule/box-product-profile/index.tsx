@@ -1,25 +1,25 @@
-import { ProfileAvatar } from "components/index";
-import * as S from "./style";
-import { levelUrlArr } from "utils/levelUrlArr";
-import { Seller } from "types/types";
+import { ProfileAvatar } from 'components/index';
+import * as S from './style';
+import { levelUrlArr } from 'utils/levelUrlArr';
+import { Seller } from 'types/productType';
 
 const data = {
-  time: "08/13 16:30",
+  time: '08/13 16:30',
 };
 
 interface BoxProductProfileProps {
-  user: Seller;
+  seller: Seller;
 }
 
-const BoxProductProfile = ({ user }: BoxProductProfileProps) => {
+const BoxProductProfile = ({ seller }: BoxProductProfileProps) => {
   return (
     <S.Container>
-      <ProfileAvatar imageUrl={user.profile_image} />
+      <ProfileAvatar imageUrl={seller.profile_image[0]} />
 
       <S.Profile>
         <div className="name">
-          <p>{user.nick_name}</p>
-          <img src={levelUrlArr(user.level)} alt="profile level" />
+          <p>{seller.nick_name}</p>
+          <img src={levelUrlArr(seller.level)} alt="profile level" />
         </div>
         <p className="time">{data.time}</p>
       </S.Profile>

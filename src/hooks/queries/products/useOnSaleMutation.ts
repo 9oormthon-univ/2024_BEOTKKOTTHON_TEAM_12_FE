@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
 import { useProductActions } from 'store/product';
-import { Product } from 'types/types';
+import { ProductDetailItem } from 'types/productType';
 
 const putOnSaleData = async (id: string, status: string) => {
   const isOnSale = status === 'onSale';
@@ -27,7 +27,7 @@ const putOnSaleData = async (id: string, status: string) => {
   }
 };
 
-export const useOnSaleMutation = (id: string, product: Product) => {
+export const useOnSaleMutation = (id: string, product: ProductDetailItem) => {
   const { updateOnSale } = useProductActions();
 
   return useMutation({

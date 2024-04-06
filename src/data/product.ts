@@ -11,6 +11,18 @@ const productData = {
   ],
   is_selected: true,
   time: '6시간 전',
+
+  product_content: '한 번밖에 안 입었어요',
+  place: '후문',
+  created_time: '2024/04/04 15:03',
+  seller: {
+    id: 1,
+    nick_name: '미정',
+    profile_image: [
+      'https://wear-bucket.s3.ap-northeast-2.amazonaws.com/9bb8045cf322b3c1c9deb362a9b45bb6.jpg',
+    ],
+    level: '새싹',
+  },
 };
 
 // 리스트를 위한 데이터
@@ -26,8 +38,21 @@ const productData2 = {
   ],
   is_selected: true,
   time: '3시간 전',
+
+  product_content: '한 번밖에 안 입었어요',
+  place: '후문',
+  created_time: '2024/04/04 15:03',
+  seller: {
+    id: 1,
+    nick_name: '미정',
+    profile_image: [
+      'https://wear-bucket.s3.ap-northeast-2.amazonaws.com/9bb8045cf322b3c1c9deb362a9b45bb6.jpg',
+    ],
+    level: '새싹',
+  },
 };
 
+// 메인 페이지 상품 리스트 데이터
 export const productMainDummyData = () => {
   return [
     {
@@ -51,4 +76,21 @@ export const productMainDummyData = () => {
       time: productData2.time,
     },
   ];
+};
+
+// 상품 상세 페이지 데이터
+export const productDetailDummyData = () => {
+  return {
+    id: productData.id,
+    seller: productData.seller,
+    price: productData.price,
+    product_name: productData.product_name,
+    product_status: productData.product_status,
+    post_status: productData.post_status,
+    product_content: productData.product_content,
+    product_image: productData.product_image,
+    place: productData.place,
+    created_time: productData.created_time,
+    time: productData.time,
+  };
 };

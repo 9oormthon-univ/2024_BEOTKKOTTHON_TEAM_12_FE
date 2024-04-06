@@ -1,14 +1,14 @@
-import { Product } from 'types/types';
+import { ProductDetailItem } from 'types/productType';
 import { create } from 'zustand';
 
 interface Actions {
-  setProduct: (newProducts: Product) => void;
+  setProduct: (newProducts: ProductDetailItem) => void;
   updateOnSale: (status: string) => void;
   changeStrToArr: (str: string) => void;
 }
 
 interface ProductsStore {
-  product: Product | null;
+  product: ProductDetailItem | null;
   actions: Actions;
 }
 

@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
+import { productDetailDummyData } from 'data/product';
 import { useEffect } from 'react';
 import { useProductActions } from 'store/product';
 
 export const useProductDetailQuery = (id: string) => {
-  const { setProduct, changeStrToArr } = useProductActions();
+  const { setProduct } = useProductActions();
 
   const getProductDetailData = async (id: string | undefined) => {
     try {
@@ -13,6 +14,8 @@ export const useProductDetailQuery = (id: string) => {
       return response.data;
     } catch (e) {
       console.log('데이터 가져오기 실패', e);
+      const productDetailItem = productDetailDummyData();
+      return productDetailItem;
     }
   };
 
@@ -24,7 +27,6 @@ export const useProductDetailQuery = (id: string) => {
   useEffect(() => {
     if (productDetailQuery.data) {
       setProduct(productDetailQuery.data);
-      changeStrToArr(productDetailQuery.data.product_image);
     }
   }, [productDetailQuery.data]);
 
