@@ -20,14 +20,6 @@ export interface ProductProp {
   productData: ProductListItem[];
 }
 
-/*차단한 사용자 타입 */
-export interface BlockUser {
-  blocked_user_id: number;
-  blocked_user_name: string;
-  levelImg: string;
-  blocked_user_profile_image: string;
-}
-
 export interface Seller {
   id: number;
   nick_name: string;

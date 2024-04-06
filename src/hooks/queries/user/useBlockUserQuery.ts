@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
-import { levelUrlArr } from 'utils/levelUrlArr';
+import { blockedUserDummyData } from 'data/user';
 
 const getBlockUserList = async () => {
   console.log('차단한 사용자 목록 불러오기');
@@ -11,20 +11,8 @@ const getBlockUserList = async () => {
     return response.data;
   } catch (error) {
     console.error('차단한 사용자 목록 불러오기 실패:', error);
-    return [
-      {
-        blocked_user_id: 1,
-        blocked_user_name: '김스옹',
-        levelImg: levelUrlArr('목화'),
-        blocked_user_profile_image: 'http://dummyimage.com/161x100.png/ff4444/ffffff',
-      },
-      {
-        blocked_user_id: 1,
-        blocked_user_name: '김스옹',
-        levelImg: levelUrlArr('목화'),
-        blocked_user_profile_image: 'http://dummyimage.com/161x100.png/ff4444/ffffff',
-      },
-    ];
+    const blockedUserData = blockedUserDummyData();
+    return blockedUserData;
   }
 };
 
