@@ -5,11 +5,13 @@ import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
 import arrow from 'assets/icons/arrow.svg';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { useNavigate } from 'react-router-dom';
-import { useUserProfileInfo } from '../../../store/userData';
+import { useQueryClient } from '@tanstack/react-query';
+import { MypageUserType } from 'types/userType';
 
 const ProfileCard: React.FC = () => {
   const navigate = useNavigate();
-  const userProfile = useUserProfileInfo();
+  const cache = useQueryClient();
+  const userData = cache.getQueryData(['user']) as MypageUserType;
 
   const onModifyProfile = () => {
     navigate('/mypage/profile-edit');
@@ -17,26 +19,21 @@ const ProfileCard: React.FC = () => {
 
   return (
     <S.ProfileCardWrapper>
-      <ProfileAvatar imageUrl={userProfile.profile_image} />
+      <ProfileAvatar imageUrl={userData.profile_image[0]} />
 
       <S.MiddleContainer>
         <S.UserNameWrapper>
           <TextLabel size={16} color="var(--grey-7)">
-            {userProfile.user_name}
+            {userData.user_name}
           </TextLabel>
-          <img
-            src={levelUrlArr(userProfile.level)}
-            alt="profile level"
-            width="11px"
-            height="11px"
-          />
+          <img src={levelUrlArr(userData.level)} alt="profile level" width="11px" height="11px" />
         </S.UserNameWrapper>
         <TextLabel size={14} color="var(--grey-5)">
-          {userProfile.university_name}
+          {userData.university_name}
         </TextLabel>
 
         <S.ButtonContainer>
-          {userProfile.style.map((style, index) => (
+          {userData.style.map((style, index) => (
             <ProfileButton key={index}>{style}</ProfileButton>
           ))}
         </S.ButtonContainer>

@@ -1,15 +1,16 @@
 import { Button, TextLabel } from 'components/index';
 import * as S from './style';
-import React, { useRef, ChangeEvent, useState } from 'react';
+import { useRef, ChangeEvent, useState } from 'react';
 import noImg from 'assets/images/profile-no-image.png';
 import { useImgUploadMutation } from 'hooks/queries/image-upload/useImgUploadMutaion';
+import { useQueryClient } from '@tanstack/react-query';
+import { ProfileUserType } from 'types/userType';
 
-interface ImageInputProps {
-  image: string;
-}
+const ImageInput = () => {
+  const cache = useQueryClient();
+  const { profile_image } = cache.getQueryData(['user']) as ProfileUserType;
+  const [img, setImg] = useState(profile_image[0] || noImg);
 
-const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
-  const [img, setImg] = useState(image || noImg);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { mutate: ImgUploadMutation } = useImgUploadMutation(setImg);
 
@@ -32,18 +33,24 @@ const ImageInput: React.FC<ImageInputProps> = ({ image }) => {
       <TextLabel size={16} color="var(--grey-7)">
         프로필 이미지 변경
       </TextLabel>
-      <S.BoxUpload htmlFor="imgInput" onClick={handleClickUpload}>
-        <S.Image src={img} alt="img" />
-      </S.BoxUpload>
 
-      <Button
-        children="사진 업로드"
-        $padding="5px"
-        $borderRadius="20px"
-        width="100px"
-        color="var(--grey-7)"
-        handleOnClick={handleClickUpload}
-      />
+      <S.SectionImgUpload>
+        <S.BoxUpload htmlFor="imgInput" onClick={handleClickUpload}>
+          <S.Image src={img} alt="img" />
+        </S.BoxUpload>
+
+        <Button
+          fontSize="14px"
+          $padding="5px 10px"
+          $borderRadius="15px"
+          width="87px"
+          $letterSpacing="-1.2px"
+          color="var(--grey-6)"
+          handleOnClick={handleClickUpload}
+        >
+          사진 업로드
+        </Button>
+      </S.SectionImgUpload>
 
       <S.RemoveInput
         id="imgInput"

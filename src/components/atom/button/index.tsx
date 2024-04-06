@@ -8,6 +8,7 @@ interface ButtonProps {
   $borderRadius?: string;
   fontSize?: string;
   $fontWeight?: string;
+  $letterSpacing?: string;
   children?: React.ReactNode;
   handleOnClick?: () => void;
   disabled?: boolean;
@@ -24,6 +25,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   transition: transform 0.1s ease;
   font-size: ${({ fontSize }) => fontSize || '16px'};
   font-weight: ${({ $fontWeight }) => $fontWeight || '16px'};
+  letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
   &:active {
     transform: scale(0.95);
   }
@@ -35,6 +37,7 @@ const Button: React.FC<ButtonProps> = ({
   color,
   $bgcolor,
   handleOnClick,
+  $letterSpacing,
   $borderRadius,
   fontSize,
   $fontWeight,
@@ -52,6 +55,7 @@ const Button: React.FC<ButtonProps> = ({
       $borderRadius={$borderRadius}
       $padding={$padding}
       disabled={disabled}
+      $letterSpacing={$letterSpacing}
     >
       {children}
     </ButtonContainer>

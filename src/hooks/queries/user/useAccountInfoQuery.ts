@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId, userProfile } from 'data/shared';
+import { userId } from 'data/shared';
+import { accountUserDummyData } from 'data/user';
 import { SetStateAction, useEffect } from 'react';
 
 const getAccountInfo = async () => {
@@ -10,7 +11,8 @@ const getAccountInfo = async () => {
     return response.data;
   } catch (e) {
     console.error('계정 정보 불러오기 실패', e);
-    return userProfile;
+    const accountData = accountUserDummyData();
+    return accountData;
   }
 };
 

@@ -1,13 +1,10 @@
 import { Header, TextLabel, TextInput, ButtonBack } from 'components/index';
 import * as S from './style';
-import arrow from 'assets/icons/arrow.svg';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAccountInfoQuery } from 'hooks/queries/user/useAccountInfoQuery';
 import { useChangeAccountMutation } from 'hooks/queries/user/useChangeAccountMutation';
 
 const AccountInfo = () => {
-  const navigate = useNavigate();
   const { mutate: changeAccountInfo } = useChangeAccountMutation();
   const [accountInfo, setAccountInfo] = useState({
     user_name: '',

@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import noImg from '../assets/images/profile-no-image.png';
 import { UserProfileInfo } from 'types/types';
 
 interface UserProfileInfoActions {
@@ -13,15 +12,20 @@ interface StoreState {
 }
 
 const initialUser = {
-  user_name: '',
-  nick_name: '',
-  university_name: '',
-  style: [],
-  profile_image: noImg,
-  level: '',
-  next_level: '',
+  id: 1,
+  created_at: '2024-04-05 19:31:36',
+  deleted_at: null,
+  updated_at: '2024-04-05 19:31:36',
+  level: '씨앗',
+  nick_name: '미정',
   point: 0,
-  remain_level_point: 0,
+  profile_image: [
+    'https://wear-bucket.s3.ap-northeast-2.amazonaws.com/bf75da33ff907c43387feb5496922eb4.jpg',
+  ],
+  university_email: '2271224@hansung.ac.kr',
+  user_name: '박미정',
+  user_password: 'wearpassword',
+  user_created_id: 'wearid',
 };
 
 const useStore = create<StoreState>((set) => ({

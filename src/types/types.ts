@@ -65,15 +65,18 @@ export interface ChatRoom {
 
 // 사용자
 export interface UserProfileInfo {
-  user_name: string;
-  nick_name: string;
-  university_name: string;
-  style: string[];
-  profile_image: string;
+  id: number;
+  created_at: string;
+  deleted_at: string | null;
+  updated_at: string;
   level: string;
-  next_level: string;
+  nick_name: string;
   point: number;
-  remain_level_point: number;
+  profile_image: string[];
+  university_email: string;
+  user_name: string;
+  user_password: string;
+  user_created_id: string;
 }
 
 // 퀴즈
