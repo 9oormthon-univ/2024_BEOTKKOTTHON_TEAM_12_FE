@@ -1,18 +1,14 @@
-import * as S from './style';
-import arrow from 'assets/icons/arrow.svg';
 import { Header, TextLabel, TextInput, ImageInput, TagInput, ButtonBack } from 'components/index';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useProfileEditQuery } from 'hooks/queries/user/useProfileEditQuery';
 import { useChangeProfile } from 'hooks/queries/user/useChangeProfileMutation';
 
 const UserProfileEdit = () => {
-  const navigate = useNavigate();
   const { mutate: changeProfile } = useChangeProfile();
   const [userInfo, setUserInfo] = useState({
     user_name: '',
     nick_name: '',
-    profile_image: '',
+    profile_image: [] as string[],
     style: [] as string[],
   });
 
@@ -47,7 +43,7 @@ const UserProfileEdit = () => {
             labelSize={16}
             onChange={handleChangeNickname}
           />
-          <ImageInput image={userInfo.profile_image} />
+          <ImageInput />
           <TagInput />
         </>
       )}

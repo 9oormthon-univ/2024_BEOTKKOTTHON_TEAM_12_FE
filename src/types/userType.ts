@@ -9,3 +9,10 @@ export interface MypageUserType {
   point: number;
   remain_level_point: number;
 }
+
+export interface ProfileUserType {
+  user_name: string;
+  nick_name: string;
+  profile_image: string[];
+  style: string[];
+}

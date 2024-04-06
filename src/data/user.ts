@@ -39,3 +39,20 @@ export const mypageUserDummyData = () => {
     remain_level_point: userData.remain_level_point,
   };
 };
+
+export const accountUserDummyData = () => {
+  return {
+    user_name: userData.user_name,
+    university_name: userData.university_name,
+    university_email: userData.university_email,
+  };
+};
+
+export const profileUserDummyData = () => {
+  return {
+    user_name: userData.user_name,
+    nick_name: userData.nick_name,
+    profile_image: userData.profile_image,
+    style: userData.style,
+  };
+};
