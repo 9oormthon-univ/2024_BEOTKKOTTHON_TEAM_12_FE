@@ -1,16 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { productMainDummyData } from 'data/product';
-import { loginUserDummyData } from 'data/user';
+import { userId } from 'data/shared';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 
-const getProductListData = async (category: string, onSale: string | null, id: string) => {
+const getProductListData = async (category: string, onSale: string | null) => {
   try {
     const response = await instance.get(
       `/prodoucts/cateogry/${
         onSale === 'onSale' ? `sale?` : ``
-      }categoryName=${category}&userId=${id}`
+      }categoryName=${category}&userId=${userId}`
     );
     console.log('물품 리스트 불러오기 성공', response);
     return response.data.content;
@@ -24,12 +24,11 @@ const getProductListData = async (category: string, onSale: string | null, id: s
 export const useProductMainQuery = () => {
   const clickedOnSale = useClickedOnSale();
   const activeCategory = useActiveCategory();
-  const { user_created_id } = loginUserDummyData();
   const { setInitialProductList } = useProductListActions();
 
   const productMainQuery = useQuery({
     queryKey: ['products', activeCategory, clickedOnSale],
-    queryFn: () => getProductListData(activeCategory, clickedOnSale, user_created_id),
+    queryFn: () => getProductListData(activeCategory, clickedOnSale),
   });
 
   useEffect(() => {

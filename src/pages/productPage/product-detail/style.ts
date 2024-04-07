@@ -5,6 +5,13 @@ export const Content = styled.div`
   flex-direction: column;
   height: var(--content-size);
 
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .profile {
     margin-bottom: 6px;
   }
@@ -12,14 +19,5 @@ export const Content = styled.div`
   .product-image,
   .description {
     margin-bottom: 14px;
-  }
-`;
-
-export const SectionScroll = styled.div`
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-
-  &::-webkit-scrollbar {
-    display: none;
   }
 `;
