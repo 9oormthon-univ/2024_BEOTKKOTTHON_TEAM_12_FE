@@ -45,19 +45,17 @@ const ProductDetail = () => {
           <BoxProductProfile seller={product.seller as Seller} />
         </section>
 
-        <S.SectionScroll>
-          <section className="product-image">
-            <Carousel $dot="13px" $width="100%" $height="314px">
-              {product.product_image.map((url, i) => (
-                <img src={url} alt={`img-${i}`} key={i} />
-              ))}
-            </Carousel>
-          </section>
+        <section className="product-image">
+          <Carousel $dot="13px" $width="100%" $height="314px">
+            {product.product_image.map((url, i) => (
+              <img src={url} alt={`img-${i}`} key={i} />
+            ))}
+          </Carousel>
+        </section>
 
-          <section className="description">
-            <DescriptionProduct product={product} />
-          </section>
-        </S.SectionScroll>
+        <section className="description">
+          <DescriptionProduct product={product} />
+        </section>
       </S.Content>
 
       <FooterProductDetail product={product} />
