@@ -30,6 +30,7 @@ import LevelInfo from 'pages/myPagePage/level-info';
 import DonationInpersonVisit from 'pages/donationPage/inperson-visit';
 import DonationHomeless from 'pages/donationPage/homeless';
 import DonationHomelessMap from 'pages/donationPage/homeless-map';
+import WishList from 'pages/myPagePage/wish-list';
 
 const Router = () => {
   return (
@@ -63,6 +64,7 @@ const Router = () => {
       <Route path="/mypage/blocked-users" element={<BlockedUsers />} />
       <Route path="/mypage/donation-history" element={<DonationHistory />} />
       <Route path="/mypage/level-info" element={<LevelInfo />} />
+      <Route path="/mypage/wish-list" element={<WishList />} />
 
       {/* 채팅 */}
       <Route path="/chat-home" element={<ChattingMain />} />

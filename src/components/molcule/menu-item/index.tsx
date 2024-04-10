@@ -16,7 +16,7 @@ const menuContent = [
   {
     title: '나의 거래',
     list: [
-      { name: '관심 목록', to: '' },
+      { name: '관심 목록', to: '/mypage/wish-list' },
       { name: '판매 내역', to: '/mypage/sales-history' },
       { name: '구매 내역', to: '/mypage/purchase-history' },
       { name: '기부 내역', to: '/mypage/donation-history' },

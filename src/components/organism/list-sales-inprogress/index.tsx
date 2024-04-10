@@ -41,7 +41,9 @@ const ListSalesInprogress: React.FC = () => {
             <Button
               width="100%"
               $padding="8px 10px"
-              fontSize="12px"
+              $bgcolor="var(--grey-4)"
+              fontSize="11px"
+              color="var(--grey-2)"
               handleOnClick={() => setOpenModal(!openModal)}
             >
               판매 완료하기
