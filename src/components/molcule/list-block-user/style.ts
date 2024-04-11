@@ -17,5 +17,5 @@ export const UserName = styled.div`
   flex-grow: 1;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4.5px;
 `;
