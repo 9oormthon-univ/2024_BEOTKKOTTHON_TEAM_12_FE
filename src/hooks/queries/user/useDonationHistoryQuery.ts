@@ -1,10 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
+import { useEffect } from 'react';
 
-const getDonationHistory = async () => {
+const getDonationHistory = async (showCompletedOnly: boolean) => {
   try {
-    const response = await instance.get(`/users/myDonations/${userId}`);
+    const response = await instance.get(
+      `/users/myDonations/${showCompletedOnly ? `complete/` : ``}${userId}`
+    );
     console.log('기부 내역 불러오기 성공:', response.data);
     return response.data;
   } catch (error) {
@@ -28,10 +31,10 @@ const getDonationHistory = async () => {
   }
 };
 
-export const useDonationHistoryQuery = () => {
+export const useDonationHistoryQuery = (showCompletedOnly: boolean) => {
   const donationHistoryQuery = useQuery({
-    queryKey: ['user', 'donation-history'],
-    queryFn: getDonationHistory,
+    queryKey: ['user', 'donation-history', showCompletedOnly],
+    queryFn: () => getDonationHistory(showCompletedOnly),
   });
 
   return donationHistoryQuery;

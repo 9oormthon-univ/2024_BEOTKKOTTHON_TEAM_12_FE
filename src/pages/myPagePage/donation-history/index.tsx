@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as S from './style';
-import { ButtonBack, Checkbox, Header, TableDonationHistory, TextLabel } from 'components/index';
+import {
+  ButtonBack,
+  Checkbox,
+  Header,
+  Loading,
+  TableDonationHistory,
+  TextLabel,
+} from 'components/index';
 import { useDonationHistoryQuery } from 'hooks/queries/user/useDonationHistoryQuery';
-import { DonationDataType } from 'types/types';
-import { useCompletedDonationHistoryQuery } from 'hooks/queries/user/useCompletedDonationHistoryQuery';
 
 const DonationHistory = () => {
-  const [donationData, setDonationData] = useState<DonationDataType[]>([]);
-  const donationHistoryQuery = useDonationHistoryQuery();
-  const completedDonationHistoryQuery = useCompletedDonationHistoryQuery();
   const [showCompletedOnly, setShowCompletedOnly] = useState(false);
 
-  useEffect(() => {
-    if (showCompletedOnly && completedDonationHistoryQuery.data) {
-      setDonationData(completedDonationHistoryQuery.data);
-    } else if (!showCompletedOnly && donationHistoryQuery.data) {
-      setDonationData(donationHistoryQuery.data);
-    }
-  }, [showCompletedOnly, completedDonationHistoryQuery.data, donationHistoryQuery.data]);
+  const {
+    data: donationHistoryQuery,
+    isLoading,
+    isError,
+  } = useDonationHistoryQuery(showCompletedOnly);
 
-  const isLoading = donationHistoryQuery.isLoading || completedDonationHistoryQuery.isLoading;
+  if (isLoading) return <Loading $height="100svh" />;
 
   return (
     <S.Container>
@@ -32,7 +32,7 @@ const DonationHistory = () => {
 
       <S.TableHeader>
         <TextLabel size={13} $weight={400} color={'var(--grey-6)'}>
-          총 {donationData.length}개
+          총 {donationHistoryQuery.length}개
         </TextLabel>
         <Checkbox
           label="완료된 내역만 보기"
@@ -45,7 +45,7 @@ const DonationHistory = () => {
         />
       </S.TableHeader>
 
-      <TableDonationHistory isLoading={isLoading} donationData={donationData} />
+      <TableDonationHistory donationData={donationHistoryQuery} />
     </S.Container>
   );
 };

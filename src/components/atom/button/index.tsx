@@ -24,7 +24,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   cursor: pointer;
   transition: transform 0.1s ease;
   font-size: ${({ fontSize }) => fontSize || '16px'};
-  font-weight: ${({ $fontWeight }) => $fontWeight || '16px'};
+  font-weight: ${({ $fontWeight }) => $fontWeight || '500'};
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
   &:active {
     transform: scale(0.95);

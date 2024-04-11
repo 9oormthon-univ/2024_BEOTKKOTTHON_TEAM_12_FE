@@ -4,16 +4,16 @@ import { useProductList } from 'store/productListData';
 import { useWishListQuery } from 'hooks/queries/user/useWishListQuery';
 
 const WishList = () => {
+  const { data: wishListQuery, isLoading, isError } = useWishListQuery();
   const productList = useProductList();
-  const wishListQuery = useWishListQuery();
 
-  if (wishListQuery.isLoading) return <Loading />;
+  if (isLoading) return <Loading $height="100svh" />;
 
   return (
     <>
       <Header>
         <TextLabel size={16} $weight={700}>
-          구매 내역
+          관심 목록
         </TextLabel>
         <ButtonBack className="left" $marginLeft="10px" />
       </Header>

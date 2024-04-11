@@ -8,9 +8,10 @@ import { useActiveCategory, useClickedOnSale, useProductListActions } from 'stor
 const getProductListData = async (category: string, onSale: string | null) => {
   try {
     const response = await instance.get(
-      `/prodoucts/cateogry/${
-        onSale === 'onSale' ? `sale?` : ``
-      }categoryName=${category}&userId=${userId}`
+      `/products/${
+        onSale ? `category/sale?` : `category?`
+      }categoryName=${category}&userId=${userId}&pageNumber=0
+      `
     );
     console.log('물품 리스트 불러오기 성공', response);
     return response.data.content;

@@ -8,7 +8,6 @@ const getSalesProducts = async () => {
   try {
     const response = await instance.get(`/users/myProducts/onSale/${userId}`);
     console.log('판매중인 상품 불러오기 성공:', response.data);
-
     return response.data;
   } catch (error) {
     console.log('판매중 데이터 불러오기 실패', error);
@@ -35,7 +34,6 @@ export const useSalesProductQuery = () => {
 
   useEffect(() => {
     if (salesProductQuery.data) {
-      console.log('salesProductQuery.data', salesProductQuery.data);
       setInitialProductList(salesProductQuery.data);
     }
   }, [salesProductQuery.data]);

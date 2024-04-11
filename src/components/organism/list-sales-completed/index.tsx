@@ -1,13 +1,11 @@
 import { useCompletedProductQuery } from 'hooks/queries/user/useCompletedProductQuery';
-import { useProductList } from 'store/productListData';
 import { ListTradeItems, Loading } from 'components';
 
 const ListSalesCompleted = () => {
-  const completedProductQuery = useCompletedProductQuery();
-  const productList = useProductList();
-  console.log('ListSalesCompleted productList', productList);
+  const { data: completedProductQuery, isLoading, isError } = useCompletedProductQuery();
 
   if (completedProductQuery.isLoading) return <Loading />;
+
   return <ListTradeItems />;
 };
 

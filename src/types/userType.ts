@@ -22,7 +22,7 @@ export interface ProfileUserType {
 // 차단한 사용자 데이터 타입
 export interface BlockedUserType {
   blocked_user_id: string;
-  blocked_user_name: string;
+  blocked_user_nick_name: string;
   blocked_user_profile_image: string;
   blocked_user_level: string;
 }

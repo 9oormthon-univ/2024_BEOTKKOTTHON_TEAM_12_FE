@@ -12,7 +12,11 @@ const Tab = () => {
     <>
       <S.TabsContainer>
         {tabs.map((tab) => (
-          <S.TabItemButton key={tab} isActive={activeTab === tab} onClick={() => setActiveTab(tab)}>
+          <S.TabItemButton
+            key={tab}
+            $isActive={activeTab === tab}
+            onClick={() => setActiveTab(tab)}
+          >
             {tab} {productList.length}
           </S.TabItemButton>
         ))}

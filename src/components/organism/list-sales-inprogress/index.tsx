@@ -11,14 +11,13 @@ import { Loading } from 'components';
 import { ProductListItem } from 'types/productType';
 
 const ListSalesInprogress: React.FC = () => {
-  const salesProductQuery = useSalesProductQuery();
+  const { data: salesProductQuery, isLoading, isError } = useSalesProductQuery();
   const productList = useProductList();
   const { mutate: postSalesCompletedMutation } = usePostSalesCompletedMutation();
 
   const [openModal, setOpenModal] = useState<boolean>(false);
-  console.log('ListSalesInprogress productList', productList);
 
-  if (salesProductQuery.isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
     <S.Container>
@@ -44,6 +43,7 @@ const ListSalesInprogress: React.FC = () => {
               $bgcolor="var(--grey-4)"
               fontSize="11px"
               color="var(--grey-2)"
+              $fontWeight="bold"
               handleOnClick={() => setOpenModal(!openModal)}
             >
               판매 완료하기

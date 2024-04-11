@@ -1,4 +1,12 @@
-import { Header, TextLabel, TextInput, ImageInput, TagInput, ButtonBack } from 'components/index';
+import {
+  Header,
+  TextLabel,
+  TextInput,
+  ImageInput,
+  TagInput,
+  ButtonBack,
+  Loading,
+} from 'components/index';
 import { useState } from 'react';
 import { useProfileEditQuery } from 'hooks/queries/user/useProfileEditQuery';
 import { useChangeProfile } from 'hooks/queries/user/useChangeProfileMutation';
@@ -12,15 +20,17 @@ const UserProfileEdit = () => {
     style: [] as string[],
   });
 
-  const profileEditQuery = useProfileEditQuery(setUserInfo);
+  const { data: profileEditQuery, isLoading, isError } = useProfileEditQuery(setUserInfo);
 
   const handleChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo({ ...userInfo, nick_name: e.target.value });
   };
 
+  if (isLoading) return <Loading />;
+
   return (
     <>
-      {!profileEditQuery.isLoading && (
+      {!isLoading && (
         <>
           <Header>
             <TextLabel size={18} $weight={700}>
@@ -43,7 +53,7 @@ const UserProfileEdit = () => {
             labelSize={16}
             onChange={handleChangeNickname}
           />
-          <ImageInput />
+          <ImageInput profileEditQuery={profileEditQuery} />
           <TagInput />
         </>
       )}
