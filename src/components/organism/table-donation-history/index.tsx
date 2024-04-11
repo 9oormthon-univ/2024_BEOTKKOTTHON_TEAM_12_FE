@@ -1,13 +1,11 @@
 import { DonationDataType } from 'types/types';
 import * as S from './style';
-import { Loading } from 'components';
 
 interface TableProps {
   donationData: DonationDataType[];
-  isLoading: boolean;
 }
 
-const TableDonationHistory = ({ donationData, isLoading }: TableProps) => {
+const TableDonationHistory = ({ donationData }: TableProps) => {
   return (
     <S.Conatiner>
       <S.THead>
@@ -23,24 +21,19 @@ const TableDonationHistory = ({ donationData, isLoading }: TableProps) => {
           </th>
         </tr>
       </S.THead>
-
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <tbody>
-          {donationData.map((row, index) => (
-            <tr key={index}>
-              <td>{row.date}</td>
-              <td>
-                의류 {row.clothes_count} / 잡화 {row.fashion_count}
-              </td>
-              <td className={row.is_donation_complete ? 'completed' : ''}>
-                {row.is_donation_complete ? '완료' : '진행 중'}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      )}
+      <tbody>
+        {donationData.map((row, index) => (
+          <tr key={index}>
+            <td>{row.date}</td>
+            <td>
+              의류 {row.clothes_count} / 잡화 {row.fashion_count}
+            </td>
+            <td className={row.is_donation_complete ? 'completed' : ''}>
+              {row.is_donation_complete ? '완료' : '진행 중'}
+            </td>
+          </tr>
+        ))}
+      </tbody>
     </S.Conatiner>
   );
 };
