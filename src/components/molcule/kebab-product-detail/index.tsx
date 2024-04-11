@@ -6,21 +6,24 @@ import { useNavigate } from 'react-router-dom';
 import ModalProduct from '../modal-product';
 import { useDeleteMutation } from 'hooks/queries/products/useDeleteMutation';
 import { useState } from 'react';
+import { useProduct } from 'store/product';
 import { ProductDetailItem } from 'types/productType';
 
 interface KebabProductDetailProps {
   openKebab: boolean;
-  product: ProductDetailItem;
   id: string;
 }
 
-const KebabProductDetail = ({ openKebab, product, id }: KebabProductDetailProps) => {
+const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
   const navigate = useNavigate();
+  const product = useProduct();
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const { mutate: onSaleMutation } = useOnSaleMutation(id as string, product as ProductDetailItem);
   const { mutate: hideMutation } = useHideMutation(id as string);
   const { mutate: deleteMutation } = useDeleteMutation(id as string);
+
+  if (!product) return null;
 
   return (
     <>
