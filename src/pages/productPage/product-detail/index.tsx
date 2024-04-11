@@ -17,12 +17,12 @@ import { useProductDetailQuery } from 'hooks/queries/products/useProductDetailQu
 import { Seller } from 'types/productType';
 
 const ProductDetail = () => {
-  const { id } = useParams();
-  const productDetailQuery = useProductDetailQuery(id as string);
+  const { id } = useParams() as { id: string };
+  const { data: productDetailQuery, isLoading, isError } = useProductDetailQuery(id);
   const product = useProduct();
   const [openKebab, setOpenKebab] = useState<boolean>(false);
 
-  if (productDetailQuery.error) {
+  if (isError) {
     // 404 페이지로 대체 가능
     return <div>상품이 존재하지 않습니다.</div>;
   }
@@ -39,11 +39,11 @@ const ProductDetail = () => {
         />
       </Header>
 
-      <KebabProductDetail openKebab={openKebab} id={id as string} />
+      <KebabProductDetail openKebab={openKebab} id={id} />
 
       <S.Content>
-        {productDetailQuery.isLoading && <Loading />}
-        {productDetailQuery.data && product && (
+        {isLoading && <Loading />}
+        {productDetailQuery && product && (
           <>
             <section className="profile">
               <BoxProductProfile seller={product.seller as Seller} />
