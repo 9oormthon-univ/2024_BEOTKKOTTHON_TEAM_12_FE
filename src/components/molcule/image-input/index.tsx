@@ -3,12 +3,14 @@ import * as S from './style';
 import { useRef, ChangeEvent, useState } from 'react';
 import noImg from 'assets/images/profile-no-image.png';
 import { useImgUploadMutation } from 'hooks/queries/image-upload/useImgUploadMutaion';
-import { useQueryClient } from '@tanstack/react-query';
 import { ProfileUserType } from 'types/userType';
 
-const ImageInput = () => {
-  const cache = useQueryClient();
-  const { profile_image } = cache.getQueryData(['user']) as ProfileUserType;
+interface ImageInputProps {
+  profileEditQuery: ProfileUserType;
+}
+
+const ImageInput = ({ profileEditQuery }: ImageInputProps) => {
+  const { profile_image } = profileEditQuery;
   const [img, setImg] = useState(profile_image[0] || noImg);
 
   const fileInputRef = useRef<HTMLInputElement>(null);

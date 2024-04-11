@@ -16,7 +16,7 @@ interface TagInputProps {
 
 const TagInput: React.FC<TagInputProps> = ({ label, handleChangeStyleTag, setButtonColor }) => {
   const cache = useQueryClient();
-  const userData = cache.getQueryData(['user']) as MypageUserType;
+  const userData = cache.getQueryData(['user', 'profile-edit']) as MypageUserType;
 
   const { updateUserStyleTags } = useUserProfileActions();
 

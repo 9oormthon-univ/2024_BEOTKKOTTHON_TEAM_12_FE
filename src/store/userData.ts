@@ -22,6 +22,7 @@ const initialUser = {
   profile_image: [
     'https://wear-bucket.s3.ap-northeast-2.amazonaws.com/bf75da33ff907c43387feb5496922eb4.jpg',
   ],
+  university_name: '한성대학교',
   university_email: '2271224@hansung.ac.kr',
   user_name: '박미정',
   user_password: 'wearpassword',

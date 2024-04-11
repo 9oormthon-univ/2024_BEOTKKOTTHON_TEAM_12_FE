@@ -57,6 +57,7 @@ export interface UserProfileInfo {
   nick_name: string;
   point: number;
   profile_image: string[];
+  university_name: string;
   university_email: string;
   user_name: string;
   user_password: string;
