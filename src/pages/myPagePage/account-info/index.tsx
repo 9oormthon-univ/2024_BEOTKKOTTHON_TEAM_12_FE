@@ -1,4 +1,4 @@
-import { Header, TextLabel, TextInput, ButtonBack } from 'components/index';
+import { Header, TextLabel, TextInput, ButtonBack, Loading } from 'components/index';
 import * as S from './style';
 import { useState } from 'react';
 import { useAccountInfoQuery } from 'hooks/queries/user/useAccountInfoQuery';
@@ -12,11 +12,13 @@ const AccountInfo = () => {
     university_email: '',
   });
 
-  useAccountInfoQuery(setAccountInfo);
+  const { data: accountInfoQuery, isLoading, isError } = useAccountInfoQuery(setAccountInfo);
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAccountInfo({ ...accountInfo, user_name: e.target.value });
   };
+
+  if (isLoading) return <Loading $height="100svh" />;
 
   return (
     <>

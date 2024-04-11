@@ -1,12 +1,16 @@
 import { PulseLoader } from 'react-spinners';
 import styled from 'styled-components';
 
-const Container = styled.div`
+interface LoadingProps {
+  $height?: string;
+}
+
+const Container = styled.div<LoadingProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: inherit;
-  height: inherit;
+  height: ${(props) => props.$height || 'inherit'};
   background-color: white;
 
   position: absolute;
@@ -16,9 +20,9 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
-const Loading = () => {
+const Loading = ({ $height }: LoadingProps) => {
   return (
-    <Container>
+    <Container $height={$height}>
       <PulseLoader color="var(--green-6)" />
     </Container>
   );
