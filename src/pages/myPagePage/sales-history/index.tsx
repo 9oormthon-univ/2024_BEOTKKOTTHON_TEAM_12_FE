@@ -6,7 +6,7 @@ const SalesHistory = () => {
   return (
     <>
       <Header>
-        <TextLabel size={16} $weight={700}>
+        <TextLabel size={18} $weight={700}>
           판매내역
         </TextLabel>
         <ButtonBack className="left" />

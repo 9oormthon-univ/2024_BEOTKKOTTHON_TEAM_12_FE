@@ -16,8 +16,6 @@ const ListSalesInprogress: React.FC = () => {
   const { mutate: postSalesCompletedMutation } = usePostSalesCompletedMutation();
 
   const [openModal, setOpenModal] = useState<boolean>(false);
-  console.log('ListSalesInprogress productList', productList);
-
   if (salesProductQuery.isLoading) return <Loading />;
 
   return (
@@ -44,6 +42,7 @@ const ListSalesInprogress: React.FC = () => {
               $bgcolor="var(--grey-4)"
               fontSize="11px"
               color="var(--grey-2)"
+              $fontWeight="bold"
               handleOnClick={() => setOpenModal(!openModal)}
             >
               판매 완료하기

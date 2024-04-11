@@ -5,7 +5,6 @@ import { ListTradeItems, Loading } from 'components';
 const ListSalesHidden = () => {
   const hiddenProductQuery = useHiddenProductQuery();
   const productList = useProductList();
-  console.log('ListSalesHidden productList', productList);
 
   if (hiddenProductQuery.isLoading) return <Loading />;
 
