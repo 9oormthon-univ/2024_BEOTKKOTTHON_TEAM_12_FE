@@ -22,37 +22,37 @@ const FooterProductDetail = () => {
 
   if (!product) return null;
 
-  const getChatRoomId = async () => {
-    try {
-      const response = await instance.post(
-        `/chat/room/create?productId=${product.id}&customerId=${customerId}`
-      );
-      if (response.data.created === true) {
-        //이미 존재하는 채팅방이면 바로 채팅방으로 이동
-        navigate(`/chat-detail`, {
-          state: { productId: product.id, chatRoomId: response.data.chat_room_id },
-        });
-      } else {
-        console.log('채팅방 생성', response.data.chat_room_id);
-        return response.data.chat_room_id;
-      }
-    } catch (e) {
-      console.log('채팅방 생성 실패', e);
-    }
-  };
+  // const getChatRoomId = async () => {
+  //   try {
+  //     const response = await instance.post(
+  //       `/chat/room/create?productId=${product.id}&customerId=${customerId}`
+  //     );
+  //     if (response.data.created === true) {
+  //       //이미 존재하는 채팅방이면 바로 채팅방으로 이동
+  //       navigate(`/chat-detail`, {
+  //         state: { productId: product.id, chatRoomId: response.data.chat_room_id },
+  //       });
+  //     } else {
+  //       console.log('채팅방 생성', response.data.chat_room_id);
+  //       return response.data.chat_room_id;
+  //     }
+  //   } catch (e) {
+  //     console.log('채팅방 생성 실패', e);
+  //   }
+  // };
 
-  const handleChatClick = () => {
-    // 제품의 판매 상태가 '판매중'인 경우에만 채팅 페이지로 이동
-    if (product.post_status !== '판매완료' && !isMine) {
-      console.log(product);
-      getChatRoomId().then((roomId) => {
-        // 채팅방이 생성된 후에만 네비게이션 실행
-        navigate(`/chat-detail`, {
-          state: { productId: product.id, chatRoomId: roomId },
-        });
-      });
-    }
-  };
+  // const handleChatClick = () => {
+  //   // 제품의 판매 상태가 '판매중'인 경우에만 채팅 페이지로 이동
+  //   if (product.post_status !== '판매완료' && !isMine) {
+  //     console.log(product);
+  //     getChatRoomId().then((roomId) => {
+  //       // 채팅방이 생성된 후에만 네비게이션 실행
+  //       navigate(`/chat-detail`, {
+  //         state: { productId: product.id, chatRoomId: roomId },
+  //       });
+  //     });
+  //   }
+  // };
 
   return (
     <S.Container>
@@ -64,7 +64,7 @@ const FooterProductDetail = () => {
         color={product.post_status === 'soldOut' || isMine ? 'var(--grey-5)' : 'white'}
         children="채팅하기"
         disabled={product.post_status === 'soldOut'}
-        handleOnClick={handleChatClick}
+        // handleOnClick={handleChatClick}
       />
     </S.Container>
   );
