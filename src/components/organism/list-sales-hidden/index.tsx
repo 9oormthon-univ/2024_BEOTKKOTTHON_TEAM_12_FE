@@ -1,12 +1,10 @@
-import { useProductList } from 'store/productListData';
 import { useHiddenProductQuery } from 'hooks/queries/user/useHiddenProductQuery';
 import { ListTradeItems, Loading } from 'components';
 
 const ListSalesHidden = () => {
-  const hiddenProductQuery = useHiddenProductQuery();
-  const productList = useProductList();
+  const { data: hiddenProductQuery, isLoading, isError } = useHiddenProductQuery();
 
-  if (hiddenProductQuery.isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return <ListTradeItems />;
 };
