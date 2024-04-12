@@ -12,14 +12,15 @@ const ProductEdit = () => {
   const navigate = useNavigate();
   const formData = useFormData();
   const { receiveData } = useFormDataActions();
-  const productDetailQuery = useProductDetailQuery(id as string);
+  const { data: productDetailQuery } = useProductDetailQuery(id as string);
   const { mutate: editProductMutation } = useEditProductMutation(id as string);
 
   useEffect(() => {
-    receiveData(productDetailQuery.data);
-    // changeImgFileToString(productDetailQuery.data.product_image);
-    console.log('formData', formData);
-  }, []);
+    if (productDetailQuery) {
+      receiveData(productDetailQuery);
+      console.log('formData', formData);
+    }
+  }, [productDetailQuery]);
 
   return (
     <>
