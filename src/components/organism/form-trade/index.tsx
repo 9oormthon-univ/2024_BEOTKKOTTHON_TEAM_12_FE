@@ -11,16 +11,16 @@ import { placeList, priceList } from 'data/shared';
 import Button from 'components/atom/button-trade';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
-import { useFormDataActions, useShowImages } from 'store/formData';
+import { useFormData, useFormDataActions, useShowImages } from 'store/formData';
 import { TradeFormData } from 'types/types';
 
 interface FormTradeProps {
   handleSubmitAction: (sendData: TradeFormData) => void;
   btnText: string;
-  formData: TradeFormData;
 }
 
-const FormTrade = ({ handleSubmitAction, btnText, formData }: FormTradeProps) => {
+const FormTrade = ({ handleSubmitAction, btnText }: FormTradeProps) => {
+  const formData = useFormData();
   const navigate = useNavigate();
   const showImages = useShowImages();
   const { setFormData, resetFormData } = useFormDataActions();
@@ -36,6 +36,7 @@ const FormTrade = ({ handleSubmitAction, btnText, formData }: FormTradeProps) =>
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(formData);
 
     handleSubmitAction({
       product_image: formData.product_image,

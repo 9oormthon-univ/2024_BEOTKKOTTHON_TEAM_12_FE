@@ -14,7 +14,7 @@ export const useDeleteMutation = (productId: string) => {
       navigate('/product');
     },
     onError: (error) => {
-      console.log('글 숨기기 실패', error);
+      console.log('글 삭제 실패', error);
       alert('게시물을 삭제하지 못했습니다.');
     },
   });
