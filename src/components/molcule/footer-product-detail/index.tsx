@@ -11,8 +11,8 @@ import { useUnlikedMutation } from 'hooks/queries/products/useUnlikedMutation';
 
 const FooterProductDetail = () => {
   const product = useProduct();
-  const { mutate: likedMutation } = useLikedMutation();
-  const { mutate: unlikedMutation } = useUnlikedMutation();
+  const { mutate: likedMutation } = useLikedMutation(product?.id as number);
+  const { mutate: unlikedMutation } = useUnlikedMutation(product?.id as number);
   const [isMine, setIsMine] = useState<boolean>(false);
   const navigate = useNavigate();
   const customerId = '1';
@@ -64,9 +64,7 @@ const FooterProductDetail = () => {
         src={product.is_selected ? fillheart : heart}
         className="heart"
         alt="heart"
-        onClick={() =>
-          product.is_selected ? unlikedMutation(product.id) : likedMutation(product.id)
-        }
+        onClick={() => (product.is_selected ? unlikedMutation() : likedMutation())}
       />
       <p className="price">{transformPrice(product.price as number)}원</p>
       <Button
