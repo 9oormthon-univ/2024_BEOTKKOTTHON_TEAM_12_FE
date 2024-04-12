@@ -3,11 +3,11 @@ import { instance } from 'apis';
 import { userId } from 'data/shared';
 import { useNavigate } from 'react-router-dom';
 
-export const useDeleteMutation = (id: string) => {
+export const useDeleteMutation = (productId: string) => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: () => instance.delete(`/products/delete/${userId}/${id}`),
+    mutationFn: () => instance.delete(`/products/delete/${userId}/${productId}`),
     onSuccess: (res) => {
       console.log('글 삭제 성공', res);
       alert('게시물을 삭제했습니다.');
