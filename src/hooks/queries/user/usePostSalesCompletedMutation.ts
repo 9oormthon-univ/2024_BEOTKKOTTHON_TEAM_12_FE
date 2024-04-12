@@ -1,8 +1,10 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
 
 export const usePostSalesCompletedMutation = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (productId: number) =>
       instance.put(`/users/myProducts/onSale/${userId}`, {
@@ -11,9 +13,8 @@ export const usePostSalesCompletedMutation = () => {
       }),
     onSuccess: (response) => {
       console.log('상품 상태를 변경했습니다.', response);
+      queryClient.invalidateQueries({ queryKey: ['user', 'sales-product'] });
       alert('상품 상태를 변경했습니다.');
-      // getSalesProducts();
-      // getSalesCompletedProducts();
     },
     onError: (error) => {
       console.log('상품 상태를 변경하지 못했습니다.', error);

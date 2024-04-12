@@ -1,6 +1,6 @@
-import { Button } from "components/index";
-import * as S from "./style";
-import React from "react";
+import { Button } from 'components/index';
+import * as S from './style';
+import React from 'react';
 // import axios from 'axios';
 
 interface ModalProductProps {
@@ -8,8 +8,7 @@ interface ModalProductProps {
   select1?: string;
   select2: string;
   openModal: boolean;
-  onClick?: (id: number) => void;
-  handleClickQuiz?: () => void;
+  onClick: () => void;
   setOpenModal: (value: boolean) => void;
   children: React.ReactNode;
 }
@@ -21,7 +20,6 @@ const ModalProduct = ({
   select2,
   id,
   onClick,
-  handleClickQuiz,
   children,
 }: ModalProductProps) => {
   return (
@@ -45,8 +43,7 @@ const ModalProduct = ({
             $bgcolor="var(--green-6)"
             color="white"
             handleOnClick={() => {
-              if (onClick) onClick(Number(id));
-              if (handleClickQuiz) handleClickQuiz();
+              onClick();
               setOpenModal(!openModal);
             }}
           />

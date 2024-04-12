@@ -4,7 +4,7 @@ import { ListTradeItems, Loading } from 'components';
 const ListSalesCompleted = () => {
   const { data: completedProductQuery, isLoading, isError } = useCompletedProductQuery();
 
-  if (completedProductQuery.isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return <ListTradeItems />;
 };

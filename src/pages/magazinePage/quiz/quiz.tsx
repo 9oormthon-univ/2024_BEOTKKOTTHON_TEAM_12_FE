@@ -81,7 +81,7 @@ const QuizPage = () => {
           select2="확인"
           openModal={openModal}
           setOpenModal={setOpenModal}
-          handleClickQuiz={handleClickQuiz}
+          onClick={handleClickQuiz}
         >
           <p>축하드립니다~!</p>
           <p>{totalPoints}포인트를 얻었어요</p>
