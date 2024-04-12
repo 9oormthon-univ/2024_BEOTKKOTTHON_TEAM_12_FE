@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as S from './style';
-import { useProductList } from 'store/productListData';
-import { ListSalesCompleted, ListSalesHidden, ListSalesInprogress } from 'components';
+import { ListSalesInprogress, ListTradeItems, Loading } from 'components';
+import { useSalesHistoryQueries } from 'hooks/useSalesHistoryQueries';
 
 const Tab = () => {
-  const productList = useProductList();
   const tabs = ['판매중', '판매 완료', '숨김'];
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const { isLoading, numberOfProducts } = useSalesHistoryQueries(activeTab);
+
+  if (isLoading) return <Loading />;
 
   return (
     <>
       <S.TabsContainer>
-        {tabs.map((tab) => (
+        {tabs.map((tab, index) => (
           <S.TabItemButton
             key={tab}
             $isActive={activeTab === tab}
             onClick={() => setActiveTab(tab)}
           >
-            {tab} {productList.length}
+            {tab} {numberOfProducts[index]}
           </S.TabItemButton>
         ))}
       </S.TabsContainer>
 
       <S.TabPanel>
-        {activeTab === tabs[0] && <ListSalesInprogress />}
-        {activeTab === tabs[1] && <ListSalesCompleted />}
-        {activeTab === tabs[2] && <ListSalesHidden />}
+        {activeTab === tabs[0] ? <ListSalesInprogress /> : <ListTradeItems />}
       </S.TabPanel>
     </>
   );

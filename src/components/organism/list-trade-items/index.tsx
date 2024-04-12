@@ -5,13 +5,17 @@ import { useProductListData } from 'store/productListData';
 const ListTradeItems = () => {
   const { productList } = useProductListData();
   return (
-    <S.Container>
+    <>
       {productList.length > 0 ? (
-        productList.map((product) => <BoxItemTrade key={product.id} product={product} />)
+        <S.Container>
+          {productList.map((product) => (
+            <BoxItemTrade key={product.id} product={product} />
+          ))}
+        </S.Container>
       ) : (
-        <BoxNoItem />
+        <BoxNoItem>상품 목록이 없습니다.</BoxNoItem>
       )}
-    </S.Container>
+    </>
   );
 };
 
