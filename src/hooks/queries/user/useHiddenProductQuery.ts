@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
-import { useEffect } from 'react';
-import { useProductListActions } from 'store/productListData';
 
 const getHiddenProducts = async () => {
   try {
@@ -25,20 +23,10 @@ const getHiddenProducts = async () => {
 };
 
 export const useHiddenProductQuery = () => {
-  const { setInitialProductList } = useProductListActions();
-
   const hiddenProductQuery = useQuery({
     queryKey: ['user', 'hidden-product'],
     queryFn: getHiddenProducts,
   });
-
-  useEffect(() => {
-    if (hiddenProductQuery.data) {
-      console.log('hiddenProductQuery.data', hiddenProductQuery.data);
-
-      setInitialProductList(hiddenProductQuery.data);
-    }
-  }, [hiddenProductQuery.data]);
 
   return hiddenProductQuery;
 };

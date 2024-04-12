@@ -4,24 +4,18 @@ import share from 'assets/icons/share.svg';
 import main from 'assets/magazine/quiz_page.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { quizData, userId } from 'data/shared';
-import { instance } from 'apis';
-import { useMutation } from '@tanstack/react-query';
+import { quizData } from 'data/shared';
+import { useQuizMutation } from 'hooks/queries/magaazine/useQuizMutation';
 
 let totalPoints = 0;
 
 const QuizPage = () => {
   const navigate = useNavigate();
+  const { mutate: quizMutation } = useQuizMutation();
   const [submitAnswer, setSubmitAnswer] = useState<number[]>([0, 0]);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [markAnswer, setMarkAnswer] = useState<boolean>(false);
-
-  const quizMutation = useMutation({
-    mutationFn: (totalPoints: number) => instance.post(`magazine/${userId}?score=${totalPoints}`),
-    onSuccess: (res) => console.log('퀴즈 점수 등록 성공', res.data),
-    onError: (error) => console.log('퀴즈 점수 등록 실패', error),
-  });
 
   useEffect(() => {
     setIsDisabled(submitAnswer.some((item) => item === 0));
@@ -37,8 +31,7 @@ const QuizPage = () => {
         totalPoints += 1;
       }
     }
-    // 총합 totalpoint를 서버에 전송
-    quizMutation.mutate(totalPoints);
+    quizMutation(totalPoints);
     setOpenModal(true);
   };
 
@@ -88,7 +81,7 @@ const QuizPage = () => {
           select2="확인"
           openModal={openModal}
           setOpenModal={setOpenModal}
-          handleClickQuiz={handleClickQuiz}
+          onClick={handleClickQuiz}
         >
           <p>축하드립니다~!</p>
           <p>{totalPoints}포인트를 얻었어요</p>

@@ -5,10 +5,11 @@ import Loading from 'components/atom/loading';
 import { Button, ProfileAvatar, TextLabel } from 'components';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { BlockedUserType } from 'types/userType';
+import { useUnblockMutation } from 'hooks/queries/user/useUnblockMutation';
 
 const ListBlockUser = () => {
   const { data: blockedUserList, isLoading, isError } = useBlockUserQuery();
-  const { mutate: deleteBlockUser } = useDeleteBlockUserMutation();
+  const { mutate: unblockMutation } = useUnblockMutation();
 
   if (isLoading) return <Loading />;
 
@@ -32,7 +33,7 @@ const ListBlockUser = () => {
               $bgcolor="var(--grey-2)"
               fontSize="14px"
               color="var(--grey-5)"
-              handleOnClick={() => deleteBlockUser(blockUser.blocked_user_nick_name)}
+              handleOnClick={() => unblockMutation(blockUser.blocked_user_id)}
             >
               차단해제
             </Button>

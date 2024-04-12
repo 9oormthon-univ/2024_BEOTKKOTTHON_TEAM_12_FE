@@ -22,17 +22,7 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ product, $marginBottom }) => {
   };
   return (
     <S.Container $marginBottom={$marginBottom} onClick={handleClick}>
-      <S.BoxImage
-        //   이미지 한장만 주는지, 배열로 주는지에 따라 로직 변경
-        //   상품 리스트 보여주는 곳들의 product_image 전달 형식 통일 시켜야함
-        //   src={
-        //   product.product_image
-        //     ? changeStringToArr(product.product_image)[0].slice(1, -1)
-        //     : defaultImg
-        // }
-
-        src={product.product_image ? product.product_image[0] : defaultImg}
-      />
+      <S.BoxImage src={product.product_image ? product.product_image[0] : defaultImg} />
       <S.BoxDescription>
         <S.Title>
           <p className="name">{truncatedName(product.product_name)}</p>

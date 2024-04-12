@@ -4,7 +4,6 @@ import { create } from 'zustand';
 interface Actions {
   setFormData: (name: string, value: string | number) => void;
   setShowImages: (urls: string[]) => void;
-  changeImgFileToString: (strArr: string[]) => void;
   receiveData: (data: TradeFormData) => void;
   resetFormData: () => void;
 }
@@ -37,11 +36,6 @@ export const useFormDataStore = create<FormDataStore>((set) => ({
 
     setShowImages: (urls) => set(() => ({ showImages: [...urls] })),
     receiveData: (data) => set(() => ({ formData: data, showImages: data.product_image })),
-    changeImgFileToString: (strArr) => {
-      const content = strArr.slice(1, -1).join('');
-      const imageArray = content.split(',').map((str) => str.trim());
-      set((state) => ({ formData: { ...state.formData, product_image: imageArray } }));
-    },
     resetFormData: () => set(() => ({ formData: initialFormData, showImages: [] })),
   },
 }));

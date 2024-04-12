@@ -4,12 +4,13 @@ import { userId } from 'data/shared';
 import { useProductActions } from 'store/product';
 import { ProductDetailItem } from 'types/productType';
 
-const putOnSaleData = async (id: string, status: string) => {
+const putOnSaleData = async (productId: string, status: string) => {
   const isOnSale = status === 'onSale';
+
   try {
     const response = await instance.put(`/products/soldOut/${userId}`, {
-      id: id,
-      product_stauts: isOnSale ? 'soldOut' : 'onSale',
+      id: productId,
+      post_status: isOnSale ? 'soldOut' : 'onSale',
     });
     if (isOnSale) {
       console.log('판매 완료 변경 성공', response);

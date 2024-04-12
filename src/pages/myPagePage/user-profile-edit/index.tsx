@@ -14,7 +14,6 @@ import { useChangeProfile } from 'hooks/queries/user/useChangeProfileMutation';
 const UserProfileEdit = () => {
   const { mutate: changeProfile } = useChangeProfile();
   const [userInfo, setUserInfo] = useState({
-    user_name: '',
     nick_name: '',
     profile_image: [] as string[],
     style: [] as string[],
@@ -54,7 +53,7 @@ const UserProfileEdit = () => {
             onChange={handleChangeNickname}
           />
           <ImageInput profileEditQuery={profileEditQuery} />
-          <TagInput />
+          <TagInput userInfo={userInfo} setUserInfo={setUserInfo} />
         </>
       )}
     </>

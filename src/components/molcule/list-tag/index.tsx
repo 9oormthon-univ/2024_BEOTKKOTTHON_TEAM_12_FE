@@ -47,7 +47,7 @@ const ListTag = ({ isform }: ListTagProps) => {
 
   const handleClick = (category: string) => {
     if (isform) {
-      setFormData('category', category);
+      setFormData('category_name', category);
     }
     setActiveCategory(category);
   };

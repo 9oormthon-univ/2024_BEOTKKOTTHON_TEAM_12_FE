@@ -19,11 +19,10 @@ export const useDonationMutation = () => {
   };
 
   return useMutation({
-    mutationFn: () =>
-      instance.post(`/donations/${userId}?charity=${charityNumber}`, {
-        sendData,
-      }),
-    onSuccess: (res) => console.log('기부 데이터 저장 성공', res.data),
+    mutationFn: () => instance.post(`/donations/${userId}?charity=${charityNumber}`, sendData),
+    onSuccess: (res) => {
+      console.log('기부 데이터 저장 성공', res.data);
+    },
     onError: (error) => console.error('기부 데이터 저장 실패', error),
   });
 };

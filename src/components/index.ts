@@ -62,8 +62,6 @@ export { default as ListBlockUser } from './molcule/list-block-user';
 export { default as UserSection } from './organism/user-section';
 export { default as ListTradeItems } from './organism/list-trade-items';
 export { default as ListSalesInprogress } from './organism/list-sales-inprogress';
-export { default as ListSalesCompleted } from './organism/list-sales-completed';
-export { default as ListSalesHidden } from './organism/list-sales-hidden';
 export { default as FormTrade } from './organism/form-trade';
 export { default as FormDonationBasic } from './organism/form-donation-basic';
 export { default as FormDonationRequest } from './organism/form-donation-request';

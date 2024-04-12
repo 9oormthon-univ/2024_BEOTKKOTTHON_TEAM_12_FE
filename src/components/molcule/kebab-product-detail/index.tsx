@@ -8,6 +8,7 @@ import { useDeleteMutation } from 'hooks/queries/products/useDeleteMutation';
 import { useState } from 'react';
 import { useProduct } from 'store/product';
 import { ProductDetailItem } from 'types/productType';
+import { useBlockUserMutation } from 'hooks/queries/products/useBlockUserMutation';
 
 interface KebabProductDetailProps {
   openKebab: boolean;
@@ -19,9 +20,10 @@ const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
   const product = useProduct();
   const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const { mutate: onSaleMutation } = useOnSaleMutation(id as string, product as ProductDetailItem);
-  const { mutate: hideMutation } = useHideMutation(id as string);
-  const { mutate: deleteMutation } = useDeleteMutation(id as string);
+  const { mutate: onSaleMutation } = useOnSaleMutation(id, product as ProductDetailItem);
+  const { mutate: hideMutation } = useHideMutation(id);
+  const { mutate: deleteMutation } = useDeleteMutation(id);
+  const { mutate: blockMutation } = useBlockUserMutation(product?.seller.id as number);
 
   if (!product) return null;
 
@@ -29,7 +31,7 @@ const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
     <>
       {openKebab && product.seller?.id !== userId && (
         <BoxKebabList>
-          <p>차단하기</p>
+          <p onClick={() => blockMutation()}>차단하기</p>
           <p className="red">신고하기</p>
         </BoxKebabList>
       )}

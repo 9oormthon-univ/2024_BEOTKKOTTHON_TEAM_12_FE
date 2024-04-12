@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -11,8 +11,12 @@ export const Container = styled.div`
   color: var(--grey-5);
 `;
 
-const BoxNoItem = () => {
-  return <Container>내역이 없습니다.</Container>;
+interface BoxNoItemProps {
+  children: ReactNode;
+}
+
+const BoxNoItem = ({ children }: BoxNoItemProps) => {
+  return <Container>{children}</Container>;
 };
 
 export default BoxNoItem;
