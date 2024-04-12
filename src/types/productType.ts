@@ -30,4 +30,5 @@ export interface ProductDetailItem {
   place: string;
   created_time: string;
   time: string;
+  is_selected: boolean;
 }

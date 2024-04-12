@@ -1,26 +1,30 @@
 import * as S from './style';
 import heart from 'assets/icons/heart.svg';
+import fillheart from 'assets/icons/fill-heart.svg';
 import { Button } from 'components/index';
 import { transformPrice } from 'utils/transformPrice';
 import { useNavigate } from 'react-router-dom';
-import { instance } from 'apis';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useProduct } from 'store/product';
+import { useLikedMutation } from 'hooks/queries/products/useLikedMutation';
+import { useUnlikedMutation } from 'hooks/queries/products/useUnlikedMutation';
 
 const FooterProductDetail = () => {
+  const product = useProduct();
+  const { mutate: likedMutation } = useLikedMutation();
+  const { mutate: unlikedMutation } = useUnlikedMutation();
   const [isMine, setIsMine] = useState<boolean>(false);
   const navigate = useNavigate();
-  const product = useProduct();
   const customerId = '1';
 
-  //본인글이면 채팅 안됨
-  useEffect(() => {
-    if (product && product.seller?.id.toString() === customerId) {
-      setIsMine(true);
-    }
-  }, []);
-
   if (!product) return null;
+
+  //본인글이면 채팅 안됨
+  // useEffect(() => {
+  //   if (product && product.seller?.id.toString() === customerId) {
+  //     setIsMine(true);
+  //   }
+  // }, []);
 
   // const getChatRoomId = async () => {
   //   try {
@@ -56,16 +60,24 @@ const FooterProductDetail = () => {
 
   return (
     <S.Container>
-      <img src={heart} className="heart" alt="heart" />
+      <img
+        src={product.is_selected ? fillheart : heart}
+        className="heart"
+        alt="heart"
+        onClick={() =>
+          product.is_selected ? unlikedMutation(product.id) : likedMutation(product.id)
+        }
+      />
       <p className="price">{transformPrice(product.price as number)}원</p>
       <Button
         width="280"
         $bgcolor={product.post_status === 'soldOut' || isMine ? 'var(--grey-3)' : 'var(--green-6)'}
         color={product.post_status === 'soldOut' || isMine ? 'var(--grey-5)' : 'white'}
-        children="채팅하기"
         disabled={product.post_status === 'soldOut'}
         // handleOnClick={handleChatClick}
-      />
+      >
+        채팅하기
+      </Button>
     </S.Container>
   );
 };
