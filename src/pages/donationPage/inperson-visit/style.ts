@@ -15,11 +15,11 @@ export const TabContainer = styled.div`
   margin-bottom: 13px;
 `;
 
-export const Dot = styled.div<{ active: boolean }>`
+export const Dot = styled.div<{ $active: boolean }>`
   width: 6px;
   height: 6px;
   margin: 0 5px;
-  background-color: ${(props) => (props.active ? 'var(--green-primary)' : 'var(--grey-3)')};
+  background-color: ${(props) => (props.$active ? 'var(--green-primary)' : 'var(--grey-3)')};
   border-radius: 50%;
   transition: background-color 0.3s;
 `;

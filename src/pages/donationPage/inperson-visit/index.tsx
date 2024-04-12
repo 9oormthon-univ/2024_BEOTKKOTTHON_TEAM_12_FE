@@ -94,7 +94,7 @@ const DonationInpersonVisit = () => {
       <S.Container>
         <S.TabContainer>
           {[...Array(2)].map((_, index) => (
-            <S.Dot key={index} active={index === activeIndex} />
+            <S.Dot key={index} $active={index === activeIndex} />
           ))}
         </S.TabContainer>
       </S.Container>
