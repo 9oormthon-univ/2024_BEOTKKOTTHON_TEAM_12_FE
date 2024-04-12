@@ -42,4 +42,5 @@ export const ButtonContainer = styled.div`
 export const BtnArrow = styled.img`
   width: 11px;
   height: 19px;
+  cursor: pointer;
 `;

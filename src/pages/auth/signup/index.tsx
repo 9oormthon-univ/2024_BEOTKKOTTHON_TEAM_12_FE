@@ -176,11 +176,12 @@ const SignUp: React.FC = () => {
             </S.Padding30px>
 
             <S.Container>
-              <TagInput
+              {/* 수정 예정 */}
+              {/* <TagInput
                 handleChangeStyleTag={handleChangeStyleTag}
                 label="스타일 태그 선택"
                 setButtonColor={setButtonColor}
-              />
+              /> */}
               <S.ButtonWrapper>
                 <Button
                   handleOnClick={goToNextTab}

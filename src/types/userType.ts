@@ -13,7 +13,6 @@ export interface MypageUserType {
 
 // 프로필 수정 데이터 타입
 export interface ProfileUserType {
-  user_name: string;
   nick_name: string;
   profile_image: string[];
   style: string[];

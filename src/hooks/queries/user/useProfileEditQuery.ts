@@ -19,7 +19,6 @@ const getUserProfileData = async () => {
 export const useProfileEditQuery = (
   setUserInfo: React.Dispatch<
     SetStateAction<{
-      user_name: string;
       nick_name: string;
       profile_image: string[];
       style: string[];
