@@ -26,12 +26,7 @@ const ProductEdit = () => {
     <>
       <Header>
         <p>등록한 글 수정하기</p>
-        <img
-          src={close}
-          className="right"
-          alt="btn-close"
-          onClick={() => navigate(`/product/${id}`)}
-        />
+        <img src={close} className="right" alt="btn-close" onClick={() => navigate(-1)} />
       </Header>
 
       <S.Content>

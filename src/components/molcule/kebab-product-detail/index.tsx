@@ -2,7 +2,7 @@ import BoxKebabList from 'components/atom/box-kebab-list';
 import { userId } from 'data/shared';
 import { useHideMutation } from 'hooks/queries/products/useHideMutation';
 import { useOnSaleMutation } from 'hooks/queries/products/useOnSaleMutation';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ModalProduct from '../modal-product';
 import { useDeleteMutation } from 'hooks/queries/products/useDeleteMutation';
 import { useState } from 'react';
@@ -38,7 +38,9 @@ const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
 
       {openKebab && product.seller?.id === userId && (
         <BoxKebabList>
-          <p onClick={() => navigate(`/product/edit/${id}`)}>수정하기</p>
+          <p>
+            <Link to={`/product/edit/${id}`}>수정하기</Link>
+          </p>
 
           {product.post_status === 'onSale' ? (
             <p onClick={() => onSaleMutation()}>판매 완료로 변경</p>
