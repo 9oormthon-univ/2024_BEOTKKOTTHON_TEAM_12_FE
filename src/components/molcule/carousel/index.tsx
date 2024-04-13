@@ -1,7 +1,7 @@
-import * as S from "./style";
+import * as S from './style';
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 interface CarouselProps {
   $dot: string;
