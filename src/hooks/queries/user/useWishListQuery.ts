@@ -6,10 +6,10 @@ import { useProductListActions } from 'store/productListData';
 
 const getWishListData = async () => {
   try {
-    const response = await instance.get(`/users/wishList/${userId}`);
+    const response = await instance.get(`/users/wishList/${userId}?pageNumber=0`);
     console.log('찜 목록 상품 불러오기 성공:', response.data);
 
-    return response.data;
+    return response.data.content;
   } catch (error) {
     console.log('찜 목록 상품 데이터 불러오기 실패', error);
     return [
