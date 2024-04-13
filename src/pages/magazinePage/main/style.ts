@@ -4,7 +4,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   height: calc(var(--content-size) + var(--header-size));
-  padding: 0 20px;
+  padding: 30px 20px 0;
   overflow-y: scroll;
   -ms-overflow-style: none;
 
