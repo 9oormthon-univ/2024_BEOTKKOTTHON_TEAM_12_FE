@@ -4,7 +4,7 @@ import { ListSalesInprogress, ListTradeItems, Loading } from 'components';
 import { useSalesHistoryQueries } from 'hooks/useSalesHistoryQueries';
 
 const Tab = () => {
-  const tabs = ['판매중', '판매 완료', '숨김'];
+  const tabs = ['판매 중', '판매 완료', '숨김'];
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const { isLoading, numberOfProducts } = useSalesHistoryQueries(activeTab);
 
