@@ -5,6 +5,7 @@ export const Content = styled.div`
   flex-direction: column;
   height: calc(var(--content-size) + var(--header-size));
   padding: 30px 20px 0;
+  box-sizing: border-box;
   overflow-y: scroll;
   -ms-overflow-style: none;
 
