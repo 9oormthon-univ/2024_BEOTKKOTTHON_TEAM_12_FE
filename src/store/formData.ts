@@ -2,7 +2,7 @@ import { TradeFormData } from 'types/types';
 import { create } from 'zustand';
 
 interface Actions {
-  setFormData: (name: string, value: string | number) => void;
+  setFormData: (name: string, value: string | number | string[]) => void;
   setShowImages: (urls: string[]) => void;
   receiveData: (data: TradeFormData) => void;
   resetFormData: () => void;

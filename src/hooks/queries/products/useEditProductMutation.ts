@@ -1,14 +1,19 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
 import { TradeFormData } from 'types/types';
 
-export const useEditProductMutation = (id: string) => {
+export const useEditProductMutation = (productId: string) => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (sendData: TradeFormData) =>
-      instance.put(`/products/edit/${userId}/${id}`, sendData),
+      instance.put(`/products/edit/${userId}/${productId}`, sendData),
     onSuccess: (res) => {
       console.log('상품 수정에 성공했습니다.', res);
+      queryClient.invalidateQueries({
+        queryKey: ['products', 'product-detail', userId, productId],
+      });
       alert('상품 수정에 성공했습니다.');
     },
     onError: (error) => {

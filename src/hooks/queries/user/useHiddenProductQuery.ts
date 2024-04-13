@@ -4,9 +4,9 @@ import { userId } from 'data/shared';
 
 const getHiddenProducts = async () => {
   try {
-    const response = await instance.get(`/users/myProducts/private/${userId}`);
-    console.log('숨김 상품 불러오기 성공:', response.data);
-    return response.data;
+    const response = await instance.get(`/users/myProducts/private/${userId}?pageNumber=0`);
+    console.log('숨김 상품 불러오기 성공:', response.data.content);
+    return response.data.content;
   } catch (error) {
     console.log('숨김 상품 불러오기 실패', error);
     return [

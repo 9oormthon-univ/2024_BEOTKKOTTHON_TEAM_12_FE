@@ -20,12 +20,6 @@ const ListTag = ({ isform }: ListTagProps) => {
 
   const list = isform ? categories.slice(1) : categories;
 
-  useEffect(() => {
-    if (isform) {
-      setActiveCategory('');
-    }
-  }, []);
-
   // 마우스 이벤트 핸들러
   const startDragging = (e: React.PointerEvent<HTMLDivElement>) => {
     setIsDragging(true);

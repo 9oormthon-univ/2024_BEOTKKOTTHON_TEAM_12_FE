@@ -36,18 +36,7 @@ const FormTrade = ({ handleSubmitAction, btnText }: FormTradeProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
-
-    handleSubmitAction({
-      product_image: formData.product_image,
-      product_name: formData.product_name,
-      category_name: formData.category_name,
-      product_status: formData.product_status,
-      product_content: formData.product_content,
-      price: formData.price,
-      place: formData.place,
-    });
-
+    handleSubmitAction(formData);
     navigate(-1);
     resetFormData();
   };

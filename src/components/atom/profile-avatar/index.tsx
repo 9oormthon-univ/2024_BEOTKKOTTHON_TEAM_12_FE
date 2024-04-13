@@ -5,6 +5,7 @@ export const RoundImage = styled.img`
   width: 55px;
   height: 55px;
   margin: 5px;
+  border: 1px solid var(--grey-3);
   border-radius: 50%;
 `;
 

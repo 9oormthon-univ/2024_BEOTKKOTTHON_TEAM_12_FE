@@ -15,7 +15,6 @@ export const Container = styled.div<SizeProps>`
 
 export const BoxSlider = styled(Slider)<SizeProps>`
   & img {
-    border-radius: 10px;
     width: ${(props) => props.$width};
     height: ${(props) => props.$height};
     object-fit: cover;
