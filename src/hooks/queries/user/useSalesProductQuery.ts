@@ -4,12 +4,9 @@ import { userId } from 'data/shared';
 
 const getSalesProducts = async () => {
   try {
-    const response = await instance.get(`/users/myProducts/onSale/${userId}`);
-    console.log('판매중인 상품 불러오기 성공:', response.data);
-
-    console.log('판매완료 상품 불러오기 성공:', response.data);
-
-    return response.data;
+    const response = await instance.get(`/users/myProducts/onSale/${userId}?pageNumber=0`);
+    console.log('판매중인 상품 불러오기 성공:', response.data.content);
+    return response.data.content;
   } catch (error: any) {
     if (error?.response?.status === 404) {
       return null;
