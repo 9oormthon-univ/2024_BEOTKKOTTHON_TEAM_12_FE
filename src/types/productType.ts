@@ -31,4 +31,5 @@ export interface ProductDetailItem {
   created_time: string;
   time: string;
   is_selected: boolean;
+  is_private: boolean;
 }

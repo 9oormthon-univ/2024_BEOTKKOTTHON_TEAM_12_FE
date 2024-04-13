@@ -2,7 +2,7 @@ import BoxKebabList from 'components/atom/box-kebab-list';
 import { userId } from 'data/shared';
 import { useHideMutation } from 'hooks/queries/products/useHideMutation';
 import { useOnSaleMutation } from 'hooks/queries/products/useOnSaleMutation';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ModalProduct from '../modal-product';
 import { useDeleteMutation } from 'hooks/queries/products/useDeleteMutation';
 import { useState } from 'react';
@@ -16,7 +16,6 @@ interface KebabProductDetailProps {
 }
 
 const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
-  const navigate = useNavigate();
   const product = useProduct();
   const [openModal, setOpenModal] = useState<boolean>(false);
 
@@ -29,6 +28,7 @@ const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
 
   return (
     <>
+      {/* 내가 작성하지 않은 글 */}
       {openKebab && product.seller?.id !== userId && (
         <BoxKebabList>
           <p onClick={() => blockMutation()}>차단하기</p>
@@ -36,6 +36,7 @@ const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
         </BoxKebabList>
       )}
 
+      {/* 내가 작성한 글 */}
       {openKebab && product.seller?.id === userId && (
         <BoxKebabList>
           <p>
@@ -47,7 +48,9 @@ const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
           ) : (
             <p onClick={() => onSaleMutation()}>판매 중으로 변경</p>
           )}
-          <p onClick={() => hideMutation()}>글 숨기기</p>
+
+          <p onClick={() => hideMutation()}>{product.is_private ? '글 숨김 취소' : '글 숨기기'}</p>
+
           <p className="red" onClick={() => setOpenModal(!openModal)}>
             삭제
           </p>
