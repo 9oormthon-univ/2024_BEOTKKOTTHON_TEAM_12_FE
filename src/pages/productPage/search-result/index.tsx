@@ -1,11 +1,11 @@
-import { FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
+import { BoxNoItem, FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
 import * as S from './style';
 import back from 'assets/icons/arrow_left_alt.svg';
 import { Link } from 'react-router-dom';
 import { useSearchQuery } from 'hooks/queries/products/useSearchQuery';
 
 const SearchResult = () => {
-  const searchQuery = useSearchQuery();
+  const { data: searchQuery, isLoading, isError } = useSearchQuery();
 
   return (
     <>
@@ -28,7 +28,13 @@ const SearchResult = () => {
         </section>
 
         <section className="items">
-          {searchQuery.isLoading ? <Loading /> : <ListTradeItems />}
+          {isLoading && <Loading />}
+          {!isLoading &&
+            (searchQuery.length === 0 ? (
+              <BoxNoItem>일치하는 상품이 없습니다.</BoxNoItem>
+            ) : (
+              <ListTradeItems />
+            ))}
         </section>
       </S.Content>
     </>
