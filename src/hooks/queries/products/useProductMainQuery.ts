@@ -14,7 +14,7 @@ const getProductListData = async (category: string, onSale: string | null) => {
       `
     );
     console.log('물품 리스트 불러오기 성공', response);
-    return response.data.content;
+    return [];
   } catch (e) {
     console.log('물품 리스트 불러오기 실패 ', e);
     const productData = productMainDummyData();

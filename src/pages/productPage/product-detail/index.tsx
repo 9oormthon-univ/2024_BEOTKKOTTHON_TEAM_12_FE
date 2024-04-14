@@ -22,11 +22,6 @@ const ProductDetail = () => {
   const product = useProduct();
   const [openKebab, setOpenKebab] = useState<boolean>(false);
 
-  if (isError) {
-    // 404 페이지로 대체 가능
-    return <div>상품이 존재하지 않습니다.</div>;
-  }
-
   return (
     <>
       <Header>
@@ -43,6 +38,7 @@ const ProductDetail = () => {
 
       <S.Content>
         {isLoading && <Loading />}
+        {isError && <div>상품이 존재하지 않습니다.</div>}
         {productDetailQuery && product && (
           <>
             <section className="profile">

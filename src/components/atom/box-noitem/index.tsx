@@ -1,22 +1,27 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  $height?: string;
+}
+
+export const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 500px;
+  height: ${(props) => props.$height || 'inherit'};
   font-size: 16px;
   color: var(--grey-5);
 `;
 
 interface BoxNoItemProps {
+  $height?: string;
   children: ReactNode;
 }
 
-const BoxNoItem = ({ children }: BoxNoItemProps) => {
-  return <Container>{children}</Container>;
+const BoxNoItem = ({ $height, children }: BoxNoItemProps) => {
+  return <Container $height={$height}>{children}</Container>;
 };
 
 export default BoxNoItem;
