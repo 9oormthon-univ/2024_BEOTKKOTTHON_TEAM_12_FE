@@ -10,8 +10,9 @@ const getProductEditData = async (productId: string) => {
     const response = await instance.get(`/products/edit/${userId}/${productId}`);
     console.log('상품 수정페이지 데이터 가져오기 성공', response.data);
     return response.data;
-  } catch (error) {
+  } catch (error: any) {
     console.log('상품 수정페이지 데이터 가져오기 실패', error);
+    throw new Error(error.response?.data?.message);
   }
 };
 

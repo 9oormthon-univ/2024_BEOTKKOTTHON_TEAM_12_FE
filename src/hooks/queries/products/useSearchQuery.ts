@@ -15,9 +15,9 @@ const getSearchData = async (searchName: string, activeCategory: string, onSale:
 
     console.log('상품 검색 성공', response.data.content);
     return response.data.content;
-  } catch (error) {
+  } catch (error: any) {
     console.log('상품 검색 실패', error);
-    return [];
+    throw new Error(error.response?.data?.message);
   }
 };
 
@@ -28,7 +28,7 @@ export const useSearchQuery = () => {
   const { setActiveCategory, setInitialProductList } = useProductListActions();
 
   const searchQuery = useQuery({
-    queryKey: ['products', 'search', activeCategory, clickedOnSale],
+    queryKey: ['products', 'search', searchName, activeCategory, clickedOnSale],
     queryFn: () => getSearchData(searchName, activeCategory, clickedOnSale),
   });
 

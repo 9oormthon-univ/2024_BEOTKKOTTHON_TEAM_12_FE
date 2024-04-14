@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { productDetailDummyData } from 'data/product';
 import { userId } from 'data/shared';
 import { useEffect } from 'react';
 import { useProductActions } from 'store/product';
@@ -10,10 +9,9 @@ const getProductDetailData = async (productId: string) => {
     const response = await instance.get(`/products/${userId}/${productId}`);
     console.log('데이터 가져오기 성공', response);
     return response.data;
-  } catch (e) {
+  } catch (e: any) {
     console.log('데이터 가져오기 실패', e);
-    const productDetailItem = productDetailDummyData();
-    return productDetailItem;
+    throw new Error(e.response?.data?.message);
   }
 };
 
