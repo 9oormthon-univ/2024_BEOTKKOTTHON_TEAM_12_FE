@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import { useSearchQuery } from 'hooks/queries/products/useSearchQuery';
 
 const SearchResult = () => {
-  const { data: searchQuery, isLoading, isError } = useSearchQuery();
+  const { status } = useSearchQuery();
 
   return (
     <>
       <S.HeaderSearch>
-        <Link to={'/product'}>
+        <Link to={'/search'}>
           <img src={back} alt="back" />
         </Link>
         <Link to={'/search'} className="search-input">
@@ -28,13 +28,7 @@ const SearchResult = () => {
         </section>
 
         <section className="items">
-          {isLoading && <Loading />}
-          {!isLoading &&
-            (searchQuery.length === 0 ? (
-              <BoxError>일치하는 상품이 없습니다.</BoxError>
-            ) : (
-              <ListTradeItems />
-            ))}
+          <ListTradeItems status={status} />
         </section>
       </S.Content>
     </>

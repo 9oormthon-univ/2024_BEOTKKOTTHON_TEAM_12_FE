@@ -6,11 +6,11 @@ import { useActiveCategory, useClickedOnSale, useProductListActions } from 'stor
 import { useSearchData } from 'store/search';
 
 const getSearchData = async (searchName: string, activeCategory: string, onSale: string | null) => {
+  const endpoint = onSale ? `/products/search/category/sale?` : `/products/search/category?`;
+
   try {
     const response = await instance.get(
-      `/products/search/${
-        onSale ? `category/sale?` : `category?`
-      }searchName=${searchName}&categoryName=${activeCategory}&userId=${userId}&pageNumber=0`
+      `${endpoint}searchName=${searchName}&categoryName=${activeCategory}&userId=${userId}&pageNumber=0`
     );
 
     console.log('상품 검색 성공', response.data.content);
