@@ -1,4 +1,4 @@
-// 차단한 사용자 데이터 타입
+// 상품 리스트 타입
 export interface ProductListItem {
   id: number;
   price: number;
@@ -18,6 +18,7 @@ export interface Seller {
   level: string;
 }
 
+// 상품 상세 페이지 타입
 export interface ProductDetailItem {
   id: number;
   seller: Seller;
@@ -32,4 +33,15 @@ export interface ProductDetailItem {
   time: string;
   is_selected: boolean;
   is_private: boolean;
+}
+
+// 상품 폼 전송
+export interface ProductFormDataType {
+  product_image: string[];
+  product_name: string;
+  category_name: string;
+  product_status: string;
+  product_content: string;
+  price: number;
+  place: string;
 }

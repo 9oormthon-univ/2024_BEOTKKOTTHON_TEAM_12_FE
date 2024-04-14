@@ -1,5 +1,5 @@
-import { BoxInput } from "components/index";
-import styled from "styled-components";
+import { BoxInput } from 'components/index';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -60,29 +60,29 @@ export const FlexInput = styled.div`
   }
 `;
 
-export const InputNum = styled(BoxInput)`
-  width: 164px;
-  align-items: center;
-  margin-top: 10px;
+// export const InputNum = styled(BoxInput)`
+//   width: 164px;
+//   align-items: center;
+//   margin-top: 10px;
 
-  & > input {
-    width: 100%;
-    text-align: center;
-    padding-right: 4px;
+//   & > input {
+//     width: 100%;
+//     text-align: center;
+//     padding-right: 4px;
 
-    &:focus::placeholder {
-      color: transparent;
-    }
+//     &:focus::placeholder {
+//       color: transparent;
+//     }
 
-    &:focus::-ms-input-placeholder {
-      color: transparent;
-    }
-  }
+//     &:focus::-ms-input-placeholder {
+//       color: transparent;
+//     }
+//   }
 
-  & > p {
-    color: var(--grey-5);
-  }
-`;
+//   & > p {
+//     color: var(--grey-5);
+//   }
+// `;
 
 export const Sort = styled.label`
   font-size: 14px;

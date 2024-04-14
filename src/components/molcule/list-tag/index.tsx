@@ -1,15 +1,15 @@
 import { categories } from 'data/shared';
 import { BoxTag, Tag } from 'components/index';
-import { useFormDataActions } from 'store/formData';
+import { useFormDataActions } from 'store/productFormData';
 import { useActiveCategory, useProductListActions } from 'store/productListData';
-import { useMouseEventHandler } from 'hooks/useMouseEventHandler';
+import { useMouseEventHandler } from 'utils/useMouseEventHandler';
 
 interface ListTagProps {
   isform?: boolean;
 }
 
 const ListTag = ({ isform }: ListTagProps) => {
-  const { setFormData } = useFormDataActions();
+  const { changeProductFormData } = useFormDataActions();
   const activeCategory = useActiveCategory();
   const { setActiveCategory } = useProductListActions();
   const { startDragging, stopDragging, whileDragging } = useMouseEventHandler();
@@ -18,7 +18,7 @@ const ListTag = ({ isform }: ListTagProps) => {
 
   const handleClick = (category: string) => {
     if (isform) {
-      setFormData('category_name', category);
+      changeProductFormData('category_name', category);
     }
     setActiveCategory(category);
   };
