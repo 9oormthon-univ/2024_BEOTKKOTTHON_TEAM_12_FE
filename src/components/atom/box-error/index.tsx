@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-interface LoadingProps {
+interface BoxErrorProps {
   $height?: string;
   children: ReactNode;
 }
@@ -14,19 +14,14 @@ const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: inherit;
+  width: 100%;
   height: ${(props) => props.$height || 'inherit'};
-  background-color: white;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: 30px;
-  box-sizing: border-box;
+  font-size: 16px;
+  color: var(--grey-5);
 `;
 
-const Error = ({ $height, children }: LoadingProps) => {
+const BoxError = ({ $height, children }: BoxErrorProps) => {
   return <Container $height={$height}>{children}</Container>;
 };
 
-export default Error;
+export default BoxError;

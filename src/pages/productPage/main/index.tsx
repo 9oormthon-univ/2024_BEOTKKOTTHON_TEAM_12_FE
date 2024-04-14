@@ -1,12 +1,9 @@
 import {
-  BoxNoItem,
   ButtonPlus,
-  Error,
   FilterTrade,
   Header,
   ListTag,
   ListTradeItems,
-  Loading,
   Nav,
   Search,
 } from 'components/index';
@@ -21,7 +18,7 @@ import { useProductMainQuery } from 'hooks/queries/products/useProductMainQuery'
 
 const ProductMain = () => {
   const navigate = useNavigate();
-  const { data: productMainQuery, isLoading, isError } = useProductMainQuery();
+  const { status } = useProductMainQuery();
   const { changeSearchData } = useSearchActions();
   const { setActiveCategory } = useProductListActions();
 
@@ -51,15 +48,7 @@ const ProductMain = () => {
         </section>
 
         <section className="items">
-          {isLoading && <Loading $height="300px" />}
-
-          {isError && <Error $height="300px">상품을 불러오지 못했습니다.</Error>}
-
-          {productMainQuery && productMainQuery.length === 0 ? (
-            <BoxNoItem $height="300px">상품이 존재하지 않습니다.</BoxNoItem>
-          ) : (
-            <ListTradeItems />
-          )}
+          <ListTradeItems status={status} />
         </section>
 
         <Link to={'/product/new'}>

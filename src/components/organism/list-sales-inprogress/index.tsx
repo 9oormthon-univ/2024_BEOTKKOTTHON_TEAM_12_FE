@@ -3,10 +3,10 @@ import * as S from './style';
 import ModalProduct from 'components/molcule/modal-product';
 import BoxItemTrade from 'components/molcule/box-item-trade';
 import Button from 'components/atom/button';
-import BoxNoItem from 'components/atom/box-noitem';
 import { useProductList } from 'store/productListData';
 import { usePostSalesCompletedMutation } from 'hooks/queries/user/usePostSalesCompletedMutation';
 import { ProductListItem } from 'types/productType';
+import { BoxError } from 'components';
 
 const ListSalesInprogress: React.FC = () => {
   const productList = useProductList();
@@ -47,7 +47,7 @@ const ListSalesInprogress: React.FC = () => {
           ))}
         </S.Container>
       ) : (
-        <BoxNoItem>상품 목록이 없습니다.</BoxNoItem>
+        <BoxError>상품 목록이 없습니다.</BoxError>
       )}
     </>
   );

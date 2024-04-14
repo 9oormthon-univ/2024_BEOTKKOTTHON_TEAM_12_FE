@@ -1,24 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { productMainDummyData } from 'data/product';
 import { userId } from 'data/shared';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 
 const getProductListData = async (category: string, onSale: string | null) => {
+  const endpoint = onSale
+    ? `/products/category/sale?categoryName=${category}`
+    : `/products/category?categoryName=${category}`;
+
   try {
-    const response = await instance.get(
-      `/products/${
-        onSale ? `category/sale?` : `category?`
-      }categoryName=${category}&userId=${userId}&pageNumber=0
-      `
-    );
-    console.log('물품 리스트 불러오기 성공', response);
-    return [];
-  } catch (e) {
+    const response = await instance.get(`${endpoint}&userId=${userId}&pageNumber=0`);
+    console.log('물품 리스트 불러오기 성공', response.data.content);
+    return response.data.content;
+  } catch (e: any) {
     console.log('물품 리스트 불러오기 실패 ', e);
-    const productData = productMainDummyData();
-    return productData;
+    throw new Error(e.response?.data?.message);
   }
 };
 

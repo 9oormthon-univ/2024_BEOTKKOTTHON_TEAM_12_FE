@@ -1,4 +1,4 @@
-import { BoxNoItem, FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
+import { BoxError, FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
 import * as S from './style';
 import back from 'assets/icons/arrow_left_alt.svg';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ const SearchResult = () => {
           {isLoading && <Loading />}
           {!isLoading &&
             (searchQuery.length === 0 ? (
-              <BoxNoItem>일치하는 상품이 없습니다.</BoxNoItem>
+              <BoxError>일치하는 상품이 없습니다.</BoxError>
             ) : (
               <ListTradeItems />
             ))}
