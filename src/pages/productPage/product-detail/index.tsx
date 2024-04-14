@@ -24,7 +24,7 @@ const ProductDetail = () => {
           onClick={() => setOpenKebab(!openKebab)}
         />
       </Header>
-      <KebabProductDetail openKebab={openKebab} id={id} />
+      {openKebab && <KebabProductDetail id={id} />}
       <ContentProductDetail id={id} />
       <FooterProductDetail />
     </>

@@ -11,11 +11,10 @@ import { ProductDetailItem } from 'types/productType';
 import { useBlockUserMutation } from 'hooks/queries/products/useBlockUserMutation';
 
 interface KebabProductDetailProps {
-  openKebab: boolean;
   id: string;
 }
 
-const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
+const KebabProductDetail = ({ id }: KebabProductDetailProps) => {
   const product = useProduct();
   const [openModal, setOpenModal] = useState<boolean>(false);
 
@@ -28,26 +27,20 @@ const KebabProductDetail = ({ openKebab, id }: KebabProductDetailProps) => {
 
   return (
     <>
-      {/* 내가 작성하지 않은 글 */}
-      {openKebab && product.seller?.id !== userId && (
+      {product.seller?.id !== userId ? (
         <BoxKebabList>
           <p onClick={() => blockMutation()}>차단하기</p>
           <p className="red">신고하기</p>
         </BoxKebabList>
-      )}
-
-      {/* 내가 작성한 글 */}
-      {openKebab && product.seller?.id === userId && (
+      ) : (
         <BoxKebabList>
           <p>
             <Link to={`/product/edit/${id}`}>수정하기</Link>
           </p>
 
-          {product.post_status === 'onSale' ? (
-            <p onClick={() => onSaleMutation()}>판매 완료로 변경</p>
-          ) : (
-            <p onClick={() => onSaleMutation()}>판매 중으로 변경</p>
-          )}
+          <p onClick={() => onSaleMutation()}>
+            {product.post_status === 'onSale' ? '판매 완료로 변경' : '판매 중으로 변경'}
+          </p>
 
           <p onClick={() => hideMutation()}>{product.is_private ? '글 숨김 취소' : '글 숨기기'}</p>
 
