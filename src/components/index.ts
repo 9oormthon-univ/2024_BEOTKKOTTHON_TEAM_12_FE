@@ -71,3 +71,4 @@ export { default as LoginForm } from './organism/login-form';
 export { default as SigninFirstForm } from './organism/signin-first-form';
 export { default as SigninSecondForm } from './organism/signin-second-form';
 export { default as TableDonationHistory } from './organism/table-donation-history';
+export { default as ContentProductDetail } from './organism/content-product-detail';
