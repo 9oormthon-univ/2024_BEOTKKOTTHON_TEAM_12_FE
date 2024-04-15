@@ -73,17 +73,6 @@ export interface Quiz {
   answer: number;
 }
 
-// 상품 폼 전송
-export interface TradeFormData {
-  product_image: string[];
-  product_name: string;
-  category_name: string;
-  product_status: string;
-  product_content: string;
-  price: number;
-  place: string;
-}
-
 // 기부 폼 전송
 export interface DonationFormData {
   user_name: string;

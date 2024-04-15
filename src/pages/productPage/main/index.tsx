@@ -4,7 +4,6 @@ import {
   Header,
   ListTag,
   ListTradeItems,
-  Loading,
   Nav,
   Search,
 } from 'components/index';
@@ -19,7 +18,7 @@ import { useProductMainQuery } from 'hooks/queries/products/useProductMainQuery'
 
 const ProductMain = () => {
   const navigate = useNavigate();
-  const productMainQuery = useProductMainQuery();
+  const { status } = useProductMainQuery();
   const { changeSearchData } = useSearchActions();
   const { setActiveCategory } = useProductListActions();
 
@@ -49,8 +48,7 @@ const ProductMain = () => {
         </section>
 
         <section className="items">
-          {productMainQuery.error && <S.Error>상품을 불러오지 못했습니다.</S.Error>}
-          {productMainQuery.isLoading ? <Loading /> : <ListTradeItems />}
+          <ListTradeItems status={status} />
         </section>
 
         <Link to={'/product/new'}>

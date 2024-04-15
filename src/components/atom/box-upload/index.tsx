@@ -1,11 +1,11 @@
 import * as S from './style';
 import image from 'assets/icons/image.svg';
-import { useFormDataActions, useShowImages } from 'store/formData';
+import { useFormDataActions, useShowImages } from 'store/productFormData';
 import { useImgUploadMutation } from 'hooks/queries/image-upload/useImgUploadMutaion';
 
 const BoxUpload = () => {
   const showImages = useShowImages();
-  const { setShowImages } = useFormDataActions();
+  const { changeShowImages } = useFormDataActions();
   const { mutate: ImgUploadMutation } = useImgUploadMutation();
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,7 @@ const BoxUpload = () => {
       if (imageUrlLists.length > 5) {
         imageUrlLists = imageUrlLists.slice(0, 5);
       }
-      setShowImages(imageUrlLists);
+      changeShowImages(imageUrlLists);
     }
   };
 

@@ -1,5 +1,5 @@
-import { useFormData, useFormDataActions } from "store/formData";
-import * as S from "./style";
+import { useProductFormData, useFormDataActions } from 'store/productFormData';
+import * as S from './style';
 
 interface ListTradeFormProps {
   type: string;
@@ -7,20 +7,20 @@ interface ListTradeFormProps {
 }
 
 const ListTradeForm = ({ type, list }: ListTradeFormProps) => {
-  const formData = useFormData();
-  const { setFormData } = useFormDataActions();
+  const formData = useProductFormData();
+  const { changeProductFormData } = useFormDataActions();
 
   const handleClick = (element: string) => {
-    if (type === "price") {
+    if (type === 'price') {
       const matches = element.match(/\d+/g);
       //null이 아닐 때만 실행
       if (matches) {
-        const numbers = matches.join("");
+        const numbers = matches.join('');
         const updated = Number(formData.price) + Number(numbers);
-        setFormData("price", updated);
+        changeProductFormData('price', updated);
       }
-    } else if (type === "place") {
-      setFormData("place", element);
+    } else if (type === 'place') {
+      changeProductFormData('place', element);
     }
   };
 

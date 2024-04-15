@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { SetStateAction } from 'react';
-import { useFormData, useFormDataActions } from 'store/formData';
+import { useProductFormData, useFormDataActions } from 'store/productFormData';
 
 const postImgUpload = async (sendData: FormData) => {
   const response = await instance.post('/upload', sendData, {
@@ -13,8 +13,8 @@ const postImgUpload = async (sendData: FormData) => {
 };
 
 export const useImgUploadMutation = (setImg?: React.Dispatch<SetStateAction<string>>) => {
-  const formData = useFormData();
-  const { setFormData } = useFormDataActions();
+  const formData = useProductFormData();
+  const { changeProductFormData } = useFormDataActions();
 
   return useMutation({
     mutationFn: postImgUpload,
@@ -24,7 +24,7 @@ export const useImgUploadMutation = (setImg?: React.Dispatch<SetStateAction<stri
       if (setImg) {
         setImg(res);
       } else {
-        setFormData('product_image', [...formData.product_image, ...res]);
+        changeProductFormData('product_image', [...formData.product_image, ...res]);
       }
     },
     onError: (error) => console.log('상품 이미지 업로드 실패', error),

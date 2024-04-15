@@ -21,11 +21,11 @@ export { default as BoxModal } from './atom/box-modal';
 export { default as BoxDonationImg } from './atom/box-donation-img';
 export { default as BoxBackgroundGreen } from './atom/box-background-green';
 export { default as BoxDonationDot } from './atom/box-donation-dot';
-export { default as BoxNoItem } from './atom/box-noitem';
 export { default as ChatMessage } from './atom/chat-message';
 export { default as Checkbox } from './atom/checkbox';
 export { default as KakaoMap } from './atom/map';
 export { default as Loading } from './atom/loading';
+export { default as BoxError } from './atom/box-error';
 //Molcule
 export { default as Carousel } from './molcule/carousel';
 export { default as ProfileCard } from './molcule/profile-card';
@@ -71,3 +71,4 @@ export { default as LoginForm } from './organism/login-form';
 export { default as SigninFirstForm } from './organism/signin-first-form';
 export { default as SigninSecondForm } from './organism/signin-second-form';
 export { default as TableDonationHistory } from './organism/table-donation-history';
+export { default as ContentProductDetail } from './organism/content-product-detail';

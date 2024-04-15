@@ -5,19 +5,23 @@ import { Button } from 'components/index';
 import { transformPrice } from 'utils/transformPrice';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useProduct } from 'store/product';
 import { useLikedMutation } from 'hooks/queries/products/useLikedMutation';
 import { useUnlikedMutation } from 'hooks/queries/products/useUnlikedMutation';
+import { ProductDetailItem } from 'types/productType';
 
-const FooterProductDetail = () => {
-  const product = useProduct();
+interface FooterProductDetailProps {
+  product: ProductDetailItem;
+  status: string;
+}
+
+const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
   const { mutate: likedMutation } = useLikedMutation(product?.id as number);
   const { mutate: unlikedMutation } = useUnlikedMutation(product?.id as number);
   const [isMine, setIsMine] = useState<boolean>(false);
   const navigate = useNavigate();
   const customerId = '1';
 
-  if (!product) return null;
+  if (status === 'pending' || status === 'error') return null;
 
   //본인글이면 채팅 안됨
   // useEffect(() => {

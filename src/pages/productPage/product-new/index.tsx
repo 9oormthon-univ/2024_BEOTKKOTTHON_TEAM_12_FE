@@ -1,5 +1,4 @@
 import { FormTrade, Header } from 'components/index';
-import * as S from './style';
 import close from 'assets/icons/close_large.svg';
 import { useNavigate } from 'react-router-dom';
 import { useNewProductMutation } from 'hooks/queries/products/useNewProductMutation';
@@ -22,9 +21,7 @@ const ProductNew = () => {
         <img src={close} className="right" alt="btn-close" onClick={() => navigate(-1)} />
       </Header>
 
-      <S.Content>
-        <FormTrade handleSubmitAction={newProductMutation} btnText={'등록하기'} />
-      </S.Content>
+      <FormTrade handleSubmitAction={newProductMutation} btnText={'등록하기'} />
     </>
   );
 };

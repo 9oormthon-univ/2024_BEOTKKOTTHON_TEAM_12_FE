@@ -1,16 +1,16 @@
-import { FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
+import { BoxError, FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
 import * as S from './style';
 import back from 'assets/icons/arrow_left_alt.svg';
 import { Link } from 'react-router-dom';
 import { useSearchQuery } from 'hooks/queries/products/useSearchQuery';
 
 const SearchResult = () => {
-  const searchQuery = useSearchQuery();
+  const { status } = useSearchQuery();
 
   return (
     <>
       <S.HeaderSearch>
-        <Link to={'/product'}>
+        <Link to={'/search'}>
           <img src={back} alt="back" />
         </Link>
         <Link to={'/search'} className="search-input">
@@ -28,7 +28,7 @@ const SearchResult = () => {
         </section>
 
         <section className="items">
-          {searchQuery.isLoading ? <Loading /> : <ListTradeItems />}
+          <ListTradeItems status={status} />
         </section>
       </S.Content>
     </>

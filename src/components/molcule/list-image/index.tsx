@@ -1,15 +1,15 @@
 import { BoxUpload } from 'components/index';
 import * as S from './style';
 import cancle from 'assets/icons/cancel.svg';
-import { useFormDataActions, useShowImages } from 'store/formData';
+import { useFormDataActions, useShowImages } from 'store/productFormData';
 
 const ListImage = () => {
   const showImages = useShowImages();
-  const { setShowImages } = useFormDataActions();
+  const { changeShowImages } = useFormDataActions();
 
   const handleClick = (i: number) => {
     const filterdUrls = showImages.filter((_, index) => index !== i);
-    setShowImages(filterdUrls);
+    changeShowImages(filterdUrls);
   };
 
   return (

@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
 import { useEffect } from 'react';
-import { useFormDataActions } from 'store/formData';
+import { useFormDataActions } from 'store/productFormData';
 import { useProductListActions } from 'store/productListData';
 
 const getProductEditData = async (productId: string) => {
@@ -10,13 +10,14 @@ const getProductEditData = async (productId: string) => {
     const response = await instance.get(`/products/edit/${userId}/${productId}`);
     console.log('상품 수정페이지 데이터 가져오기 성공', response.data);
     return response.data;
-  } catch (error) {
+  } catch (error: any) {
     console.log('상품 수정페이지 데이터 가져오기 실패', error);
+    throw new Error(error.response?.data?.message);
   }
 };
 
 export const useProductEditQuery = (productId: string) => {
-  const { receiveData } = useFormDataActions();
+  const { receiveProductFormData } = useFormDataActions();
   const { setActiveCategory } = useProductListActions();
 
   const productEditQuery = useQuery({
@@ -26,7 +27,7 @@ export const useProductEditQuery = (productId: string) => {
 
   useEffect(() => {
     if (productEditQuery.data) {
-      receiveData(productEditQuery.data);
+      receiveProductFormData(productEditQuery.data);
       setActiveCategory(productEditQuery.data.category_name);
     }
   }, [productEditQuery.data]);

@@ -12,10 +12,6 @@ const Container = styled.div<LoadingProps>`
   width: inherit;
   height: ${(props) => props.$height || 'inherit'};
   background-color: white;
-
-  position: absolute;
-  left: 0;
-  right: 0;
   padding: 30px;
   box-sizing: border-box;
 `;
