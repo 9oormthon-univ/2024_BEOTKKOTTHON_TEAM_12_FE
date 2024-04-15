@@ -1,4 +1,4 @@
-import { ButtonBack, Header, ListTradeItems, Loading, TextLabel } from 'components';
+import { ButtonBack, Header, ListTradeItems, TextLabel } from 'components';
 import * as S from './style';
 import { useProductList } from 'store/productListData';
 import { useWishListQuery } from 'hooks/queries/user/useWishListQuery';
