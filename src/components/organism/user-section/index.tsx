@@ -9,13 +9,12 @@ export const UserSectionWrapper = styled.div`
 
 interface UserSectionProps {
   userData: MypageUserType;
-  status: string;
 }
 
-const UserSection = ({ userData, status }: UserSectionProps) => {
+const UserSection = ({ userData }: UserSectionProps) => {
   return (
     <UserSectionWrapper>
-      <ProfileCard userData={userData} status={status} />
+      <ProfileCard userData={userData} />
       <ProgressBar userData={userData} />
     </UserSectionWrapper>
   );

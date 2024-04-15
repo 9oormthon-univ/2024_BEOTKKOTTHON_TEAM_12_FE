@@ -6,8 +6,7 @@ import { useUserProfileActions } from 'store/userData';
 
 const getUserData = async () => {
   try {
-    const response = await instance.get(`/users/111111`);
-    // const response = await instance.get(`/users/${userId}`);
+    const response = await instance.get(`/users/${userId}`);
     console.log('마이페이지 불러오기 성공', response);
     return response.data;
   } catch (e: any) {

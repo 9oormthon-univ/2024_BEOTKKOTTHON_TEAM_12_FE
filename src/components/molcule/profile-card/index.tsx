@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './style';
 import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
 
@@ -9,10 +8,9 @@ import { MypageUserType } from 'types/userType';
 
 interface ProfileCardProps {
   userData: MypageUserType;
-  status: string;
 }
 
-const ProfileCard = ({ userData, status }: ProfileCardProps) => {
+const ProfileCard = ({ userData }: ProfileCardProps) => {
   const navigate = useNavigate();
 
   const onModifyProfile = () => {
@@ -34,18 +32,14 @@ const ProfileCard = ({ userData, status }: ProfileCardProps) => {
           {userData.university_name}
         </TextLabel>
 
-        {status === 'success' && (
-          <S.ButtonContainer>
-            {userData.style.map((style, index) => (
-              <ProfileButton key={index}>{style}</ProfileButton>
-            ))}
-          </S.ButtonContainer>
-        )}
+        <S.ButtonContainer>
+          {userData.style.map((style, index) => (
+            <ProfileButton key={index}>{style}</ProfileButton>
+          ))}
+        </S.ButtonContainer>
       </S.MiddleContainer>
 
-      {status === 'success' && (
-        <S.BtnArrow src={arrow} alt="프로필 수정" onClick={onModifyProfile} />
-      )}
+      <S.BtnArrow src={arrow} alt="프로필 수정" onClick={onModifyProfile} />
     </S.ProfileCardWrapper>
   );
 };
