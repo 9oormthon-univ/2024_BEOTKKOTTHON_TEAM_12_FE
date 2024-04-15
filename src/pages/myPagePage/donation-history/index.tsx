@@ -1,25 +1,11 @@
 import { useState } from 'react';
 import * as S from './style';
-import {
-  ButtonBack,
-  Checkbox,
-  Header,
-  Loading,
-  TableDonationHistory,
-  TextLabel,
-} from 'components/index';
+import { ButtonBack, Checkbox, Header, TableDonationHistory, TextLabel } from 'components/index';
 import { useDonationHistoryQuery } from 'hooks/queries/user/useDonationHistoryQuery';
 
 const DonationHistory = () => {
   const [showCompletedOnly, setShowCompletedOnly] = useState(false);
-
-  const {
-    data: donationHistoryQuery,
-    isLoading,
-    isError,
-  } = useDonationHistoryQuery(showCompletedOnly);
-
-  if (isLoading) return <Loading $height="100svh" />;
+  const { data: donationHistoryQuery, status } = useDonationHistoryQuery(showCompletedOnly);
 
   return (
     <S.Container>
@@ -32,7 +18,7 @@ const DonationHistory = () => {
 
       <S.TableHeader>
         <TextLabel size={13} $weight={400} color={'var(--grey-6)'}>
-          총 {donationHistoryQuery.length}개
+          총 {donationHistoryQuery ? donationHistoryQuery.length : 0}개
         </TextLabel>
         <Checkbox
           label="완료된 내역만 보기"
@@ -45,7 +31,7 @@ const DonationHistory = () => {
         />
       </S.TableHeader>
 
-      <TableDonationHistory donationData={donationHistoryQuery} />
+      <TableDonationHistory donationData={donationHistoryQuery} status={status} />
     </S.Container>
   );
 };
