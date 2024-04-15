@@ -10,18 +10,9 @@ const getWishListData = async () => {
     console.log('찜 목록 상품 불러오기 성공:', response.data);
 
     return response.data.content;
-  } catch (error) {
+  } catch (error: any) {
     console.log('찜 목록 상품 데이터 불러오기 실패', error);
-    return [
-      {
-        id: 2,
-        price: 10000,
-        product_name: '안입는 옷 처분해요',
-        product_status: '아주 좋아요',
-        post_status: 'onSale',
-        product_image: ['http://dummyimage.com/193x100.png/dddddd/000000'],
-      },
-    ];
+    throw new Error(error.response?.data?.message);
   }
 };
 
