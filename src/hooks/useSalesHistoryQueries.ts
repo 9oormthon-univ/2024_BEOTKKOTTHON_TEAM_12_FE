@@ -11,8 +11,10 @@ export const useSalesHistoryQueries = (activeTab: string) => {
   const completedProducts = useCompletedProductQuery();
   const hiddenProducts = useHiddenProductQuery();
 
-  const isLoading =
-    salesProducts.isLoading || completedProducts.isLoading || hiddenProducts.isLoading;
+  const isPending =
+    salesProducts.isPending || completedProducts.isPending || hiddenProducts.isPending;
+
+  const isError = salesProducts.isError || completedProducts.isError || hiddenProducts.isError;
 
   const numberOfProducts = [
     salesProducts.data?.length || 0,
@@ -21,7 +23,7 @@ export const useSalesHistoryQueries = (activeTab: string) => {
   ];
 
   useEffect(() => {
-    if (activeTab === '판매중') {
+    if (activeTab === '판매 중') {
       setInitialProductList(salesProducts.data ? salesProducts.data : []);
     } else if (activeTab === '판매 완료') {
       setInitialProductList(completedProducts.data ? completedProducts.data : []);
@@ -34,7 +36,8 @@ export const useSalesHistoryQueries = (activeTab: string) => {
     salesProducts,
     completedProducts,
     hiddenProducts,
-    isLoading,
+    isPending,
+    isError,
     numberOfProducts,
   };
 };
