@@ -1,16 +1,22 @@
-import { ProfileCard, ProgressBar } from "components/index";
-import React from "react";
-import styled from "styled-components";
+import { ProfileCard, ProgressBar } from 'components/index';
+import styled from 'styled-components';
+import { MypageUserType } from 'types/userType';
 
 export const UserSectionWrapper = styled.div`
   background-color: #fff;
   padding-top: 20px;
 `;
-const UserSection: React.FC = () => {
+
+interface UserSectionProps {
+  userData: MypageUserType;
+  status: string;
+}
+
+const UserSection = ({ userData, status }: UserSectionProps) => {
   return (
     <UserSectionWrapper>
-      <ProfileCard />
-      <ProgressBar />
+      <ProfileCard userData={userData} status={status} />
+      <ProgressBar userData={userData} />
     </UserSectionWrapper>
   );
 };
