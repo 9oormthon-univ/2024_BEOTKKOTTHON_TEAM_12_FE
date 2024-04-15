@@ -1,17 +1,17 @@
-import React from 'react';
 import * as S from './style';
 import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
 
 import arrow from 'assets/icons/arrow.svg';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { useNavigate } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
 import { MypageUserType } from 'types/userType';
 
-const ProfileCard: React.FC = () => {
+interface ProfileCardProps {
+  userData: MypageUserType;
+}
+
+const ProfileCard = ({ userData }: ProfileCardProps) => {
   const navigate = useNavigate();
-  const cache = useQueryClient();
-  const userData = cache.getQueryData(['user']) as MypageUserType;
 
   const onModifyProfile = () => {
     navigate('/mypage/profile-edit');

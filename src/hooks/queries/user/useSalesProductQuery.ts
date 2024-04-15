@@ -8,12 +8,8 @@ const getSalesProducts = async () => {
     console.log('판매중인 상품 불러오기 성공:', response.data.content);
     return response.data.content;
   } catch (error: any) {
-    if (error?.response?.status === 404) {
-      return null;
-    }
-
     console.log('판매중 데이터 불러오기 실패', error);
-    throw error;
+    throw new Error(error.response?.data?.message);
   }
 };
 

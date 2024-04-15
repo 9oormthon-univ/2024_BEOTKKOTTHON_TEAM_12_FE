@@ -3,13 +3,13 @@ import helpIcon from 'assets/icons/help.svg';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { TextLabel } from 'components/index';
 import { Link } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
 import { MypageUserType } from 'types/userType';
 
-const ProgressBar = () => {
-  const cache = useQueryClient();
-  const userData = cache.getQueryData(['user']) as MypageUserType;
+interface ProgressBarProps {
+  userData: MypageUserType;
+}
 
+const ProgressBar = ({ userData }: ProgressBarProps) => {
   return (
     <S.Container>
       <S.ProgressBarHeader>

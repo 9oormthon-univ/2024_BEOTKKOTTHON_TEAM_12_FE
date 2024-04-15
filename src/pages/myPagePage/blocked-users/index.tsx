@@ -1,6 +1,9 @@
 import { ButtonBack, Header, ListBlockUser, TextLabel } from 'components/index';
+import { useBlockUserQuery } from 'hooks/queries/user/useBlockUserQuery';
 
 const BlockedUsers = () => {
+  const { data: blockedUserList, status } = useBlockUserQuery();
+
   return (
     <>
       <Header>
@@ -9,7 +12,8 @@ const BlockedUsers = () => {
         </TextLabel>
         <ButtonBack className="left" $marginLeft="10px" />
       </Header>
-      <ListBlockUser />
+
+      <ListBlockUser userList={blockedUserList} status={status} />
     </>
   );
 };

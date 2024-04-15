@@ -1,18 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
-import { blockedUserDummyData } from 'data/user';
 
 const getBlockUserList = async () => {
   console.log('차단한 사용자 목록 불러오기');
   try {
-    const response = await instance.get(`/users/blockedUsers/${userId}`);
-    console.log('차단한 사용자 목록 불러오기 성공:', response.data);
-    return response.data;
-  } catch (error) {
+    const response = await instance.get(`/users/blockedUsers/${userId}?pageNumber=0`);
+    console.log('차단한 사용자 목록 불러오기 성공:', response.data.content);
+    return response.data.content;
+  } catch (error: any) {
     console.error('차단한 사용자 목록 불러오기 실패:', error);
-    const blockedUserData = blockedUserDummyData();
-    return blockedUserData;
+    throw new Error(error.response?.data?.message);
   }
 };
 

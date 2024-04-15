@@ -4,10 +4,8 @@ import { useProductList } from 'store/productListData';
 import { useWishListQuery } from 'hooks/queries/user/useWishListQuery';
 
 const WishList = () => {
-  const { data: wishListQuery, isLoading, isError } = useWishListQuery();
+  const { status } = useWishListQuery();
   const productList = useProductList();
-
-  if (isLoading) return <Loading $height="100svh" />;
 
   return (
     <>
@@ -21,11 +19,11 @@ const WishList = () => {
       <S.Content>
         <S.ProductHeader>
           <TextLabel size={12} $weight={100} color="var(--grey-6)">
-            전체 {productList.length}개
+            전체 {status === 'success' ? productList.length : 0}개
           </TextLabel>
         </S.ProductHeader>
 
-        <ListTradeItems />
+        <ListTradeItems status={status} />
       </S.Content>
     </>
   );

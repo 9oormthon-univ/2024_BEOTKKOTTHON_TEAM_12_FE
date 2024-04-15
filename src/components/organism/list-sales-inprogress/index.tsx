@@ -13,43 +13,40 @@ const ListSalesInprogress: React.FC = () => {
   const { mutate: postSalesCompletedMutation } = usePostSalesCompletedMutation();
   const [openModal, setOpenModal] = useState<boolean>(false);
 
+  if (productList.length === 0)
+    return <BoxError $height="300px">상품이 존재하지 않습니다.</BoxError>;
+
   return (
-    <>
-      {productList.length > 0 ? (
-        <S.Container>
-          {productList.map((item: ProductListItem) => (
-            <S.SaleWrapper key={item.id}>
-              {openModal && (
-                <ModalProduct
-                  id={item.id.toString()}
-                  select1="취소"
-                  select2="변경"
-                  openModal={openModal}
-                  setOpenModal={setOpenModal}
-                  onClick={() => postSalesCompletedMutation(item.id)}
-                >
-                  <p>판매완료로 변경할까요?</p>
-                </ModalProduct>
-              )}
-              <BoxItemTrade product={item} $marginBottom="12px" />
-              <Button
-                width="100%"
-                $padding="8px 10px"
-                $bgcolor="var(--grey-4)"
-                fontSize="11px"
-                color="var(--grey-2)"
-                $fontWeight="bold"
-                handleOnClick={() => setOpenModal(!openModal)}
-              >
-                판매 완료하기
-              </Button>
-            </S.SaleWrapper>
-          ))}
-        </S.Container>
-      ) : (
-        <BoxError>상품 목록이 없습니다.</BoxError>
-      )}
-    </>
+    <S.Container>
+      {productList.map((item: ProductListItem) => (
+        <S.SaleWrapper key={item.id}>
+          {openModal && (
+            <ModalProduct
+              id={item.id.toString()}
+              select1="취소"
+              select2="변경"
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              onClick={() => postSalesCompletedMutation(item.id)}
+            >
+              <p>판매완료로 변경할까요?</p>
+            </ModalProduct>
+          )}
+          <BoxItemTrade product={item} $marginBottom="12px" />
+          <Button
+            width="100%"
+            $padding="8px 10px"
+            $bgcolor="var(--grey-4)"
+            fontSize="11px"
+            color="var(--grey-2)"
+            $fontWeight="bold"
+            handleOnClick={() => setOpenModal(!openModal)}
+          >
+            판매 완료하기
+          </Button>
+        </S.SaleWrapper>
+      ))}
+    </S.Container>
   );
 };
 

@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import * as S from './style';
-import { ListSalesInprogress, ListTradeItems, Loading } from 'components';
+import { BoxError, ListSalesInprogress, ListTradeItems, Loading } from 'components';
 import { useSalesHistoryQueries } from 'hooks/useSalesHistoryQueries';
 
 const Tab = () => {
   const tabs = ['판매 중', '판매 완료', '숨김'];
   const [activeTab, setActiveTab] = useState(tabs[0]);
-  const { isLoading, numberOfProducts } = useSalesHistoryQueries(activeTab);
+  const { isPending, isError, numberOfProducts } = useSalesHistoryQueries(activeTab);
 
-  if (isLoading) return <Loading />;
+  if (isPending) return <Loading />;
+  if (isError) return <BoxError>상품을 불러오는 중에 오류가 발생했습니다.</BoxError>;
 
   return (
     <>
