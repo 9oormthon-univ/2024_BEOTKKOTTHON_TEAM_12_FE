@@ -5,6 +5,7 @@ interface Actions {
   setInitialProductList: (newProductList: ProductListItem[]) => void;
   setActiveCategory: (category: string) => void;
   setClickedOnSale: () => void;
+  setIsSelected: (productId: number) => void;
 }
 
 interface ProductListDataStore {
@@ -25,6 +26,12 @@ export const useProductListData = create<ProductListDataStore>((set) => ({
     setClickedOnSale: () =>
       set((state) => ({
         clickedOnSale: state.clickedOnSale === null ? 'onSale' : null,
+      })),
+    setIsSelected: (productId) =>
+      set((state) => ({
+        productList: state.productList.map((product) =>
+          product.id === productId ? { ...product, is_selected: !product.is_selected } : product
+        ),
       })),
   },
 }));

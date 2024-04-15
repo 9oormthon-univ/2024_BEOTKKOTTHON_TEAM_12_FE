@@ -5,6 +5,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
+  position: relative;
   width: 160px;
   margin-bottom: ${(props) => props.$marginBottom || '15px'};
   cursor: pointer;
@@ -15,6 +16,18 @@ export const BoxImage = styled.img`
   height: 163px;
   border-radius: 10px;
   margin-bottom: 6px;
+`;
+
+interface HeartImageProps {
+  $selected: boolean;
+}
+export const HeartImage = styled.img<HeartImageProps>`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  opacity: ${(props) => (props.$selected ? '100%' : '55%')};
 `;
 
 export const BoxDescription = styled.div`
