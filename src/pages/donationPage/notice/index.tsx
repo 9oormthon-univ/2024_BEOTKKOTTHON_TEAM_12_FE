@@ -8,7 +8,7 @@ const DonationNotice = () => {
       page={1}
       header="기부 시 주의사항을 확인해 주세요"
       btn="다음"
-      to="/donation/form-basic"
+      // to="/donation/form-basic"
     >
       <S.BoxText>
         <p className="main-title">더 큰 나눔을 위해 판매 가능한 물품을 기부해주세요.</p>

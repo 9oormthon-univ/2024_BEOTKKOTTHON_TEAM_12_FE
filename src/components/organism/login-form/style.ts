@@ -3,9 +3,7 @@ import styled from 'styled-components';
 export const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 95%;
   margin-top: 90px;
   gap: 7px;
   font-family: 'Noto Sans KR';

@@ -48,18 +48,21 @@ const AccountInfo = () => {
         <S.InputWrapper>
           <TextInput
             label="이름"
+            name="user_name"
             labelSize={16}
             value={accountInfo.user_name}
             onChange={onChangeInput}
           />
           <TextInput
             label="학교"
+            name="university_name"
             labelSize={16}
             value={accountInfo.university_name}
             readonly={true}
           />
           <TextInput
             label="이메일"
+            name="university_email"
             labelSize={16}
             value={accountInfo.university_email}
             readonly={true}

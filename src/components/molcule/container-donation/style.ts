@@ -27,3 +27,15 @@ export const BtnNext = styled.div`
   height: var(--nav-size);
   padding: 0 20px;
 `;
+
+export const LoginText = styled.div`
+  padding: 10px;
+  color: var(--grey-6);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+
+  & > span {
+    color: var(--green-primary);
+  }
+`;

@@ -1,92 +1,53 @@
 import React from 'react';
-import * as S from '../../../pages/auth/signup/style';
-import { TextLabel, Button } from '../../index';
-import { SigninFormData } from 'types/types';
-import { instance } from 'apis';
-import { useNavigate } from 'react-router-dom';
+import * as S from './style';
+import { FormGroup, BoxInput } from '../../index';
+import {
+  useSigninFormData,
+  useSigninFormDataActions,
+  useSigninIsEmailValid,
+} from 'store/signInData';
 
-type SigninSecondFormProps = {
-  formData: SigninFormData;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  emailValid: boolean;
-  buttonColor: { $backgroundColor: string; color: string };
-};
+const SigninSecondForm = () => {
+  const singinFormData = useSigninFormData();
+  const isEmailValid = useSigninIsEmailValid();
+  const { changeSigninFormData, setIsEmailValid } = useSigninFormDataActions();
 
-const SigninSecondForm: React.FC<SigninSecondFormProps> = ({
-  formData,
-  handleInputChange,
-  emailValid,
-  buttonColor,
-}) => {
-  const navigate = useNavigate();
-  /*재학생 인증 */
-  const postVerificationEmail = async () => {
-    try {
-      console.log({
-        universityName: formData.universityName,
-        email: formData.universityEmail,
-      });
-      alert('인증번호가 발송되었습니다.');
-      navigate('/student-certification');
-      const response = await instance.post('/university/certify', {
-        universityName: formData.universityName,
-        email: formData.universityEmail,
-      });
+  const handleInputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    changeSigninFormData('universityEmail', e.target.value);
 
-      console.log(response.data);
-    } catch (error) {
-      console.error('인증번호 발송 실패', error);
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value);
+    setIsEmailValid(isValid);
+    if (!isValid) {
+      console.log('유효하지 않은 이메일 형식입니다.');
+      return; // 유효하지 않으면 여기서 함수 실행을 중단
     }
   };
 
   return (
-    <>
-      <S.Padding30px>
-        <TextLabel size={24} $weight={700} color={'var(--grey-7)'}>
-          재학생 인증
-        </TextLabel>
-      </S.Padding30px>
-      <S.Container>
-        <S.PasswordInputWrapper>
-          <TextLabel size={16} $weight={500} color={'var(--grey-7)'}>
-            학교 이름
-          </TextLabel>
+    <S.Container>
+      <FormGroup>
+        <p className="label">학교 이름</p>
+        <BoxInput
+          name="universityName"
+          type={'text'}
+          placeholder="동국대학교"
+          value={singinFormData.universityName}
+          onChange={(e: any) => changeSigninFormData('universityName', e.target.value)}
+        />
+      </FormGroup>
 
-          <S.LoginInput
-            name="universityName"
-            type={'text'}
-            placeholder="동국대학교"
-            value={formData.universityName}
-            onChange={handleInputChange}
-          />
-
-          <TextLabel size={16} $weight={500} color={'var(--grey-7)'}>
-            학교 이메일
-          </TextLabel>
-
-          <S.LoginInput
-            name="universityEmail"
-            type={'text'}
-            placeholder="honggildong@dgu.ac.kr"
-            value={formData.universityEmail}
-            onChange={handleInputChange}
-          />
-          {!emailValid && <S.PasswordError>유효하지 않은 이메일 형식입니다.</S.PasswordError>}
-        </S.PasswordInputWrapper>
-
-        <S.ButtonWrapper>
-          <Button
-            handleOnClick={postVerificationEmail}
-            children="다음"
-            width="100%"
-            $padding="16px"
-            fontSize="18px"
-            $bgcolor={buttonColor.$backgroundColor}
-            color={buttonColor.color}
-          />
-        </S.ButtonWrapper>
-      </S.Container>
-    </>
+      <FormGroup>
+        <p className="label">학교 이메일</p>
+        <BoxInput
+          name="universityEmail"
+          type={'text'}
+          placeholder="honggildong@dgu.ac.kr"
+          value={singinFormData.universityEmail}
+          onChange={handleInputEmail}
+        />
+        {!isEmailValid && <S.PasswordError>유효하지 않은 이메일 형식입니다.</S.PasswordError>}
+      </FormGroup>
+    </S.Container>
   );
 };
 

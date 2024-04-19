@@ -5,8 +5,6 @@ interface FormGroupProps {
 }
 
 const FormGroup = styled.div<FormGroupProps>`
-  margin-bottom: 30px;
-
   .label {
     margin-bottom: 8px;
     font-size: 15px;

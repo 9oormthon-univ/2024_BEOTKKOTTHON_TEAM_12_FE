@@ -9,7 +9,7 @@ const DonationBasicForm = () => {
       page={2}
       header="기본 정보 입력"
       btn="다음"
-      to="/donation/form-request"
+      // to="/donation/form-request"
       isDisabled={isDisabled}
     >
       <FormDonationBasic setIsDisabled={setIsDisabled} />

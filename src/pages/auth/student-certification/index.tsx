@@ -70,6 +70,7 @@ const StudentCertification = () => {
 
       <TextInput
         label="인증번호"
+        name="verificationCode"
         labelSize={16}
         placeholder="인증번호 입력"
         value={verificationCode}

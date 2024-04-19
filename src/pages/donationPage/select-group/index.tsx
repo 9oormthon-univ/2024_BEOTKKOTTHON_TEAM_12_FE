@@ -23,7 +23,7 @@ const DonationSelectGroup = () => {
       page={0}
       header="기부할 단체를 선택해주세요"
       btn="다음"
-      to="/donation/notice"
+      // to="/donation/notice"
       isDisabled={isDisabled}
     >
       <ImageWrapper className="img">
