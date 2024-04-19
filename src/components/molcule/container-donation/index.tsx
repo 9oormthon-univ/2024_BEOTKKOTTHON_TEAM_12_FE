@@ -5,7 +5,7 @@ import { BoxDonationDot, Button, ButtonBack } from 'components/index';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-interface ContainerDonationProps {
+interface ContainerProgressFormProps {
   totalpage: number;
   page: number;
   header: string;
@@ -15,7 +15,7 @@ interface ContainerDonationProps {
   children: React.ReactNode;
 }
 
-const ContainerDonation = ({
+const ContainerProgressForm = ({
   totalpage,
   page,
   header,
@@ -23,7 +23,7 @@ const ContainerDonation = ({
   to,
   isDisabled,
   children,
-}: ContainerDonationProps) => {
+}: ContainerProgressFormProps) => {
   const navigate = useNavigate();
   return (
     <>
@@ -64,4 +64,4 @@ const ContainerDonation = ({
   );
 };
 
-export default ContainerDonation;
+export default ContainerProgressForm;

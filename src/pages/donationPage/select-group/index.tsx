@@ -1,4 +1,4 @@
-import { BoxDonationImg, ContainerDonation } from 'components/index';
+import { BoxDonationImg, ContainerProgressForm } from 'components/index';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -18,7 +18,7 @@ const DonationSelectGroup = () => {
   }, [activeIndex]);
 
   return (
-    <ContainerDonation
+    <ContainerProgressForm
       totalpage={4}
       page={0}
       header="기부할 단체를 선택해주세요"
@@ -29,7 +29,7 @@ const DonationSelectGroup = () => {
       <ImageWrapper className="img">
         <BoxDonationImg activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       </ImageWrapper>
-    </ContainerDonation>
+    </ContainerProgressForm>
   );
 };
 

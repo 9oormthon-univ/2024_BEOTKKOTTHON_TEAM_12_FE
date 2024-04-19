@@ -4,6 +4,7 @@ import {
   Button,
   ButtonBack,
   Checkbox,
+  ContainerProgressForm,
   Header,
   SigninFirstForm,
   SigninSecondForm,
@@ -281,26 +282,10 @@ const SignUp: React.FC = () => {
 
   return (
     <>
-      {/*TAB */}
-      {activeIndex < 4 && (
-        <>
-          {' '}
-          <Header>
-            <ButtonBack className="left" $marginLeft="5px" onClick={goToPreviousTab} />
-            <img src={x} className="right" alt="btn-back" onClick={() => navigate('/donation')} />
-          </Header>
-          <S.Container>
-            <S.TabContainer>
-              {[...Array(4)].map((_, index) => (
-                <S.Dot key={index} active={index === activeIndex} />
-              ))}
-            </S.TabContainer>
-          </S.Container>
-        </>
-      )}
-
-      {/*TAB 내용 렌더링 */}
-      {renderTabContent()}
+      <ContainerProgressForm totalpage={4} page={activeIndex} header="헤더" btn="다음" to="">
+        {/*TAB 내용 렌더링 */}
+        {renderTabContent()}
+      </ContainerProgressForm>
 
       {activeIndex < 4 && (
         <S.LoginText>

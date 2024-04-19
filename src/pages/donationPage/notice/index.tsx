@@ -1,9 +1,9 @@
-import { BoxNoticeItem, ContainerDonation } from 'components/index';
+import { BoxNoticeItem, ContainerProgressForm } from 'components/index';
 import * as S from './style';
 
 const DonationNotice = () => {
   return (
-    <ContainerDonation
+    <ContainerProgressForm
       totalpage={4}
       page={1}
       header="기부 시 주의사항을 확인해 주세요"
@@ -35,7 +35,7 @@ const DonationNotice = () => {
         ]}
         impossible={['수제, 수공예품 (향초,비누,인형,액세서리)', '개봉 유통기한 6개월 미만 화장품']}
       />
-    </ContainerDonation>
+    </ContainerProgressForm>
   );
 };
 
