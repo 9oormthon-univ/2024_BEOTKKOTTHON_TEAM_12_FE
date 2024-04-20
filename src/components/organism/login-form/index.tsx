@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 import { Checkbox, PasswordInput, Button, BoxInput } from 'components/index';
 import { useNavigate } from 'react-router-dom';

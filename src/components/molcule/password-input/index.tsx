@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import eyeOff from 'assets/icons/eye-off.svg';
+import eyeOff from 'assets/icons/eye_off.svg';
+import eye from 'assets/icons/eye.svg';
 import { BoxInput } from 'components/index';
 
 type PasswordInputProps = {
@@ -21,7 +22,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ value, handleInputChange 
       value={value}
       onChange={handleInputChange}
     >
-      <img src={eyeOff} alt="eye" onClick={togglePasswordVisibility} />
+      <img src={showPassword ? eyeOff : eye} alt="eye" onClick={togglePasswordVisibility} />
     </BoxInput>
   );
 };
