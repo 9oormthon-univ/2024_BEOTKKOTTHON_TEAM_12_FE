@@ -1,14 +1,14 @@
-import { BoxNoticeItem, ContainerDonation, TextLabel } from 'components';
+import { BoxNoticeItem, ContainerProgressForm, TextLabel } from 'components';
 import * as S from './style';
 
 const DonationHomeless = () => {
   return (
-    <ContainerDonation
+    <ContainerProgressForm
       totalpage={2}
       page={0}
       header="WEAR의 첫 번째 기부 동행"
       btn="다음"
-      to="/donation/homeless/map"
+      // to="/donation/homeless/map"
     >
       <S.MainText>
         <TextLabel className="green-title" color="white" size={16}>
@@ -43,7 +43,7 @@ const DonationHomeless = () => {
         possible={['깨끗한 성인, 아동 의류', '사용한 의류 (속옷, 내의, 잠옷, 양말, 수영복)']}
         impossible={['일부 대량물품의 경우 논의 필요']}
       />
-    </ContainerDonation>
+    </ContainerProgressForm>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import * as S from './style';
-import eyeOff from 'assets/icons/eye-off.svg';
+import eyeOff from 'assets/icons/eye_off.svg';
+import eye from 'assets/icons/eye.svg';
+import { BoxInput } from 'components/index';
 
 type PasswordInputProps = {
   value: string;
@@ -8,21 +9,21 @@ type PasswordInputProps = {
 };
 const PasswordInput: React.FC<PasswordInputProps> = ({ value, handleInputChange }) => {
   const [showPassword, setShowPassword] = useState(false);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   return (
-    <S.PasswordInputWrapper>
-      <S.LoginInput
-        name="password"
-        type={showPassword ? 'text' : 'password'}
-        placeholder="비밀번호"
-        value={value}
-        onChange={handleInputChange}
-      />
-      <S.EyeIcon src={eyeOff} alt="eye" onClick={togglePasswordVisibility} />
-    </S.PasswordInputWrapper>
+    <BoxInput
+      name="password"
+      type={showPassword ? 'text' : 'password'}
+      placeholder="비밀번호"
+      value={value}
+      onChange={handleInputChange}
+    >
+      <img src={showPassword ? eyeOff : eye} alt="eye" onClick={togglePasswordVisibility} />
+    </BoxInput>
   );
 };
 

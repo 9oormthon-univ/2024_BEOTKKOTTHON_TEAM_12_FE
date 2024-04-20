@@ -3,9 +3,7 @@ import styled from 'styled-components';
 export const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 95%;
   margin-top: 90px;
   gap: 7px;
   font-family: 'Noto Sans KR';
@@ -38,8 +36,7 @@ export const LoginInput = styled.input`
 export const CheckboxWrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  width: 90%;
-  max-width: 335px;
+  margin-top: 13px;
   margin-bottom: 60px;
-  gap: 7px;
+  gap: 8px;
 `;

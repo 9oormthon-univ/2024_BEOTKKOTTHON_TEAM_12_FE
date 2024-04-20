@@ -23,8 +23,13 @@ const UserProfileEdit = () => {
 
   const { data: profileEditQuery, status } = useProfileEditQuery(setUserInfo);
 
-  const handleChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInfo({ ...userInfo, nick_name: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
+
+  const handleChangeStyleTag = (newStyle: string[]) => {
+    setUserInfo({ ...userInfo, style: newStyle });
   };
 
   return (
@@ -52,12 +57,17 @@ const UserProfileEdit = () => {
         <>
           <TextInput
             label="닉네임"
+            name="nick_name"
             value={userInfo.nick_name}
             labelSize={16}
-            onChange={handleChangeNickname}
+            onChange={handleChange}
           />
           <ImageInput profileEditQuery={profileEditQuery} />
-          <TagInput userInfo={userInfo} setUserInfo={setUserInfo} />
+          <TagInput
+            $padding="20px"
+            currentStyle={userInfo.style}
+            handleChange={handleChangeStyleTag}
+          />
         </>
       )}
     </>

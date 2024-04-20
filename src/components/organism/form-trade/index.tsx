@@ -7,10 +7,10 @@ import {
   ListTag,
   Loading,
   BoxError,
+  Button,
 } from 'components/index';
 import * as S from './style';
 import { placeList, priceList } from 'data/shared';
-import Button from 'components/atom/button-trade';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
 import { useProductFormData, useFormDataActions, useShowImages } from 'store/productFormData';
@@ -112,7 +112,7 @@ const FormTrade = ({ handleSubmitAction, btnText, status }: FormTradeProps) => {
         <ListTradeForm list={placeList} type={'place'} />
       </FormGroup>
 
-      <Button color={isDisabled ? '' : 'primary'} disabled={isDisabled}>
+      <Button width="100%" $borderRadius="8px" $padding="16px" disabled={isDisabled}>
         {btnText}
       </Button>
     </S.FormContainer>

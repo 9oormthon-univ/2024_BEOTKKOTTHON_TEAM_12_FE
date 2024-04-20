@@ -3,6 +3,7 @@ import * as S from './style';
 import { TextLabel } from 'components/index';
 interface TextInputProps {
   label: string;
+  name: string;
   labelSize: number;
   value: string;
   placeholder?: string;
@@ -12,6 +13,7 @@ interface TextInputProps {
 
 const TextInput: React.FC<TextInputProps> = ({
   label,
+  name,
   labelSize,
   placeholder,
   value,
@@ -23,7 +25,7 @@ const TextInput: React.FC<TextInputProps> = ({
       <S.InputContainer>
         <TextLabel size={labelSize}>{label}</TextLabel>
         <S.StyledBoxInput
-          name="title"
+          name={name}
           readOnly={readonly}
           placeholder={placeholder}
           defaultValue={value}

@@ -1,23 +1,24 @@
+import { SigninFormDataType } from 'types/userType';
 import { create } from 'zustand';
 
-interface SigninData {
-  userId: string;
-  password: string;
-  validPassword: string;
-  universityName: string;
-  universityEmail: string;
-  styleTags: string[];
-}
-
 interface SigninDataActions {
-  setSignInFormData: (data: Partial<SigninData>) => void;
+  changeSigninFormData: (name: string, value: string | number | FileList) => void;
+  changeStyleTags: (newStyle: string[]) => void;
+  setIsValidPassword: (bool: boolean) => void;
+  setIsEmailValid: (bool: boolean) => void;
+  setIsDisabled: (bool: boolean) => void;
+  resetSigninFormData: () => void;
 }
 
-interface SigninDataStore extends SigninData {
+interface SigninDataStore {
+  signinFormData: SigninFormDataType;
+  isValidPassword: boolean;
+  isEmailValid: boolean;
+  isDisabled: boolean;
   actions: SigninDataActions;
 }
 
-const initialSigninData: SigninData = {
+const initialSigninData: SigninFormDataType = {
   userId: '',
   password: '',
   validPassword: '',
@@ -27,13 +28,44 @@ const initialSigninData: SigninData = {
 };
 
 export const useSigninFormDataStore = create<SigninDataStore>((set) => ({
-  ...initialSigninData, // 초기 상태 객체를 스프레드 연산자로 사용하여 복사
+  signinFormData: initialSigninData,
+  isValidPassword: false,
+  isEmailValid: true,
+  isDisabled: true,
   actions: {
-    setSignInFormData: (data) => set((state) => ({ ...state, ...data })),
+    changeSigninFormData: (name, value) => {
+      set((state) => ({
+        signinFormData: { ...state.signinFormData, [name]: value },
+      }));
+    },
+    setIsValidPassword: (bool) => {
+      set(() => ({ isValidPassword: bool }));
+    },
+    setIsEmailValid: (bool) => {
+      set(() => ({ isEmailValid: bool }));
+    },
+    setIsDisabled: (bool) => {
+      set(() => ({ isDisabled: bool }));
+    },
+    changeStyleTags: (newStyle) => {
+      set((state) => ({
+        signinFormData: { ...state.signinFormData, styleTags: newStyle },
+      }));
+    },
+    resetSigninFormData: () => {
+      set(() => ({
+        signinFormData: initialSigninData,
+        isValidPassword: false,
+        isEmailValid: true,
+        isDisabled: true,
+      }));
+    },
   },
 }));
 
-// 상태값 가져오기
-export const useSigninFormData = () => useSigninFormDataStore();
-// 액션 가져오기
-export const useSigninFormActions = () => useSigninFormDataStore().actions;
+export const useSigninFormData = () => useSigninFormDataStore((state) => state.signinFormData);
+export const useSigninIsValidPassword = () =>
+  useSigninFormDataStore((state) => state.isValidPassword);
+export const useSigninIsEmailValid = () => useSigninFormDataStore((state) => state.isEmailValid);
+export const useSigninIsDisabled = () => useSigninFormDataStore((state) => state.isDisabled);
+export const useSigninFormDataActions = () => useSigninFormDataStore((state) => state.actions);

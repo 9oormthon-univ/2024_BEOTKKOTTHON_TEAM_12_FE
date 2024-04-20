@@ -34,9 +34,7 @@ const ListBlockUser = ({ userList, status }: ListBlockUser) => {
             width="77px"
             $padding="5px 10px"
             $borderRadius="10px"
-            $bgcolor="var(--grey-2)"
             fontSize="14px"
-            color="var(--grey-5)"
             handleOnClick={() => unblockMutation(blockUser.blocked_user_id)}
           >
             차단해제

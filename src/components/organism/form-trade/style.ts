@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
   height: calc(100vh - var(--header-size));
   box-sizing: border-box;
   padding: 11px 20px 20px;

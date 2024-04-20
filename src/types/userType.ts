@@ -25,3 +25,13 @@ export interface BlockedUserType {
   blocked_user_profile_image: string;
   blocked_user_level: string;
 }
+
+// 회원가입 폼 데이터 타입
+export interface SigninFormDataType {
+  userId: string;
+  password: string;
+  validPassword: string;
+  universityName: string;
+  universityEmail: string;
+  styleTags: string[];
+}

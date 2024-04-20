@@ -16,8 +16,8 @@ import ChatDetail from 'pages/chatttingPage/chat-detail';
 import MagazineMain from 'pages/magazinePage/main';
 import QuizPage from 'pages/magazinePage/quiz/quiz';
 import Login from 'pages/auth/login';
+import SignUp from 'pages/auth/signup';
 import Onboarding from 'pages/onboarding';
-import SignIn from 'pages/auth/signup';
 import StudentCertification from 'pages/auth/student-certification';
 import DonationMain from 'pages/donationPage/main';
 import DonationSelectGroup from 'pages/donationPage/select-group';
@@ -37,7 +37,7 @@ const Router = () => {
     <Routes>
       {/*로그인 회원가입*/}
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
 
       {/*재학생 인증 페이지 */}
       <Route path="/student-certification" element={<StudentCertification />} />
