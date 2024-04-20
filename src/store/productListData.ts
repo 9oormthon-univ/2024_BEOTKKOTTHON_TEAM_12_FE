@@ -21,7 +21,8 @@ export const useProductListData = create<ProductListDataStore>((set) => ({
   clickedOnSale: null,
 
   actions: {
-    setInitialProductList: (newProductList) => set(() => ({ productList: [...newProductList] })),
+    setInitialProductList: (newProductList) =>
+      set((state) => ({ productList: [...state.productList, ...newProductList] })),
     setActiveCategory: (category) => set(() => ({ activeCategory: category })),
     setClickedOnSale: () =>
       set((state) => ({
