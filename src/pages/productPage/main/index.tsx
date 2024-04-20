@@ -4,6 +4,7 @@ import {
   Header,
   ListTag,
   ListTradeItems,
+  Loading,
   Nav,
   Search,
 } from 'components/index';
@@ -15,12 +16,18 @@ import { useEffect } from 'react';
 import { useSearchActions } from 'store/search';
 import { useProductListActions } from 'store/productListData';
 import { useProductMainQuery } from 'hooks/queries/products/useProductMainQuery';
+import { useInView } from 'react-intersection-observer';
 
 const ProductMain = () => {
   const navigate = useNavigate();
-  const { status } = useProductMainQuery();
+  const { status, fetchNextPage, isFetchingNextPage } = useProductMainQuery();
   const { changeSearchData } = useSearchActions();
   const { setActiveCategory } = useProductListActions();
+  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+
+  useEffect(() => {
+    if (inView && fetchNextPage) fetchNextPage();
+  }, [inView]);
 
   useEffect(() => {
     changeSearchData('');
@@ -49,6 +56,11 @@ const ProductMain = () => {
 
         <section className="items">
           <ListTradeItems status={status} />
+          {isFetchingNextPage ? (
+            <Loading $width="100%" $height="50px" />
+          ) : (
+            <div ref={ref} style={{ height: '50px' }} />
+          )}
         </section>
 
         <Link to={'/product/new'}>

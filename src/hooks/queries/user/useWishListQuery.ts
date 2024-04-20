@@ -17,7 +17,7 @@ const getWishListData = async () => {
 };
 
 export const useWishListQuery = () => {
-  const { setInitialProductList } = useProductListActions();
+  const { addProductList } = useProductListActions();
 
   const wishListQuery = useQuery({
     queryKey: ['user', 'wish-list'],
@@ -27,7 +27,7 @@ export const useWishListQuery = () => {
   useEffect(() => {
     if (wishListQuery.data) {
       console.log('찜 목록', wishListQuery.data);
-      setInitialProductList(wishListQuery.data);
+      addProductList(wishListQuery.data);
     }
   }, [wishListQuery.data]);
 
