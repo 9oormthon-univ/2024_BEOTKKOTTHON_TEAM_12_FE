@@ -3,11 +3,16 @@ import styled from 'styled-components';
 export const LoginWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   height: 100svh;
   padding: 20px;
   font-family: 'Noto Sans KR';
+
+  .logo {
+    width: 199px;
+    height: 62px;
+    margin: 0 auto;
+  }
 `;
 
 export const LoginBox = styled.div`
@@ -64,9 +69,9 @@ export const Link = styled.span`
 
 export const LinkWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 80%;
+  gap: 16px;
   margin-top: 15px;
 `;
 

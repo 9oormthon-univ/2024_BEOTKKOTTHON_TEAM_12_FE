@@ -52,8 +52,6 @@ const ContainerProgressForm = ({
       <S.BtnNext>
         <Button
           width="100%"
-          color="white"
-          $bgcolor={isDisabled ? 'var(--grey-3)' : 'var(--green-6)'}
           $borderRadius="8px"
           fontSize="16px"
           $fontWeight="bold"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { Checkbox, PasswordInput, Button } from '../../index';
+import { Checkbox, PasswordInput, Button, BoxInput } from 'components/index';
 import { useNavigate } from 'react-router-dom';
 import { loginUserDummyData } from 'data/user';
 
@@ -21,11 +21,6 @@ const LoginForm = () => {
     // password: '',
     userId: user.user_created_id,
     password: user.user_password,
-  });
-
-  const [buttonColor, setButtonColor] = useState({
-    $backgroundColor: 'var(--grey-2)',
-    color: 'var(--grey-5)',
   });
 
   const handleLogin = async () => {
@@ -57,24 +52,12 @@ const LoginForm = () => {
     });
   };
 
-  useEffect(() => {
-    if (formData.userId && formData.password) {
-      setButtonColor({
-        $backgroundColor: 'var(--green-primary)',
-        color: '#ffffff',
-      });
-    } else {
-      setButtonColor({
-        $backgroundColor: 'var(--grey-2)',
-        color: 'var(--grey-5)',
-      });
-    }
-  }, [formData]);
+  console.log(!formData.userId && !formData.password);
 
   return (
     <>
       <S.LoginBox>
-        <S.LoginInput
+        <BoxInput
           name="userId"
           type="text"
           placeholder="아이디"
@@ -100,14 +83,13 @@ const LoginForm = () => {
       </S.CheckboxWrapper>
 
       <Button
+        width="100%"
         handleOnClick={handleLogin}
         children="로그인"
-        width="335px"
         $padding="16px"
+        $borderRadius="8px"
         fontSize="18px"
-        $bgcolor={buttonColor.$backgroundColor}
-        color={buttonColor.color}
-        disabled={!formData.userId || !formData.password}
+        disabled={!formData.userId && !formData.password}
       />
     </>
   );

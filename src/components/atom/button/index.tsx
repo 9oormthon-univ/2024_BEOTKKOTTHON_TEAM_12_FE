@@ -17,8 +17,14 @@ interface ButtonProps {
 const ButtonContainer = styled.button<ButtonProps>`
   width: ${({ width }) => width || '100px'};
   padding: ${({ $padding }) => $padding || '10px'};
-  background-color: ${({ $bgcolor }) => $bgcolor || 'var(--grey-2)'};
-  color: ${({ color }) => color || 'var(--grey-5)'};
+  background-color: ${({ $bgcolor, disabled }) =>
+    disabled != null
+      ? disabled
+        ? 'var(--grey-2)'
+        : 'var(--green-6)'
+      : $bgcolor || 'var(--grey-2)'};
+  color: ${({ color, disabled }) =>
+    disabled != null ? (disabled ? 'var(--grey-5)' : 'white') : color || 'var(--grey-5)'};
   border: none;
   border-radius: ${({ $borderRadius }) => $borderRadius || '5px'};
   cursor: pointer;
@@ -26,6 +32,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   font-size: ${({ fontSize }) => fontSize || '16px'};
   font-weight: ${({ $fontWeight }) => $fontWeight || '500'};
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing};
+
   &:active {
     transform: scale(0.95);
   }

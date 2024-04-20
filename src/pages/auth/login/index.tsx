@@ -2,7 +2,6 @@ import * as S from './style';
 import logo from 'assets/logo/big-logo.svg';
 import { TextLabel, LoginForm } from 'components/index';
 import { useNavigate } from 'react-router-dom';
-// import { instance } from 'apis';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,8 +20,10 @@ const Login = () => {
 
   return (
     <S.LoginWrapper>
-      <img src={logo} alt="logo" />
+      <img src={logo} className="logo" alt="logo" />
+
       <LoginForm />
+
       <S.LinkWrapper>
         <S.Link onClick={handleFindId}>
           <TextLabel size={12} color="var(--grey-5)">
@@ -30,12 +31,14 @@ const Login = () => {
           </TextLabel>
         </S.Link>
         <S.Divider>|</S.Divider>
+
         <S.Link onClick={hadleNewPassword}>
           {' '}
           <TextLabel size={12} color="var(--grey-5)">
             비밀번호 재설정
           </TextLabel>
         </S.Link>
+
         <S.Divider>|</S.Divider>
         <S.Link onClick={handleSignIn}>
           {' '}

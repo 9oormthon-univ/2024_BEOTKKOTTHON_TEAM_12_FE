@@ -47,7 +47,6 @@ const ImageInput = ({ profileEditQuery }: ImageInputProps) => {
           $borderRadius="15px"
           width="87px"
           $letterSpacing="-1.2px"
-          color="var(--grey-6)"
           handleOnClick={handleClickUpload}
         >
           사진 업로드

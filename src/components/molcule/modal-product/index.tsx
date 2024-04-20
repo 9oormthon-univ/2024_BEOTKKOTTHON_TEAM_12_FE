@@ -32,8 +32,6 @@ const ModalProduct = ({
             <Button
               width="143px"
               children={select1}
-              $bgcolor="var(--grey-2)"
-              color="var(--grey-4)"
               handleOnClick={() => setOpenModal(!openModal)}
             />
           )}

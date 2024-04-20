@@ -22,8 +22,7 @@ const SigninFinish = () => {
         <Button
           width="100%"
           color="white"
-          $bgcolor={'var(--green-6)'}
-          // $bgcolor={isDisabled ? 'var(--grey-3)' : 'var(--green-6)'}
+          $bgcolor="var(--green-6)"
           $borderRadius="8px"
           fontSize="16px"
           $fontWeight="bold"
