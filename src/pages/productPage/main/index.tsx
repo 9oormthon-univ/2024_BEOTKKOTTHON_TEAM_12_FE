@@ -21,7 +21,7 @@ import { useInView } from 'react-intersection-observer';
 const ProductMain = () => {
   const navigate = useNavigate();
   const {
-    data: ProductMainQuery,
+    data: productMainQuery,
     status,
     fetchNextPage,
     isFetchingNextPage,
@@ -56,7 +56,7 @@ const ProductMain = () => {
         </section>
 
         <section className="filter">
-          <FilterTrade totalElements={ProductMainQuery?.totalElements || 0} />
+          <FilterTrade totalElements={productMainQuery?.totalElements || 0} />
         </section>
 
         <section className="items">
