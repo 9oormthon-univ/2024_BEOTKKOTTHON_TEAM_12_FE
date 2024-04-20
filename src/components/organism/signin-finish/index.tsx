@@ -3,9 +3,12 @@ import welcomeLogo from 'assets/logo/welcome-logo.svg';
 import * as S from './style';
 import { Button } from 'components';
 import { useNavigate } from 'react-router-dom';
+import { useSigninFormDataActions } from 'store/signInData';
 
 const SigninFinish = () => {
   const navigate = useNavigate();
+  const { resetSigninFormData } = useSigninFormDataActions();
+
   return (
     <>
       <S.Container>
@@ -25,7 +28,10 @@ const SigninFinish = () => {
           fontSize="16px"
           $fontWeight="bold"
           $padding="16px"
-          handleOnClick={() => navigate('/login')}
+          handleOnClick={() => {
+            navigate('/login');
+            resetSigninFormData();
+          }}
         >
           로그인 하러 가기
         </Button>

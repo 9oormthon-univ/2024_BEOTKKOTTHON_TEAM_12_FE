@@ -15,6 +15,7 @@ const SigninSecondForm = () => {
   useEffect(() => {
     if (singinFormData.universityName && singinFormData.universityEmail && isEmailValid)
       setIsDisabled(false);
+    else setIsDisabled(true);
   }, [singinFormData.universityName, singinFormData.universityEmail, isEmailValid]);
 
   return (

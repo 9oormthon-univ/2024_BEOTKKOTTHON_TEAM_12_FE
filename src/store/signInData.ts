@@ -7,6 +7,7 @@ interface SigninDataActions {
   setIsValidPassword: (bool: boolean) => void;
   setIsEmailValid: (bool: boolean) => void;
   setIsDisabled: (bool: boolean) => void;
+  resetSigninFormData: () => void;
 }
 
 interface SigninDataStore {
@@ -49,6 +50,14 @@ export const useSigninFormDataStore = create<SigninDataStore>((set) => ({
     changeStyleTags: (newStyle) => {
       set((state) => ({
         signinFormData: { ...state.signinFormData, styleTags: newStyle },
+      }));
+    },
+    resetSigninFormData: () => {
+      set(() => ({
+        signinFormData: initialSigninData,
+        isValidPassword: false,
+        isEmailValid: true,
+        isDisabled: true,
       }));
     },
   },

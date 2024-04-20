@@ -28,6 +28,7 @@ const SigninFirstForm = () => {
       uppercaseValid
     )
       setIsDisabled(false);
+    else setIsDisabled(true);
   }, [signinFormData, lengthValid, numberValid, uppercaseValid, isValidPassword]);
 
   return (

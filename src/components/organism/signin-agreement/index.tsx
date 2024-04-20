@@ -10,6 +10,7 @@ const SignInAgreement = () => {
 
   useEffect(() => {
     if (allAgreed) setIsDisabled(false);
+    else setIsDisabled(true);
   }, [allAgreed]);
 
   return (
