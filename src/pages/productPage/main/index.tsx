@@ -20,7 +20,12 @@ import { useInView } from 'react-intersection-observer';
 
 const ProductMain = () => {
   const navigate = useNavigate();
-  const { status, fetchNextPage, isFetchingNextPage } = useProductMainQuery();
+  const {
+    data: ProductMainQuery,
+    status,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useProductMainQuery();
   const { changeSearchData } = useSearchActions();
   const { setActiveCategory } = useProductListActions();
   const { ref, inView } = useInView({ threshold: 0, delay: 0 });
@@ -51,7 +56,7 @@ const ProductMain = () => {
         </section>
 
         <section className="filter">
-          <FilterTrade />
+          <FilterTrade totalElements={ProductMainQuery?.totalElements || 0} />
         </section>
 
         <section className="items">
