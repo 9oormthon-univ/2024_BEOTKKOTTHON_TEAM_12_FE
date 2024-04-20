@@ -2,7 +2,8 @@ import { ProductListItem } from 'types/productType';
 import { create } from 'zustand';
 
 interface Actions {
-  setInitialProductList: (newProductList: ProductListItem[]) => void;
+  setInitialProductList: () => void;
+  addProductList: (newProductList: ProductListItem[]) => void;
   setActiveCategory: (category: string) => void;
   setClickedOnSale: () => void;
   setIsSelected: (productId: number) => void;
@@ -21,8 +22,10 @@ export const useProductListData = create<ProductListDataStore>((set) => ({
   clickedOnSale: null,
 
   actions: {
-    setInitialProductList: (newProductList) =>
-      set((state) => ({ productList: [...state.productList, ...newProductList] })),
+    setInitialProductList: () => set(() => ({ productList: [] })),
+    addProductList: (newProductList) => {
+      set(() => ({ productList: [...newProductList] }));
+    },
     setActiveCategory: (category) => set(() => ({ activeCategory: category })),
     setClickedOnSale: () =>
       set((state) => ({

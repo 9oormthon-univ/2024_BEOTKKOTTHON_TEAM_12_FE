@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
 import { useEffect } from 'react';
@@ -22,11 +22,15 @@ const getProductListData = async (pageParam: number, category: string, onSale: s
 export const useProductMainQuery = () => {
   const clickedOnSale = useClickedOnSale();
   const activeCategory = useActiveCategory();
-  const { setInitialProductList } = useProductListActions();
+  const { addProductList } = useProductListActions();
 
   const productMainQuery = useInfiniteQuery({
     queryKey: ['products', activeCategory, clickedOnSale],
     queryFn: ({ pageParam }) => getProductListData(pageParam, activeCategory, clickedOnSale),
+    select: (data) => ({
+      pagesData: data?.pages.flatMap((page) => page.content),
+      pageParams: data.pageParams,
+    }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       if (!lastPage.last) return lastPage.number + 1;
@@ -36,11 +40,9 @@ export const useProductMainQuery = () => {
 
   useEffect(() => {
     if (productMainQuery.data) {
-      setInitialProductList(
-        productMainQuery.data.pages[productMainQuery.data.pages.length - 1].content
-      );
+      addProductList(productMainQuery.data.pagesData);
     }
-  }, [productMainQuery.data, setInitialProductList]);
+  }, [productMainQuery.data]);
 
   return productMainQuery;
 };
