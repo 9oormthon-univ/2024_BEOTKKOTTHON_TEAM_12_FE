@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './style';
 import { Checkbox, TextLabel } from 'components/index';
+import { useSigninFormDataActions } from 'store/signInData';
 
 const SignInAgreement = () => {
   //약관 동의 체크박스
   const [allAgreed, setAllAgreed] = useState(false);
+  const { setIsDisabled } = useSigninFormDataActions();
+
+  useEffect(() => {
+    if (allAgreed) setIsDisabled(false);
+  }, [allAgreed]);
 
   return (
     <S.Container>
@@ -32,10 +38,10 @@ const SignInAgreement = () => {
       </S.AgreeWrapper>
 
       <S.ChecklistColumn>
-        <S.CheckItemLarge valid={allAgreed}>(필수) 만 18세 이상입니다.</S.CheckItemLarge>
-        <S.CheckItemLarge valid={allAgreed}>(필수) 개인정보 수집 및 이용 동의</S.CheckItemLarge>
-        <S.CheckItemLarge valid={allAgreed}>(필수) 서비스 이용약관 동의</S.CheckItemLarge>
-        <S.CheckItemLarge valid={allAgreed}>(선택) 혜택/이벤트 정보 수신 동의</S.CheckItemLarge>
+        <S.CheckItemLarge $valid={allAgreed}>(필수) 만 18세 이상입니다.</S.CheckItemLarge>
+        <S.CheckItemLarge $valid={allAgreed}>(필수) 개인정보 수집 및 이용 동의</S.CheckItemLarge>
+        <S.CheckItemLarge $valid={allAgreed}>(필수) 서비스 이용약관 동의</S.CheckItemLarge>
+        <S.CheckItemLarge $valid={allAgreed}>(선택) 혜택/이벤트 정보 수신 동의</S.CheckItemLarge>
       </S.ChecklistColumn>
     </S.Container>
   );

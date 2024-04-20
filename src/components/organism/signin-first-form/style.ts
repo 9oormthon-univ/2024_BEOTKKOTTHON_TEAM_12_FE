@@ -14,13 +14,13 @@ export const Checklist = styled.ul`
   list-style: none;
 `;
 
-export const CheckItem = styled.li<{ valid: boolean }>`
-  color: ${(props) => (props.valid ? 'var(--green-primary)' : 'var(--grey-6)')};
+export const CheckItem = styled.li<{ $valid: boolean }>`
+  color: ${(props) => (props.$valid ? 'var(--green-primary)' : 'var(--grey-6)')};
   font-size: 12px;
   font-weight: 700;
   &:before {
     content: '✓ ';
-    color: ${(props) => (props.valid ? 'var(--green-primary)' : 'var(--grey-6)')};
+    color: ${(props) => (props.$valid ? 'var(--green-primary)' : 'var(--grey-6)')};
   }
 `;
 export const PasswordError = styled.div`

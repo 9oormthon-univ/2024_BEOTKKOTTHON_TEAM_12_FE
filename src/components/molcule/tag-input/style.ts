@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const TagInputWrapper = styled.div`
+interface TagInputWrapperProps {
+  $padding?: string;
+}
+
+export const TagInputWrapper = styled.div<TagInputWrapperProps>`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 20px;
+  padding: ${(props) => props.$padding || ''};
 `;
 export const SelectTagWrapper = styled.div`
   display: flex;

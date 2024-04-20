@@ -63,7 +63,11 @@ const UserProfileEdit = () => {
             onChange={handleChange}
           />
           <ImageInput profileEditQuery={profileEditQuery} />
-          <TagInput currentStyle={userInfo.style} handleChange={handleChangeStyleTag} />
+          <TagInput
+            $padding="20px"
+            currentStyle={userInfo.style}
+            handleChange={handleChangeStyleTag}
+          />
         </>
       )}
     </>

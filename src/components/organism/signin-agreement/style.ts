@@ -10,7 +10,6 @@ export const AgreeWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  margin-top: 20px;
   padding-bottom: 15px;
 `;
 
@@ -35,14 +34,14 @@ export const ChecklistColumn = styled.ul`
   list-style: none;
 `;
 
-export const CheckItemLarge = styled.li<{ valid: boolean }>`
+export const CheckItemLarge = styled.li<{ $valid: boolean }>`
   padding: 5px;
-  color: ${(props) => (props.valid ? 'var(--green-primary)' : 'var(--grey-7)')};
+  color: ${(props) => (props.$valid ? 'var(--green-primary)' : 'var(--grey-7)')};
   font-size: 14px;
   font-weight: 400;
   &:before {
     content: '✓';
-    color: ${(props) => (props.valid ? 'var(--green-primary)' : 'var(--grey-7)')};
+    color: ${(props) => (props.$valid ? 'var(--green-primary)' : 'var(--grey-7)')};
     margin: 0 8px;
   }
 `;

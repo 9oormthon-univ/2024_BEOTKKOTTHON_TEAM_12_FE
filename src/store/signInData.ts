@@ -6,12 +6,14 @@ interface SigninDataActions {
   changeStyleTags: (newStyle: string[]) => void;
   setIsValidPassword: (bool: boolean) => void;
   setIsEmailValid: (bool: boolean) => void;
+  setIsDisabled: (bool: boolean) => void;
 }
 
 interface SigninDataStore {
   signinFormData: SigninFormDataType;
   isValidPassword: boolean;
   isEmailValid: boolean;
+  isDisabled: boolean;
   actions: SigninDataActions;
 }
 
@@ -28,6 +30,7 @@ export const useSigninFormDataStore = create<SigninDataStore>((set) => ({
   signinFormData: initialSigninData,
   isValidPassword: false,
   isEmailValid: true,
+  isDisabled: true,
   actions: {
     changeSigninFormData: (name, value) => {
       set((state) => ({
@@ -39,6 +42,9 @@ export const useSigninFormDataStore = create<SigninDataStore>((set) => ({
     },
     setIsEmailValid: (bool) => {
       set(() => ({ isEmailValid: bool }));
+    },
+    setIsDisabled: (bool) => {
+      set(() => ({ isDisabled: bool }));
     },
     changeStyleTags: (newStyle) => {
       set((state) => ({
@@ -52,4 +58,5 @@ export const useSigninFormData = () => useSigninFormDataStore((state) => state.s
 export const useSigninIsValidPassword = () =>
   useSigninFormDataStore((state) => state.isValidPassword);
 export const useSigninIsEmailValid = () => useSigninFormDataStore((state) => state.isEmailValid);
+export const useSigninIsDisabled = () => useSigninFormDataStore((state) => state.isDisabled);
 export const useSigninFormDataActions = () => useSigninFormDataStore((state) => state.actions);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './style';
 import { FormGroup, BoxInput } from '../../index';
 import {
@@ -10,18 +10,12 @@ import {
 const SigninSecondForm = () => {
   const singinFormData = useSigninFormData();
   const isEmailValid = useSigninIsEmailValid();
-  const { changeSigninFormData, setIsEmailValid } = useSigninFormDataActions();
+  const { changeSigninFormData, setIsEmailValid, setIsDisabled } = useSigninFormDataActions();
 
-  const handleInputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeSigninFormData('universityEmail', e.target.value);
-
-    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value);
-    setIsEmailValid(isValid);
-    if (!isValid) {
-      console.log('유효하지 않은 이메일 형식입니다.');
-      return; // 유효하지 않으면 여기서 함수 실행을 중단
-    }
-  };
+  useEffect(() => {
+    if (singinFormData.universityName && singinFormData.universityEmail && isEmailValid)
+      setIsDisabled(false);
+  }, [singinFormData.universityName, singinFormData.universityEmail, isEmailValid]);
 
   return (
     <S.Container>
@@ -43,7 +37,10 @@ const SigninSecondForm = () => {
           type={'text'}
           placeholder="honggildong@dgu.ac.kr"
           value={singinFormData.universityEmail}
-          onChange={handleInputEmail}
+          onChange={(e: any) => {
+            changeSigninFormData('universityEmail', e.target.value);
+            setIsEmailValid(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value));
+          }}
         />
         {!isEmailValid && <S.PasswordError>유효하지 않은 이메일 형식입니다.</S.PasswordError>}
       </FormGroup>

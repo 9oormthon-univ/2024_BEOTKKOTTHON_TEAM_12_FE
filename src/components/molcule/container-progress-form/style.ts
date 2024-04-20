@@ -17,7 +17,7 @@ export const Container = styled.div`
   .title {
     font-size: 21px;
     font-weight: bold;
-    margin-bottom: 24px;
+    margin-bottom: 50px;
   }
 `;
 
@@ -34,6 +34,7 @@ export const LoginText = styled.div`
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
+  cursor: pointer;
 
   & > span {
     color: var(--green-primary);

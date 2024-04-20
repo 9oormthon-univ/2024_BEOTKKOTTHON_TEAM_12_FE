@@ -4,24 +4,23 @@ import { Tag, TextLabel } from 'components/index';
 import { styleTags } from 'data/shared';
 
 interface TagInputProps {
-  label?: string;
+  $padding?: string;
   currentStyle: string[];
   handleChange: (value: string[]) => void;
 }
 
-const TagInput: React.FC<TagInputProps> = ({ label, currentStyle, handleChange }) => {
+const TagInput: React.FC<TagInputProps> = ({ $padding, currentStyle, handleChange }) => {
   const toggleTag = (tag: string) => {
     const newTags = currentStyle.includes(tag)
       ? currentStyle.filter((t) => t !== tag)
       : [...currentStyle, tag];
-    console.log(newTags);
     handleChange(newTags);
   };
 
   return (
-    <S.TagInputWrapper>
-      <TextLabel size={16} $weight={500}>
-        {label ? label : '스타일 선택'}
+    <S.TagInputWrapper $padding={$padding}>
+      <TextLabel size={16} $weight={700}>
+        스타일 태그 설정
       </TextLabel>
       <S.SelectTagWrapper>
         {styleTags.map((tag) => (

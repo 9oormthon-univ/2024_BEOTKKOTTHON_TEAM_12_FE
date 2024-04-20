@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { PasswordInput, FormGroup, BoxInput } from '../../index';
 import {
@@ -6,25 +5,30 @@ import {
   useSigninFormDataActions,
   useSigninIsValidPassword,
 } from 'store/signInData';
+import { useEffect } from 'react';
 
 const SigninFirstForm = () => {
   const signinFormData = useSigninFormData();
   const isValidPassword = useSigninIsValidPassword();
-  const { changeSigninFormData, setIsValidPassword } = useSigninFormDataActions();
-  const [lengthValid, setLengthValid] = useState(false);
-  const [numberValid, setNumberValid] = useState(false);
-  const [uppercaseValid, setUppercaseValid] = useState(false);
+  const { changeSigninFormData, setIsValidPassword, setIsDisabled } = useSigninFormDataActions();
 
   /*비밀번호 유효성 체크 */
-  useEffect(() => {
-    const lengthCheck = signinFormData.password.length >= 8 && signinFormData.password.length <= 16;
-    const numberCheck = /\d/.test(signinFormData.password);
-    const uppercaseCheck = /[A-Z]/.test(signinFormData.password);
+  const lengthValid = signinFormData.password.length >= 8 && signinFormData.password.length <= 16;
+  const numberValid = /\d/.test(signinFormData.password);
+  const uppercaseValid = /[A-Z]/.test(signinFormData.password);
 
-    setLengthValid(lengthCheck);
-    setNumberValid(numberCheck);
-    setUppercaseValid(uppercaseCheck);
-  }, [signinFormData.password]);
+  useEffect(() => {
+    if (
+      signinFormData.userId &&
+      signinFormData.password &&
+      signinFormData.validPassword &&
+      isValidPassword &&
+      lengthValid &&
+      numberValid &&
+      uppercaseValid
+    )
+      setIsDisabled(false);
+  }, [signinFormData, lengthValid, numberValid, uppercaseValid, isValidPassword]);
 
   return (
     <S.Container>
@@ -43,13 +47,18 @@ const SigninFirstForm = () => {
         <p className="label">비밀번호</p>
         <PasswordInput
           value={signinFormData.password}
-          handleInputChange={(e: any) => changeSigninFormData('password', e.target.value)}
+          handleInputChange={(e: any) => {
+            changeSigninFormData('password', e.target.value);
+            signinFormData.password === e.target.value
+              ? setIsValidPassword(true)
+              : setIsValidPassword(false);
+          }}
         />
 
         <S.Checklist>
-          <S.CheckItem valid={uppercaseValid}>대문자</S.CheckItem>
-          <S.CheckItem valid={numberValid}>숫자</S.CheckItem>
-          <S.CheckItem valid={lengthValid}>8~16자 이내</S.CheckItem>
+          <S.CheckItem $valid={uppercaseValid}>대문자</S.CheckItem>
+          <S.CheckItem $valid={numberValid}>숫자</S.CheckItem>
+          <S.CheckItem $valid={lengthValid}>8~16자 이내</S.CheckItem>
         </S.Checklist>
       </FormGroup>
 
@@ -68,10 +77,8 @@ const SigninFirstForm = () => {
           }}
         />
 
-        {signinFormData.validPassword && (
-          <S.PasswordError>
-            {isValidPassword ? '' : '비밀번호가 일치하지 않습니다.'}
-          </S.PasswordError>
+        {!isValidPassword && signinFormData.validPassword && (
+          <S.PasswordError>비밀번호가 일치하지 않습니다.</S.PasswordError>
         )}
       </FormGroup>
     </S.Container>

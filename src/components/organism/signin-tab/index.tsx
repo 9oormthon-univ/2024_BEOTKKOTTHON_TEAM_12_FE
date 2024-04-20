@@ -7,20 +7,19 @@ interface SinginTabProps {
 
 const SinginTab = ({ activeIndex }: SinginTabProps) => {
   const signinFormData = useSigninFormData();
-  const { changeStyleTags } = useSigninFormDataActions();
+  const { changeStyleTags, setIsDisabled } = useSigninFormDataActions();
+
+  const handleChange = (newStyle: string[]) => {
+    changeStyleTags(newStyle);
+    setIsDisabled(false);
+  };
 
   if (activeIndex === 0) return <SigninFirstForm />;
 
   if (activeIndex === 1) return <SigninSecondForm />;
 
   if (activeIndex === 2) {
-    return (
-      <TagInput
-        currentStyle={signinFormData.styleTags}
-        handleChange={changeStyleTags}
-        label="스타일 태그 선택"
-      />
-    );
+    return <TagInput currentStyle={signinFormData.styleTags} handleChange={handleChange} />;
   }
 
   if (activeIndex === 3) return <SignInAgreement />;
