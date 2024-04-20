@@ -29,7 +29,6 @@ export const useProductMainQuery = () => {
     queryFn: ({ pageParam }) => getProductListData(pageParam, activeCategory, clickedOnSale),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      console.log('lastPage', lastPage);
       if (!lastPage.last) return lastPage.number + 1;
       return undefined;
     },
@@ -37,7 +36,6 @@ export const useProductMainQuery = () => {
 
   useEffect(() => {
     if (productMainQuery.data) {
-      // console.log('1111', productMainQuery.data);
       setInitialProductList(
         productMainQuery.data.pages[productMainQuery.data.pages.length - 1].content
       );
