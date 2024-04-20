@@ -5,7 +5,7 @@ import { useSalesProductQuery } from './queries/user/useSalesProductQuery';
 import { useEffect } from 'react';
 
 export const useSalesHistoryQueries = (activeTab: string) => {
-  const { setInitialProductList } = useProductListActions();
+  const { addProductList } = useProductListActions();
 
   const salesProducts = useSalesProductQuery();
   const completedProducts = useCompletedProductQuery();
@@ -24,11 +24,11 @@ export const useSalesHistoryQueries = (activeTab: string) => {
 
   useEffect(() => {
     if (activeTab === '판매 중') {
-      setInitialProductList(salesProducts.data ? salesProducts.data : []);
+      addProductList(salesProducts.data ? salesProducts.data : []);
     } else if (activeTab === '판매 완료') {
-      setInitialProductList(completedProducts.data ? completedProducts.data : []);
+      addProductList(completedProducts.data ? completedProducts.data : []);
     } else if (activeTab === '숨김') {
-      setInitialProductList(hiddenProducts.data ? hiddenProducts.data : []);
+      addProductList(hiddenProducts.data ? hiddenProducts.data : []);
     }
   }, [activeTab, salesProducts.data, completedProducts.data, hiddenProducts.data]);
 

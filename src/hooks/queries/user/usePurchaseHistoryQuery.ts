@@ -33,7 +33,7 @@ const getPurchaseHistory = async () => {
 };
 
 export const usePurchaseHistoryQuery = () => {
-  const { setInitialProductList } = useProductListActions();
+  const { addProductList } = useProductListActions();
 
   const purchaseHistoryQuery = useQuery({
     queryKey: ['user', 'purchase-product'],
@@ -42,7 +42,7 @@ export const usePurchaseHistoryQuery = () => {
 
   useEffect(() => {
     if (purchaseHistoryQuery.data) {
-      setInitialProductList(purchaseHistoryQuery.data);
+      addProductList(purchaseHistoryQuery.data);
     }
   }, [purchaseHistoryQuery.data]);
 

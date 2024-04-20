@@ -25,7 +25,7 @@ export const useSearchQuery = () => {
   const searchName = useSearchData();
   const clickedOnSale = useClickedOnSale();
   const activeCategory = useActiveCategory();
-  const { setActiveCategory, setInitialProductList } = useProductListActions();
+  const { setActiveCategory, addProductList } = useProductListActions();
 
   const searchQuery = useQuery({
     queryKey: ['products', 'search', searchName, activeCategory, clickedOnSale],
@@ -38,9 +38,9 @@ export const useSearchQuery = () => {
 
   useEffect(() => {
     if (searchQuery.data) {
-      setInitialProductList(searchQuery.data);
+      addProductList(searchQuery.data);
     }
-  }, [searchQuery.data, setInitialProductList]);
+  }, [searchQuery.data, addProductList]);
 
   return searchQuery;
 };
