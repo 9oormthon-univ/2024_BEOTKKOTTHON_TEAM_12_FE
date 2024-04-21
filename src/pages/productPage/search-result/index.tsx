@@ -31,15 +31,15 @@ const SearchResult = () => {
 
         <section className="filter">
           <FilterTrade totalElements={searchQuery?.totalElements || 0} />
+        </section>
+
+        <section className="items">
+          <ListTradeItems status={status} />
           {isFetchingNextPage ? (
             <Loading $width="100%" $height="50px" />
           ) : (
             <div ref={ref} style={{ height: '50px' }} />
           )}
-        </section>
-
-        <section className="items">
-          <ListTradeItems status={status} />
         </section>
       </S.Content>
     </>
