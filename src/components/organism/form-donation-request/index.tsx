@@ -1,14 +1,13 @@
-import { BoxInput } from 'components/index';
+import { BoxInput, FormGroup } from 'components/index';
 import * as S from './style';
 import { useDonationForm, useDonationFormActions } from 'store/donationForm';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { useEffect } from 'react';
+import plus from 'assets/icons/add_circle.svg';
+import minus from 'assets/icons/remove.svg';
 
-interface FormDonationRequestProps {
-  setIsDisabled: Dispatch<SetStateAction<boolean>>;
-}
-
-const FormDonationRequest = ({ setIsDisabled }: FormDonationRequestProps) => {
+const FormDonationRequest = () => {
   const formData = useDonationForm();
+  const { setIsDisabled } = useDonationFormActions();
   const { setFormData } = useDonationFormActions();
 
   useEffect(() => {
@@ -18,13 +17,15 @@ const FormDonationRequest = ({ setIsDisabled }: FormDonationRequestProps) => {
       formData.box_num !== 0
     ) {
       setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
   }, [formData]);
 
   return (
     <S.Container>
-      <div>
-        <S.Label htmlFor="sort">기부 물품 종류</S.Label>
+      <FormGroup>
+        <p className="label">기부 물품 종류</p>
         <BoxInput
           id="sort"
           name="sort"
@@ -32,55 +33,68 @@ const FormDonationRequest = ({ setIsDisabled }: FormDonationRequestProps) => {
           onChange={(e: any) => setFormData('sort', e.target.value)}
           placeholder="예) 옷, 가방, 신발"
         />
-      </div>
+      </FormGroup>
 
-      <div>
-        <S.Label htmlFor="clothes_num">기부 물품 수량</S.Label>
-        <S.Sort>의류</S.Sort>
-        {/* <S.InputNum className="num">
-          <input
-            type=""
-            id="clothes_num"
-            name="clothes_num"
-            value={formData.clothes_num === 0 ? "" : formData.clothes_num}
-            onChange={(e) => setFormData("clothes_num", e.target.value)}
-            placeholder="0"
-          />
-          <p>개</p>
-        </S.InputNum> */}
+      <FormGroup>
+        <p className="label">기부 물품 수량</p>
 
-        <S.Sort htmlFor="goods_num">잡화</S.Sort>
-        {/* <S.InputNum>
-          <input
-            id="goods_num"
-            name="goods_num"
-            value={formData.goods_num === 0 ? "" : formData.goods_num}
-            onChange={(e) => setFormData("goods_num", e.target.value)}
-            placeholder="0"
-          />
-          <p>개</p>
-        </S.InputNum> */}
-      </div>
-
-      <div className="box-num">
-        <S.Label htmlFor="box_num">박스 수량</S.Label>
-        <S.FlexInput className="box-num-items">
-          <div className="btn" onClick={() => setFormData('box_num', formData.box_num - 1)}>
-            -
+        <S.CheckboxWrapper>
+          <div className="checkbox">
+            <input id="clothes_num" type="checkbox" />
+            <label htmlFor="clothes_num">의류</label>
           </div>
           <BoxInput
-            className="grow"
+            id="clothes_num"
+            name="clothes_num"
+            $width="164px"
+            size="9"
+            value={formData.clothes_num === 0 ? '' : formData.clothes_num}
+            onChange={(e: any) => setFormData('clothes_num', e.target.value)}
+          >
+            <p className="sub-placeholder">개</p>
+          </BoxInput>
+        </S.CheckboxWrapper>
+
+        <S.CheckboxWrapper>
+          <div className="checkbox">
+            <input id="clothes_num" type="checkbox" />
+            <label htmlFor="clothes_num">잡화</label>
+          </div>
+          <BoxInput
+            id="goods_num"
+            name="goods_num"
+            $width="164px"
+            size="9"
+            value={formData.goods_num === 0 ? '' : formData.goods_num}
+            onChange={(e: any) => setFormData('goods_num', e.target.value)}
+          >
+            <p className="sub-placeholder">개</p>
+          </BoxInput>
+        </S.CheckboxWrapper>
+      </FormGroup>
+
+      <FormGroup className="box-num">
+        <p className="label">박스 수량</p>
+        <S.FlexInput className="box-num-items">
+          <img
+            src={minus}
+            alt="btn-minus"
+            onClick={() => setFormData('box_num', formData.box_num - 1)}
+          />
+          <BoxInput
             type="number"
             id="box_num"
             name="box_num"
             value={formData.box_num}
             onChange={(e: any) => setFormData('box_num', e.target.value)}
           />
-          <div className="btn" onClick={() => setFormData('box_num', formData.box_num + 1)}>
-            +
-          </div>
+          <img
+            src={plus}
+            alt="btn-minus"
+            onClick={() => setFormData('box_num', formData.box_num + 1)}
+          />
         </S.FlexInput>
-      </div>
+      </FormGroup>
     </S.Container>
   );
 };

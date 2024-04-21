@@ -1,4 +1,3 @@
-import { BoxInput } from 'components/index';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -31,60 +30,32 @@ export const Container = styled.div`
   }
 `;
 
-export const Label = styled.label`
-  display: block;
-  height: 24px;
-  margin-bottom: 10px;
-  font-size: 16px;
+export const CheckboxWrapper = styled.div`
   color: var(--grey-7);
+
+  .checkbox {
+    display: flex;
+    gap: 1.5px;
+    margin-bottom: 9.5px;
+    align-items: center;
+    font-size: 14px;
+
+    & > input {
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  & + & {
+    margin-top: 15px;
+  }
 `;
 
 export const FlexInput = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   width: 100%;
   margin-bottom: 12px;
-
-  .flex-input {
-    width: 100%;
-  }
-
-  .grow {
-    flex-grow: 1;
-  }
-
-  & span {
-    font-size: 16px;
-    color: var(--grey-5);
-  }
-`;
-
-// export const InputNum = styled(BoxInput)`
-//   width: 164px;
-//   align-items: center;
-//   margin-top: 10px;
-
-//   & > input {
-//     width: 100%;
-//     text-align: center;
-//     padding-right: 4px;
-
-//     &:focus::placeholder {
-//       color: transparent;
-//     }
-
-//     &:focus::-ms-input-placeholder {
-//       color: transparent;
-//     }
-//   }
-
-//   & > p {
-//     color: var(--grey-5);
-//   }
-// `;
-
-export const Sort = styled.label`
-  font-size: 14px;
-  color: var(--grey-7);
 `;

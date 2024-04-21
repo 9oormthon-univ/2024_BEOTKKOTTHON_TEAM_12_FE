@@ -1,14 +1,11 @@
 import { BoxInput, Button } from 'components/index';
 import * as S from './style';
 import { useDonationForm, useDonationFormActions } from 'store/donationForm';
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-interface FormDonationBasicProps {
-  setIsDisabled: Dispatch<SetStateAction<boolean>>;
-}
-
-const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
+const FormDonationBasic = () => {
   const formData = useDonationForm();
+  const { setIsDisabled } = useDonationFormActions();
   const { setFormData } = useDonationFormActions();
   const addr2Ref = useRef<HTMLInputElement>(null);
 
@@ -24,6 +21,8 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
       formData.email2 !== ''
     ) {
       setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
   }, [formData]);
 
@@ -44,9 +43,10 @@ const FormDonationBasic = ({ setIsDisabled }: FormDonationBasicProps) => {
         <S.Label htmlFor="addr1">방문 주소</S.Label>
         <S.FlexInput>
           <BoxInput
-            className="grow"
+            $width="100%"
             id="addr1"
             name="addr1"
+            size={10}
             value={formData.addr1}
             onChange={(e: any) => setFormData('addr1', e.target.value)}
           />
