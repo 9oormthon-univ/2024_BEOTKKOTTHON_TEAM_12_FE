@@ -1,11 +1,18 @@
-import { ButtonBack, Header, ListTradeItems, TextLabel } from 'components';
+import { ButtonBack, Header, ListTradeItems, Loading, TextLabel } from 'components';
 import * as S from './style';
 import { useProductList } from 'store/productListData';
 import { useWishListQuery } from 'hooks/queries/user/useWishListQuery';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
 const WishList = () => {
-  const { status } = useWishListQuery();
+  const { status, fetchNextPage, isFetchingNextPage } = useWishListQuery();
   const productList = useProductList();
+  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+
+  useEffect(() => {
+    if (inView && fetchNextPage) fetchNextPage();
+  }, [inView]);
 
   return (
     <>
@@ -24,6 +31,11 @@ const WishList = () => {
         </S.ProductHeader>
 
         <ListTradeItems status={status} />
+        {isFetchingNextPage ? (
+          <Loading $width="100%" $height="50px" />
+        ) : (
+          <div ref={ref} style={{ height: '50px' }} />
+        )}
       </S.Content>
     </>
   );

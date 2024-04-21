@@ -1,18 +1,24 @@
-import { BoxError, FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
+import { FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
 import * as S from './style';
 import back from 'assets/icons/arrow_left_alt.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSearchQuery } from 'hooks/queries/products/useSearchQuery';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
 const SearchResult = () => {
-  const { status } = useSearchQuery();
+  const navigate = useNavigate();
+  const { data: searchQuery, status, fetchNextPage, isFetchingNextPage } = useSearchQuery();
+  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+
+  useEffect(() => {
+    if (inView && fetchNextPage) fetchNextPage();
+  }, [inView]);
 
   return (
     <>
       <S.HeaderSearch>
-        <Link to={'/search'}>
-          <img src={back} alt="back" />
-        </Link>
+        <img src={back} alt="back" onClick={() => navigate(-1)} />
         <Link to={'/search'} className="search-input">
           <Search />
         </Link>
@@ -24,11 +30,16 @@ const SearchResult = () => {
         </section>
 
         <section className="filter">
-          <FilterTrade />
+          <FilterTrade totalElements={searchQuery?.totalElements || 0} />
         </section>
 
         <section className="items">
           <ListTradeItems status={status} />
+          {isFetchingNextPage ? (
+            <Loading $width="100%" $height="50px" />
+          ) : (
+            <div ref={ref} style={{ height: '50px' }} />
+          )}
         </section>
       </S.Content>
     </>

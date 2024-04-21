@@ -29,7 +29,8 @@ export const useProductMainQuery = () => {
     queryFn: ({ pageParam }) => getProductListData(pageParam, activeCategory, clickedOnSale),
     select: (data) => ({
       pagesData: data?.pages.flatMap((page) => page.content),
-      pageParams: data.pageParams,
+      pageParams: data?.pageParams,
+      totalElements: data?.pages?.[0]?.totalElements,
     }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {

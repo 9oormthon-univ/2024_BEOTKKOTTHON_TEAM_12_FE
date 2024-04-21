@@ -1,31 +1,34 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
 
-const getHiddenProducts = async () => {
+const getHiddenProducts = async (pageParam: number) => {
   try {
-    const response = await instance.get(`/users/myProducts/private/${userId}?pageNumber=0`);
-    console.log('숨김 상품 불러오기 성공:', response.data.content);
-    return response.data.content;
-  } catch (error) {
+    const response = await instance.get(
+      `/users/myProducts/private/${userId}?pageNumber=${pageParam}`
+    );
+    console.log('숨김 상품 불러오기 성공:', response.data);
+    return response.data;
+  } catch (error: any) {
     console.log('숨김 상품 불러오기 실패', error);
-    return [
-      {
-        id: 3,
-        price: 10000,
-        product_name: 'ZARA 티셔츠 팔아요',
-        product_status: '아주 좋아요',
-        post_status: 'hidden',
-        product_image: ['http://dummyimage.com/150x100.png/5fa2dd/ffffff'],
-      },
-    ];
+    throw new Error(error.response?.data?.message);
   }
 };
 
 export const useHiddenProductQuery = () => {
-  const hiddenProductQuery = useQuery({
+  const hiddenProductQuery = useInfiniteQuery({
     queryKey: ['user', 'hidden-product'],
-    queryFn: getHiddenProducts,
+    queryFn: ({ pageParam }) => getHiddenProducts(pageParam),
+    select: (data) => ({
+      pagesData: data?.pages.flatMap((page) => page.content),
+      pageParams: data?.pageParams,
+      totalElements: data?.pages?.[0]?.totalElements,
+    }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      if (!lastPage.last) return lastPage.number + 1;
+      return undefined;
+    },
   });
 
   return hiddenProductQuery;

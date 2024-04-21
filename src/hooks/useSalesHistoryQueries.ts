@@ -4,12 +4,14 @@ import { useHiddenProductQuery } from './queries/user/useHiddenProductQuery';
 import { useSalesProductQuery } from './queries/user/useSalesProductQuery';
 import { useEffect } from 'react';
 
-export const useSalesHistoryQueries = (activeTab: string) => {
+export const useSalesHistoryQueries = (activeTab: number) => {
   const { addProductList } = useProductListActions();
 
   const salesProducts = useSalesProductQuery();
   const completedProducts = useCompletedProductQuery();
   const hiddenProducts = useHiddenProductQuery();
+
+  const list = [salesProducts, completedProducts, hiddenProducts];
 
   const isPending =
     salesProducts.isPending || completedProducts.isPending || hiddenProducts.isPending;
@@ -17,18 +19,22 @@ export const useSalesHistoryQueries = (activeTab: string) => {
   const isError = salesProducts.isError || completedProducts.isError || hiddenProducts.isError;
 
   const numberOfProducts = [
-    salesProducts.data?.length || 0,
-    completedProducts.data?.length || 0,
-    hiddenProducts.data?.length || 0,
+    salesProducts.data?.totalElements || 0,
+    completedProducts.data?.totalElements || 0,
+    hiddenProducts.data?.totalElements || 0,
   ];
 
+  const fetchNextPage = list[activeTab].fetchNextPage;
+
+  const isFetchingNextPage = list[activeTab].isFetchingNextPage;
+
   useEffect(() => {
-    if (activeTab === '판매 중') {
-      addProductList(salesProducts.data ? salesProducts.data : []);
-    } else if (activeTab === '판매 완료') {
-      addProductList(completedProducts.data ? completedProducts.data : []);
-    } else if (activeTab === '숨김') {
-      addProductList(hiddenProducts.data ? hiddenProducts.data : []);
+    if (activeTab === 0) {
+      addProductList(salesProducts.data?.pagesData ? salesProducts.data.pagesData : []);
+    } else if (activeTab === 1) {
+      addProductList(completedProducts.data?.pagesData ? completedProducts.data.pagesData : []);
+    } else if (activeTab === 2) {
+      addProductList(hiddenProducts.data?.pagesData ? hiddenProducts.data.pagesData : []);
     }
   }, [activeTab, salesProducts.data, completedProducts.data, hiddenProducts.data]);
 
@@ -39,5 +45,7 @@ export const useSalesHistoryQueries = (activeTab: string) => {
     isPending,
     isError,
     numberOfProducts,
+    fetchNextPage,
+    isFetchingNextPage,
   };
 };

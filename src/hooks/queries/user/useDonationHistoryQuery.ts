@@ -1,13 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
 
-const getDonationHistory = async (showCompletedOnly: boolean) => {
+const getDonationHistory = async (pageParam: number, showCompletedOnly: boolean) => {
   const endPoint = showCompletedOnly ? `complete/` : ``;
   try {
-    const response = await instance.get(`/users/myDonations/${endPoint}${userId}?pageNumber=0`);
-    console.log('기부 내역 불러오기 성공:', response.data.content);
-    return response.data.content;
+    const response = await instance.get(
+      `/users/myDonations/${endPoint}${userId}?pageNumber=${pageParam}`
+    );
+    console.log('기부 내역 불러오기 성공:', response.data);
+    return response.data;
   } catch (error: any) {
     console.error('기부 내역 불러오기 실패:', error);
     throw new Error(error.response?.data?.message);
@@ -15,9 +17,19 @@ const getDonationHistory = async (showCompletedOnly: boolean) => {
 };
 
 export const useDonationHistoryQuery = (showCompletedOnly: boolean) => {
-  const donationHistoryQuery = useQuery({
+  const donationHistoryQuery = useInfiniteQuery({
     queryKey: ['user', 'donation-history', showCompletedOnly],
-    queryFn: () => getDonationHistory(showCompletedOnly),
+    queryFn: ({ pageParam }) => getDonationHistory(pageParam, showCompletedOnly),
+    select: (data) => ({
+      pagesData: data?.pages.flatMap((page) => page.content),
+      pageParams: data?.pageParams,
+      totalElements: data?.pages?.[0]?.totalElements,
+    }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      if (!lastPage.last) return lastPage.number + 1;
+      return undefined;
+    },
   });
 
   return donationHistoryQuery;

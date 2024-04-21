@@ -1,11 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
-import { useNavigate } from 'react-router-dom';
 import { useProduct } from 'store/product';
 
 export const useHideMutation = (productId: string) => {
-  const navigate = useNavigate();
   const product = useProduct();
   const prevIsPrivate = product?.is_private;
 
@@ -19,7 +17,6 @@ export const useHideMutation = (productId: string) => {
         console.log('글 숨기기 성공', res);
         alert('게시물을 정상적으로 숨겼습니다.');
       }
-      navigate('/product');
     },
     onError: (error) => {
       console.log('글 숨기기 실패', error);
