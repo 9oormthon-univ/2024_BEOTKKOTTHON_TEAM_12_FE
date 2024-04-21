@@ -1,8 +1,15 @@
-import { ButtonBack, Header, ListBlockUser, TextLabel } from 'components/index';
+import { ButtonBack, Header, ListBlockUser, Loading, TextLabel } from 'components/index';
 import { useBlockUserQuery } from 'hooks/queries/user/useBlockUserQuery';
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 const BlockedUsers = () => {
-  const { data: blockedUserList, status } = useBlockUserQuery();
+  const { data: blockedUserList, status, fetchNextPage, isFetchingNextPage } = useBlockUserQuery();
+  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+
+  useEffect(() => {
+    if (inView && fetchNextPage) fetchNextPage();
+  }, [inView]);
 
   return (
     <>
@@ -13,7 +20,12 @@ const BlockedUsers = () => {
         <ButtonBack className="left" $marginLeft="10px" />
       </Header>
 
-      <ListBlockUser userList={blockedUserList} status={status} />
+      <ListBlockUser userList={blockedUserList?.pagesData || []} status={status} />
+      {isFetchingNextPage ? (
+        <Loading $width="100%" $height="50px" />
+      ) : (
+        <div ref={ref} style={{ height: '50px' }} />
+      )}
     </>
   );
 };
