@@ -9,7 +9,7 @@ interface TableProps {
 }
 
 const TableDonationHistory = ({ donationData, status }: TableProps) => {
-  const height = `calc(100svh - var(--header-size))`;
+  const height = `calc(100svh - var(--header-size) - 35px)`;
 
   if (status === 'pending') return <Loading $height={height} />;
   if (status === 'error')
