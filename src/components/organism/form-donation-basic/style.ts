@@ -26,10 +26,6 @@ export const FlexInput = styled.div`
     width: 100%;
   }
 
-  .grow {
-    flex-grow: 1;
-  }
-
   & span {
     font-size: 16px;
     color: var(--grey-5);

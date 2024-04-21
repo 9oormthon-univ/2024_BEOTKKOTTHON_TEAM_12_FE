@@ -3,6 +3,7 @@ import { create } from 'zustand';
 interface Actions {
   setFormData: (name: string, value: string | number | FileList) => void;
   setCharityNumber: (num: number) => void;
+  setIsDisabled: (bool: boolean) => void;
 }
 
 interface DonationStore {
@@ -21,6 +22,7 @@ interface DonationStore {
     box_num: number;
   };
   charityNumber: number;
+  isDisabled: boolean;
   actions: Actions;
 }
 
@@ -42,6 +44,7 @@ const initialFormData = {
 export const useDonationStore = create<DonationStore>((set) => ({
   formData: initialFormData,
   charityNumber: 1,
+  isDisabled: true,
   actions: {
     setFormData: (name, value) => {
       set((state) => ({
@@ -53,9 +56,13 @@ export const useDonationStore = create<DonationStore>((set) => ({
         charityNumber: num,
       }));
     },
+    setIsDisabled: (bool) => {
+      set(() => ({ isDisabled: bool }));
+    },
   },
 }));
 
 export const useDonationForm = () => useDonationStore((state) => state.formData);
 export const useCharityNumber = () => useDonationStore((state) => state.charityNumber);
+export const useDonationIsDisabled = () => useDonationStore((state) => state.isDisabled);
 export const useDonationFormActions = () => useDonationStore((state) => state.actions);

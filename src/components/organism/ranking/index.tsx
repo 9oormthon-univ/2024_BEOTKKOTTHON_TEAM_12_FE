@@ -50,7 +50,7 @@ const Ranking = () => {
       />
 
       <S.MarginBox />
-      <Link to={'/donation/select'}>
+      <Link to={'/donation/request'}>
         <Button
           $borderRadius="8px"
           $bgcolor="var(--green-6)"

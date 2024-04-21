@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ContainerProgressForm, SigninFinish, SigninTab } from 'components/index';
-import { useLocation } from 'react-router-dom';
+import { ContainerProgressForm, FormCompletePage, SigninTab } from 'components/index';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSigninFormDataActions, useSigninIsDisabled } from 'store/signInData';
 
 const header = ['회원가입', '재학생 인증', '스타일 태그 선택', '약관에 동의해주세요'];
@@ -8,15 +8,26 @@ const header = ['회원가입', '재학생 인증', '스타일 태그 선택', '
 const SignUp: React.FC = () => {
   const location = useLocation();
   const state = location.state as { tab: number } | null;
+  const navigate = useNavigate();
   const isDisabled = useSigninIsDisabled();
-  const { setIsDisabled } = useSigninFormDataActions();
+  const { setIsDisabled, resetSigninFormData } = useSigninFormDataActions();
 
   //재학생 탭 갔다올 때 location 확인
   const [activeIndex, setActiveIndex] = useState(state?.tab || 0);
 
   return (
     <>
-      {activeIndex === 4 && <SigninFinish />}
+      {activeIndex === 4 && (
+        <FormCompletePage
+          english="Welcome!"
+          main="회원가입이 완료되었습니다"
+          btnText="로그인 하러 가기"
+          onClick={() => {
+            navigate('/login');
+            resetSigninFormData();
+          }}
+        />
+      )}
       {activeIndex < 4 && (
         <>
           <ContainerProgressForm

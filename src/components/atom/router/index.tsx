@@ -20,17 +20,13 @@ import SignUp from 'pages/auth/signup';
 import Onboarding from 'pages/onboarding';
 import StudentCertification from 'pages/auth/student-certification';
 import DonationMain from 'pages/donationPage/main';
-import DonationSelectGroup from 'pages/donationPage/select-group';
-import DonationNotice from 'pages/donationPage/notice';
-import DonationBasicForm from 'pages/donationPage/basic-form';
-import DonationRequestForm from 'pages/donationPage/request-form';
-import DonationFinishForm from 'pages/donationPage/finish-form';
 import DonationHistory from 'pages/myPagePage/donation-history';
 import LevelInfo from 'pages/myPagePage/level-info';
 import DonationInpersonVisit from 'pages/donationPage/inperson-visit';
 import DonationHomeless from 'pages/donationPage/homeless';
 import DonationHomelessMap from 'pages/donationPage/homeless-map';
 import WishList from 'pages/myPagePage/wish-list';
+import DonationRequest from 'pages/donationPage/donation-request';
 
 const Router = () => {
   return (
@@ -76,11 +72,7 @@ const Router = () => {
 
       {/* 기부 */}
       <Route path="/donation" element={<DonationMain />} />
-      <Route path="/donation/select" element={<DonationSelectGroup />} />
-      <Route path="/donation/notice" element={<DonationNotice />} />
-      <Route path="/donation/form-basic" element={<DonationBasicForm />} />
-      <Route path="/donation/form-request" element={<DonationRequestForm />} />
-      <Route path="/donation/finish" element={<DonationFinishForm />} />
+      <Route path="/donation/request" element={<DonationRequest />} />
       <Route path="/donation/visit" element={<DonationInpersonVisit />} />
       <Route path="/donation/homeless" element={<DonationHomeless />} />
       <Route path="/donation/homeless/map" element={<DonationHomelessMap />} />
