@@ -17,14 +17,14 @@ export const useSalesHistoryQueries = (activeTab: string) => {
   const isError = salesProducts.isError || completedProducts.isError || hiddenProducts.isError;
 
   const numberOfProducts = [
-    salesProducts.data?.length || 0,
-    completedProducts.data?.length || 0,
-    hiddenProducts.data?.length || 0,
+    salesProducts.data?.totalElements || 0,
+    completedProducts.data?.totalElements || 0,
+    hiddenProducts.data?.totalElements || 0,
   ];
 
   useEffect(() => {
     if (activeTab === '판매 중') {
-      addProductList(salesProducts.data ? salesProducts.data : []);
+      addProductList(salesProducts.data?.pagesData ? salesProducts.data.pagesData : []);
     } else if (activeTab === '판매 완료') {
       addProductList(completedProducts.data ? completedProducts.data : []);
     } else if (activeTab === '숨김') {

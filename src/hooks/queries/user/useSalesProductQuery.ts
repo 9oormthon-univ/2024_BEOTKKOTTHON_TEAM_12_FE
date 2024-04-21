@@ -1,10 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
 
-const getSalesProducts = async () => {
+const getSalesProducts = async (pageParam: number) => {
   try {
-    const response = await instance.get(`/users/myProducts/onSale/${userId}?pageNumber=0`);
+    const response = await instance.get(
+      `/users/myProducts/onSale/${userId}?pageNumber=${pageParam}`
+    );
     console.log('판매중인 상품 불러오기 성공:', response.data.content);
     return response.data.content;
   } catch (error: any) {
@@ -14,9 +16,21 @@ const getSalesProducts = async () => {
 };
 
 export const useSalesProductQuery = () => {
-  const salesProductQuery = useQuery({
+  const salesProductQuery = useInfiniteQuery({
     queryKey: ['user', 'sales-product'],
-    queryFn: getSalesProducts,
+    queryFn: ({ pageParam }) => getSalesProducts(pageParam),
+    select: (data) => {
+      return {
+        pagesData: data?.pages.flatMap((page) => page.content),
+        pageParams: data?.pageParams,
+        totalElements: data?.pages?.[0]?.totalElements,
+      };
+    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      if (!lastPage.last) return lastPage.number + 1;
+      return undefined;
+    },
   });
 
   return salesProductQuery;
