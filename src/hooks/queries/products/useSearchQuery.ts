@@ -5,12 +5,17 @@ import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 import { useSearchData } from 'store/search';
 
-const getSearchData = async (searchName: string, activeCategory: string, onSale: string | null) => {
+const getSearchData = async (
+  pageParam: number,
+  searchName: string,
+  activeCategory: string,
+  onSale: string | null
+) => {
   const endpoint = onSale ? `/products/search/category/sale?` : `/products/search/category?`;
 
   try {
     const response = await instance.get(
-      `${endpoint}searchName=${searchName}&categoryName=${activeCategory}&userId=${userId}&pageNumber=0`
+      `${endpoint}searchName=${searchName}&categoryName=${activeCategory}&userId=${userId}&pageNumber=${pageParam}`
     );
 
     console.log('상품 검색 성공', response.data);
@@ -29,7 +34,7 @@ export const useSearchQuery = () => {
 
   const searchQuery = useInfiniteQuery({
     queryKey: ['products', 'search', searchName, activeCategory, clickedOnSale],
-    queryFn: () => getSearchData(searchName, activeCategory, clickedOnSale),
+    queryFn: ({ pageParam }) => getSearchData(pageParam, searchName, activeCategory, clickedOnSale),
     select: (data) => ({
       pagesData: data?.pages.flatMap((page) => page.content),
       pageParams: data?.pageParams,
