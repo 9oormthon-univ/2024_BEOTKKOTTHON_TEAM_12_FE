@@ -27,9 +27,7 @@ const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
   // 채팅방 생성
   const postNewChatRoom = async (productId: number) => {
     try {
-      const res = await instance.post(`/chat/room/create?productId=${productId}&userId=1`, {
-        productId: productId,
-      });
+      const res = await instance.post(`/chat/room/create?productId=${productId}&userId=1`);
       console.log('postNewChatRoom', '방 생성 성공', res.data);
       return res.data.chat_room_id;
     } catch (error) {
@@ -64,7 +62,10 @@ const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
   // 방으로 이동
   const enterChatRoom = (room_id: number) => {
     console.log('enterChatRoom', '방 이동 성공');
-    navigate(`/chat/room/${room_id}`);
+
+    // 실제 room_id로 수정 필요
+    navigate(`/chat/room/2`);
+    // navigate(`/chat/room/${room_id}`);
   };
 
   //본인글이면 채팅 안됨

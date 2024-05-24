@@ -5,12 +5,20 @@ export const Container = styled.div`
   background: white;
 `;
 
-export const ChatFixedHeader = styled.div`
-  position: fixed;
-  top: 0;
-  width: 400px;
-  background-color: #ffffff;
-  z-index: 100;
+export const HeaderProfile = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  & > p {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  & > img {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 export const ChatScreenFixed = styled.div`
@@ -19,27 +27,11 @@ export const ChatScreenFixed = styled.div`
   width: 400px;
 `;
 
-export const FooterFixed = styled.div`
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 370px;
-`;
-
-export const NickNameContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 3px;
-`;
-
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100svh - 55px - 86px - 75px);
-`;
+  height: var(--content-size);
 
-export const SectionScroll = styled.div`
   overflow-y: scroll;
   -ms-overflow-style: none;
 
@@ -58,5 +50,9 @@ export const Footer = styled.div`
   height: var(--nav-size);
   padding: 24px;
   box-sizing: border-box;
-  border-top: 1px solid var(--grey-3);
+`;
+
+export const ChatContainer = styled.div`
+  padding: 20px 20px;
+  overflow-y: auto;
 `;
