@@ -2,29 +2,29 @@ import { Header, Nav, Search, TextLabel } from 'components/index';
 import * as S from './style';
 import { ChatRoom } from 'types/types';
 import ChatListItem from 'components/molcule/chat-list-item';
-// import { instance } from 'apis';
-// import { useEffect, useState } from 'react';
 import wearProfile from 'assets/images/wear_profile.svg';
+import { instance } from 'apis';
+import { useEffect, useState } from 'react';
 
 const ChattingMain: React.FC = () => {
-  // const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
+  const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
 
   //const userId = localStorage.getItem('userId');
 
-  // const getChatList = async () => {
-  //   // 채팅 리스트 가져오기
-  //   const response = await instance.get(`/chat/rooms?userId=${userId}`);
-  //   console.log(response);
-  //   setChatRooms(
-  //     response.data.map((chatRoom: ChatRoom) => ({
-  //       product_id: chatRoom.product_id,
-  //       chat_room_id: chatRoom.chat_room_id,
-  //       user_profile_image: chatRoom.user_profile_image,
-  //       user_level: chatRoom.user_level,
-  //       user_nick_name: chatRoom.user_nick_name,
-  //     }))
-  //   );
-  // };
+  const getChatList = async () => {
+    // 채팅 리스트 가져오기
+    const response = await instance.get(`/api/chat/rooms?userId=1&pageNumber=0`);
+    console.log(response);
+    setChatRooms(
+      response.data.map((chatRoom: ChatRoom) => ({
+        product_id: chatRoom.product_id,
+        chat_room_id: chatRoom.chat_room_id,
+        user_profile_image: chatRoom.user_profile_image,
+        user_level: chatRoom.user_level,
+        user_nick_name: chatRoom.user_nick_name,
+      }))
+    );
+  };
 
   const InfoMessage: ChatRoom[] = [
     {
@@ -35,9 +35,9 @@ const ChattingMain: React.FC = () => {
     },
   ];
 
-  // useEffect(() => {
-  //   getChatList();
-  // }, []);
+  useEffect(() => {
+    getChatList();
+  }, []);
 
   return (
     <>

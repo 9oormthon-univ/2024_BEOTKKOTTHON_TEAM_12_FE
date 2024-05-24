@@ -64,7 +64,101 @@ const ChatDetail = () => {
   });
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const curRoomId = 36;
+  // Stomp의 CompatClient 객체를 참조하는 객체 (리렌더링에도 유지를 위해 useRef 사용)
+  // Stomp라이브러리와 소켓 연결을 수행하는 cliet객체에 접근할 수 있게 해준다.
+  const client = useRef<CompatClient | null>(null);
+
+  const connectHandler = () => {
+    const serverUrl = `${process.env.REACT_APP_SOCKET_SERVER_URL}/ws-stomp`;
+
+    const webSocketFactory = () => {
+      return new SockJS(serverUrl);
+    };
+
+    client.current = Stomp.over(webSocketFactory);
+    console.log('client.current:', client.current);
+    client.current.connect(
+      {},
+      () => {
+        console.log('연결 성공');
+        client.current?.subscribe(`/sub/api/chat/room/${chatRoomId}`, (message) => {
+          console.log('받은메세지', message);
+          // 메시지 처리 로직
+        });
+      },
+      (error: any) => {
+        console.error('연결 실패:', error);
+      }
+    );
+  };
+
+  useEffect(() => {
+    if (!isWear) {
+      connectHandler();
+    }
+  }, [chatRoomId]);
+
+  const handleSend = (message: File | string) => {
+    try {
+      if (!message) return;
+      const newMessage = {
+        id: messages.length + 1,
+        chat_rood_id: chatRoomId,
+        message: message,
+        timestamp: new Date().toLocaleTimeString().slice(0, 7),
+        isMine: true,
+        profilePic: otherUser.profile_image,
+      };
+      setMessages([...messages, newMessage]);
+      if (typeof message === 'string' && client.current && client.current.connected) {
+        client.current.send(
+          `/pub/api/chat/message`,
+          // JSON 형식으로 전송한다
+          newMessage
+        );
+        console.log('메시지 전송 완료:', newMessage);
+      }
+    } catch (error) {
+      console.error('메시지 전송 중 오류 발생:', error);
+    }
+  };
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      handleSend(file);
+    }
+  };
+
+  const handleClickProduct = () => {
+    navigate(`/product/${product.id}`);
+  };
+
+  const getChatData = async () => {
+    if (isWear) return;
+    const response = await instance.get(
+      `/chat/room/enter?roomId=${chatRoomId}&productId=${productId}`
+    );
+    console.log('채팅방 입장');
+    setProduct({
+      id: response.data.product_id,
+      price: response.data.price,
+      product_name: response.data.product_name,
+      product_image: response.data.product_image,
+    });
+    setOtherUser({
+      id: response.data.customer_id,
+      nickname: response.data.seller_nick_name,
+      level: response.data.seller_level,
+      profile_image: response.data.seller_profile_image,
+    });
+  };
+
+  useEffect(() => {
+    if (!isWear) {
+      getChatData();
+    }
+  }, [isWear]);
 
   const WearMessage: Message[] = [
     {
@@ -140,9 +234,7 @@ const ChatDetail = () => {
               imageUrl={product.product_image ? product.product_image : defaultImg}
               productName={product.product_name}
               price={product.price}
-              onClick={() => {
-                console.log('click');
-              }}
+              onClick={handleClickProduct}
             />
           </S.ChatFixedHeader>
 
@@ -151,7 +243,7 @@ const ChatDetail = () => {
               <ChatScreen messages={messages} userImage={otherUser.profile_image} />
             </S.SectionScroll>
           </S.Content>
-          {/* <ChatInput handleImageChange={handleImageChange} handleSend={handleSend} /> */}
+          <ChatInput handleImageChange={handleImageChange} handleSend={handleSend} />
         </S.Container>
       )}
     </>
