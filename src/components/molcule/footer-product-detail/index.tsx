@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useLikedMutation } from 'hooks/queries/products/useLikedMutation';
 import { useUnlikedMutation } from 'hooks/queries/products/useUnlikedMutation';
 import { ProductDetailItem } from 'types/productType';
+import { instance } from 'apis';
 
 interface FooterProductDetailProps {
   product: ProductDetailItem;
@@ -19,9 +20,52 @@ const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
   const { mutate: unlikedMutation } = useUnlikedMutation(product?.id as number);
   const [isMine, setIsMine] = useState<boolean>(false);
   const navigate = useNavigate();
-  const customerId = '1';
+  const curProductsId = product?.id;
 
   if (status === 'pending' || status === 'error') return null;
+
+  // 채팅방 생성
+  const postNewChatRoom = async (productId: number) => {
+    try {
+      const res = await instance.post(`/chat/room/create?productId=${productId}&userId=1`, {
+        productId: productId,
+      });
+      console.log('postNewChatRoom', '방 생성 성공', res.data);
+      return res.data.chat_room_id;
+    } catch (error) {
+      console.error('방 생성 에러:', error);
+    }
+  };
+
+  // 채팅하기 버튼 클릭
+  const handleChatClick = async () => {
+    if (curProductsId) {
+      try {
+        await createChatRoom();
+        console.log('handleChatClick', '방 생성 성공');
+      } catch (error) {
+        console.error('방 생성 에러:', error);
+      }
+    }
+  };
+
+  // 방이 없다면 curProductsId로 방 생성
+  const createChatRoom = async () => {
+    try {
+      const room_id = await postNewChatRoom(curProductsId);
+      // 생성된 방으로 이동
+      console.log('createChatRoom', '방 생성 성공');
+      enterChatRoom(room_id);
+    } catch (error) {
+      console.error('방 생성 에러:', error);
+    }
+  };
+
+  // 방으로 이동
+  const enterChatRoom = (room_id: number) => {
+    console.log('enterChatRoom', '방 이동 성공');
+    navigate(`/chat/room/${room_id}`);
+  };
 
   //본인글이면 채팅 안됨
   // useEffect(() => {
@@ -76,7 +120,7 @@ const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
         $bgcolor={product.post_status === 'soldOut' || isMine ? 'var(--grey-3)' : 'var(--green-6)'}
         color={product.post_status === 'soldOut' || isMine ? 'var(--grey-5)' : 'white'}
         disabled={product.post_status === 'soldOut'}
-        // handleOnClick={handleChatClick}
+        handleOnClick={handleChatClick}
       >
         채팅하기
       </Button>
