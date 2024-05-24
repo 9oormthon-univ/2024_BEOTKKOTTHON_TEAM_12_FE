@@ -1,61 +1,45 @@
-// hooks/useWebSocket.ts
-import { useRef, useEffect, useCallback } from 'react';
+import { CompatClient, Stomp } from '@stomp/stompjs';
+import { useEffect, useRef } from 'react';
 import SockJS from 'sockjs-client';
-import { Stomp, CompatClient, Message } from '@stomp/stompjs';
 
-type OnMessageReceivedType = (message: Message) => void;
-
-const useWebSocket = (chatRoomId: string, onMessageReceived: OnMessageReceivedType) => {
+const useWebSocket = (chat_rood_id: string | undefined) => {
   const client = useRef<CompatClient | null>(null);
 
-  const connect = useCallback(() => {
-    const serverUrl = `${process.env.REACT_APP_SOCKET_SERVER_URL}/ws-stomp`;
-    const webSocketFactory = () => new SockJS(serverUrl);
-    client.current = Stomp.over(webSocketFactory);
+  // 소켓 연결
+  const connectHandler = () => {
+    const socket = new SockJS(`http://localhost:8080/ws-stomp`);
+    console.log(socket);
 
+    client.current = Stomp.over(socket);
     client.current.connect(
       {},
       () => {
-        console.log('연결 성공');
-        if (client.current) {
-          client.current.subscribe(`/sub/api/chat/room/${chatRoomId}`, onMessageReceived);
-        }
+        client.current?.subscribe(
+          `/sub/api/chat/room/${chat_rood_id}`,
+          (message) => {
+            // 기존 대화 내역에 새로운 메시지 추가
+            console.log(message);
+          },
+          { 'Content-Type': 'application/json' }
+        );
+        console.log('WebSocket connection established');
       },
       (error: any) => {
-        console.error('연결 실패:', error);
+        console.error('WebSocket connection error:', error);
       }
     );
-  }, [chatRoomId, onMessageReceived]);
-
-  const disconnect = useCallback(() => {
-    if (client.current) {
-      client.current.disconnect(() => {
-        console.log('연결 해제');
-      });
-    }
-  }, []);
+  };
 
   useEffect(() => {
-    connect();
-    return () => disconnect();
-  }, [connect, disconnect]);
+    connectHandler();
+    return () => {
+      client.current?.disconnect(() => {
+        console.log('WebSocket disconnected');
+      });
+    };
+  }, [chat_rood_id]);
 
-  const sendMessage = useCallback(
-    (message: string) => {
-      if (client.current?.connected) {
-        const newMessage = {
-          id: Date.now().toString(),
-          chatRoomId: chatRoomId,
-          content: message,
-        };
-        client.current.send(`/pub/api/chat/message`, {}, JSON.stringify(newMessage));
-        console.log('메시지 전송 완료:', newMessage);
-      }
-    },
-    [chatRoomId]
-  );
-
-  return { sendMessage };
+  return client;
 };
 
 export default useWebSocket;

@@ -9,6 +9,7 @@ import { useChattingDetailData } from 'hooks/queries/chatting/useChattingDetailD
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { Input } from 'components/molcule/chat-input/style';
 import { ChattingType } from 'types/chattingType';
+import useWebSocket from 'hooks/useWebsocket';
 
 interface ChatHistoryProps {
   sender_id: number;
@@ -22,54 +23,10 @@ interface ChatHistoryProps {
 
 const Test = () => {
   const { id: chat_rood_id } = useParams();
-  const client = useRef<CompatClient | null>(null);
-
   const { data: chattingDetaildata } = useChattingDetailData(chat_rood_id as string);
-
   const [inputValue, setInputValue] = useState('');
-  const [chatHistory, setChatHistory] = useState<ChatHistoryProps[] | null>(null);
 
-  // 소켓 연결
-  const connectHandler = () => {
-    const socket = new SockJS(`http://localhost:8080/ws-stomp`);
-    console.log(socket);
-
-    client.current = Stomp.over(socket);
-    client.current.connect(
-      {},
-      () => {
-        client.current?.subscribe(
-          `/sub/api/chat/room/${chat_rood_id}`,
-          (message) => {
-            // 기존 대화 내역에 새로운 메시지 추가
-            setChatHistory((prevHistory) => {
-              return prevHistory ? [...prevHistory, JSON.parse(message.body)] : null;
-            });
-          },
-          {
-            'Content-Type': 'application/json',
-          }
-        );
-        console.log('WebSocket connection established');
-      },
-      (error: any) => {
-        console.error('WebSocket connection error:', error);
-      }
-    );
-  };
-
-  useEffect(() => {
-    connectHandler();
-
-    return () => {
-      client.current?.disconnect(() => {
-        console.log('WebSocket disconnected');
-      });
-    };
-  }, [chat_rood_id]);
-  useEffect(() => {
-    console.log('chatHistory', chatHistory);
-  }, [chatHistory]);
+  const client = useWebSocket(chat_rood_id);
 
   const sendHandler = () => {
     // client.current가 존재하고 연결되었다면 메시지 전송
