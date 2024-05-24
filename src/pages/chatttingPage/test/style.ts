@@ -29,6 +29,7 @@ export const ChatScreenFixed = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  padding: 0 20px;
   flex-direction: column;
   height: var(--content-size);
 
@@ -50,9 +51,4 @@ export const Footer = styled.div`
   height: var(--nav-size);
   padding: 24px;
   box-sizing: border-box;
-`;
-
-export const ChatContainer = styled.div`
-  padding: 20px 20px;
-  overflow-y: auto;
 `;

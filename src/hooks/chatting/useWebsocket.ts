@@ -1,11 +1,10 @@
 import { CompatClient, Stomp } from '@stomp/stompjs';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 import SockJS from 'sockjs-client';
 
 const useWebSocket = (chat_rood_id: string | undefined) => {
   const client = useRef<CompatClient | null>(null);
-
-  // 소켓 연결
   const connectHandler = () => {
     const socket = new SockJS(`http://localhost:8080/ws-stomp`);
     console.log(socket);
