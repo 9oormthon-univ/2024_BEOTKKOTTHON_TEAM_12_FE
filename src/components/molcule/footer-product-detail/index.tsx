@@ -9,6 +9,7 @@ import { useLikedMutation } from 'hooks/queries/products/useLikedMutation';
 import { useUnlikedMutation } from 'hooks/queries/products/useUnlikedMutation';
 import { ProductDetailItem } from 'types/productType';
 import { instance } from 'apis';
+import { useNewChatRoom } from 'hooks/queries/chatting/useNewChatRoom';
 
 interface FooterProductDetailProps {
   product: ProductDetailItem;
@@ -19,53 +20,18 @@ const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
   const { mutate: likedMutation } = useLikedMutation(product?.id as number);
   const { mutate: unlikedMutation } = useUnlikedMutation(product?.id as number);
   const [isMine, setIsMine] = useState<boolean>(false);
+  const { mutate: roomIdMutation } = useNewChatRoom(product?.id);
   const navigate = useNavigate();
-  const curProductsId = product?.id;
 
   if (status === 'pending' || status === 'error') return null;
 
-  // 채팅방 생성
-  const postNewChatRoom = async (productId: number) => {
-    try {
-      const res = await instance.post(`/chat/room/create?productId=${productId}&userId=1`);
-      console.log('postNewChatRoom', '방 생성 성공', res.data);
-      return res.data.chat_room_id;
-    } catch (error) {
-      console.error('방 생성 에러:', error);
+  const handleChatClick = () => {
+    if (product?.id) {
+      const room_id = roomIdMutation();
+      // 생성된 방으로 이동 && 실제 room_id로 수정 필요
+      navigate(`/chat/room/2`);
+      // navigate(`/chat/room/${room_id}`);
     }
-  };
-
-  // 채팅하기 버튼 클릭
-  const handleChatClick = async () => {
-    if (curProductsId) {
-      try {
-        await createChatRoom();
-        console.log('handleChatClick', '방 생성 성공');
-      } catch (error) {
-        console.error('방 생성 에러:', error);
-      }
-    }
-  };
-
-  // 방이 없다면 curProductsId로 방 생성
-  const createChatRoom = async () => {
-    try {
-      const room_id = await postNewChatRoom(curProductsId);
-      // 생성된 방으로 이동
-      console.log('createChatRoom', '방 생성 성공');
-      enterChatRoom(room_id);
-    } catch (error) {
-      console.error('방 생성 에러:', error);
-    }
-  };
-
-  // 방으로 이동
-  const enterChatRoom = (room_id: number) => {
-    console.log('enterChatRoom', '방 이동 성공');
-
-    // 실제 room_id로 수정 필요
-    navigate(`/chat/room/2`);
-    // navigate(`/chat/room/${room_id}`);
   };
 
   //본인글이면 채팅 안됨
