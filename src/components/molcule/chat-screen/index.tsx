@@ -32,7 +32,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ messages, userImage }) => {
 
   return (
     <ChatContainer>
-      {messages &&
+      {/* {messages &&
         messages.map((msg) => (
           <ChatMessage
             key={msg.id}
@@ -42,8 +42,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ messages, userImage }) => {
             profilePic={msg.profilePic ? msg.profilePic : userImage}
           />
         ))}
-      {/* ref를 줄 div*/}
-      <div ref={messagesEndRef} />
+      <div ref={messagesEndRef} /> */}
     </ChatContainer>
   );
 };

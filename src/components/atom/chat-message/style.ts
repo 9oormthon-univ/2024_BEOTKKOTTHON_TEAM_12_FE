@@ -1,20 +1,20 @@
 // MessageStyles.ts
 import styled from 'styled-components';
 
-export const MessageContainer = styled.div<{ isMine: boolean }>`
+export const MessageContainer = styled.div<{ $ismine: boolean }>`
   display: flex;
-  flex-direction: ${({ isMine }) => (isMine ? 'row-reverse' : 'row')};
+  flex-direction: ${({ $ismine }) => ($ismine ? 'row-reverse' : 'row')};
   align-items: flex-end;
   margin-bottom: 10px;
 `;
 
-export const MessageBubble = styled.div<{ isMine: boolean }>`
+export const MessageBubble = styled.div<{ $ismine: boolean }>`
   max-width: 75%;
   padding: 10px 12px;
-  border-radius: ${({ isMine }) => (isMine ? '18px 18px 0 18px' : '18px 18px 18px 0')};
-  background-color: ${({ isMine }) => (isMine ? 'var(--green-primary)' : '#f6f6f6')};
-  color: ${({ isMine }) => (isMine ? 'white' : 'var(--grey-7)')};
-  margin: ${({ isMine }) => (isMine ? '0' : '0 0 0 10px')};
+  border-radius: ${({ $ismine }) => ($ismine ? '18px 18px 0 18px' : '18px 18px 18px 0')};
+  background-color: ${({ $ismine }) => ($ismine ? 'var(--green-primary)' : '#f6f6f6')};
+  color: ${({ $ismine }) => ($ismine ? 'white' : 'var(--grey-7)')};
+  margin: ${({ $ismine }) => ($ismine ? '0' : '0 0 0 10px')};
   position: relative;
   font-size: 13px;
   white-space: pre-line;

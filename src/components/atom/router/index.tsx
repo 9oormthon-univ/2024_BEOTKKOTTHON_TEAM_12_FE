@@ -27,6 +27,7 @@ import DonationHomeless from 'pages/donationPage/homeless';
 import DonationHomelessMap from 'pages/donationPage/homeless-map';
 import WishList from 'pages/myPagePage/wish-list';
 import DonationRequest from 'pages/donationPage/donation-request';
+import Test from 'pages/chatttingPage/test';
 
 const Router = () => {
   return (
@@ -65,6 +66,7 @@ const Router = () => {
       {/* 채팅 */}
       <Route path="/chat-home" element={<ChattingMain />} />
       <Route path="/chat-detail" element={<ChatDetail />} />
+      <Route path="/chat/room/:id" element={<Test />} />
 
       {/* 매거진 */}
       <Route path="magazine" element={<MagazineMain />} />
