@@ -11,13 +11,13 @@ const ChatMessage = ({ messageData }: ChatMessageProps) => {
   const { is_mine, message_image, timestamp, message } = messageData;
 
   return (
-    <S.MessageContainer $ismine={is_mine}>
+    <S.Container $ismine={is_mine}>
       {!is_mine && (
-        <S.Avatar src={message_image ? message_image[0] : defaultProfilePic} alt="profile" />
+        <S.Profile src={message_image ? message_image[0] : defaultProfilePic} alt="profile" />
       )}
-      <S.MessageBubble $ismine={is_mine}>{message}</S.MessageBubble>
-      <S.Timestamp>{timestamp}</S.Timestamp>
-    </S.MessageContainer>
+      <S.Bubble $ismine={is_mine}>{message}</S.Bubble>
+      <S.Timestamp $ismine={is_mine}>{timestamp}</S.Timestamp>
+    </S.Container>
   );
 };
 export default ChatMessage;

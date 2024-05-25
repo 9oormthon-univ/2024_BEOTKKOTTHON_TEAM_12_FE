@@ -4,9 +4,10 @@ import * as S from './style';
 import { ButtonBack, ChatMessage, Header } from 'components';
 import { useChattingDetailData } from 'hooks/queries/chatting/useChattingDetailData';
 import { levelUrlArr } from 'utils/levelUrlArr';
-import { Input } from 'components/molcule/chat-input/style';
 import { ChattingType } from 'types/chattingType';
+import { LuSend } from 'react-icons/lu';
 import useWebSocket from 'hooks/chatting/useWebsocket';
+import { GoPlus } from 'react-icons/go';
 
 const Test = () => {
   const { id: chat_rood_id } = useParams();
@@ -53,9 +54,15 @@ const Test = () => {
       </S.Content>
 
       <S.Footer>
-        +
-        <Input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-        <button onClick={handleClick}>전송</button>
+        <GoPlus className="plus" />
+        <S.Input
+          placeholder="메시지를 입력해주세요."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <div className="send">
+          <LuSend onClick={handleClick} />
+        </div>
       </S.Footer>
     </>
   );

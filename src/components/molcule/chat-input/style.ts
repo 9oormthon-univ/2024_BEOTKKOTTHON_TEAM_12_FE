@@ -6,6 +6,12 @@ export const ChatInputContainer = styled.div`
   align-items: center;
   padding: 16px;
   position: relative;
+
+  & > svg {
+    width: 24px;
+    height: 24px;
+    color: var(--green-6);
+  }
 `;
 
 export const HiddenInput = styled.input`
