@@ -1,46 +1,48 @@
 import styled from 'styled-components';
 
-export const ChatItem = styled.div`
+export const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
   padding: 15px 10px;
   border-bottom: 1px solid var(--grey-2);
   cursor: pointer;
 `;
 
-export const ChatImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
+export const Image = styled.img`
+  width: 60px;
+  height: 60px;
 `;
 
-export const ChatDetails = styled.div`
-  flex: 1;
+export const Content = styled.div`
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
+  gap: 5px;
 `;
 
-export const ChatRightContainer = styled.div`
-  position: relative;
+export const Header = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  width: 33%;
-  gap: 6px;
-`;
-
-export const SenderName = styled.div`
-  display: flex;
   align-items: center;
-  gap: 3px;
-  font-weight: bold;
+
+  .profile {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    & > img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .time {
+    font-size: 12px;
+    color: var(--grey-5);
+  }
 `;
 
-export const LastMessage = styled.div`
+export const Message = styled.div`
   color: var(--grey-7);
   font-size: 14px;
   white-space: nowrap;
@@ -49,33 +51,19 @@ export const LastMessage = styled.div`
   max-width: 200px;
 `;
 
-export const Timestamp = styled.div`
-  position: absolute;
-  top: -15px;
-  right: 0;
-  color: #999;
-  font-size: 12px;
-  width: 30px;
-
-  svg {
-    margin-right: 5px;
-  }
-`;
-
-export const UnreadCount = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 0;
-  min-width: 20px;
-  height: 20px;
+export const Footer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: var(--green-primary);
-  color: white;
-  font-size: 12px;
-  padding: 5px;
-  box-sizing: border-box;
-  font-weight: bold;
+  justify-content: space-between;
+
+  .count {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--green-6);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+  }
 `;

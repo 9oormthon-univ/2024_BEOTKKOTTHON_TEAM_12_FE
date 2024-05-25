@@ -51,7 +51,7 @@ function App() {
         ) : (
           <Router />
         )}
-        <ReactQueryDevtools />
+        {/* <ReactQueryDevtools /> */}
       </QueryClientProvider>
     </div>
   );

@@ -31,6 +31,7 @@ export const Content = styled.div`
   display: flex;
   padding: 0 20px;
   flex-direction: column;
+  gap: 10px;
   height: var(--content-size);
 
   overflow-y: scroll;
@@ -39,16 +40,4 @@ export const Content = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-
-export const Footer = styled.div`
-  display: flex;
-  align-items: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: var(--nav-size);
-  padding: 24px;
-  box-sizing: border-box;
 `;

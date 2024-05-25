@@ -1,79 +1,43 @@
 import styled from 'styled-components';
-export const ChatInputContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  position: relative;
-`;
-
-export const HiddenInput = styled.input`
-  display: none;
-`;
-
-export const ImagePreview = styled.img`
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  margin-right: 10px;
-`;
-
-export const AddButton = styled.label`
-  margin-right: 12px;
-  background: none;
-  color: var(--green-primary);
-  cursor: pointer;
-  transition: transform 0.1s ease;
-
-  &:active {
-    transform: scale(0.9);
-  }
-
-  position: relative;
-  input[type='file'] {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-  }
-`;
 
 export const Input = styled.input`
-  flex: 1;
-  padding: 10px 15px;
+  flex-grow: 1;
+  padding: 3px 20px;
+  height: 40px;
   background-color: var(--grey-1);
   border: none;
-  border-radius: 22px;
-  font-size: 16px;
-  caret-color: var(--green-primary);
-  &:focus {
-    outline: none;
-  }
-  ::placeholder {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-  }
+  border-radius: 71px;
+  outline: none;
+  box-sizing: border-box;
 `;
 
-export const SendButton = styled.button`
+export const Footer = styled.div`
   display: flex;
   align-items: center;
-  width: 32px;
-  height: 32px;
-  padding: 10px;
-  margin-left: 12px;
-  background: var(--green-primary);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
+  gap: 5px;
+  height: var(--nav-size);
+  padding: 16px;
+  box-sizing: border-box;
 
-  transition: transform 0.1s ease;
+  .plus {
+    width: 24px;
+    height: 24px;
+    color: var(--green-6);
+  }
 
-  &:active {
-    transform: scale(0.95);
+  .send {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    padding: 6px;
+    background-color: var(--green-6);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    cursor: pointer;
+    & > svg {
+      transform: translateY(1px);
+    }
   }
 `;

@@ -1,53 +1,56 @@
-// ChatInput.tsx
-import React, { useState } from "react";
-import plusIcon from "assets/icons/chat_add.svg";
-import sendIcon from "assets/icons/send.svg";
-import * as S from "./style";
+import { useState } from 'react';
+import * as S from './style';
+import { GoPlus } from 'react-icons/go';
+import { LuSend } from 'react-icons/lu';
+import useWebSocket from 'hooks/chatting/useWebsocket';
+import { useMessageActions } from 'store/chatData';
 
 interface ChatInputProps {
-  handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSend: (message: string) => void;
+  chat_room_id: string | undefined;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({
-  handleImageChange,
-  handleSend,
-}) => {
-  const [message, setMessage] = useState<string>(""); // 입력된 메시지 상태 추가
+const ChatInput = ({ chat_room_id }: ChatInputProps) => {
+  const current_time = new Date();
+  const client = useWebSocket(chat_room_id);
+  const { sendMessage } = useMessageActions();
+  const [inputValue, setInputValue] = useState('');
+
+  const messageObj = {
+    sender_id: 2,
+    sender_nick_name: '미정',
+    profile_image: ['https://i.pinimg.com/564x/f1/0e/82/f10e820b22a9baa8807e4ed75ae6035a.jpg'],
+    message: inputValue,
+    timestamp: current_time.toLocaleTimeString().slice(0, -3),
+    is_mine: true,
+    sender_type: 'customer',
+  };
+
+  const handleClick = () => {
+    if (client.current && client.current.connected) {
+      client.current.send(
+        `/pub/api/chat/message/${chat_room_id}`,
+        { 'Content-Type': 'application/json' },
+        JSON.stringify(messageObj)
+      );
+      sendMessage(messageObj);
+      setInputValue('');
+    } else {
+      console.error('WebSocket is not connected');
+    }
+  };
 
   return (
-    <S.ChatInputContainer>
-      <S.AddButton htmlFor="image-upload">
-        <img src={plusIcon} alt="plus" />
-        <S.HiddenInput
-          id="image-upload"
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
-      </S.AddButton>
+    <S.Footer>
+      <GoPlus className="plus" />
       <S.Input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="메시지를 입력하세요"
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            handleSend(message);
-            setMessage("");
-          }
-        }}
+        placeholder="메시지를 입력해주세요."
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
       />
-      <S.SendButton
-        onClick={() => {
-          handleSend(message);
-          setMessage("");
-        }}
-      >
-        <img src={sendIcon} alt="send" />
-      </S.SendButton>
-    </S.ChatInputContainer>
+      <div className="send">
+        <LuSend onClick={handleClick} />
+      </div>
+    </S.Footer>
   );
 };
 
