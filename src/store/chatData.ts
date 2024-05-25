@@ -1,20 +1,25 @@
+import { MessageType } from 'types/chattingType';
 import { create } from 'zustand';
 
-interface ChatMessage {
-  id: number;
-  content: string;
+interface Actions {
+  setMessage: (messages: MessageType[]) => void;
+  addMessage: (message: MessageType) => void;
+  sendMessage: (message: MessageType) => void;
 }
 
-interface ChatState {
-  messages: ChatMessage[];
-  addMessage: (message: ChatMessage) => void;
-  setMessages: (messages: ChatMessage[]) => void;
+interface MessageStore {
+  messages: MessageType[];
+  actions: Actions;
 }
 
-const useChatStore = create<ChatState>((set) => ({
+const useMessageStore = create<MessageStore>((set) => ({
   messages: [],
-  addMessage: (message) => set((state) => ({ messages: [...state.messages, message] })),
-  setMessages: (messages) => set({ messages }),
+  actions: {
+    setMessage: (messages) => set(() => ({ messages: [...messages] })),
+    addMessage: (message) => set((state) => ({ messages: [...state.messages, message] })),
+    sendMessage: (message) => set((state) => ({ messages: [...state.messages, message] })),
+  },
 }));
 
-export default useChatStore;
+export const useMessageData = () => useMessageStore((state) => state.messages);
+export const useMessageActions = () => useMessageStore((state) => state.actions);

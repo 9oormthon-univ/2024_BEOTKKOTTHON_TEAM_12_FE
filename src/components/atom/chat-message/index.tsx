@@ -1,10 +1,10 @@
 import React from 'react';
 import * as S from './style';
 import defaultProfilePic from 'assets/images/profile-default-image.svg';
-import { ChattingType } from 'types/chattingType';
+import { MessageType } from 'types/chattingType';
 
 interface ChatMessageProps {
-  messageData: ChattingType;
+  messageData: MessageType;
 }
 
 const ChatMessage = ({ messageData }: ChatMessageProps) => {
