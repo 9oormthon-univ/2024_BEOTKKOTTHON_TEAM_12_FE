@@ -26,7 +26,7 @@ const AccountInfo = () => {
         <TextLabel size={18} $weight={700}>
           계정 정보
         </TextLabel>
-        <ButtonBack className="left" $marginLeft="10px" />
+        <ButtonBack className="left" />
         <TextLabel
           className="right"
           onClick={() => changeAccountInfo()}

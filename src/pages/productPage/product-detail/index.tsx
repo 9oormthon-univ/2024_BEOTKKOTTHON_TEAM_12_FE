@@ -18,7 +18,7 @@ const ProductDetail = () => {
   return (
     <>
       <Header>
-        <ButtonBack className="left" $marginLeft="10px" />
+        <ButtonBack className="left" />
         <img
           src={kebab}
           className="right"

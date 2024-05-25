@@ -7,7 +7,6 @@ import { MessageType } from 'types/chattingType';
 import { useMessageData } from 'store/chatData';
 import { useScrollToBottom } from 'hooks/chatting/useScrollToBottom';
 import { GoKebabHorizontal } from 'react-icons/go';
-import { IoChevronBack } from 'react-icons/io5';
 import { transformPrice } from 'utils/transformPrice';
 
 const Test = () => {
@@ -20,7 +19,7 @@ const Test = () => {
   return (
     <>
       <Header ref={ref}>
-        <IoChevronBack className="left" />
+        <ButtonBack className="left" />
         <S.HeaderProfile>
           <p>{chattingDetaildata?.customer_nick_name}</p>
           <img src={levelUrlArr(chattingDetaildata?.customer_level)} alt="profile level" />

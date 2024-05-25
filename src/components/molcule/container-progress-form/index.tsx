@@ -32,7 +32,7 @@ const ContainerProgressForm = ({
   return (
     <>
       <Header>
-        {page !== 0 && <ButtonBack onClick={onClickBtnBack} className="left" $marginLeft="10px" />}
+        {page !== 0 && <ButtonBack onClick={onClickBtnBack} className="left" />}
         <img src={close} className="right" alt="close" onClick={() => navigate(-1)} />
       </Header>
 

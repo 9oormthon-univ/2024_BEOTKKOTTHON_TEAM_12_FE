@@ -38,7 +38,7 @@ const UserProfileEdit = () => {
         <TextLabel size={18} $weight={700}>
           내 프로필
         </TextLabel>
-        <ButtonBack className="left" $marginLeft="10px" />
+        <ButtonBack className="left" />
         <TextLabel
           className="right"
           onClick={() => status === 'success' && changeProfile(userInfo)}
