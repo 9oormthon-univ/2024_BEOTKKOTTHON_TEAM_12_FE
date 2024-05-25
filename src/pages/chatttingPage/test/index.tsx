@@ -6,6 +6,9 @@ import { levelUrlArr } from 'utils/levelUrlArr';
 import { MessageType } from 'types/chattingType';
 import { useMessageData } from 'store/chatData';
 import { useScrollToBottom } from 'hooks/chatting/useScrollToBottom';
+import { GoKebabHorizontal } from 'react-icons/go';
+import { IoChevronBack } from 'react-icons/io5';
+import { transformPrice } from 'utils/transformPrice';
 
 const Test = () => {
   const { id: chat_room_id } = useParams();
@@ -17,12 +20,22 @@ const Test = () => {
   return (
     <>
       <Header ref={ref}>
-        <ButtonBack className="left" $marginLeft="10px" />
+        <IoChevronBack className="left" />
         <S.HeaderProfile>
           <p>{chattingDetaildata?.customer_nick_name}</p>
           <img src={levelUrlArr(chattingDetaildata?.customer_level)} alt="profile level" />
         </S.HeaderProfile>
+        <GoKebabHorizontal className="right" />
       </Header>
+
+      <S.Product>
+        <img src={chattingDetaildata.product_image[0]} alt="product_img" />
+
+        <div>
+          <p className="name">{chattingDetaildata.product_name}</p>
+          <p className="price">{transformPrice(chattingDetaildata.price)}</p>
+        </div>
+      </S.Product>
 
       <S.Content ref={ref}>
         {messages &&

@@ -1,5 +1,5 @@
-import { BoxHeader } from "components/index";
-import styled from "styled-components";
+import { BoxHeader } from 'components/index';
+import styled from 'styled-components';
 
 const Header = styled(BoxHeader)`
   position: relative;
@@ -8,6 +8,11 @@ const Header = styled(BoxHeader)`
   padding: 0 24px;
   padding-bottom: 10px;
   font-size: 18px;
+
+  & > svg {
+    width: 20px;
+    height: 20px;
+  }
 
   .left {
     position: absolute;
