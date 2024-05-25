@@ -33,6 +33,7 @@ const ChatInput = ({ chat_room_id }: ChatInputProps) => {
         JSON.stringify(messageObj)
       );
       sendMessage(messageObj);
+      setInputValue('');
     } else {
       console.error('WebSocket is not connected');
     }
