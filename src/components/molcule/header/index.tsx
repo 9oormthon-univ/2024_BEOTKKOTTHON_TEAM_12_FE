@@ -12,6 +12,7 @@ const Header = styled(BoxHeader)`
   & > svg {
     width: 20px;
     height: 20px;
+    color: var(--grey-5);
   }
 
   .left {
