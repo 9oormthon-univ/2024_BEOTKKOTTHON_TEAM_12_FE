@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import * as S from './style';
-import { ButtonBack, ChatInput, ChatMessage, Header } from 'components';
+import { ButtonBack, ChatInput, ChatMessage, Header, Loading } from 'components';
 import { useChattingDetailData } from 'hooks/queries/chatting/useChattingDetailData';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { MessageType } from 'types/chattingType';
@@ -11,10 +11,13 @@ import { transformPrice } from 'utils/transformPrice';
 
 const Test = () => {
   const { id: chat_room_id } = useParams();
-  const { data: chattingDetaildata } = useChattingDetailData(chat_room_id as string);
+  const { data: chattingDetaildata, status } = useChattingDetailData(chat_room_id as string);
 
   const messages = useMessageData();
   const ref = useScrollToBottom(messages);
+
+  if (status === 'pending') return <Loading $height="100svh" />;
+  if (status === 'error') return null;
 
   return (
     <>
