@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { userId } from 'data/shared';
+import { useEffect } from 'react';
+import { useChattingListActions } from 'store/chattingList';
 
 const getChatList = async () => {
   try {
@@ -13,10 +15,15 @@ const getChatList = async () => {
 };
 
 export const useChattingList = () => {
+  const { setChattingList } = useChattingListActions();
   const chattingListQuery = useQuery({
     queryKey: ['chatting', 'chatting-list', userId],
     queryFn: () => getChatList(),
   });
+
+  useEffect(() => {
+    if (chattingListQuery.data) setChattingList(chattingListQuery.data);
+  }, [chattingListQuery.data]);
 
   return chattingListQuery;
 };

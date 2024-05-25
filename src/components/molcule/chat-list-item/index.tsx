@@ -1,6 +1,3 @@
-import React from 'react';
-import { ChatRoom } from 'types/types';
-
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import { levelUrlArr } from 'utils/levelUrlArr';
@@ -8,19 +5,15 @@ import TextLabel from 'components/atom/text-label';
 import { useChattingList } from 'hooks/queries/chatting/useChattingList';
 import Loading from 'components/atom/loading';
 import { ChattingListType } from 'types/chattingType';
+import wearProfile from 'assets/images/wear_profile.svg';
+import { useChattingListData } from 'store/chattingList';
 
 const ChatListItem = () => {
   const navigate = useNavigate();
-  // const InfoMessage: ChatRoom[] = [
-  //   {
-  //     last_massage: `등록하신 <가져가세요> 상품이 5일동안 거래가`,
-  //     timestamp: '10:00',
-  //     user_profile_image: wearProfile,
-  //     user_nick_name: '팀 WEAR',
-  //   },
-  // ];
+  console.log;
 
-  const { data: chattingList, status } = useChattingList();
+  const { status } = useChattingList();
+  const chattingList = useChattingListData();
 
   if (status === 'pending') return <Loading $height="var(--content-size)" />;
   if (status === 'error') return null;
