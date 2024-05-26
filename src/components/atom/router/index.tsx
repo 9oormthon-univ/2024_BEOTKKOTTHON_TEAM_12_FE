@@ -12,7 +12,7 @@ import BlockedUsers from 'pages/myPagePage/blocked-users';
 import ProductDetail from 'pages/productPage/product-detail';
 import ChattingMain from 'pages/chatttingPage/main';
 import ProductEdit from 'pages/productPage/product-edit';
-import ChatDetail from 'pages/chatttingPage/chat-detail';
+import ChattingDetail from 'pages/chatttingPage/chatting-detail';
 import MagazineMain from 'pages/magazinePage/main';
 import QuizPage from 'pages/magazinePage/quiz/quiz';
 import Login from 'pages/auth/login';
@@ -27,7 +27,6 @@ import DonationHomeless from 'pages/donationPage/homeless';
 import DonationHomelessMap from 'pages/donationPage/homeless-map';
 import WishList from 'pages/myPagePage/wish-list';
 import DonationRequest from 'pages/donationPage/donation-request';
-import Test from 'pages/chatttingPage/test';
 
 const Router = () => {
   return (
@@ -65,8 +64,7 @@ const Router = () => {
 
       {/* 채팅 */}
       <Route path="/chat-home" element={<ChattingMain />} />
-      <Route path="/chat-detail" element={<ChatDetail />} />
-      <Route path="/chat/room/:id" element={<Test />} />
+      <Route path="/chat/room/:id" element={<ChattingDetail />} />
 
       {/* 매거진 */}
       <Route path="magazine" element={<MagazineMain />} />

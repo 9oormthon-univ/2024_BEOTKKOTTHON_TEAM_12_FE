@@ -2,16 +2,16 @@ import { useState } from 'react';
 import * as S from './style';
 import { GoPlus } from 'react-icons/go';
 import { LuSend } from 'react-icons/lu';
-import useWebSocket from 'hooks/chatting/useWebsocket';
 import { useMessageActions } from 'store/chatData';
+import { CompatClient } from '@stomp/stompjs';
 
 interface ChatInputProps {
   chat_room_id: string | undefined;
+  client: React.MutableRefObject<CompatClient | null>;
 }
 
-const ChatInput = ({ chat_room_id }: ChatInputProps) => {
+const ChatInput = ({ chat_room_id, client }: ChatInputProps) => {
   const current_time = new Date();
-  const client = useWebSocket(chat_room_id);
   const { sendMessage } = useMessageActions();
   const [inputValue, setInputValue] = useState('');
 
