@@ -31,12 +31,12 @@ export const BoxImage = styled.div`
     border-radius: 8px;
   }
 
-  .close {
+  & > svg {
     width: 22px;
     height: 22px;
     top: 8px;
     right: 8px;
-    color: var(--color-grey-500);
+    color: var(--grey-4);
     position: absolute;
     z-index: 3;
   }

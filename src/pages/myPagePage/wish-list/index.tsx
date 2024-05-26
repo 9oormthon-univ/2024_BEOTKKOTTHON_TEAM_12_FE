@@ -20,7 +20,7 @@ const WishList = () => {
         <TextLabel size={16} $weight={700}>
           관심 목록
         </TextLabel>
-        <ButtonBack className="left" $marginLeft="10px" />
+        <ButtonBack className="left" />
       </Header>
 
       <S.Content>

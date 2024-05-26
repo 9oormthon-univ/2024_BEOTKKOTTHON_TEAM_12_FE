@@ -1,9 +1,9 @@
 import * as S from './style';
-import close from 'assets/icons/close_large.svg';
 import Header from '../header';
 import { BoxDonationDot, Button, ButtonBack } from 'components/index';
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AiOutlineClose } from 'react-icons/ai';
 
 interface ContainerProgressFormProps {
   totalpage: number;
@@ -32,8 +32,8 @@ const ContainerProgressForm = ({
   return (
     <>
       <Header>
-        {page !== 0 && <ButtonBack onClick={onClickBtnBack} className="left" $marginLeft="10px" />}
-        <img src={close} className="right" alt="close" onClick={() => navigate(-1)} />
+        {page !== 0 && <ButtonBack onClick={onClickBtnBack} className="left" />}
+        <AiOutlineClose className="right" onClick={() => navigate(-1)} />
       </Header>
 
       <S.Container>

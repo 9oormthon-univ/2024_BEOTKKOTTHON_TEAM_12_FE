@@ -15,7 +15,7 @@ const PurchaseHistory = () => {
         <TextLabel size={16} $weight={700}>
           구매 내역
         </TextLabel>
-        <ButtonBack className="left" $marginLeft="10px" />
+        <ButtonBack className="left" />
       </Header>
 
       <S.Content>

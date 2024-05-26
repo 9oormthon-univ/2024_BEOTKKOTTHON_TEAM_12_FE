@@ -1,9 +1,9 @@
 import { FormTrade, Header } from 'components/index';
-import close from 'assets/icons/close_large.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useProductFormData } from 'store/productFormData';
 import { useEditProductMutation } from 'hooks/queries/products/useEditProductMutation';
 import { useProductEditQuery } from 'hooks/queries/products/useProductEditQuery';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const ProductEdit = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const ProductEdit = () => {
     <>
       <Header>
         <p>등록한 글 수정하기</p>
-        <img src={close} className="right" alt="btn-close" onClick={() => navigate(-1)} />
+        <AiOutlineClose className="right" onClick={() => navigate(-1)} />
       </Header>
 
       <FormTrade

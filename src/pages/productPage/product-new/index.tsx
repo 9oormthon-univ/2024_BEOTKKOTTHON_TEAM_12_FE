@@ -1,9 +1,9 @@
 import { FormTrade, Header } from 'components/index';
-import close from 'assets/icons/close_large.svg';
 import { useNavigate } from 'react-router-dom';
 import { useNewProductMutation } from 'hooks/queries/products/useNewProductMutation';
 import { useEffect } from 'react';
 import { useProductListActions } from 'store/productListData';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const ProductNew = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const ProductNew = () => {
     <>
       <Header>
         <p>상품 등록</p>
-        <img src={close} className="right" alt="btn-close" onClick={() => navigate(-1)} />
+        <AiOutlineClose className="right" onClick={() => navigate(-1)} />
       </Header>
 
       <FormTrade handleSubmitAction={newProductMutation} btnText={'등록하기'} />

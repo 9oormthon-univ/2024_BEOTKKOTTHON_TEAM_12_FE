@@ -1,9 +1,9 @@
 import * as S from './style';
-import helpIcon from 'assets/icons/help.svg';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { TextLabel } from 'components/index';
 import { Link } from 'react-router-dom';
 import { MypageUserType } from 'types/userType';
+import { IoIosHelpCircleOutline } from 'react-icons/io';
 
 interface ProgressBarProps {
   userData: MypageUserType;
@@ -21,7 +21,7 @@ const ProgressBar = ({ userData }: ProgressBarProps) => {
         </S.UserLevelWrapper>
 
         <Link to={'/mypage/level-info'}>
-          <S.Image src={helpIcon} alt="help icon" />
+          <IoIosHelpCircleOutline size={22} color="var(--grey-3)" />
         </Link>
       </S.ProgressBarHeader>
 

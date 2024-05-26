@@ -58,4 +58,10 @@ export const FlexInput = styled.div`
   gap: 10px;
   width: 100%;
   margin-bottom: 12px;
+
+  & > svg {
+    width: 36px;
+    height: 36px;
+    color: var(--grey-3);
+  }
 `;

@@ -17,7 +17,7 @@ const BlockedUsers = () => {
         <TextLabel size={18} $weight={700}>
           차단한 사용자
         </TextLabel>
-        <ButtonBack className="left" $marginLeft="10px" />
+        <ButtonBack className="left" />
       </Header>
 
       <ListBlockUser userList={blockedUserList?.pagesData || []} status={status} />

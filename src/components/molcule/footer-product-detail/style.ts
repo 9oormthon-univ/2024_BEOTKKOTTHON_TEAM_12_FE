@@ -12,9 +12,8 @@ export const Container = styled.div`
   box-sizing: border-box;
   border-top: 1px solid var(--grey-3);
 
-  .heart {
-    width: 27px;
-    padding-right: 24px;
+  & > svg {
+    margin-right: 24px;
   }
 
   .price {

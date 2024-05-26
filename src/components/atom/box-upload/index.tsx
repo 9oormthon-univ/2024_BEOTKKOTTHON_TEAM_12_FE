@@ -1,7 +1,7 @@
 import * as S from './style';
-import image from 'assets/icons/image.svg';
 import { useFormDataActions, useShowImages } from 'store/productFormData';
 import { useImgUploadMutation } from 'hooks/queries/image-upload/useImgUploadMutaion';
+import { FaImage } from 'react-icons/fa';
 
 const BoxUpload = () => {
   const showImages = useShowImages();
@@ -36,7 +36,7 @@ const BoxUpload = () => {
   return (
     <S.Container>
       <label htmlFor="product_image_list">
-        <img src={image} alt="img" />
+        <FaImage size={20} color="var(--grey-4)" />
       </label>
 
       <input

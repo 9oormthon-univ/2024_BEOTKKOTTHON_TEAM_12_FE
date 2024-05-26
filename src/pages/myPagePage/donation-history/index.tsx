@@ -28,7 +28,7 @@ const DonationHistory = () => {
   return (
     <S.Container>
       <Header>
-        <ButtonBack className="left" $marginLeft="10px" />
+        <ButtonBack className="left" />
         <TextLabel size={18} $weight={500}>
           기부 내역
         </TextLabel>

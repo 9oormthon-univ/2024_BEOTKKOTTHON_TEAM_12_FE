@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import * as S from './style';
-import x from 'assets/icons/x.svg';
 import { Header, BoxNoticeItem, TextLabel, Button, KakaoMap, ButtonBack } from 'components/index';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const DonationInpersonVisit = () => {
   const navigate = useNavigate();
@@ -88,8 +88,7 @@ const DonationInpersonVisit = () => {
     <>
       <Header>
         {activeIndex === 0 ? '' : <ButtonBack className="left" onClick={goToPreviousTab} />}
-
-        <img src={x} className="right" alt="btn-back" onClick={() => navigate('/donation')} />
+        <AiOutlineClose className="right" onClick={() => navigate('/donation')} />
       </Header>
       <S.Container>
         <S.TabContainer>

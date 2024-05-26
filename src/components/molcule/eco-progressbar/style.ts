@@ -49,8 +49,8 @@ export const UserLevelWrapper = styled.div`
 export const ProgressBarHeader = styled.div`
   display: flex;
   margin-bottom: 10px;
-`;
 
-export const Image = styled.img`
-  cursor: pointer;
+  & svg {
+    cursor: pointer;
+  }
 `;
