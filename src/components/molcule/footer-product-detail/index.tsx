@@ -17,7 +17,7 @@ interface FooterProductDetailProps {
 const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
   const { mutate: likedMutation } = useLikedMutation(product?.id as number);
   const { mutate: unlikedMutation } = useUnlikedMutation(product?.id as number);
-  const { mutate: roomIdMutation } = useNewChatRoom(product?.id);
+  const { mutate: roomIdMutation } = useNewChatRoom();
   const navigate = useNavigate();
 
   const isMine = product?.seller.id === userId;
@@ -26,7 +26,7 @@ const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
 
   const handleChatClick = () => {
     if (product?.id) {
-      const room_id = roomIdMutation();
+      const room_id = roomIdMutation(product?.id);
       // 생성된 방으로 이동 && 실제 room_id로 수정 필요
       navigate(`/chat/room/2`);
       // navigate(`/chat/room/${room_id}`);
