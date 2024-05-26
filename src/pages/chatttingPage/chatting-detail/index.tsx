@@ -12,7 +12,7 @@ import { useState } from 'react';
 import KebabChattingDetail from 'components/molcule/kebab-chatting-detail';
 import useWebSocket from 'hooks/chatting/useWebsocket';
 
-const Test = () => {
+const ChattingDetail = () => {
   const { id: chat_room_id } = useParams();
   const client = useWebSocket(chat_room_id);
   const { data: chattingDetaildata, status } = useChattingDetailData(chat_room_id as string);
@@ -59,4 +59,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default ChattingDetail;
