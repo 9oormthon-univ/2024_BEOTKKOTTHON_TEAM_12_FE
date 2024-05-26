@@ -2,8 +2,7 @@ import { BoxInput, FormGroup } from 'components/index';
 import * as S from './style';
 import { useDonationForm, useDonationFormActions } from 'store/donationForm';
 import { useEffect } from 'react';
-import plus from 'assets/icons/add_circle.svg';
-import minus from 'assets/icons/remove.svg';
+import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 
 const FormDonationRequest = () => {
   const formData = useDonationForm();
@@ -76,11 +75,7 @@ const FormDonationRequest = () => {
       <FormGroup className="box-num">
         <p className="label">박스 수량</p>
         <S.FlexInput className="box-num-items">
-          <img
-            src={minus}
-            alt="btn-minus"
-            onClick={() => setFormData('box_num', formData.box_num - 1)}
-          />
+          <FaMinusCircle onClick={() => setFormData('box_num', formData.box_num - 1)} />
           <BoxInput
             type="number"
             id="box_num"
@@ -88,11 +83,7 @@ const FormDonationRequest = () => {
             value={formData.box_num}
             onChange={(e: any) => setFormData('box_num', e.target.value)}
           />
-          <img
-            src={plus}
-            alt="btn-minus"
-            onClick={() => setFormData('box_num', formData.box_num + 1)}
-          />
+          <FaPlusCircle onClick={() => setFormData('box_num', formData.box_num + 1)} />
         </S.FlexInput>
       </FormGroup>
     </S.Container>

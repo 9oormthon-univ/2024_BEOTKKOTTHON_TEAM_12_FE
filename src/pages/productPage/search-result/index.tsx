@@ -1,10 +1,17 @@
-import { FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
+import {
+  ButtonBack,
+  FilterTrade,
+  ListTag,
+  ListTradeItems,
+  Loading,
+  Search,
+} from 'components/index';
 import * as S from './style';
-import back from 'assets/icons/arrow_left_alt.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSearchQuery } from 'hooks/queries/products/useSearchQuery';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
+import { IoMdArrowBack } from 'react-icons/io';
 
 const SearchResult = () => {
   const navigate = useNavigate();
@@ -18,7 +25,7 @@ const SearchResult = () => {
   return (
     <>
       <S.HeaderSearch>
-        <img src={back} alt="back" onClick={() => navigate(-1)} />
+        <IoMdArrowBack size={25} color="var(--grey-7)" onClick={() => navigate(-1)} />
         <Link to={'/search'} className="search-input">
           <Search />
         </Link>

@@ -21,4 +21,10 @@ export const Container = styled.div<ContainerProps>`
   &:active {
     transform: scale(0.95);
   }
+
+  & > svg {
+    width: 20px;
+    height: 20px;
+    color: var(--green-1);
+  }
 `;

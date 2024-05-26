@@ -1,6 +1,4 @@
 import * as S from './style';
-import heart from 'assets/icons/heart.svg';
-import fillheart from 'assets/icons/fill-heart.svg';
 import { Button } from 'components/index';
 import { transformPrice } from 'utils/transformPrice';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +7,7 @@ import { useUnlikedMutation } from 'hooks/queries/products/useUnlikedMutation';
 import { ProductDetailItem } from 'types/productType';
 import { useNewChatRoom } from 'hooks/queries/chatting/useNewChatRoom';
 import { userId } from 'data/shared';
+import { GoHeart, GoHeartFill } from 'react-icons/go';
 
 interface FooterProductDetailProps {
   product: ProductDetailItem;
@@ -36,12 +35,11 @@ const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
 
   return (
     <S.Container>
-      <img
-        src={product.is_selected ? fillheart : heart}
-        className="heart"
-        alt="heart"
-        onClick={() => (product.is_selected ? unlikedMutation() : likedMutation())}
-      />
+      {product.is_selected ? (
+        <GoHeart size={24} color="var(--grey-5)" onClick={() => unlikedMutation()} />
+      ) : (
+        <GoHeartFill size={24} color="#FF3B3B" onClick={() => likedMutation()} />
+      )}
       <p className="price">{transformPrice(product.price as number)}원</p>
       <Button
         width="280"

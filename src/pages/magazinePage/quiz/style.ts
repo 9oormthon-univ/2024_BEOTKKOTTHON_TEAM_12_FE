@@ -9,10 +9,6 @@ export const Content = styled.div`
     display: none;
   }
 
-  & > img {
-    width: 100%;
-  }
-
   .list {
     display: flex;
     flex-direction: column;

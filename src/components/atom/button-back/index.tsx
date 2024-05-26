@@ -2,7 +2,7 @@ import { IoChevronBack } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
 interface ButtonBackProps {
-  className: string;
+  className?: string;
   onClick?: () => void;
 }
 

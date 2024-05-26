@@ -1,10 +1,9 @@
 import * as S from './style';
 import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
-
-import arrow from 'assets/icons/arrow.svg';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { useNavigate } from 'react-router-dom';
 import { MypageUserType } from 'types/userType';
+import { IoIosArrowForward } from 'react-icons/io';
 
 interface ProfileCardProps {
   userData: MypageUserType;
@@ -39,7 +38,7 @@ const ProfileCard = ({ userData }: ProfileCardProps) => {
         </S.ButtonContainer>
       </S.MiddleContainer>
 
-      <S.BtnArrow src={arrow} alt="프로필 수정" onClick={onModifyProfile} />
+      <IoIosArrowForward size={35} color="var(--grey-5)" onClick={onModifyProfile} />
     </S.ProfileCardWrapper>
   );
 };

@@ -2,8 +2,8 @@ import { BoxDonationImg, Nav, Ranking, TextLabel, Header } from 'components/inde
 import * as S from './style';
 import logo from 'assets/logo/logo.svg';
 import homeless from 'assets/donation/homeless.svg';
-import notifications from 'assets/icons/notifications.svg';
 import { useNavigate } from 'react-router';
+import { IoIosNotificationsOutline } from 'react-icons/io';
 
 const DonationMain = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const DonationMain = () => {
     <>
       <Header>
         <img src={logo} alt="logo" />
-        <img className="right" src={notifications} alt="notifications" />
+        <IoIosNotificationsOutline className="right" />
       </Header>
       <S.Content>
         <section className="ranking">

@@ -9,6 +9,15 @@ export const Container = styled.div<ContainerProps>`
   width: 160px;
   margin-bottom: ${(props) => props.$marginBottom || '15px'};
   cursor: pointer;
+
+  & > svg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 80%;
+  }
 `;
 
 export const BoxImage = styled.img`
@@ -16,18 +25,6 @@ export const BoxImage = styled.img`
   height: 163px;
   border-radius: 10px;
   margin-bottom: 6px;
-`;
-
-interface HeartImageProps {
-  $selected: boolean;
-}
-export const HeartImage = styled.img<HeartImageProps>`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  opacity: ${(props) => (props.$selected ? '100%' : '55%')};
 `;
 
 export const BoxDescription = styled.div`
@@ -58,6 +55,10 @@ export const State = styled.div`
   align-items: center;
   gap: 2px;
   height: 14px;
+
+  & > svg {
+    flex-shrink: 0;
+  }
 
   .state {
     font-size: 10px;

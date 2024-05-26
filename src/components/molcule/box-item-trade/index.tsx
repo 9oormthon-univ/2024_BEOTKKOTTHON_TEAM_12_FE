@@ -2,8 +2,6 @@ import * as S from './style';
 import stategrey from 'assets/icons/state_grey.svg';
 import stategreen from 'assets/icons/state_green.svg';
 import defaultImg from 'assets/images/product-default-img.png';
-import heartgrey from 'assets/icons/grey-heart.svg';
-import heartgreen from 'assets/icons/green-heart.svg';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
 import { truncatedName } from 'utils/truncatedName';
@@ -11,6 +9,7 @@ import { ProductListItem } from 'types/productType';
 import { useLikedMutation } from 'hooks/queries/products/useLikedMutation';
 import { useUnlikedMutation } from 'hooks/queries/products/useUnlikedMutation';
 import { useProductListActions } from 'store/productListData';
+import { GoHeartFill } from 'react-icons/go';
 
 interface SaleItemProps {
   product: ProductListItem;
@@ -29,8 +28,8 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ product, $marginBottom }) => {
     navigate(`/product/${product.id}`);
   };
 
-  const handleHeartClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-    event.stopPropagation();
+  const handleHeartClick = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+    e.stopPropagation();
     if (product.is_selected) {
       unlikedMutation();
     } else {
@@ -42,12 +41,16 @@ const BoxItemTrade: React.FC<SaleItemProps> = ({ product, $marginBottom }) => {
   return (
     <S.Container $marginBottom={$marginBottom} onClick={handleContainerClick}>
       <S.BoxImage src={product.product_image ? product.product_image[0] : defaultImg} />
-      <S.HeartImage
-        src={product.is_selected ? heartgreen : heartgrey}
-        alt="heart"
-        $selected={product.is_selected}
-        onClick={handleHeartClick}
-      />
+      {product.is_selected ? (
+        <GoHeartFill color="var(--red-primary)" onClick={(e: any) => handleHeartClick(e)} />
+      ) : (
+        <GoHeartFill
+          stroke="white"
+          strokeWidth={2}
+          color="var(--grey-5)"
+          onClick={(e: any) => handleHeartClick(e)}
+        />
+      )}
 
       <S.BoxDescription>
         <S.Title>

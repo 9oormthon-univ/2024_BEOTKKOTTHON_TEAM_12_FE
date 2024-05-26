@@ -1,8 +1,7 @@
 import * as S from './style';
-import search from 'assets/icons/search.svg';
 import { Link } from 'react-router-dom';
-import cancle from 'assets/icons/cancel.svg';
 import { useSearchActions, useSearchData } from 'store/search';
+import { IoIosCloseCircle, IoMdSearch } from 'react-icons/io';
 
 interface SearchProps {
   placeholder?: string;
@@ -16,7 +15,7 @@ const Search: React.FC<SearchProps> = ({ placeholder }) => {
     <S.Container>
       <div className="btn-search">
         <Link to={'/search/result'}>
-          <img src={search} alt="search" />
+          <IoMdSearch size={24} color="var(--grey-6)" />
         </Link>
       </div>
 
@@ -29,7 +28,9 @@ const Search: React.FC<SearchProps> = ({ placeholder }) => {
         placeholder={placeholder ? placeholder : '무엇이든 검색해보세요.'}
       />
 
-      {searchData && <img src={cancle} alt="btn-cancle" onClick={() => changeSearchData('')} />}
+      {searchData && (
+        <IoIosCloseCircle size={22} color="var(--grey-3)" onClick={() => changeSearchData('')} />
+      )}
     </S.Container>
   );
 };

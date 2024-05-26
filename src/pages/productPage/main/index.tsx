@@ -11,12 +11,12 @@ import {
 import * as S from './style';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from 'assets/logo/logo.svg';
-import notifications from 'assets/icons/notifications.svg';
 import { useEffect } from 'react';
 import { useSearchActions } from 'store/search';
 import { useProductListActions } from 'store/productListData';
 import { useProductMainQuery } from 'hooks/queries/products/useProductMainQuery';
 import { useInView } from 'react-intersection-observer';
+import { IoIosNotificationsOutline } from 'react-icons/io';
 
 const ProductMain = () => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const ProductMain = () => {
     <>
       <Header>
         <img src={logo} alt="logo" />
-        <img className="right" src={notifications} alt="notifications" />
+        <IoIosNotificationsOutline className="right" />
       </Header>
 
       <S.Content>

@@ -1,5 +1,5 @@
-import x from 'assets/icons/x.svg';
 import { BoxBackgroundGreen, BoxLevelInfo, BoxQna, Header } from 'components/index';
+import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -13,7 +13,7 @@ const LevelInfo = () => {
   return (
     <>
       <Header>
-        <img src={x} className="right" alt="btn-back" onClick={() => navigate('/mypage')} />
+        <AiOutlineClose className="right" onClick={() => navigate('/mypage')} />
       </Header>
 
       <BoxBackgroundGreen

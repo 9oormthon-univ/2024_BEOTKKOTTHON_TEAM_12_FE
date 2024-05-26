@@ -1,8 +1,8 @@
-import { searches } from "data/shared";
-import { BoxTag, Tag } from "components/index";
-import close from "assets/icons/close_small.svg";
-import { useSearchActions } from "store/search";
-import { useState } from "react";
+import { searches } from 'data/shared';
+import { BoxTag, Tag } from 'components/index';
+import { AiOutlineClose } from 'react-icons/ai';
+import { useSearchActions } from 'store/search';
+import { useState } from 'react';
 
 const ListSearchTag = () => {
   const { changeSearchData } = useSearchActions();
@@ -45,7 +45,7 @@ const ListSearchTag = () => {
         <Tag onClick={() => changeSearchData(search)} key={index}>
           <p>{search}</p>
           <div className="close" onClick={handleClickClose}>
-            <img src={close} alt="close" />
+            <AiOutlineClose color="var(--grey-4)" />
           </div>
         </Tag>
       ))}

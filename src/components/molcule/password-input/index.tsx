@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import eyeOff from 'assets/icons/eye_off.svg';
-import eye from 'assets/icons/eye.svg';
 import { BoxInput } from 'components/index';
+import { HiOutlineEye } from 'react-icons/hi2';
+import { HiOutlineEyeSlash } from 'react-icons/hi2';
 
 type PasswordInputProps = {
   value: string;
@@ -22,7 +22,11 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ value, handleInputChange 
       value={value}
       onChange={handleInputChange}
     >
-      <img src={showPassword ? eyeOff : eye} alt="eye" onClick={togglePasswordVisibility} />
+      {showPassword ? (
+        <HiOutlineEyeSlash size={24} color="var(--grey-4)" onClick={togglePasswordVisibility} />
+      ) : (
+        <HiOutlineEye size={24} color="var(--grey-4)" onClick={togglePasswordVisibility} />
+      )}
     </BoxInput>
   );
 };

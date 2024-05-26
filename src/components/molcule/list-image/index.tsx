@@ -1,7 +1,7 @@
 import { BoxUpload } from 'components/index';
 import * as S from './style';
-import cancle from 'assets/icons/cancel.svg';
 import { useFormDataActions, useShowImages } from 'store/productFormData';
+import { IoIosCloseCircle } from 'react-icons/io';
 
 const ListImage = () => {
   const showImages = useShowImages();
@@ -19,7 +19,7 @@ const ListImage = () => {
       {showImages.map((img, i) => (
         <S.BoxImage key={i}>
           <img src={img} className="img" alt={`img-${i}`} />
-          <img src={cancle} className="close" onClick={() => handleClick(i)} alt="close" />
+          <IoIosCloseCircle onClick={() => handleClick(i)} />
         </S.BoxImage>
       ))}
     </S.Container>

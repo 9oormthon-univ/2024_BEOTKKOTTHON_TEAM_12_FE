@@ -1,5 +1,5 @@
-import * as S from "./style";
-import plus from "assets/icons/add.svg";
+import * as S from './style';
+import { FaPlus } from 'react-icons/fa';
 
 interface ButtonPlusProps {
   $bottom: string;
@@ -8,7 +8,7 @@ interface ButtonPlusProps {
 const ButtonPlus = ({ $bottom }: ButtonPlusProps) => {
   return (
     <S.Container $bottom={$bottom}>
-      <img src={plus} alt="plus" />
+      <FaPlus />
     </S.Container>
   );
 };

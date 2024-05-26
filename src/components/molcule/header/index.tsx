@@ -10,8 +10,8 @@ const Header = styled(BoxHeader)`
   font-size: 18px;
 
   & > svg {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     color: var(--grey-5);
   }
 

@@ -1,11 +1,11 @@
 import { Header, BoxQuiz, Button, ModalProduct, ButtonBack } from 'components/index';
 import * as S from './style';
-import share from 'assets/icons/share.svg';
 import main from 'assets/magazine/quiz_page.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { quizData } from 'data/shared';
 import { useQuizMutation } from 'hooks/queries/magazine/useQuizMutation';
+import { IoShareSocialOutline } from 'react-icons/io5';
 
 let totalPoints = 0;
 
@@ -44,12 +44,11 @@ const QuizPage = () => {
     <>
       <Header>
         <ButtonBack className="left" />
-        <img className="right" src={share} alt="share" />
+        <IoShareSocialOutline className="right" />
       </Header>
 
       <S.Content>
         <img src={main} alt="main-img" />
-
         {quizData.map((quiz, index) => (
           <BoxQuiz
             key={index}

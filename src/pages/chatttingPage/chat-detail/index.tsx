@@ -12,7 +12,7 @@ import {
   ProductInfo,
   TextLabel,
 } from 'components/index';
-import kebab from 'assets/icons/kebab.svg';
+// import kebab from 'assets/icons/kebab.svg';
 import productImage from 'assets/images/product-default-img.png';
 import { useEffect, useRef, useState } from 'react';
 import { levelUrlArr } from 'utils/levelUrlArr';
@@ -120,7 +120,7 @@ const ChatDetail = () => {
                 </TextLabel>
                 <img src={levelUrlArr(otherUser.level)} alt="level" />
               </S.NickNameContainer>
-              <img
+              {/* <img
                 src={kebab}
                 className="right"
                 alt="btn-back"
@@ -128,7 +128,7 @@ const ChatDetail = () => {
                   setOpenKebab(() => !openKebab);
                   console.log('openKebab:', openKebab);
                 }}
-              />
+              /> */}
             </Header>
             {openKebab && (
               <BoxKebabList>
