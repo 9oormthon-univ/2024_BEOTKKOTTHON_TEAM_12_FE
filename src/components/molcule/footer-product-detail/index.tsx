@@ -36,9 +36,9 @@ const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
   return (
     <S.Container>
       {product.is_selected ? (
-        <GoHeart size={24} color="var(--grey-5)" onClick={() => unlikedMutation()} />
+        <GoHeartFill size={24} fill="#FF3B3B" onClick={() => likedMutation()} />
       ) : (
-        <GoHeartFill size={24} color="#FF3B3B" onClick={() => likedMutation()} />
+        <GoHeart size={24} fill="var(--grey-5)" onClick={() => unlikedMutation()} />
       )}
       <p className="price">{transformPrice(product.price as number)}원</p>
       <Button
