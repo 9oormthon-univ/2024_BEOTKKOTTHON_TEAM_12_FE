@@ -35,7 +35,7 @@ const ChattingDetail = () => {
         <GoKebabHorizontal className="right" onClick={() => setOpenKebab(!openKebab)} />
       </Header>
 
-      {openKebab && <KebabChattingDetail sellerId={chattingDetaildata.seller_id} />}
+      {openKebab && <KebabChattingDetail chat_room_id={chat_room_id} />}
 
       <S.Product>
         <img src={chattingDetaildata.product_image[0]} alt="product_img" />
