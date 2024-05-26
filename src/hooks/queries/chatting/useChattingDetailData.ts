@@ -6,10 +6,10 @@ import { useMessageActions } from 'store/chatData';
 const getChatData = async (chat_rood_id: string) => {
   try {
     const res = await instance.get(`/chat/room/enter?chatRoomId=${chat_rood_id}&userId=2`);
-    console.log('채팅 데이터 가져오기 성공', res.data);
+    console.log('채팅방 입장 성공', res.data);
     return res.data;
   } catch (error) {
-    console.error('채팅 데이터 가져오기 실패', error);
+    console.error('채팅방 입장 실패', error);
   }
 };
 
