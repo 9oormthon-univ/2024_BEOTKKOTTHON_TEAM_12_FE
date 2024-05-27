@@ -37,20 +37,6 @@ export const Header = styled.div`
   }
 `;
 
-export const Text = styled.div`
-  margin-top: 24px;
-  margin-bottom: 31px;
-  font-size: 13px;
-  color: var(--grey-7);
-  line-height: 20px;
-  text-align: center;
-
-  & span {
-    font-weight: bold;
-    color: black;
-  }
-`;
-
 export const MarginBox = styled.div`
   margin-top: 10px;
 `;

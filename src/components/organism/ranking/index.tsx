@@ -29,18 +29,7 @@ const Ranking = () => {
         </div>
       </S.Header>
 
-      <GraphRanking universities={rankingData.university_list} />
-
-      <S.Text>
-        <p>
-          현재 1위 <span>{rankingData.first_university_name}</span>는 총{' '}
-          <span>{rankingData.first_total_point}</span>이고
-        </p>
-        <p>
-          <span>{rankingData.first_product_count}</span>의 거래와{' '}
-          <span>{rankingData.first_donation_count}</span>의 기부가 이루어졌어요.
-        </p>
-      </S.Text>
+      <GraphRanking rankingData={rankingData} />
 
       <Button
         $borderRadius="8px"
