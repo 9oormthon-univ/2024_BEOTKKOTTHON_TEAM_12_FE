@@ -1,5 +1,7 @@
 import { RankingType, UnivType } from 'types/donationType';
 import * as S from './style';
+import TextLabel from 'components/atom/text-label';
+import { levelUrlArr } from 'utils/levelUrlArr';
 
 interface GraphRankingType {
   rankingData: RankingType;
@@ -16,6 +18,21 @@ const GraphRanking = ({ rankingData }: GraphRankingType) => {
 
   return (
     <>
+      <S.Header>
+        <div className="title">
+          <TextLabel size={16} $weight={700} color="var(--grey-7)">
+            대학교별 환경 점수 TOP 5
+          </TextLabel>
+
+          <img src={levelUrlArr('새싹')} alt="icon" />
+        </div>
+        <div className="time">
+          <TextLabel size={12} $weight={300} color="var(--grey-5)">
+            {rankingData.date} {rankingData.time} 기준
+          </TextLabel>
+        </div>
+      </S.Header>
+
       <S.Container>
         {universities.map((univ: UnivType) => (
           <S.BoxUniv key={univ.university_name}>

@@ -1,5 +1,33 @@
 import styled from 'styled-components';
 
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 25px;
+  font-family: 'Noto Sans KR' !important;
+
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    & > img {
+      width: 14px;
+      height: 14px;
+      margin-bottom: 2px;
+    }
+  }
+
+  .time {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--grey-5);
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
