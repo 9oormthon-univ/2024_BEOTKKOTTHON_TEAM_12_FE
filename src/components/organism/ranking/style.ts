@@ -37,11 +37,6 @@ export const Header = styled.div`
   }
 `;
 
-export const Graph = styled.div`
-  width: 100%;
-  margin-top: 26px;
-`;
-
 export const Text = styled.div`
   margin-top: 24px;
   margin-bottom: 31px;
