@@ -29,28 +29,37 @@ export const Header = styled.div`
 `;
 
 export const Container = styled.div`
+  width: 100%;
+  margin-top: 26px;
   display: flex;
   flex-direction: column;
+  gap: 15px;
 `;
 
 export const BoxUniv = styled.div`
   display: flex;
+  align-items: center;
+  color: var(--grey-7);
+  font-size: 12px;
 
   & > img {
     width: 25px;
     height: 25px;
+    margin-right: 3px;
   }
 
   .name {
     width: 90px;
-    font-size: 12px;
     font-weight: bold;
-    color: var(--grey-7);
   }
 `;
 
-export const Bar = styled.div<{ $width: number }>`
-  width: ${({ $width }) => $width};
+export const Bar = styled.div<{ $width: number; $color: string }>`
+  width: ${({ $width }) => `${$width}px`};
+  height: 15px;
+  background-color: ${({ $color }) => $color};
+  border-radius: 100px;
+  margin-right: 5px;
 `;
 
 export const Text = styled.div`

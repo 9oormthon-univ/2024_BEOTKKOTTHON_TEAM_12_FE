@@ -15,6 +15,13 @@ const GraphRanking = ({ rankingData }: GraphRankingType) => {
   const universities = rankingData.university_list;
   const MAX_POINT = transformPointToNumber(rankingData.first_total_point);
   const MAX_WIDTH = 150;
+  const back_color = [
+    'var(--green-6)',
+    'var(--green-4)',
+    'var(--green-4)',
+    'var(--grey-3)',
+    'var(--grey-3)',
+  ];
 
   return (
     <>
@@ -34,12 +41,13 @@ const GraphRanking = ({ rankingData }: GraphRankingType) => {
       </S.Header>
 
       <S.Container>
-        {universities.map((univ: UnivType) => (
+        {universities.map((univ: UnivType, index) => (
           <S.BoxUniv key={univ.university_name}>
             <img src={univ.university_image[0]} alt="univ_image" />
             <p className="name">{univ.university_name}</p>
             <S.Bar
               $width={(transformPointToNumber(univ.university_point) / MAX_POINT) * MAX_WIDTH}
+              $color={back_color[index]}
             />
             <div>{univ.university_point}</div>
           </S.BoxUniv>
