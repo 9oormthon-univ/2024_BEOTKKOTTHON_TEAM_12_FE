@@ -11,6 +11,10 @@ export const Content = styled.div`
   .recent-search {
     margin-bottom: 15px;
   }
+
+  .popular {
+    margin-top: 53px;
+  }
 `;
 
 export const SectionSearch = styled(BoxHeader)`
