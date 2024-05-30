@@ -3,10 +3,14 @@ import * as S from './style';
 import ListSearchTag from 'components/molcule/list-search-tag';
 import { useNavigate } from 'react-router-dom';
 import { useSearchActions } from 'store/search';
+import { useRecentSearch } from 'hooks/queries/products/useRecentSearch';
+import { userId } from 'data/shared';
 
 const SearchPage = () => {
   const navigate = useNavigate();
   const { changeSearchData } = useSearchActions();
+  const { data: recentSearchData } = useRecentSearch(userId);
+  console.log(recentSearchData);
 
   const handleClickCancle = () => {
     changeSearchData('');
