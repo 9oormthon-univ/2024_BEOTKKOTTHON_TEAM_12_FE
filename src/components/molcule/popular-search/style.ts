@@ -26,6 +26,8 @@ export const ListBox = styled.div`
   padding: 10px 14px;
   background-color: var(--grey-1);
   border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
 
   .number {
     color: var(--green-6);
