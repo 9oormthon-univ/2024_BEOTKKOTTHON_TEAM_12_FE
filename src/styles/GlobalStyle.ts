@@ -90,8 +90,8 @@ const GlobalStyle = createGlobalStyle`
   min-height: -webkit-fill-available; 
   margin: 0;
   padding: 0;
-  background-color: #ffffff; 
-  font-family: 'Notosans KR', sans-serif;
+  background-color: #ffffff;
+  font-family: "Notosans KR", sans-serif;
 
   @supports (-webkit-touch-callout: none) {
     height: -webkit-fill-available;

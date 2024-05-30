@@ -9,6 +9,7 @@ export const Header = styled.div`
   .title {
     color: var(--grey-7);
     font-size: 16px;
+    font-weight: bold;
   }
 
   .time {
