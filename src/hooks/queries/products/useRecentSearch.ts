@@ -4,10 +4,10 @@ import { instance } from 'apis';
 const getRecentSearchData = async (userId: number) => {
   try {
     const response = await instance.get(`/products/search/list?userId=${userId}`);
-    console.log('데이터 가져오기 성공', response);
-    return response.data;
+    console.log('최근 검색어 조회 성공', response.data.search_name_list);
+    return response.data.search_name_list;
   } catch (e: any) {
-    console.log('데이터 가져오기 실패', e);
+    console.log('최근 검색어 조회 실패', e);
     throw new Error(e.response?.data?.message);
   }
 };

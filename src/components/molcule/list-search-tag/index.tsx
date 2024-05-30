@@ -1,10 +1,12 @@
-import { searches } from 'data/shared';
+import { userId } from 'data/shared';
 import { BoxTag, Tag } from 'components/index';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useSearchActions } from 'store/search';
 import { useState } from 'react';
+import { useRecentSearch } from 'hooks/queries/products/useRecentSearch';
 
 const ListSearchTag = () => {
+  const { data: recentSearchData, status } = useRecentSearch(userId);
   const { changeSearchData } = useSearchActions();
 
   const handleClickClose = () => {
@@ -34,6 +36,9 @@ const ListSearchTag = () => {
     e.currentTarget.scrollLeft = scrollLeft - walk;
   };
 
+  if (status === 'pending') return null;
+  if (status === 'error') return null;
+
   return (
     <BoxTag
       onMouseDown={startDragging}
@@ -41,7 +46,7 @@ const ListSearchTag = () => {
       onMouseUp={stopDragging}
       onMouseMove={whileDragging}
     >
-      {searches.map((search, index) => (
+      {recentSearchData.map((search: string, index: number) => (
         <Tag onClick={() => changeSearchData(search)} key={index}>
           <p>{search}</p>
           <div className="close" onClick={handleClickClose}>

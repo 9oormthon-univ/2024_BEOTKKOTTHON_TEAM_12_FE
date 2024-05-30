@@ -11,7 +11,7 @@ const PopularSearch = () => {
       </S.Header>
 
       {list.map((name, index) => (
-        <S.ListBox>
+        <S.ListBox key={name}>
           <p className="number">{index + 1}</p>
           <p className="name">{name}</p>
         </S.ListBox>
