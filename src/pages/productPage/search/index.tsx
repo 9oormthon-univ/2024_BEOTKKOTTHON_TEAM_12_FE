@@ -1,4 +1,4 @@
-import { Label, Search } from 'components/index';
+import { Label, PopularSearch, Search } from 'components/index';
 import * as S from './style';
 import ListSearchTag from 'components/molcule/list-search-tag';
 import { useNavigate } from 'react-router-dom';
@@ -36,6 +36,10 @@ const SearchPage = () => {
 
         <section className="tags">
           <ListSearchTag />
+        </section>
+
+        <section className="popular">
+          <PopularSearch />
         </section>
       </S.Content>
     </>

@@ -58,6 +58,7 @@ export { default as ContainerProgressForm } from './molcule/container-progress-f
 export { default as KebabProductDetail } from './molcule/kebab-product-detail';
 export { default as PasswordInput } from './molcule/password-input';
 export { default as ListBlockUser } from './molcule/list-block-user';
+export { default as PopularSearch } from './molcule/popular-search';
 //Organism
 export { default as UserSection } from './organism/user-section';
 export { default as ListTradeItems } from './organism/list-trade-items';
