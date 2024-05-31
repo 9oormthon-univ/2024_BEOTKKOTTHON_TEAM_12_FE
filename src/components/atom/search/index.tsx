@@ -2,6 +2,7 @@ import * as S from './style';
 import { Link } from 'react-router-dom';
 import { useSearchActions, useSearchData } from 'store/search';
 import { IoIosCloseCircle, IoMdSearch } from 'react-icons/io';
+import { useSearchSave } from 'hooks/queries/products/useSearchSave';
 
 interface SearchProps {
   placeholder?: string;
@@ -10,10 +11,16 @@ interface SearchProps {
 const Search: React.FC<SearchProps> = ({ placeholder }) => {
   const searchData = useSearchData();
   const { changeSearchData } = useSearchActions();
+  const { mutate: searchSaveMutation } = useSearchSave();
+
+  const handleClick = () => {
+    changeSearchData('');
+    searchSaveMutation(searchData);
+  };
 
   return (
     <S.Container>
-      <div className="btn-search">
+      <div className="btn-search" onClick={() => searchSaveMutation(searchData)}>
         <Link to={'/search/result'}>
           <IoMdSearch size={24} color="var(--grey-6)" />
         </Link>

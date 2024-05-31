@@ -9,6 +9,7 @@ export const Header = styled.div`
   .title {
     color: var(--grey-7);
     font-size: 16px;
+    font-weight: bold;
   }
 
   .time {
@@ -25,6 +26,8 @@ export const ListBox = styled.div`
   padding: 10px 14px;
   background-color: var(--grey-1);
   border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
 
   .number {
     color: var(--green-6);

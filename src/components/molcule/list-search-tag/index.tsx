@@ -1,14 +1,18 @@
-import { searches } from 'data/shared';
+import { userId } from 'data/shared';
 import { BoxTag, Tag } from 'components/index';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useSearchActions } from 'store/search';
 import { useState } from 'react';
+import { useRecentSearch } from 'hooks/queries/products/useRecentSearch';
+import { useTagDelete } from 'hooks/queries/products/useTagDelete';
 
 const ListSearchTag = () => {
+  const { data: recentSearchData, status } = useRecentSearch(userId);
+  const { mutate: tagDeleteMutation } = useTagDelete();
   const { changeSearchData } = useSearchActions();
 
-  const handleClickClose = () => {
-    // 데이터에서 삭제하고 다시 올리기
+  const handleClickClose = (search: string) => {
+    tagDeleteMutation(search);
   };
 
   const [isDragging, setIsDragging] = useState(false);
@@ -34,6 +38,9 @@ const ListSearchTag = () => {
     e.currentTarget.scrollLeft = scrollLeft - walk;
   };
 
+  if (status === 'pending') return null;
+  if (status === 'error') return null;
+
   return (
     <BoxTag
       onMouseDown={startDragging}
@@ -41,10 +48,10 @@ const ListSearchTag = () => {
       onMouseUp={stopDragging}
       onMouseMove={whileDragging}
     >
-      {searches.map((search, index) => (
+      {recentSearchData.map((search: string, index: number) => (
         <Tag onClick={() => changeSearchData(search)} key={index}>
           <p>{search}</p>
-          <div className="close" onClick={handleClickClose}>
+          <div className="close" onClick={() => handleClickClose(search)}>
             <AiOutlineClose color="var(--grey-4)" />
           </div>
         </Tag>
