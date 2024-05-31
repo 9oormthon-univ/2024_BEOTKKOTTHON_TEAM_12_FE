@@ -4,13 +4,15 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { useSearchActions } from 'store/search';
 import { useState } from 'react';
 import { useRecentSearch } from 'hooks/queries/products/useRecentSearch';
+import { useTagDelete } from 'hooks/queries/products/useTagDelete';
 
 const ListSearchTag = () => {
   const { data: recentSearchData, status } = useRecentSearch(userId);
+  const { mutate: tagDeleteMutation } = useTagDelete();
   const { changeSearchData } = useSearchActions();
 
-  const handleClickClose = () => {
-    // 데이터에서 삭제하고 다시 올리기
+  const handleClickClose = (search: string) => {
+    tagDeleteMutation(search);
   };
 
   const [isDragging, setIsDragging] = useState(false);
@@ -49,7 +51,7 @@ const ListSearchTag = () => {
       {recentSearchData.map((search: string, index: number) => (
         <Tag onClick={() => changeSearchData(search)} key={index}>
           <p>{search}</p>
-          <div className="close" onClick={handleClickClose}>
+          <div className="close" onClick={() => handleClickClose(search)}>
             <AiOutlineClose color="var(--grey-4)" />
           </div>
         </Tag>
