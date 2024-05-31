@@ -3,9 +3,11 @@ import * as S from './style';
 import ListSearchTag from 'components/molcule/list-search-tag';
 import { useNavigate } from 'react-router-dom';
 import { useSearchActions } from 'store/search';
+import { useTagAllDelete } from 'hooks/queries/products/useTagAllDelete';
 const SearchPage = () => {
   const navigate = useNavigate();
   const { changeSearchData } = useSearchActions();
+  const { mutate: tagAllDeleteMutation } = useTagAllDelete();
 
   const handleClickCancle = () => {
     changeSearchData('');
@@ -25,7 +27,9 @@ const SearchPage = () => {
         <section className="recent-search">
           <Label>
             <p className="label">최근 검색어</p>
-            <p className="sub">전체 삭제</p>
+            <p className="sub" onClick={() => tagAllDeleteMutation()}>
+              전체 삭제
+            </p>
           </Label>
         </section>
 
