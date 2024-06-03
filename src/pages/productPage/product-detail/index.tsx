@@ -6,22 +6,22 @@ import {
   KebabProductDetail,
 } from 'components/index';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
 import { useProductDetailQuery } from 'queries/products/useProductDetailQuery';
 import { GoKebabHorizontal } from 'react-icons/go';
+import { useToggle } from 'hooks/useToggle';
 
 const ProductDetail = () => {
   const { id } = useParams() as { id: string };
   const { data: productDetailQuery, status } = useProductDetailQuery(id);
-  const [openKebab, setOpenKebab] = useState<boolean>(false);
+  const [isOpen, togleOpen] = useToggle(false);
 
   return (
     <>
       <Header>
         <ButtonBack className="left" />
-        <GoKebabHorizontal className="right" onClick={() => setOpenKebab(!openKebab)} />
+        <GoKebabHorizontal className="right" onClick={togleOpen} />
       </Header>
-      {productDetailQuery && openKebab && <KebabProductDetail id={id} />}
+      {productDetailQuery && isOpen && <KebabProductDetail id={id} />}
       <ContentProductDetail product={productDetailQuery} status={status} />
       <FooterProductDetail product={productDetailQuery} status={status} />
     </>

@@ -7,15 +7,15 @@ interface ModalProductProps {
   id?: string;
   select1?: string;
   select2: string;
-  openModal: boolean;
+  isOpenModal: boolean;
   onClick: () => void;
-  setOpenModal: (value: boolean) => void;
+  togleOpenModal: () => void;
   children: React.ReactNode;
 }
 
 const ModalProduct = ({
-  openModal,
-  setOpenModal,
+  isOpenModal,
+  togleOpenModal,
   select1,
   select2,
   id,
@@ -28,13 +28,7 @@ const ModalProduct = ({
       <S.BoxContent>
         <div className="text">{children}</div>
         <S.BoxButton>
-          {select1 && (
-            <Button
-              width="143px"
-              children={select1}
-              handleOnClick={() => setOpenModal(!openModal)}
-            />
-          )}
+          {select1 && <Button width="143px" children={select1} handleOnClick={togleOpenModal} />}
           <Button
             width="143px"
             children={select2}
@@ -42,7 +36,7 @@ const ModalProduct = ({
             color="white"
             handleOnClick={() => {
               onClick();
-              setOpenModal(!openModal);
+              togleOpenModal();
             }}
           />
         </S.BoxButton>
