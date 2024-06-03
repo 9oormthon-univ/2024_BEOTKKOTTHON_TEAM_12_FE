@@ -3,7 +3,7 @@ import * as S from './style';
 import ModalProduct from 'components/molcule/modal-product';
 import Button from 'components/atom/button';
 import { useProductList } from 'store/productListData';
-import { usePostSalesCompletedMutation } from 'hooks/queries/user/usePostSalesCompletedMutation';
+import { usePostSalesCompletedMutation } from 'queries/user/usePostSalesCompletedMutation';
 import { ProductListItem } from 'types/productType';
 import { BoxError, BoxItemTrade } from 'components';
 

@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
 import { truncatedName } from 'utils/truncatedName';
 import { ProductListItem } from 'types/productType';
-import { useLikedMutation } from 'hooks/queries/products/useLikedMutation';
-import { useUnlikedMutation } from 'hooks/queries/products/useUnlikedMutation';
+import { useLikedMutation } from 'queries/products/useLikedMutation';
+import { useUnlikedMutation } from 'queries/products/useUnlikedMutation';
 import { useProductListActions } from 'store/productListData';
 import { GoHeartFill } from 'react-icons/go';
 

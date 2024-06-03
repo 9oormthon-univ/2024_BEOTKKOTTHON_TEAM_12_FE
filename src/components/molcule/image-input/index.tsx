@@ -2,7 +2,7 @@ import { Button, TextLabel } from 'components/index';
 import * as S from './style';
 import { useRef, ChangeEvent, useState } from 'react';
 import noImg from 'assets/images/profile-no-image.png';
-import { useImgUploadMutation } from 'hooks/queries/image-upload/useImgUploadMutaion';
+import { useImgUploadMutation } from 'queries/image-upload/useImgUploadMutaion';
 import { ProfileUserType } from 'types/userType';
 
 interface ImageInputProps {

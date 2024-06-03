@@ -1,6 +1,6 @@
 import * as S from './style';
 import { useFormDataActions, useShowImages } from 'store/productFormData';
-import { useImgUploadMutation } from 'hooks/queries/image-upload/useImgUploadMutaion';
+import { useImgUploadMutation } from 'queries/image-upload/useImgUploadMutaion';
 import { FaImage } from 'react-icons/fa';
 
 const BoxUpload = () => {

@@ -4,7 +4,7 @@ import main from 'assets/magazine/quiz_page.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { quizData } from 'data/shared';
-import { useQuizMutation } from 'hooks/queries/magazine/useQuizMutation';
+import { useQuizMutation } from 'queries/magazine/useQuizMutation';
 import { IoShareSocialOutline } from 'react-icons/io5';
 
 let totalPoints = 0;

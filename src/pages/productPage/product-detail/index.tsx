@@ -7,7 +7,7 @@ import {
 } from 'components/index';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { useProductDetailQuery } from 'hooks/queries/products/useProductDetailQuery';
+import { useProductDetailQuery } from 'queries/products/useProductDetailQuery';
 import { GoKebabHorizontal } from 'react-icons/go';
 
 const ProductDetail = () => {

@@ -1,7 +1,7 @@
 import { ButtonBack, Header, ListTradeItems, Loading, TextLabel } from 'components';
 import * as S from './style';
 import { useProductList } from 'store/productListData';
-import { useWishListQuery } from 'hooks/queries/user/useWishListQuery';
+import { useWishListQuery } from 'queries/user/useWishListQuery';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 

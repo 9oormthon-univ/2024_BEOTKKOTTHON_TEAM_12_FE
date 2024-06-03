@@ -1,7 +1,7 @@
 import * as S from './style';
 import { Button } from 'components/index';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUnivRanking } from 'hooks/queries/donation/useUnivRanking';
+import { useUnivRanking } from 'queries/donation/useUnivRanking';
 import GraphRanking from 'components/molcule/graph-ranking';
 
 const Ranking = () => {

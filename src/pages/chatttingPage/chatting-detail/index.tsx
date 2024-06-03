@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import * as S from './style';
 import { ButtonBack, ChatInput, ChatMessage, Header, Loading } from 'components';
-import { useChattingDetailData } from 'hooks/queries/chatting/useChattingDetailData';
+import { useChattingDetailData } from 'queries/chatting/useChattingDetailData';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { MessageType } from 'types/chattingType';
 import { useMessageData } from 'store/chatData';

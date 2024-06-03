@@ -1,8 +1,8 @@
 import { useProductListActions } from 'store/productListData';
-import { useCompletedProductQuery } from './queries/user/useCompletedProductQuery';
-import { useHiddenProductQuery } from './queries/user/useHiddenProductQuery';
-import { useSalesProductQuery } from './queries/user/useSalesProductQuery';
 import { useEffect } from 'react';
+import { useCompletedProductQuery } from './useCompletedProductQuery';
+import { useSalesProductQuery } from './useSalesProductQuery';
+import { useHiddenProductQuery } from './useHiddenProductQuery';
 
 export const useSalesHistoryQueries = (activeTab: number) => {
   const { addProductList } = useProductListActions();

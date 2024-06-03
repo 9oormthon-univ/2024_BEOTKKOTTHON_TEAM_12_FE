@@ -2,7 +2,7 @@ import * as S from './style';
 import { Link } from 'react-router-dom';
 import { useSearchActions, useSearchData } from 'store/search';
 import { IoIosCloseCircle, IoMdSearch } from 'react-icons/io';
-import { useSearchSave } from 'hooks/queries/products/useSearchSave';
+import { useSearchSave } from 'queries/products/useSearchSave';
 
 interface SearchProps {
   placeholder?: string;

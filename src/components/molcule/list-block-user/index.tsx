@@ -3,7 +3,7 @@ import Loading from 'components/atom/loading';
 import { BoxError, Button, ProfileAvatar, TextLabel } from 'components';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { BlockedUserType } from 'types/userType';
-import { useUnblockMutation } from 'hooks/queries/user/useUnblockMutation';
+import { useUnblockMutation } from 'queries/user/useUnblockMutation';
 
 interface ListBlockUser {
   userList: BlockedUserType[];

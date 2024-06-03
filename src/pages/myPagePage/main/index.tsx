@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style';
 import { UserSection, MenuItem, Nav, Loading } from 'components/index';
-import { useMypageMainQuery } from 'hooks/queries/user/useMypageMainQuery';
+import { useMypageMainQuery } from 'queries/user/useMypageMainQuery';
 import { Navigate } from 'react-router-dom';
 
 const MyPageMain: React.FC = () => {

@@ -1,8 +1,8 @@
 import { Header, TextLabel, TextInput, ButtonBack, Loading, BoxError } from 'components/index';
 import * as S from './style';
 import { useState } from 'react';
-import { useAccountInfoQuery } from 'hooks/queries/user/useAccountInfoQuery';
-import { useChangeAccountMutation } from 'hooks/queries/user/useChangeAccountMutation';
+import { useAccountInfoQuery } from 'queries/user/useAccountInfoQuery';
+import { useChangeAccountMutation } from 'queries/user/useChangeAccountMutation';
 
 const AccountInfo = () => {
   const { mutate: changeAccountInfo } = useChangeAccountMutation();

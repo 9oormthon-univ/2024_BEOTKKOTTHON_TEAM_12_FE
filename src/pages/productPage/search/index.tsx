@@ -3,7 +3,7 @@ import * as S from './style';
 import ListSearchTag from 'components/molcule/list-search-tag';
 import { useNavigate } from 'react-router-dom';
 import { useSearchActions } from 'store/search';
-import { useTagAllDelete } from 'hooks/queries/products/useTagAllDelete';
+import { useTagAllDelete } from 'queries/products/useTagAllDelete';
 const SearchPage = () => {
   const navigate = useNavigate();
   const { changeSearchData } = useSearchActions();
