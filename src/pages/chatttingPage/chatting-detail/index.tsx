@@ -5,12 +5,12 @@ import { useChattingDetailData } from 'queries/chatting/useChattingDetailData';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { MessageType } from 'types/chattingType';
 import { useMessageData } from 'store/chatData';
-import { useScrollToBottom } from 'hooks/chatting/useScrollToBottom';
+import { useScrollToBottom } from 'hooks/useScrollToBottom';
 import { GoKebabHorizontal } from 'react-icons/go';
 import { transformPrice } from 'utils/transformPrice';
 import { useState } from 'react';
 import KebabChattingDetail from 'components/molcule/kebab-chatting-detail';
-import useWebSocket from 'hooks/chatting/useWebsocket';
+import useWebSocket from 'hooks/useWebsocket';
 
 const ChattingDetail = () => {
   const { id: chat_room_id } = useParams();
