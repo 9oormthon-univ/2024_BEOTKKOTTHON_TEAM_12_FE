@@ -1,6 +1,6 @@
 import { FormTrade, Header } from 'components/index';
 import { useNavigate } from 'react-router-dom';
-import { useNewProductMutation } from 'hooks/queries/products/useNewProductMutation';
+import { useNewProductMutation } from 'queries/products/useNewProductMutation';
 import { useEffect } from 'react';
 import { useProductListActions } from 'store/productListData';
 import { AiOutlineClose } from 'react-icons/ai';

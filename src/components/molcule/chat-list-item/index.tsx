@@ -2,7 +2,7 @@ import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import TextLabel from 'components/atom/text-label';
-import { useChattingList } from 'hooks/queries/chatting/useChattingList';
+import { useChattingList } from 'queries/chatting/useChattingList';
 import Loading from 'components/atom/loading';
 import { ChattingListType } from 'types/chattingType';
 import { useChattingListData } from 'store/chattingList';

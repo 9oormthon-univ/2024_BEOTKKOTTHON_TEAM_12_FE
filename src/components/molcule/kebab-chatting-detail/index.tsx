@@ -1,6 +1,6 @@
 import { BoxKebabList } from 'components';
-import { useBlockUser } from 'hooks/queries/chatting/useBlockUser';
-import { useExitRoom } from 'hooks/queries/chatting/useExitRoom';
+import { useBlockUser } from 'queries/chatting/useBlockUser';
+import { useExitRoom } from 'queries/chatting/useExitRoom';
 import { useNavigate } from 'react-router-dom';
 
 interface KebabChattingDetailProps {

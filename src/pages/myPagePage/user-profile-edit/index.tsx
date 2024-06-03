@@ -9,8 +9,8 @@ import {
   BoxError,
 } from 'components/index';
 import { useState } from 'react';
-import { useProfileEditQuery } from 'hooks/queries/user/useProfileEditQuery';
-import { useChangeProfile } from 'hooks/queries/user/useChangeProfileMutation';
+import { useProfileEditQuery } from 'queries/user/useProfileEditQuery';
+import { useChangeProfile } from 'queries/user/useChangeProfileMutation';
 
 const UserProfileEdit = () => {
   const height = `calc(100svh - var(--header-size))`;

@@ -14,7 +14,7 @@ import logo from 'assets/logo/logo.svg';
 import { useEffect } from 'react';
 import { useSearchActions } from 'store/search';
 import { useProductListActions } from 'store/productListData';
-import { useProductMainQuery } from 'hooks/queries/products/useProductMainQuery';
+import { useProductMainQuery } from 'queries/products/useProductMainQuery';
 import { useInView } from 'react-intersection-observer';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 

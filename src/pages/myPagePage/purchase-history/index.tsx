@@ -1,6 +1,6 @@
 import { ButtonBack, Header, ListTradeItems, Loading, TextLabel } from 'components/index';
 import * as S from './style';
-import { usePurchaseHistoryQuery } from 'hooks/queries/user/usePurchaseHistoryQuery';
+import { usePurchaseHistoryQuery } from 'queries/user/usePurchaseHistoryQuery';
 import { useProductList } from 'store/productListData';
 
 const PurchaseHistory = () => {

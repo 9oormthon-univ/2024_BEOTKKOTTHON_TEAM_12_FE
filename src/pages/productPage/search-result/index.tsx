@@ -8,7 +8,7 @@ import {
 } from 'components/index';
 import * as S from './style';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSearchQuery } from 'hooks/queries/products/useSearchQuery';
+import { useSearchQuery } from 'queries/products/useSearchQuery';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 import { IoMdArrowBack } from 'react-icons/io';

@@ -1,5 +1,5 @@
 import { ButtonBack, Header, ListBlockUser, Loading, TextLabel } from 'components/index';
-import { useBlockUserQuery } from 'hooks/queries/user/useBlockUserQuery';
+import { useBlockUserQuery } from 'queries/user/useBlockUserQuery';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 

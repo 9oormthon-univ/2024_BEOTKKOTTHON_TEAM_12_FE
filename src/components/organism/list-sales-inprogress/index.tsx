@@ -3,14 +3,15 @@ import * as S from './style';
 import ModalProduct from 'components/molcule/modal-product';
 import Button from 'components/atom/button';
 import { useProductList } from 'store/productListData';
-import { usePostSalesCompletedMutation } from 'hooks/queries/user/usePostSalesCompletedMutation';
+import { usePostSalesCompletedMutation } from 'queries/user/usePostSalesCompletedMutation';
 import { ProductListItem } from 'types/productType';
 import { BoxError, BoxItemTrade } from 'components';
+import { useToggle } from 'hooks/useToggle';
 
 const ListSalesInprogress: React.FC = () => {
   const productList = useProductList();
   const { mutate: postSalesCompletedMutation } = usePostSalesCompletedMutation();
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [isOpenModal, togleOpenModal] = useToggle(false);
 
   if (productList.length === 0)
     return <BoxError $height="300px">상품이 존재하지 않습니다.</BoxError>;
@@ -19,13 +20,13 @@ const ListSalesInprogress: React.FC = () => {
     <S.Container>
       {productList.map((item: ProductListItem) => (
         <S.SaleWrapper key={item.id}>
-          {openModal && (
+          {isOpenModal && (
             <ModalProduct
               id={item.id.toString()}
               select1="취소"
               select2="변경"
-              openModal={openModal}
-              setOpenModal={setOpenModal}
+              isOpenModal={isOpenModal}
+              togleOpenModal={togleOpenModal}
               onClick={() => postSalesCompletedMutation(item.id)}
             >
               <p>판매완료로 변경할까요?</p>
@@ -39,7 +40,7 @@ const ListSalesInprogress: React.FC = () => {
             fontSize="11px"
             color="var(--grey-2)"
             $fontWeight="bold"
-            handleOnClick={() => setOpenModal(!openModal)}
+            handleOnClick={togleOpenModal}
           >
             판매 완료하기
           </Button>

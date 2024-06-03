@@ -1,8 +1,8 @@
 import { FormTrade, Header } from 'components/index';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useProductFormData } from 'store/productFormData';
-import { useEditProductMutation } from 'hooks/queries/products/useEditProductMutation';
-import { useProductEditQuery } from 'hooks/queries/products/useProductEditQuery';
+import { useEditProductMutation } from 'queries/products/useEditProductMutation';
+import { useProductEditQuery } from 'queries/products/useProductEditQuery';
 import { AiOutlineClose } from 'react-icons/ai';
 
 const ProductEdit = () => {

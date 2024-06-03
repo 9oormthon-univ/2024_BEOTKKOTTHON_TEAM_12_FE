@@ -4,8 +4,9 @@ import main from 'assets/magazine/quiz_page.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { quizData } from 'data/shared';
-import { useQuizMutation } from 'hooks/queries/magazine/useQuizMutation';
+import { useQuizMutation } from 'queries/magazine/useQuizMutation';
 import { IoShareSocialOutline } from 'react-icons/io5';
+import { useToggle } from 'hooks/useToggle';
 
 let totalPoints = 0;
 
@@ -14,7 +15,7 @@ const QuizPage = () => {
   const { mutate: quizMutation } = useQuizMutation();
   const [submitAnswer, setSubmitAnswer] = useState<number[]>([0, 0]);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [isOpenModal, togleOpenModal] = useToggle(false);
   const [markAnswer, setMarkAnswer] = useState<boolean>(false);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const QuizPage = () => {
       }
     }
     quizMutation(totalPoints);
-    setOpenModal(true);
+    togleOpenModal();
   };
 
   const handleClickQuiz = () => {
@@ -73,11 +74,11 @@ const QuizPage = () => {
         </Button>
       </S.BtnAnswer>
 
-      {openModal && (
+      {isOpenModal && (
         <ModalProduct
           select2="확인"
-          openModal={openModal}
-          setOpenModal={setOpenModal}
+          isOpenModal={isOpenModal}
+          togleOpenModal={togleOpenModal}
           onClick={handleClickQuiz}
         >
           <p>축하드립니다~!</p>

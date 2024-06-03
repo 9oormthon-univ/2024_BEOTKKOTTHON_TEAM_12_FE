@@ -1,4 +1,4 @@
-import { usePopularSearch } from 'hooks/queries/products/usePopularSearch';
+import { usePopularSearch } from 'queries/products/usePopularSearch';
 import * as S from './style';
 
 const list = ['겨울 아우터', '여름 옷', '노스페이스', '냠냠'];

@@ -1,14 +1,15 @@
 import BoxKebabList from 'components/atom/box-kebab-list';
 import { userId } from 'data/shared';
-import { useHideMutation } from 'hooks/queries/products/useHideMutation';
-import { useOnSaleMutation } from 'hooks/queries/products/useOnSaleMutation';
+import { useHideMutation } from 'queries/products/useHideMutation';
+import { useOnSaleMutation } from 'queries/products/useOnSaleMutation';
 import { Link } from 'react-router-dom';
 import ModalProduct from '../modal-product';
-import { useDeleteMutation } from 'hooks/queries/products/useDeleteMutation';
+import { useDeleteMutation } from 'queries/products/useDeleteMutation';
 import { useState } from 'react';
 import { useProduct } from 'store/product';
 import { ProductDetailItem } from 'types/productType';
-import { useBlockUserMutation } from 'hooks/queries/products/useBlockUserMutation';
+import { useBlockUserMutation } from 'queries/products/useBlockUserMutation';
+import { useToggle } from 'hooks/useToggle';
 
 interface KebabProductDetailProps {
   id: string;
@@ -16,7 +17,7 @@ interface KebabProductDetailProps {
 
 const KebabProductDetail = ({ id }: KebabProductDetailProps) => {
   const product = useProduct();
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [isOpenModal, togleOpenModal] = useToggle(false);
 
   const { mutate: onSaleMutation } = useOnSaleMutation(id, product as ProductDetailItem);
   const { mutate: hideMutation } = useHideMutation(id);
@@ -44,18 +45,18 @@ const KebabProductDetail = ({ id }: KebabProductDetailProps) => {
 
           <p onClick={() => hideMutation()}>{product.is_private ? '글 숨김 취소' : '글 숨기기'}</p>
 
-          <p className="red" onClick={() => setOpenModal(!openModal)}>
+          <p className="red" onClick={togleOpenModal}>
             삭제
           </p>
         </BoxKebabList>
       )}
 
-      {openModal && (
+      {isOpenModal && (
         <ModalProduct
           select1="취소"
           select2="삭제"
-          openModal={openModal}
-          setOpenModal={setOpenModal}
+          isOpenModal={isOpenModal}
+          togleOpenModal={togleOpenModal}
           id={id as string}
           onClick={() => deleteMutation()}
         >

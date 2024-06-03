@@ -3,8 +3,8 @@ import { BoxTag, Tag } from 'components/index';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useSearchActions } from 'store/search';
 import { useState } from 'react';
-import { useRecentSearch } from 'hooks/queries/products/useRecentSearch';
-import { useTagDelete } from 'hooks/queries/products/useTagDelete';
+import { useRecentSearch } from 'queries/products/useRecentSearch';
+import { useTagDelete } from 'queries/products/useTagDelete';
 
 const ListSearchTag = () => {
   const { data: recentSearchData, status } = useRecentSearch(userId);

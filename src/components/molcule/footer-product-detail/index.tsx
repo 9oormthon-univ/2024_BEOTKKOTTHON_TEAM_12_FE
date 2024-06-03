@@ -2,10 +2,10 @@ import * as S from './style';
 import { Button } from 'components/index';
 import { transformPrice } from 'utils/transformPrice';
 import { useNavigate } from 'react-router-dom';
-import { useLikedMutation } from 'hooks/queries/products/useLikedMutation';
-import { useUnlikedMutation } from 'hooks/queries/products/useUnlikedMutation';
+import { useLikedMutation } from 'queries/products/useLikedMutation';
+import { useUnlikedMutation } from 'queries/products/useUnlikedMutation';
 import { ProductDetailItem } from 'types/productType';
-import { useNewChatRoom } from 'hooks/queries/chatting/useNewChatRoom';
+import { useNewChatRoom } from 'queries/chatting/useNewChatRoom';
 import { userId } from 'data/shared';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 

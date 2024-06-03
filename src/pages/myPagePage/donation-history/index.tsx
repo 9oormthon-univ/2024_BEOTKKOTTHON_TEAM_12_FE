@@ -8,7 +8,7 @@ import {
   TableDonationHistory,
   TextLabel,
 } from 'components/index';
-import { useDonationHistoryQuery } from 'hooks/queries/user/useDonationHistoryQuery';
+import { useDonationHistoryQuery } from 'queries/user/useDonationHistoryQuery';
 import { useInView } from 'react-intersection-observer';
 
 const DonationHistory = () => {
