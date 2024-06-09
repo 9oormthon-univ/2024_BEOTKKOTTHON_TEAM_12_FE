@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import splash from 'assets/logo/splash.svg';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { onSilentRefresh } from 'queries/auth/useOnSilentRefresh';
 
 function App() {
   const [showSplash, setShowSplash] = useState<boolean>(true);
@@ -20,6 +21,8 @@ function App() {
   });
 
   useEffect(() => {
+    onSilentRefresh();
+
     const timer = setTimeout(() => {
       setShowSplash(false);
     }, 3000);

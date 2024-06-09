@@ -3,45 +3,25 @@ import * as S from './style';
 import { Checkbox, PasswordInput, Button, BoxInput } from 'components/index';
 import { useNavigate } from 'react-router-dom';
 import { loginUserDummyData } from 'data/user';
-
-interface FormData {
-  userId: string;
-  password: string;
-}
+import { useLogin } from 'queries/auth/useLogin';
+import { LoginFormData } from 'types/authType';
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const user = loginUserDummyData();
   const [autoLoginChecked, setAutoLoginChecked] = useState(false);
   const [saveIdChecked, setSaveIdChecked] = useState(false);
-
-  const [formData, setFormData] = useState<FormData>({
-    // 로그인 기능 완성 시 복구 예정
-    // userId: '',
-    // password: '',
-    userId: user.user_created_id,
+  const [formData, setFormData] = useState<LoginFormData>({
+    id: user.user_created_id,
     password: user.user_password,
   });
 
+  const { mutate: loginMutation } = useLogin(formData);
+
   const handleLogin = async () => {
-    console.log('로그인');
-    console.log(formData);
-    // const response = await instance.post('/login', {
-    //   user_id: formData.userId,
-    //   user_password: formData.password,
-    // });
+    const data = loginMutation();
+    console.log('로그인', data);
     navigate('/donation');
-
-    // if (response.data.id) {
-    //   // 로그인 성공 처리
-    //   localStorage.setItem('userId', response.data.id);
-
-    //   navigate('/donation');
-    // } else {
-    //   // 로그인 실패 처리
-    //   alert('로그인 실패');
-    //   navigate('/login');
-    // }
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,16 +32,14 @@ const LoginForm = () => {
     });
   };
 
-  console.log(!formData.userId && !formData.password);
-
   return (
     <>
       <S.LoginBox>
         <BoxInput
-          name="userId"
+          name="id"
           type="text"
           placeholder="아이디"
-          value={formData.userId}
+          value={formData.id}
           onChange={handleInputChange}
         />
         <PasswordInput value={formData.password} handleInputChange={handleInputChange} />
@@ -89,7 +67,7 @@ const LoginForm = () => {
         $padding="16px"
         $borderRadius="8px"
         fontSize="18px"
-        disabled={!formData.userId && !formData.password}
+        disabled={!formData.id && !formData.password}
       />
     </>
   );
