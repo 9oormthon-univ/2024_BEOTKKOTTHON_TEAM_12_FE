@@ -3,17 +3,23 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import SockJS from 'sockjs-client';
 import { useMessageActions } from 'store/chatData';
+import { useToken } from 'store/token';
 
 const useWebSocket = (chat_room_id: string | undefined) => {
   const client = useRef<CompatClient | null>(null);
+  const token = useToken();
   const { addMessage } = useMessageActions();
 
   const connectHandler = () => {
     const socket = new SockJS(`http://localhost:8080/ws-stomp`);
-
+    console.log(token);
     client.current = Stomp.over(socket);
     client.current.connect(
-      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
       () => {
         client.current?.subscribe(
           `/sub/api/chat/room/${chat_room_id}`,

@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { AxiosError } from 'axios';
 import { userId } from 'data/shared';
+import { useTokenActions } from 'store/token';
 import { LoginFormData } from 'types/authType';
 
 export const onLogInSuccess = (accessToken: string) => {
@@ -10,10 +11,12 @@ export const onLogInSuccess = (accessToken: string) => {
 };
 
 export const useLogin = (formData: LoginFormData) => {
+  const { setToken } = useTokenActions();
   return useMutation({
     mutationFn: () => instance.post(`/auth/login`, formData),
     onSuccess: (res) => {
       console.log(res);
+      setToken(res.headers.authorization);
       onLogInSuccess(res.headers.authorization);
     },
     onError: (error) => console.error('로그인 실패', error),
@@ -30,6 +33,7 @@ export const onSilentRefresh = async () => {
     if (res.status === 200) {
       // AccessToken을 변수로 저장
       onLogInSuccess(res.data.newAccessToken);
+      return res.data.newAccessToken;
     }
   } catch (error) {
     const axiosError = error as AxiosError;

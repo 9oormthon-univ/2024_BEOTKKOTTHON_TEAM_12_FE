@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import axios from 'axios';
 import { userId } from 'data/shared';
 import { useEffect } from 'react';
 import { useProductActions } from 'store/product';
