@@ -1,18 +1,20 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
-import axios from 'axios';
+import { AxiosError } from 'axios';
+import { userId } from 'data/shared';
 import { LoginFormData } from 'types/authType';
 
 export const onLogInSuccess = (accessToken: string) => {
   console.log('로그인 성공');
-  axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+  instance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 };
 
 export const useLogin = (formData: LoginFormData) => {
   return useMutation({
     mutationFn: () => instance.post(`/auth/login`, formData),
     onSuccess: (res) => {
-      onLogInSuccess(res.data.accessToken);
+      console.log(res);
+      onLogInSuccess(res.headers.authorization);
     },
     onError: (error) => console.error('로그인 실패', error),
   });
@@ -21,7 +23,7 @@ export const useLogin = (formData: LoginFormData) => {
 export const onSilentRefresh = async () => {
   try {
     const res = await instance.post('/api/token/refresh', {
-      userId: useId,
+      userId: userId,
       accessToken: '',
       refreshToken: '',
     });
