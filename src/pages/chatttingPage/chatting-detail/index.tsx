@@ -8,7 +8,6 @@ import { useMessageData } from 'store/chatData';
 import { useScrollToBottom } from 'hooks/useScrollToBottom';
 import { GoKebabHorizontal } from 'react-icons/go';
 import { transformPrice } from 'utils/transformPrice';
-import { useState } from 'react';
 import KebabChattingDetail from 'components/molcule/kebab-chatting-detail';
 import useWebSocket from 'hooks/useWebsocket';
 import { useToggle } from 'hooks/useToggle';
