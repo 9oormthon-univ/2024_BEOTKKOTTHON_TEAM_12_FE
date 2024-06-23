@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { useNavigate } from 'react-router-dom';
 
 export const useNewChatRoom = () => {
@@ -8,7 +8,7 @@ export const useNewChatRoom = () => {
 
   return useMutation({
     mutationFn: (productId: number) =>
-      instance.post(`/chat/room/create?productId=${productId}&userId=${userId}`),
+      instance.post(`/chat/room/create?productId=${productId}&userId=${USER_ID}`),
     onSuccess: (res) => {
       console.log('채팅방 생성 성공', res.data);
       navigate(`/chat/room/${res.data.chat_room_id}`);

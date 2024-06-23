@@ -1,12 +1,12 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { useEffect } from 'react';
 import { useProductListActions } from 'store/productListData';
 
 const getWishListData = async (pageParam: number) => {
   try {
-    const response = await instance.get(`/users/wishList/${userId}?pageNumber=${pageParam}`);
+    const response = await instance.get(`/users/wishList/${USER_ID}?pageNumber=${pageParam}`);
     console.log('찜 목록 상품 불러오기 성공:', response.data);
     return response.data;
   } catch (error: any) {

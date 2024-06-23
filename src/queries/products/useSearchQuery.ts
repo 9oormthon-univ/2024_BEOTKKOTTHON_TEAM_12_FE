@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 import { useSearchData } from 'store/search';
@@ -15,7 +15,7 @@ const getSearchData = async (
 
   try {
     const response = await instance.get(
-      `${endpoint}searchName=${searchName}&categoryName=${activeCategory}&userId=${userId}&pageNumber=${pageParam}`
+      `${endpoint}searchName=${searchName}&categoryName=${activeCategory}&userId=${USER_ID}&pageNumber=${pageParam}`
     );
 
     console.log('상품 검색 성공', response.data);

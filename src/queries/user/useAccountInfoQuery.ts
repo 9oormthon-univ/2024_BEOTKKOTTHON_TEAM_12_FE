@@ -1,18 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
-import { accountUserDummyData } from 'data/user';
+import { USER_ID } from 'constants/shared';
 import { SetStateAction, useEffect } from 'react';
 
 const getAccountInfo = async () => {
   try {
-    const response = await instance.get(`/users/userInfo/${userId}`);
+    const response = await instance.get(`/users/userInfo/${USER_ID}`);
     console.log('계정 정보 불러오기 성공:', response.data);
     return response.data;
-  } catch (e) {
+  } catch (e: any) {
     console.error('계정 정보 불러오기 실패', e);
-    const accountData = accountUserDummyData();
-    return accountData;
+    throw new Error(e.response?.data?.message);
   }
 };
 

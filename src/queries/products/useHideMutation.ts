@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { useProduct } from 'store/product';
 
 export const useHideMutation = (productId: string) => {
@@ -8,7 +8,7 @@ export const useHideMutation = (productId: string) => {
   const prevIsPrivate = product?.is_private;
 
   return useMutation({
-    mutationFn: () => instance.put(`/products/private/${userId}/${productId}`),
+    mutationFn: () => instance.put(`/products/private/${USER_ID}/${productId}`),
     onSuccess: (res) => {
       if (prevIsPrivate) {
         console.log('글 숨기기 취소', res);

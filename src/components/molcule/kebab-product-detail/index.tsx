@@ -1,11 +1,10 @@
 import BoxKebabList from 'components/atom/box-kebab-list';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { useHideMutation } from 'queries/products/useHideMutation';
 import { useOnSaleMutation } from 'queries/products/useOnSaleMutation';
 import { Link } from 'react-router-dom';
 import ModalProduct from '../modal-product';
 import { useDeleteMutation } from 'queries/products/useDeleteMutation';
-import { useState } from 'react';
 import { useProduct } from 'store/product';
 import { ProductDetailItem } from 'types/productType';
 import { useBlockUserMutation } from 'queries/products/useBlockUserMutation';
@@ -28,7 +27,7 @@ const KebabProductDetail = ({ id }: KebabProductDetailProps) => {
 
   return (
     <>
-      {product.seller?.id !== userId ? (
+      {product.seller?.id !== USER_ID ? (
         <BoxKebabList>
           <p onClick={() => blockMutation()}>차단하기</p>
           <p className="red">신고하기</p>

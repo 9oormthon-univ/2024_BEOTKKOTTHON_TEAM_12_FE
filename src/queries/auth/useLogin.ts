@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
 import { AxiosError } from 'axios';
-import { JWT_EXPIRRY_TIME, userId } from 'data/shared';
+import { JWT_EXPIRRY_TIME, USER_ID } from 'constants/shared';
 import { useCookies } from 'react-cookie';
 import { useToken, useTokenActions } from 'store/token';
 import { LoginFormData } from 'types/authType';
@@ -34,7 +34,7 @@ export const useLogin = (formData: LoginFormData) => {
 
 export const onSilentRefresh = async (token: string, refreshToken: any) => {
   try {
-    const res = await instance.post(`/api/token/refresh?userId=${userId}`, null, {
+    const res = await instance.post(`/api/token/refresh?userId=${USER_ID}`, null, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Authorization-Refresh': `Bearer ${refreshToken}`,

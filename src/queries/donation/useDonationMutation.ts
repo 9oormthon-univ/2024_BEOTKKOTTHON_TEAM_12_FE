@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { useCharityNumber, useDonationForm } from 'store/donationForm';
 
 export const useDonationMutation = () => {
@@ -19,7 +19,7 @@ export const useDonationMutation = () => {
   };
 
   return useMutation({
-    mutationFn: () => instance.post(`/donations/${userId}?charity=${charityNumber}`, sendData),
+    mutationFn: () => instance.post(`/donations/${USER_ID}?charity=${charityNumber}`, sendData),
     onSuccess: (res) => {
       console.log('기부 데이터 저장 성공', res.data);
     },

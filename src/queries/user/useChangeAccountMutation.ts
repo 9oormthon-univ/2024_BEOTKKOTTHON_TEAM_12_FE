@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 
 export const useChangeAccountMutation = () => {
   return useMutation({
     mutationFn: (accountInfo) =>
-      instance.put(`/users/userInfo/update/${userId}`, {
+      instance.put(`/users/userInfo/update/${USER_ID}`, {
         accountInfo,
       }),
     onSuccess: () => {

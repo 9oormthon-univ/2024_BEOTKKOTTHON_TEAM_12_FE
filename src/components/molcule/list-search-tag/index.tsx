@@ -1,4 +1,4 @@
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { BoxTag, Tag } from 'components/index';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useSearchActions } from 'store/search';
@@ -7,7 +7,7 @@ import { useRecentSearch } from 'queries/products/useRecentSearch';
 import { useTagDelete } from 'queries/products/useTagDelete';
 
 const ListSearchTag = () => {
-  const { data: recentSearchData, status } = useRecentSearch(userId);
+  const { data: recentSearchData, status } = useRecentSearch(USER_ID);
   const { mutate: tagDeleteMutation } = useTagDelete();
   const { changeSearchData } = useSearchActions();
 

@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { useEffect } from 'react';
 import { useProductListActions } from 'store/productListData';
 
 const getPurchaseHistory = async () => {
   try {
-    const response = await instance.get(`/users/myHistory/${userId}`);
+    const response = await instance.get(`/users/myHistory/${USER_ID}`);
     console.log('구매 내역 불러오기 성공:', response.data);
     return response.data;
   } catch (error) {

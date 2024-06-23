@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 
 const getHiddenProducts = async (pageParam: number) => {
   try {
     const response = await instance.get(
-      `/users/myProducts/private/${userId}?pageNumber=${pageParam}`
+      `/users/myProducts/private/${USER_ID}?pageNumber=${pageParam}`
     );
     console.log('숨김 상품 불러오기 성공:', response.data);
     return response.data;

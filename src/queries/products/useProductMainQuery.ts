@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { useEffect } from 'react';
 import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 
@@ -10,7 +10,7 @@ const getProductListData = async (pageParam: number, category: string, onSale: s
     : `/products/category?categoryName=${category}`;
 
   try {
-    const response = await instance.get(`${endpoint}&userId=${userId}&pageNumber=${pageParam}`);
+    const response = await instance.get(`${endpoint}&userId=${USER_ID}&pageNumber=${pageParam}`);
     console.log('물품 리스트 불러오기 성공', response.data);
     return response.data;
   } catch (e: any) {

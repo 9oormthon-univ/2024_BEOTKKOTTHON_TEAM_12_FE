@@ -1,10 +1,10 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 
 const getBlockUserList = async (pageParam: number) => {
   try {
-    const response = await instance.get(`/users/blockedUsers/${userId}?pageNumber=${pageParam}`);
+    const response = await instance.get(`/users/blockedUsers/${USER_ID}?pageNumber=${pageParam}`);
     console.log('차단한 사용자 목록 불러오기 성공:', response.data);
     return response.data;
   } catch (error: any) {

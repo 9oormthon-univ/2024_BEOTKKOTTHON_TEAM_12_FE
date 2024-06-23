@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 
 export const usePostSalesCompletedMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (productId: number) =>
-      instance.put(`/users/myProducts/onSale/${userId}`, {
+      instance.put(`/users/myProducts/onSale/${USER_ID}`, {
         id: productId,
         post_status: 'soldOut',
       }),

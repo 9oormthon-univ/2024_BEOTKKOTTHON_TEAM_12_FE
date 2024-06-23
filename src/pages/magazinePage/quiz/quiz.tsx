@@ -3,7 +3,7 @@ import * as S from './style';
 import main from 'assets/magazine/quiz_page.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { quizData } from 'data/shared';
+import { QUIZ_DATA } from 'constants/shared';
 import { useQuizMutation } from 'queries/magazine/useQuizMutation';
 import { IoShareSocialOutline } from 'react-icons/io5';
 import { useToggle } from 'hooks/useToggle';
@@ -28,7 +28,7 @@ const QuizPage = () => {
 
   const handleClickShowAnswer = async () => {
     for (let i = 0; i < submitAnswer.length; i++) {
-      if (submitAnswer[i] === quizData[i].answer) {
+      if (submitAnswer[i] === QUIZ_DATA[i].answer) {
         totalPoints += 1;
       }
     }
@@ -50,7 +50,7 @@ const QuizPage = () => {
 
       <S.Content>
         <img src={main} alt="main-img" />
-        {quizData.map((quiz, index) => (
+        {QUIZ_DATA.map((quiz, index) => (
           <BoxQuiz
             key={index}
             quiz={quiz}

@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { useProductActions } from 'store/product';
 import { ProductDetailItem } from 'types/productType';
 
@@ -8,7 +8,7 @@ const putOnSaleData = async (productId: string, status: string) => {
   const isOnSale = status === 'onSale';
 
   try {
-    const response = await instance.put(`/products/soldOut/${userId}`, {
+    const response = await instance.put(`/products/soldOut/${USER_ID}`, {
       id: productId,
       post_status: isOnSale ? 'soldOut' : 'onSale',
     });

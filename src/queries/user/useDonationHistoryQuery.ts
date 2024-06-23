@@ -1,12 +1,12 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { instance } from 'apis';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 
 const getDonationHistory = async (pageParam: number, showCompletedOnly: boolean) => {
   const endPoint = showCompletedOnly ? `complete/` : ``;
   try {
     const response = await instance.get(
-      `/users/myDonations/${endPoint}${userId}?pageNumber=${pageParam}`
+      `/users/myDonations/${endPoint}${USER_ID}?pageNumber=${pageParam}`
     );
     console.log('기부 내역 불러오기 성공:', response.data);
     return response.data;
