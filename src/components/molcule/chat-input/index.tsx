@@ -26,6 +26,7 @@ const ChatInput = ({ chat_room_id, client }: ChatInputProps) => {
   };
 
   const handleClick = () => {
+    console.log('clicked');
     if (client.current && client.current.connected) {
       client.current.publish({
         destination: `/pub/api/chat/message/${chat_room_id}`,
@@ -49,8 +50,8 @@ const ChatInput = ({ chat_room_id, client }: ChatInputProps) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <div className="send">
-        <LuSend onClick={handleClick} />
+      <div className="send" onClick={handleClick}>
+        <LuSend />
       </div>
     </S.Footer>
   );
