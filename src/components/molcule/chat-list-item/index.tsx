@@ -6,6 +6,7 @@ import { useChattingList } from 'queries/chatting/useChattingList';
 import Loading from 'components/atom/loading';
 import { ChattingListType } from 'types/chattingType';
 import { useChattingListData } from 'store/chattingList';
+import BoxError from 'components/atom/box-error';
 
 const ChatListItem = () => {
   const navigate = useNavigate();
@@ -18,7 +19,8 @@ const ChatListItem = () => {
   };
 
   if (status === 'pending') return <Loading $height="var(--content-size)" />;
-  if (status === 'error') return null;
+  if (status === 'error')
+    return <BoxError $height="var(--content-size)">채팅 목록이 없습니다.</BoxError>;
 
   return (
     <div>

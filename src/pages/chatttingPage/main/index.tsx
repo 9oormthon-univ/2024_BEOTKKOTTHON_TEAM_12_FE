@@ -1,15 +1,8 @@
-import { Header, Loading, Nav, Search, TextLabel } from 'components/index';
+import { Header, Nav, Search, TextLabel } from 'components/index';
 import * as S from './style';
-import { ChatRoom } from 'types/types';
 import ChatListItem from 'components/molcule/chat-list-item';
-import wearProfile from 'assets/images/wear_profile.svg';
-import { instance } from 'apis';
-import { useEffect, useState } from 'react';
-import { useChattingList } from 'queries/chatting/useChattingList';
 
 const ChattingMain: React.FC = () => {
-  const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
-
   return (
     <>
       <Header>

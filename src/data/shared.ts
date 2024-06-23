@@ -6,7 +6,7 @@ import earth from 'assets/onboarding/earth.svg';
 import tag from 'assets/onboarding/tag.svg';
 
 // 유저 id
-export const userId = 1;
+export const userId = 2;
 
 // 카테고리, 최근 검색어
 export const categories = ['전체', '상의', '하의', '아우터', '원피스', '가방', '잡화', '기타'];

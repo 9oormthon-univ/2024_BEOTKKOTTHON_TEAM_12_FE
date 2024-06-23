@@ -11,6 +11,7 @@ const getChatList = async () => {
     return res.data.content;
   } catch (error) {
     console.error('채팅 리스트 가져오기 실패', error);
+    return [];
   }
 };
 
