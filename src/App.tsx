@@ -5,9 +5,14 @@ import splash from 'assets/logo/splash.svg';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { onSilentRefresh } from 'queries/auth/useLogin';
-import { useTokenActions } from 'store/token';
+import { useToken, useTokenActions } from 'store/token';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
+  const token = useToken();
+  const navigate = useNavigate();
+  const [cookie, _] = useCookies(['RT']);
   const { setToken } = useTokenActions();
   const [showSplash, setShowSplash] = useState<boolean>(true);
   const queryClient = new QueryClient({
@@ -22,13 +27,15 @@ function App() {
     },
   });
 
-  const getNewToken = async () => {
-    const newToken = await onSilentRefresh();
+  const getNewToken = async (token: string, refreshToken: any) => {
+    const newToken = await onSilentRefresh(token, refreshToken).catch(() => {
+      navigate('/');
+    });
     setToken(newToken);
   };
 
   useEffect(() => {
-    getNewToken();
+    getNewToken(token, cookie);
 
     const timer = setTimeout(() => {
       setShowSplash(false);

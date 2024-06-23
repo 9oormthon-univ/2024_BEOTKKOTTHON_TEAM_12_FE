@@ -5,6 +5,8 @@ import donation from 'assets/onboarding/donation.svg';
 import earth from 'assets/onboarding/earth.svg';
 import tag from 'assets/onboarding/tag.svg';
 
+export const JWT_EXPIRRY_TIME = 1.3 * 60000;
+
 // 유저 id
 export const userId = 2;
 
