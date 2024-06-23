@@ -12,7 +12,7 @@ interface ListBlockUser {
 
 const ListBlockUser = ({ userList, status }: ListBlockUser) => {
   const { mutate: unblockMutation } = useUnblockMutation();
-  const height = `calc(100svh - var(--header-size))`;
+  const height = `var(--content-size)`;
 
   if (status === 'pending') return <Loading $height={height} />;
   if (status === 'error')
