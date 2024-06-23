@@ -29,8 +29,8 @@ const userData = {
 // 로그인 페이지
 export const loginUserDummyData = () => {
   return {
-    user_created_id: 'wearid',
-    user_password: 'wearpassword',
+    user_created_id: 'wearid2',
+    user_password: 'wearpassword2',
   };
 };
 

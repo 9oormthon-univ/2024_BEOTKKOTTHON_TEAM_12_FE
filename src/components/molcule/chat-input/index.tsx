@@ -3,11 +3,11 @@ import * as S from './style';
 import { GoPlus } from 'react-icons/go';
 import { LuSend } from 'react-icons/lu';
 import { useMessageActions } from 'store/chatData';
-import { CompatClient } from '@stomp/stompjs';
+import { Client, CompatClient } from '@stomp/stompjs';
 
 interface ChatInputProps {
   chat_room_id: string | undefined;
-  client: React.MutableRefObject<CompatClient | null>;
+  client: React.MutableRefObject<Client | null>;
 }
 
 const ChatInput = ({ chat_room_id, client }: ChatInputProps) => {
@@ -26,16 +26,19 @@ const ChatInput = ({ chat_room_id, client }: ChatInputProps) => {
   };
 
   const handleClick = () => {
+    console.log('clicked');
     if (client.current && client.current.connected) {
-      client.current.send(
-        `/pub/api/chat/message/${chat_room_id}`,
-        { 'Content-Type': 'application/json' },
-        JSON.stringify(messageObj)
-      );
+      client.current.publish({
+        destination: `/pub/api/chat/message/${chat_room_id}`,
+        body: JSON.stringify(messageObj),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       sendMessage(messageObj);
       setInputValue('');
     } else {
-      console.error('WebSocket is not connected');
+      console.log('WebSocket is not connected');
     }
   };
 
@@ -47,8 +50,8 @@ const ChatInput = ({ chat_room_id, client }: ChatInputProps) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <div className="send">
-        <LuSend onClick={handleClick} />
+      <div className="send" onClick={handleClick}>
+        <LuSend />
       </div>
     </S.Footer>
   );

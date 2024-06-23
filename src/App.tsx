@@ -4,8 +4,11 @@ import { useEffect, useState } from 'react';
 import splash from 'assets/logo/splash.svg';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { onSilentRefresh } from 'queries/auth/useLogin';
+import { useTokenActions } from 'store/token';
 
 function App() {
+  const { setToken } = useTokenActions();
   const [showSplash, setShowSplash] = useState<boolean>(true);
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,7 +22,14 @@ function App() {
     },
   });
 
+  const getNewToken = async () => {
+    const newToken = await onSilentRefresh();
+    setToken(newToken);
+  };
+
   useEffect(() => {
+    getNewToken();
+
     const timer = setTimeout(() => {
       setShowSplash(false);
     }, 3000);

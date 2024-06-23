@@ -12,6 +12,11 @@ const KebabChattingDetail = ({ chat_room_id }: KebabChattingDetailProps) => {
   const { mutate: blockMutation } = useBlockUser();
   const { mutate: exitMutation } = useExitRoom();
 
+  const handleBlockUser = () => {
+    blockMutation(chat_room_id as string);
+    navigate(-1);
+  };
+
   const handleClickExit = () => {
     exitMutation(chat_room_id as string);
     navigate(-1);
@@ -20,7 +25,7 @@ const KebabChattingDetail = ({ chat_room_id }: KebabChattingDetailProps) => {
   return (
     <>
       <BoxKebabList>
-        <p onClick={() => blockMutation(chat_room_id as string)}>차단하기</p>
+        <p onClick={handleBlockUser}>차단하기</p>
         <p onClick={handleClickExit}>채팅방 나가기</p>
         <p className="red">신고하기</p>
       </BoxKebabList>

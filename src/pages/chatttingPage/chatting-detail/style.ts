@@ -49,7 +49,8 @@ export const Product = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  padding: 0 20px;
+  padding: 20px;
+  box-sizing: border-box;
   flex-direction: column;
   gap: 10px;
   height: calc(var(--content-size) - 74px);
