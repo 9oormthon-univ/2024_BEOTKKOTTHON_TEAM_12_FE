@@ -1,13 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { USER_ID } from 'constants/shared';
+import USER_API from 'apis/userApi';
+import { AccountInfoType } from 'types/userType';
 
 export const useChangeAccountMutation = () => {
   return useMutation({
-    mutationFn: (accountInfo) =>
-      instance.put(`/users/userInfo/update/${USER_ID}`, {
-        accountInfo,
-      }),
+    mutationFn: (accountInfo: AccountInfoType) => USER_API.putChangedAccountInfo(accountInfo),
     onSuccess: () => {
       alert('저장되었습니다.');
     },

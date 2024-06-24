@@ -1,12 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { USER_ID } from 'constants/shared';
+import USER_API from 'apis/userApi';
 
 const getSalesProducts = async (pageParam: number) => {
   try {
-    const response = await instance.get(
-      `/users/myProducts/onSale/${USER_ID}?pageNumber=${pageParam}`
-    );
+    const response = await USER_API.getSalesProducts(pageParam);
     console.log('판매중인 상품 불러오기 성공:', response.data);
     return response.data;
   } catch (error: any) {

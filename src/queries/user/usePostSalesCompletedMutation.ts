@@ -1,16 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { USER_ID } from 'constants/shared';
+import USER_API from 'apis/userApi';
 
 export const usePostSalesCompletedMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (productId: number) =>
-      instance.put(`/users/myProducts/onSale/${USER_ID}`, {
-        id: productId,
-        post_status: 'soldOut',
-      }),
+    mutationFn: (productId: number) => USER_API.putSalesCompleted(productId),
     onSuccess: (response) => {
       console.log('상품 상태를 변경했습니다.', response);
       queryClient.invalidateQueries({ queryKey: ['user', 'sales-product'] });

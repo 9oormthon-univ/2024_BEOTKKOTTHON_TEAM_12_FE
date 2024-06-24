@@ -1,13 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { USER_ID } from 'constants/shared';
+import USER_API from 'apis/userApi';
 
 export const useUnblockMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (blockedUserId: string) =>
-      instance.delete(`/users/blockedUsers/unBlock/${USER_ID}/${blockedUserId}`),
+    mutationFn: (blockedUserId: string) => USER_API.deleteBlockUser(blockedUserId),
     onSuccess: (response) => {
       console.log('차단을 해제하였습니다.', response);
       queryClient.invalidateQueries({ queryKey: ['user', 'block-user'] });

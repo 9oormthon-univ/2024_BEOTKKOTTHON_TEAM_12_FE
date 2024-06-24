@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { instance } from 'apis';
+import AUTH_API from 'apis/authApi';
 import { AxiosError } from 'axios';
 import { JWT_EXPIRRY_TIME, USER_ID } from 'constants/shared';
 import { useCookies } from 'react-cookie';
@@ -21,7 +22,7 @@ export const useLogin = (formData: LoginFormData) => {
   const [_, setCookie] = useCookies(['RT']);
 
   return useMutation({
-    mutationFn: () => instance.post(`/auth/login`, formData),
+    mutationFn: () => AUTH_API.postLoginData(formData),
     onSuccess: (res) => {
       console.log(res);
       setToken(res.headers.authorization);

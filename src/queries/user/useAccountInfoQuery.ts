@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { USER_ID } from 'constants/shared';
+import USER_API from 'apis/userApi';
 import { SetStateAction, useEffect } from 'react';
 
 const getAccountInfo = async () => {
   try {
-    const response = await instance.get(`/users/userInfo/${USER_ID}`);
+    const response = await USER_API.getAccountInfo();
     console.log('계정 정보 불러오기 성공:', response.data);
     return response.data;
   } catch (e: any) {
