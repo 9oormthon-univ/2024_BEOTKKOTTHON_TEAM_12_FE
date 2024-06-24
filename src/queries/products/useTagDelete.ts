@@ -1,13 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { instance } from 'apis';
+import PRODUCT_API from 'apis/productApi';
 import { USER_ID } from 'constants/shared';
 
 export const useTagDelete = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (searchName: string) =>
-      instance.delete(`/products/search/delete?userId=${USER_ID}&searchName=${searchName}`),
+    mutationFn: (searchName: string) => PRODUCT_API.DELETE.tag(searchName),
     onSuccess: (res) => {
       console.log('태그 삭제 성공', res);
       queryClient.invalidateQueries({

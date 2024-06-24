@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { USER_ID } from 'constants/shared';
+import PRODUCT_API from 'apis/productApi';
 import { useProductActions } from 'store/product';
 import { ProductDetailItem } from 'types/productType';
 
@@ -8,10 +7,7 @@ const putOnSaleData = async (productId: string, status: string) => {
   const isOnSale = status === 'onSale';
 
   try {
-    const response = await instance.put(`/products/soldOut/${USER_ID}`, {
-      id: productId,
-      post_status: isOnSale ? 'soldOut' : 'onSale',
-    });
+    const response = await PRODUCT_API.PUT.onSale(productId, isOnSale);
     if (isOnSale) {
       console.log('판매 완료 변경 성공', response);
       alert('판매 완료로 변경하였습니다.');

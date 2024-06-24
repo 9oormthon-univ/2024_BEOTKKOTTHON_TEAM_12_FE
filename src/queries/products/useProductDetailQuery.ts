@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { instance } from 'apis';
+import PRODUCT_API from 'apis/productApi';
 import { USER_ID } from 'constants/shared';
 import { useEffect } from 'react';
 import { useProductActions } from 'store/product';
 
 const getProductDetailData = async (productId: string) => {
   try {
-    const response = await instance.get(`/products/${USER_ID}/${productId}`);
+    const response = await PRODUCT_API.GET.detail(productId);
     console.log('데이터 가져오기 성공', response);
     return response.data;
   } catch (e: any) {

@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { USER_ID } from 'constants/shared';
+import PRODUCT_API from 'apis/productApi';
 import { useEffect } from 'react';
 import { useFormDataActions } from 'store/productFormData';
 import { useProductListActions } from 'store/productListData';
 
 const getProductEditData = async (productId: string) => {
   try {
-    const response = await instance.get(`/products/edit/${USER_ID}/${productId}`);
+    const response = await PRODUCT_API.GET.edit(productId);
     console.log('상품 수정페이지 데이터 가져오기 성공', response.data);
     return response.data;
   } catch (error: any) {

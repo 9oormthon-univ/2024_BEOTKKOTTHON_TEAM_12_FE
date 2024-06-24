@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { instance } from 'apis';
+import PRODUCT_API from 'apis/productApi';
 
 const getRecentSearchData = async (userId: number) => {
   try {
-    const response = await instance.get(`/products/search/list?userId=${userId}`);
+    const response = await PRODUCT_API.GET.recentSearch(userId);
     console.log('최근 검색어 조회 성공', response.data.search_name_list);
     return response.data.search_name_list;
   } catch (e: any) {
