@@ -30,7 +30,7 @@ const AccountInfo = () => {
         <ButtonBack className="left" />
         <TextLabel
           className="right"
-          onClick={() => changeAccountInfo()}
+          onClick={() => changeAccountInfo(accountInfo)}
           size={18}
           $weight={700}
           color="var(--grey-5)"
