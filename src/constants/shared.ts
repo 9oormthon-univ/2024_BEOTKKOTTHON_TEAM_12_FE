@@ -3,7 +3,20 @@ import donation from 'assets/onboarding/donation.svg';
 import earth from 'assets/onboarding/earth.svg';
 import tag from 'assets/onboarding/tag.svg';
 
-export const JWT_EXPIRRY_TIME = 1.3 * 60000;
+// 기부 절차
+export const DONATION_HEADER = [
+  '기부할 단체를 선택해주세요',
+  '기부 시 주의사항을 확인해주세요',
+  '기본 정보 입력',
+  '물품 기부 신청하기',
+];
+
+// 회원가입 절차
+export const SIGNUP_HEADER = ['회원가입', '재학생 인증', '스타일 태그 선택', '약관에 동의해주세요'];
+
+// 토큰 시간
+export const AT_TIME = 15 * 60000;
+export const RT_TIME = 20 * 60;
 
 // 유저 id
 export const USER_ID = 2;

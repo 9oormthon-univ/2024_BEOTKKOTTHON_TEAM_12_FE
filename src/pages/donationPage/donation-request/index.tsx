@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { ContainerProgressForm, DonationTab, FormCompletePage } from 'components/index';
 import { useNavigate } from 'react-router-dom';
 import { useDonationFormActions, useDonationIsDisabled } from 'store/donationForm';
-
-const header = [
-  '기부할 단체를 선택해주세요',
-  '기부 시 주의사항을 확인해주세요',
-  '기본 정보 입력',
-  '물품 기부 신청하기',
-];
+import { DONATION_HEADER } from 'constants/shared';
 
 const DonationRequest: React.FC = () => {
   const navigate = useNavigate();
@@ -33,7 +27,7 @@ const DonationRequest: React.FC = () => {
           <ContainerProgressForm
             totalpage={4}
             page={activeIndex}
-            header={header[activeIndex]}
+            header={DONATION_HEADER[activeIndex]}
             btn="다음"
             isDisabled={isDisabled}
             onClickBtnBack={() => {

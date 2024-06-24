@@ -1,22 +1,12 @@
-import { useState } from 'react';
 import * as S from './style';
 import { Header, BoxNoticeItem, TextLabel, Button, KakaoMap, ButtonBack } from 'components/index';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
+import usePageMove from 'hooks/usePageMove';
 
 const DonationInpersonVisit = () => {
   const navigate = useNavigate();
-  const [activeIndex, setActiveIndex] = useState(0);
-  /*다음 절차로 이동 */
-  const goToNextTab = () => {
-    setActiveIndex((prevIndex) => (prevIndex < 2 ? prevIndex + 1 : prevIndex));
-    window.scrollTo(0, 0); // 페이지의 맨 위로 스크롤 이동
-  };
-  /*이전 절차로 이동 */
-  const goToPreviousTab = () => {
-    setActiveIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
-    window.scrollTo(0, 0); // 페이지의 맨 위로 스크롤 이동
-  };
+  const { activeIndex, goToNextTab, goToPreviousTab } = usePageMove();
 
   const renderTabContent = () => {
     switch (activeIndex) {
