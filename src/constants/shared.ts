@@ -14,8 +14,9 @@ export const DONATION_HEADER = [
 // 회원가입 절차
 export const SIGNUP_HEADER = ['회원가입', '재학생 인증', '스타일 태그 선택', '약관에 동의해주세요'];
 
-// 리프레시 토큰 시간
-export const JWT_EXPIRRY_TIME = 1.3 * 60000;
+// 토큰 시간
+export const AT_TIME = 15 * 60000;
+export const RT_TIME = 20 * 60;
 
 // 유저 id
 export const USER_ID = 2;
