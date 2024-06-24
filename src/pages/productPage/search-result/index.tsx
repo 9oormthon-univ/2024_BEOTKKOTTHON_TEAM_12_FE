@@ -1,11 +1,4 @@
-import {
-  ButtonBack,
-  FilterTrade,
-  ListTag,
-  ListTradeItems,
-  Loading,
-  Search,
-} from 'components/index';
+import { FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
 import * as S from './style';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSearchQuery } from 'queries/products/useSearchQuery';
