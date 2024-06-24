@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { ContainerProgressForm, FormCompletePage, SigninTab } from 'components/index';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSigninFormDataActions, useSigninIsDisabled } from 'store/signInData';
-
-const header = ['회원가입', '재학생 인증', '스타일 태그 선택', '약관에 동의해주세요'];
+import { SIGNUP_HEADER } from 'constants/shared';
 
 const SignUp: React.FC = () => {
   const location = useLocation();
@@ -33,7 +32,7 @@ const SignUp: React.FC = () => {
           <ContainerProgressForm
             totalpage={4}
             page={activeIndex}
-            header={header[activeIndex]}
+            header={SIGNUP_HEADER[activeIndex]}
             btn="다음"
             isDisabled={isDisabled}
             onClickBtnBack={() => {
