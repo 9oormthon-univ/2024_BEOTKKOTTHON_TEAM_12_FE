@@ -5,7 +5,7 @@ import { useLikedMutation } from 'queries/products/useLikedMutation';
 import { useUnlikedMutation } from 'queries/products/useUnlikedMutation';
 import { ProductDetailItem } from 'types/productType';
 import { useNewChatRoom } from 'queries/chatting/useNewChatRoom';
-import { userId } from 'data/shared';
+import { USER_ID } from 'constants/shared';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 
 interface FooterProductDetailProps {
@@ -18,7 +18,7 @@ const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
   const { mutate: unlikedMutation } = useUnlikedMutation(product?.id as number);
   const { mutate: roomIdMutation } = useNewChatRoom();
 
-  const isMine = product?.seller.id === userId;
+  const isMine = product?.seller.id === USER_ID;
 
   if (status === 'pending' || status === 'error') return null;
 

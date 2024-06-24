@@ -1,16 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { userId } from 'data/shared';
+import CHATTING_API from 'apis/chattingApi';
+import { USER_ID } from 'constants/shared';
 
 export const useExitRoom = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (chat_room_id: string) =>
-      instance.delete(`/chat/room/delete?chatRoomId=${chat_room_id}&userId=${userId}`),
+    mutationFn: (chat_room_id: string) => CHATTING_API.DELETE.roomId(chat_room_id),
     onSuccess: (res) => {
       console.log('채팅방 나가기 성공', res.data);
       queryClient.invalidateQueries({
-        queryKey: ['chatting', 'chatting-list', userId],
+        queryKey: ['chatting', 'chatting-list', USER_ID],
       });
     },
     onError: (error) => console.error('채팅방 나가기 실패', error),

@@ -35,3 +35,10 @@ export interface SigninFormDataType {
   universityEmail: string;
   styleTags: string[];
 }
+
+// 계정정보 데이터 타입
+export interface AccountInfoType {
+  user_name: string;
+  university_name: string;
+  university_email: string;
+}

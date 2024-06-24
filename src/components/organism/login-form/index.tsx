@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import * as S from './style';
 import { Checkbox, PasswordInput, Button, BoxInput } from 'components/index';
 import { useNavigate } from 'react-router-dom';
-import { loginUserDummyData } from 'data/user';
 import { useLogin } from 'queries/auth/useLogin';
 import { LoginFormData } from 'types/authType';
+import { LOGIN_DATA } from 'constants/shared';
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const user = loginUserDummyData();
   const [autoLoginChecked, setAutoLoginChecked] = useState(false);
   const [saveIdChecked, setSaveIdChecked] = useState(false);
   const [formData, setFormData] = useState<LoginFormData>({
-    id: user.user_created_id,
-    password: user.user_password,
+    id: LOGIN_DATA.user_created_id,
+    password: LOGIN_DATA.user_password,
   });
 
   const { mutate: loginMutation } = useLogin(formData);

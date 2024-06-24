@@ -3,10 +3,11 @@ import * as S from './style';
 import { useState } from 'react';
 import { useAccountInfoQuery } from 'queries/user/useAccountInfoQuery';
 import { useChangeAccountMutation } from 'queries/user/useChangeAccountMutation';
+import { AccountInfoType } from 'types/userType';
 
 const AccountInfo = () => {
   const { mutate: changeAccountInfo } = useChangeAccountMutation();
-  const [accountInfo, setAccountInfo] = useState({
+  const [accountInfo, setAccountInfo] = useState<AccountInfoType>({
     user_name: '',
     university_name: '',
     university_email: '',
@@ -29,7 +30,7 @@ const AccountInfo = () => {
         <ButtonBack className="left" />
         <TextLabel
           className="right"
-          onClick={() => changeAccountInfo()}
+          onClick={() => changeAccountInfo(accountInfo)}
           size={18}
           $weight={700}
           color="var(--grey-5)"

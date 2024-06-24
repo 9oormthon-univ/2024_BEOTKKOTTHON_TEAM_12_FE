@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { userId } from 'data/shared';
+import PRODUCT_API from 'apis/productApi';
+import { USER_ID } from 'constants/shared';
 
 export const useUnlikedMutation = (productId: number) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => instance.delete(`/products/deselect/${userId}/${productId}`),
+    mutationFn: () => PRODUCT_API.DELETE.unliked(productId),
     onSuccess: (res) => {
       console.log('관심 목록 취소 성공', res);
       queryClient.invalidateQueries({
-        queryKey: ['products', 'product-detail', userId, productId.toString()],
+        queryKey: ['products', 'product-detail', USER_ID, productId.toString()],
       });
     },
     onError: (error) => {

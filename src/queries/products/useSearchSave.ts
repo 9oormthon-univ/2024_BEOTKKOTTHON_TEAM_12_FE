@@ -1,11 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { userId } from 'data/shared';
+import PRODUCT_API from 'apis/productApi';
 
 export const useSearchSave = () => {
   return useMutation({
-    mutationFn: (searchName: string) =>
-      instance.post(`/products/search/save?userId=${userId}&searchName=${searchName}`),
+    mutationFn: (searchName: string) => PRODUCT_API.POST.searchSave(searchName),
     onSuccess: (res) => {
       console.log('최근 검색어 저장 성공', res);
     },

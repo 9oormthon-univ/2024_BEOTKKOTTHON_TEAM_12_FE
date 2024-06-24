@@ -1,11 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { userId } from 'data/shared';
+import CHATTING_API from 'apis/chattingApi';
 
 export const useBlockUser = () => {
   return useMutation({
-    mutationFn: (chat_room_id: string) =>
-      instance.post(`/chat/room/block?chatRoomId=${chat_room_id}&userId=${userId}`),
+    mutationFn: (chat_room_id: string) => CHATTING_API.POST.blockUser(chat_room_id),
     onSuccess: (res) => {
       console.log('사용자 차단 성공', res.data);
     },

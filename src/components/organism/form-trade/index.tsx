@@ -10,7 +10,7 @@ import {
   Button,
 } from 'components/index';
 import * as S from './style';
-import { placeList, priceList } from 'data/shared';
+import { PLACE_LIST, PRICE_LIST } from 'constants/shared';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
 import { useProductFormData, useFormDataActions, useShowImages } from 'store/productFormData';
@@ -97,7 +97,7 @@ const FormTrade = ({ handleSubmitAction, btnText, status }: FormTradeProps) => {
         >
           <p className="sub-placeholder">원</p>
         </BoxInput>
-        <ListTradeForm list={priceList} type={'price'} />
+        <ListTradeForm list={PRICE_LIST} type={'price'} />
       </FormGroup>
 
       <FormGroup>
@@ -109,7 +109,7 @@ const FormTrade = ({ handleSubmitAction, btnText, status }: FormTradeProps) => {
           onChange={(e: any) => changeProductFormData('place', e.target.value)}
         />
         <S.LabelPlace>성균관 대학교 추천 장소</S.LabelPlace>
-        <ListTradeForm list={placeList} type={'place'} />
+        <ListTradeForm list={PLACE_LIST} type={'place'} />
       </FormGroup>
 
       <Button width="100%" $borderRadius="8px" $padding="16px" disabled={isDisabled}>

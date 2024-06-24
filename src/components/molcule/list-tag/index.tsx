@@ -1,4 +1,4 @@
-import { categories } from 'data/shared';
+import { CATEGORIES } from 'constants/shared';
 import { BoxTag, Tag } from 'components/index';
 import { useFormDataActions } from 'store/productFormData';
 import { useActiveCategory, useProductListActions } from 'store/productListData';
@@ -14,7 +14,7 @@ const ListTag = ({ isform }: ListTagProps) => {
   const { setActiveCategory } = useProductListActions();
   const { startDragging, stopDragging, whileDragging } = useMouseEventHandler();
 
-  const list = isform ? categories.slice(1) : categories;
+  const list = isform ? CATEGORIES.slice(1) : CATEGORIES;
 
   const handleClick = (category: string) => {
     if (isform) {

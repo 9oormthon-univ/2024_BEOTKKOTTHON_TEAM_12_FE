@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { instance } from 'apis';
+import PRODUCT_API from 'apis/productApi';
 
 const getPopularSearch = async () => {
   try {
-    const response = await instance.get(`/products/search/rank`);
+    const response = await PRODUCT_API.GET.popularSearch();
     console.log('인기 검색어 불러오기 성공', response.data);
     return response.data;
   } catch (error: any) {

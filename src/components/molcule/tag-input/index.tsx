@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style';
 import { Tag, TextLabel } from 'components/index';
-import { styleTags } from 'data/shared';
+import { STYLE_TAGS } from 'constants/shared';
 
 interface TagInputProps {
   $padding?: string;
@@ -23,7 +23,7 @@ const TagInput: React.FC<TagInputProps> = ({ $padding, currentStyle, handleChang
         스타일 태그 설정
       </TextLabel>
       <S.SelectTagWrapper>
-        {styleTags.map((tag) => (
+        {STYLE_TAGS.map((tag) => (
           <Tag key={tag} $active={currentStyle.includes(tag)} onClick={() => toggleTag(tag)}>
             {tag}
           </Tag>

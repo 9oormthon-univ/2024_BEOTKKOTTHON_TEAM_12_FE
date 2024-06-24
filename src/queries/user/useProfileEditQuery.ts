@@ -1,18 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import { instance } from 'apis';
-import { userId } from 'data/shared';
-import { profileUserDummyData } from 'data/user';
+import USER_API from 'apis/userApi';
 import { SetStateAction, useEffect } from 'react';
 
 const getUserProfileData = async () => {
   try {
-    const response = await instance.get(`/users/profile/${userId}`);
+    const response = await USER_API.GET.userProfileData();
     console.log('프로필 정보 불러오기 성공', response.data);
     return response.data;
-  } catch (e) {
+  } catch (e: any) {
     console.error('프로필 정보 불러오기 실패', e);
-    const profileData = profileUserDummyData();
-    return profileData;
+    throw new Error(e.response?.data?.message);
   }
 };
 
