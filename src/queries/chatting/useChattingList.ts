@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { instance } from 'apis';
+import CHATTING_API from 'apis/chattingApi';
 import { USER_ID } from 'constants/shared';
 import { useEffect } from 'react';
 import { useChattingListActions } from 'store/chattingList';
 
 const getChatList = async () => {
   try {
-    const res = await instance.get(`/chat/rooms?userId=${USER_ID}&pageNumber=0`);
+    const res = await CHATTING_API.getChatList();
     console.log('채팅 리스트 가져오기 성공', res.data.content);
     return res.data.content;
   } catch (error) {
