@@ -4,7 +4,7 @@ import { SetStateAction, useEffect } from 'react';
 
 const getAccountInfo = async () => {
   try {
-    const response = await USER_API.getAccountInfo();
+    const response = await USER_API.GET.accountInfo();
     console.log('계정 정보 불러오기 성공:', response.data);
     return response.data;
   } catch (e: any) {

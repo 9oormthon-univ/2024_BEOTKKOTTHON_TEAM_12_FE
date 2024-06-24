@@ -3,7 +3,7 @@ import USER_API from 'apis/userApi';
 
 export const useChangeProfile = () => {
   return useMutation({
-    mutationFn: (userInfo: any) => USER_API.putChangedProfile(userInfo),
+    mutationFn: (userInfo: any) => USER_API.PUT.changedProfile(userInfo),
     onSuccess: (res) => {
       console.log('프로필 수정 성공', res.data);
       alert('프로필을 수정하였습니다.');

@@ -5,7 +5,7 @@ import { useUserProfileActions } from 'store/userData';
 
 const getUserData = async () => {
   try {
-    const response = await USER_API.getUserData();
+    const response = await USER_API.GET.userData();
     console.log('마이페이지 불러오기 성공', response);
     return response.data;
   } catch (e: any) {

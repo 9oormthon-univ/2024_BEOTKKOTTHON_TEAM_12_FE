@@ -5,7 +5,7 @@ export const usePostSalesCompletedMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (productId: number) => USER_API.putSalesCompleted(productId),
+    mutationFn: (productId: number) => USER_API.PUT.salesCompleted(productId),
     onSuccess: (response) => {
       console.log('상품 상태를 변경했습니다.', response);
       queryClient.invalidateQueries({ queryKey: ['user', 'sales-product'] });

@@ -4,7 +4,7 @@ import { AccountInfoType } from 'types/userType';
 
 export const useChangeAccountMutation = () => {
   return useMutation({
-    mutationFn: (accountInfo: AccountInfoType) => USER_API.putChangedAccountInfo(accountInfo),
+    mutationFn: (accountInfo: AccountInfoType) => USER_API.PUT.changedAccountInfo(accountInfo),
     onSuccess: () => {
       alert('저장되었습니다.');
     },

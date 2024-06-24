@@ -4,7 +4,7 @@ import { SetStateAction, useEffect } from 'react';
 
 const getUserProfileData = async () => {
   try {
-    const response = await USER_API.getUserProfileData();
+    const response = await USER_API.GET.userProfileData();
     console.log('프로필 정보 불러오기 성공', response.data);
     return response.data;
   } catch (e: any) {

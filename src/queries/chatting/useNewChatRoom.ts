@@ -6,7 +6,7 @@ export const useNewChatRoom = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: (productId: number) => CHATTING_API.postNewChattingRoom(productId),
+    mutationFn: (productId: number) => CHATTING_API.POST.newChattingRoom(productId),
     onSuccess: (res) => {
       console.log('채팅방 생성 성공', res.data);
       navigate(`/chat/room/${res.data.chat_room_id}`);

@@ -5,7 +5,7 @@ import { useProductListActions } from 'store/productListData';
 
 const getWishListData = async (pageParam: number) => {
   try {
-    const response = await USER_API.getWishListData(pageParam);
+    const response = await USER_API.GET.wishListData(pageParam);
     console.log('찜 목록 상품 불러오기 성공:', response.data);
     return response.data;
   } catch (error: any) {

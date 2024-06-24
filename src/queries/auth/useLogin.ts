@@ -22,7 +22,7 @@ export const useLogin = (formData: LoginFormData) => {
   const [_, setCookie] = useCookies(['RT']);
 
   return useMutation({
-    mutationFn: () => AUTH_API.postLoginData(formData),
+    mutationFn: () => AUTH_API.POST.loginData(formData),
     onSuccess: (res) => {
       console.log(res);
       setToken(res.headers.authorization);

@@ -3,7 +3,7 @@ import USER_API from 'apis/userApi';
 
 const getBlockUserList = async (pageParam: number) => {
   try {
-    const response = await USER_API.getBlockUserList(pageParam);
+    const response = await USER_API.GET.blockUserList(pageParam);
     console.log('차단한 사용자 목록 불러오기 성공:', response.data);
     return response.data;
   } catch (error: any) {

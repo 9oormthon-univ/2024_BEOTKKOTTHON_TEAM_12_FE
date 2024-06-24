@@ -3,7 +3,7 @@ import USER_API from 'apis/userApi';
 
 const getHiddenProducts = async (pageParam: number) => {
   try {
-    const response = await USER_API.getHiddenProducts(pageParam);
+    const response = await USER_API.GET.hiddenProducts(pageParam);
     console.log('숨김 상품 불러오기 성공:', response.data);
     return response.data;
   } catch (error: any) {

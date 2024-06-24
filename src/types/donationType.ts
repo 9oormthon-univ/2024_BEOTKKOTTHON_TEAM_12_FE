@@ -13,3 +13,14 @@ export interface RankingType {
   first_product_count: string;
   first_donation_count: string;
 }
+
+export interface DonationType {
+  user_name: string;
+  address: string;
+  phone: string;
+  email: string;
+  donation_item: string;
+  clothes_count: number;
+  fashion_count: number;
+  box_count: number;
+}

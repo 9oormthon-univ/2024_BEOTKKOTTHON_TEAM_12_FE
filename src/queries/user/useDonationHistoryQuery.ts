@@ -4,7 +4,7 @@ import USER_API from 'apis/userApi';
 const getDonationHistory = async (pageParam: number, showCompletedOnly: boolean) => {
   const endPoint = showCompletedOnly ? `complete/` : ``;
   try {
-    const response = await USER_API.getDonationHistory(endPoint, pageParam);
+    const response = await USER_API.GET.donationHistory(endPoint, pageParam);
     console.log('기부 내역 불러오기 성공:', response.data);
     return response.data;
   } catch (error: any) {

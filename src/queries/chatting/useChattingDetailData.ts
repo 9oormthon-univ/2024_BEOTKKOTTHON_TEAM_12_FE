@@ -5,7 +5,7 @@ import { useMessageActions } from 'store/chatData';
 
 const getChatData = async (chat_rood_id: string) => {
   try {
-    const res = await CHATTING_API.getChatData(chat_rood_id);
+    const res = await CHATTING_API.GET.chattingData(chat_rood_id);
     console.log('채팅방 입장 성공', res.data);
     return res.data;
   } catch (error) {

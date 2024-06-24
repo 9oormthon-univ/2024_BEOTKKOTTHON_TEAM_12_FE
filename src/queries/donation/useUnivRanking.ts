@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { instance } from 'apis';
+import DONATION_API from 'apis/donationApi';
 
 const getRankingData = async () => {
   try {
-    const res = await instance.get(`/university/rank`);
+    const res = await DONATION_API.GET.getRankingData();
     console.log('대학 순위 정보 가져오기 성공', res.data);
     return res.data;
   } catch (error) {

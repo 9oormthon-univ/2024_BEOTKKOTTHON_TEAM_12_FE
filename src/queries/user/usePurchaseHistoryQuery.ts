@@ -5,7 +5,7 @@ import { useProductListActions } from 'store/productListData';
 
 const getPurchaseHistory = async () => {
   try {
-    const response = await USER_API.getPurchaseHistory();
+    const response = await USER_API.GET.purchaseHistory();
     console.log('구매 내역 불러오기 성공:', response.data);
     return response.data;
   } catch (error) {

@@ -6,7 +6,7 @@ import { useChattingListActions } from 'store/chattingList';
 
 const getChatList = async () => {
   try {
-    const res = await CHATTING_API.getChatList();
+    const res = await CHATTING_API.GET.chattingList();
     console.log('채팅 리스트 가져오기 성공', res.data.content);
     return res.data.content;
   } catch (error) {

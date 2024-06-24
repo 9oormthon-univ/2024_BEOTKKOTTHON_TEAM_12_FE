@@ -5,7 +5,7 @@ export const useUnblockMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (blockedUserId: string) => USER_API.deleteBlockUser(blockedUserId),
+    mutationFn: (blockedUserId: string) => USER_API.DELETE.blockUser(blockedUserId),
     onSuccess: (response) => {
       console.log('차단을 해제하였습니다.', response);
       queryClient.invalidateQueries({ queryKey: ['user', 'block-user'] });
