@@ -22,7 +22,8 @@
     "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
     "no-unused-vars": "error",
     "no-multiple-empty-lines": "error",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-interface": 0
   },
   "settings": {
     "import/resolver": {
