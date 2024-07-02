@@ -3,10 +3,10 @@ import * as S from './style';
 import { useRef, ChangeEvent, useState } from 'react';
 import noImg from 'assets/images/profile-no-image.png';
 import { useImgUploadMutation } from 'queries/image-upload/useImgUploadMutaion';
-import { ProfileUserType } from 'types/userType';
+import { ProfileResponse } from 'types/userType';
 
 interface ImageInputProps {
-  profileEditQuery: ProfileUserType;
+  profileEditQuery: ProfileResponse;
 }
 
 const ImageInput = ({ profileEditQuery }: ImageInputProps) => {

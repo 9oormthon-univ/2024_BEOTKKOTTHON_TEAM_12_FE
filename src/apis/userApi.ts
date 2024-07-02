@@ -3,9 +3,6 @@ import { USER_ID } from 'constants/shared';
 import { AccountInfoType } from 'types/userType';
 
 const GET = {
-  blockUserList(pageParam: number) {
-    return instance.get(`/users/blockedUsers/${USER_ID}?pageNumber=${pageParam}`);
-  },
   completedProducts(pageParam: number) {
     return instance.get(`/users/myProducts/soldOut/${USER_ID}?pageNumber=${pageParam}`);
   },

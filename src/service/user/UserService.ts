@@ -1,19 +1,56 @@
 import { USER_ID } from 'constants/shared';
-import { instance } from 'service';
-import { AccountInfoType, BlockListResponse, MypageUserType } from 'types/userType';
+import { getData } from 'service';
+import {
+  AccountInfoType,
+  BlockListResponse,
+  CompletedProductsResponse,
+  DonationHistoryResponse,
+  MypageUserType,
+  ProfileResponse,
+  PurchaseProductsResponse,
+  SalesProductsResponse,
+  WishListResponse,
+} from 'types/userType';
 
 const GET = {
-  async mypage(): Promise<MypageUserType> {
-    const response = await instance.get(`/users/${USER_ID}`);
-    return response.data;
+  mypage(): Promise<MypageUserType> {
+    return getData(`/users/${USER_ID}`);
   },
-  async accountInfo(): Promise<AccountInfoType> {
-    const response = await instance.get(`/users/userInfo/${USER_ID}`);
-    return response.data;
+
+  accountInfo(): Promise<AccountInfoType> {
+    return getData(`/users/userInfo/${USER_ID}`);
   },
-  async blockList(pageParam: number): Promise<BlockListResponse> {
-    const response = await instance.get(`/users/blockedUsers/${USER_ID}?pageNumber=${pageParam}`);
-    return response.data;
+
+  blockList(pageParam: number): Promise<BlockListResponse> {
+    return getData(`/users/blockedUsers/${USER_ID}?pageNumber=${pageParam}`);
+  },
+
+  completedProducts(pageParam: number): Promise<CompletedProductsResponse> {
+    return getData(`/users/myProducts/soldOut/${USER_ID}?pageNumber=${pageParam}`);
+  },
+
+  hiddenProducts(pageParam: number): Promise<CompletedProductsResponse> {
+    return getData(`/users/myProducts/private/${USER_ID}?pageNumber=${pageParam}`);
+  },
+
+  salesProducts(pageParam: number): Promise<SalesProductsResponse> {
+    return getData(`/users/myProducts/onSale/${USER_ID}?pageNumber=${pageParam}`);
+  },
+
+  donationHistory(endPoint: string, pageParam: number): Promise<DonationHistoryResponse> {
+    return getData(`/users/myDonations/${endPoint}${USER_ID}?pageNumber=${pageParam}`);
+  },
+
+  wishList(pageParam: number): Promise<WishListResponse> {
+    return getData(`/users/wishList/${USER_ID}?pageNumber=${pageParam}`);
+  },
+
+  profile(): Promise<ProfileResponse> {
+    return getData(`/users/profile/${USER_ID}`);
+  },
+
+  purchaseHistory(): Promise<PurchaseProductsResponse> {
+    return getData(`/users/myHistory/${USER_ID}`);
   },
 };
 

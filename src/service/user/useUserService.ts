@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import queryKeys from './queries';
 import userService from './userService';
+import { useCustomInfiniteQuery } from 'hooks/useCustomInfiniteQuery';
 
 export function useMypage() {
   return useQuery({
@@ -32,3 +33,10 @@ export function useBlockList() {
     },
   });
 }
+
+export const useCompletedProduct = () => {
+  return useCustomInfiniteQuery({
+    queryKey: queryKeys.completedProducts(),
+    queryFn: ({ pageParam = 0 }: any) => userService.GET.completedProducts(pageParam),
+  });
+};
