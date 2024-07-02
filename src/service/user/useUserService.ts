@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import UserService from './UserService';
 import queryKeys from './queries';
+import userService from './userService';
 
 export function useMypage() {
   return useQuery({
     queryKey: queryKeys.all,
-    queryFn: () => UserService.getMypage(),
+    queryFn: () => userService.GET.mypage(),
   });
 }

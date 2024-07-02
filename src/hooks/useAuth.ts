@@ -1,6 +1,6 @@
-import { instance } from 'apis';
 import { AxiosError } from 'axios';
 import { AT_TIME, USER_ID } from 'constants/shared';
+import { instance } from 'service';
 
 export const onLoginInSuccess = (accessToken: string, refreshToken: any) => {
   instance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;

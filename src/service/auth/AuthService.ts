@@ -1,10 +1,14 @@
-import Service from 'service/Service';
+import { instanceWithoutAuth } from 'service';
 import { LoginFormData } from 'types/authType';
 
-class AuthService extends Service {
-  postLogin({ id, password }: LoginFormData) {
-    return this.axiosInstance.post<any>(`/auth/login`, { id, password });
-  }
-}
+const POST = {
+  login({ id, password }: LoginFormData) {
+    return instanceWithoutAuth.post<any>(`/auth/login`, { id, password });
+  },
+};
 
-export default new AuthService();
+const authService = {
+  POST,
+};
+
+export default authService;
