@@ -19,7 +19,7 @@ export interface ProfileUserType {
 }
 
 // 차단한 사용자 데이터 타입
-export interface BlockedUserType {
+export interface BlockListType {
   blocked_user_id: string;
   blocked_user_nick_name: string;
   blocked_user_profile_image: string;
@@ -41,4 +41,18 @@ export interface AccountInfoType {
   user_name: string;
   university_name: string;
   university_email: string;
+}
+
+export interface BlockListResponse {
+  content: BlockListType;
+  pageable: any;
+  last: boolean;
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  number: number;
+  sort: any;
+  first: boolean;
+  numberOfElements: number;
+  empty: boolean;
 }

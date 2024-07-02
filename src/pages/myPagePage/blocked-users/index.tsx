@@ -1,10 +1,10 @@
 import { ButtonBack, Header, ListBlockUser, Loading, TextLabel } from 'components/index';
-import { useBlockUserQuery } from 'queries/user/useBlockUserQuery';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { useBlockList } from 'service/user/useUserService';
 
 const BlockedUsers = () => {
-  const { data: blockedUserList, status, fetchNextPage, isFetchingNextPage } = useBlockUserQuery();
+  const { data: blockedUserList, status, fetchNextPage, isFetchingNextPage } = useBlockList();
   const { ref, inView } = useInView({ threshold: 0, delay: 0 });
 
   useEffect(() => {

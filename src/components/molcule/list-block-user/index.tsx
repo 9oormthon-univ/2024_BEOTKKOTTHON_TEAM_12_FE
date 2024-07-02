@@ -2,11 +2,11 @@ import * as S from './style';
 import Loading from 'components/atom/loading';
 import { BoxError, Button, ProfileAvatar, TextLabel } from 'components';
 import { levelUrlArr } from 'utils/levelUrlArr';
-import { BlockedUserType } from 'types/userType';
+import { BlockListType } from 'types/userType';
 import { useUnblockMutation } from 'queries/user/useUnblockMutation';
 
 interface ListBlockUser {
-  userList: BlockedUserType[];
+  userList: BlockListType[];
   status: string;
 }
 
@@ -21,7 +21,7 @@ const ListBlockUser = ({ userList, status }: ListBlockUser) => {
 
   return (
     <S.Container>
-      {userList.map((blockUser: BlockedUserType, index: number) => (
+      {userList.map((blockUser: BlockListType, index: number) => (
         <S.BoxUser key={index}>
           <ProfileAvatar imageUrl={blockUser.blocked_user_profile_image} />
 

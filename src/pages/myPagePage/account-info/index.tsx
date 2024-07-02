@@ -1,9 +1,7 @@
 import { Header, TextLabel, TextInput, ButtonBack, Loading, BoxError } from 'components/index';
 import * as S from './style';
-import { useEffect, useState } from 'react';
-import { useAccountInfoQuery } from 'queries/user/useAccountInfoQuery';
+import { useEffect } from 'react';
 import { useChangeAccountMutation } from 'queries/user/useChangeAccountMutation';
-import { AccountInfoType } from 'types/userType';
 import { useAccount } from 'service/user/useUserService';
 import { useAccountInfo, useAccountInfoActions } from 'store/accountInfo';
 
