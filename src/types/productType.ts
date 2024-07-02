@@ -6,7 +6,7 @@ export interface ProductListItem {
   product_status: string;
   post_status: string;
   product_image: string[];
-  is_selected: boolean;
+  is_selected?: boolean;
   time: string;
 }
 
