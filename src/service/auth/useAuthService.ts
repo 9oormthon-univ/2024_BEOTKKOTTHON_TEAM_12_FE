@@ -1,23 +1,23 @@
 import { useMutation } from '@tanstack/react-query';
-import AUTH_API from 'apis/authApi';
+import { LoginFormData } from 'types/authType';
+import AuthService from './AuthService';
+import { useTokenActions } from 'store/token';
+import { useCookies } from 'react-cookie';
 import { RT_TIME } from 'constants/shared';
 import { onLoginInSuccess } from 'hooks/useAuth';
-import { useCookies } from 'react-cookie';
-import { useTokenActions } from 'store/token';
-import { LoginFormData } from 'types/authType';
 
-export const useLogin = (formData: LoginFormData) => {
+export function useLogin() {
   const { setToken } = useTokenActions();
   const [_, setCookie] = useCookies(['RT']);
-
   return useMutation({
-    mutationFn: () => AUTH_API.POST.loginData(formData),
-    onSuccess: (res) => {
-      console.log(res);
+    mutationFn: ({ id, password }: LoginFormData) => AuthService.postLogin({ id, password }),
+    onSuccess: (res: any) => {
       setToken(res.headers.authorization);
       setCookie('RT', res.headers[`authorization-refresh`], { maxAge: RT_TIME });
       onLoginInSuccess(res.headers.authorization, res.headers[`authorization-refresh`]);
     },
-    onError: (error) => console.error('로그인 실패', error),
+    onError: (error: any) => {
+      console.error('Create photo error:', error);
+    },
   });
-};
+}

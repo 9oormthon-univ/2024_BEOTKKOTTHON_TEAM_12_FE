@@ -3,10 +3,10 @@ import GlobalStyle from './styles/GlobalStyle';
 import { useEffect, useState } from 'react';
 import splash from 'assets/logo/splash.svg';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { onSilentRefresh } from 'queries/auth/useLogin';
 import { useToken, useTokenActions } from 'store/token';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import { onSilentRefresh } from 'hooks/useAuth';
 
 function App() {
   const token = useToken();
