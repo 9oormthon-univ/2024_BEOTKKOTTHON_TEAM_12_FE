@@ -13,7 +13,7 @@ const MyPageMain: React.FC = () => {
   return (
     <>
       <S.MenuItemWrapper>
-        <UserSection userData={mypageData.data} />
+        <UserSection userData={mypageData} />
         <MenuItem />
       </S.MenuItemWrapper>
       <Nav currentTab="마이페이지" />

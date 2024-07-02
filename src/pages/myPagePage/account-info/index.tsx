@@ -1,23 +1,21 @@
 import { Header, TextLabel, TextInput, ButtonBack, Loading, BoxError } from 'components/index';
 import * as S from './style';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAccountInfoQuery } from 'queries/user/useAccountInfoQuery';
 import { useChangeAccountMutation } from 'queries/user/useChangeAccountMutation';
 import { AccountInfoType } from 'types/userType';
+import { useAccount } from 'service/user/useUserService';
+import { useAccountInfo, useAccountInfoActions } from 'store/accountInfo';
 
 const AccountInfo = () => {
+  const accountInfo = useAccountInfo();
+  const { setAccountInfo, setUserName } = useAccountInfoActions();
   const { mutate: changeAccountInfo } = useChangeAccountMutation();
-  const [accountInfo, setAccountInfo] = useState<AccountInfoType>({
-    user_name: '',
-    university_name: '',
-    university_email: '',
-  });
+  const { data: accountInfoData, status } = useAccount();
 
-  const { status } = useAccountInfoQuery(setAccountInfo);
-
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAccountInfo({ ...accountInfo, user_name: e.target.value });
-  };
+  useEffect(() => {
+    if (accountInfoData) setAccountInfo(accountInfoData);
+  }, [accountInfoData]);
 
   if (status === 'pending') return <Loading $height="100svh" />;
 
@@ -52,7 +50,7 @@ const AccountInfo = () => {
             name="user_name"
             labelSize={16}
             value={accountInfo.user_name}
-            onChange={onChangeInput}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <TextInput
             label="학교"

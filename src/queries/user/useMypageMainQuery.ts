@@ -4,14 +4,14 @@ import { useEffect } from 'react';
 import { useUserProfileActions } from 'store/userData';
 
 const getUserData = async () => {
-  try {
-    const response = await USER_API.GET.userData();
-    console.log('마이페이지 불러오기 성공', response);
-    return response.data;
-  } catch (e: any) {
-    console.error('마이페이지 불러오기 실패', e);
-    throw new Error(e.response?.data?.message);
-  }
+  // try {
+  //   const response = await USER_API.GET.userData();
+  //   console.log('마이페이지 불러오기 성공', response);
+  //   return response.data;
+  // } catch (e: any) {
+  //   console.error('마이페이지 불러오기 실패', e);
+  //   throw new Error(e.response?.data?.message);
+  // }
 };
 
 export const useMypageMainQuery = () => {
@@ -24,7 +24,7 @@ export const useMypageMainQuery = () => {
 
   useEffect(() => {
     if (mypageMainQuery.data) {
-      updateUserProfileInfo(mypageMainQuery.data);
+      // updateUserProfileInfo(mypageMainQuery.data);
     }
   }, [mypageMainQuery.data]);
 

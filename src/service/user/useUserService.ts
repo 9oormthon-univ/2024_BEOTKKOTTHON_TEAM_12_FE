@@ -8,3 +8,10 @@ export function useMypage() {
     queryFn: () => userService.GET.mypage(),
   });
 }
+
+export function useAccount() {
+  return useQuery({
+    queryKey: queryKeys.account(),
+    queryFn: () => userService.GET.accountInfo(),
+  });
+}

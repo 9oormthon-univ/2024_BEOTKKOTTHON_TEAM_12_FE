@@ -21,9 +21,6 @@ const GET = {
   wishListData(pageParam: number) {
     return instance.get(`/users/wishList/${USER_ID}?pageNumber=${pageParam}`);
   },
-  userData() {
-    return instance.get(`/users/${USER_ID}`);
-  },
   userProfileData() {
     return instance.get(`/users/profile/${USER_ID}`);
   },
