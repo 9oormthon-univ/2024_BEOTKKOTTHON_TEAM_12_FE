@@ -1,10 +1,10 @@
-import { RankingType, UnivType } from 'types/donationType';
+import { RankingResponse, UnivType } from 'types/donationType';
 import * as S from './style';
 import TextLabel from 'components/atom/text-label';
 import { levelUrlArr } from 'utils/levelUrlArr';
 
 interface GraphRankingType {
-  rankingData: RankingType;
+  rankingData: RankingResponse;
 }
 
 const transformPointToNumber = (point: string) => {

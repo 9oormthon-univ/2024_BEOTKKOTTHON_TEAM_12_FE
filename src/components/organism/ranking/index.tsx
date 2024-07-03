@@ -1,12 +1,12 @@
 import * as S from './style';
 import { Button } from 'components/index';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUnivRanking } from 'queries/donation/useUnivRanking';
 import GraphRanking from 'components/molcule/graph-ranking';
+import { useRanking } from 'service/donation/useDonationService';
 
 const Ranking = () => {
   const navigate = useNavigate();
-  const { data: rankingData, status } = useUnivRanking();
+  const { data: rankingData, status } = useRanking();
 
   if (status === 'pending') return null;
   if (status === 'error') return null;

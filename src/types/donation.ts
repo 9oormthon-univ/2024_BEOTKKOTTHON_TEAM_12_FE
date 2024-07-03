@@ -4,7 +4,7 @@ export interface UnivType {
   university_image: string[];
 }
 
-export interface RankingType {
+export interface RankingResponse {
   date: string;
   time: string;
   university_list: UnivType[];
@@ -14,7 +14,7 @@ export interface RankingType {
   first_donation_count: string;
 }
 
-export interface DonationType {
+export interface DonationRequest {
   user_name: string;
   address: string;
   phone: string;
