@@ -1,12 +1,12 @@
 import { ButtonBack, Header, ListTradeItems, Loading, TextLabel } from 'components';
 import * as S from './style';
 import { useProductList } from 'store/productListData';
-import { useWishListQuery } from 'queries/user/useWishListQuery';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
+import { useWishList } from 'service/user/useUserService';
 
 const WishList = () => {
-  const { status, fetchNextPage, isFetchingNextPage } = useWishListQuery();
+  const { status, fetchNextPage, isFetchingNextPage } = useWishList();
   const productList = useProductList();
   const { ref, inView } = useInView({ threshold: 0, delay: 0 });
 

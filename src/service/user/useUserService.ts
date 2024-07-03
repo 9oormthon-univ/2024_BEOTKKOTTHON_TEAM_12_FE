@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import queryKeys from './queries';
 import userService from './userService';
 import { useCustomInfiniteQuery } from 'hooks/useCustomInfiniteQuery';
@@ -18,19 +18,9 @@ export function useAccount() {
 }
 
 export function useBlockList() {
-  return useInfiniteQuery({
+  return useCustomInfiniteQuery({
     queryKey: queryKeys.blockList(),
-    queryFn: ({ pageParam = 0 }) => userService.GET.blockList(pageParam),
-    select: (data) => ({
-      pagesData: data?.pages.flatMap((page) => page.content),
-      pageParams: data?.pageParams,
-      totalElements: data?.pages?.[0]?.totalElements,
-    }),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage) => {
-      if (!lastPage.last) return lastPage.number + 1;
-      return undefined;
-    },
+    queryFn: ({ pageParam = 0 }: any) => userService.GET.blockList(pageParam),
   });
 }
 
@@ -40,3 +30,45 @@ export const useCompletedProduct = () => {
     queryFn: ({ pageParam = 0 }: any) => userService.GET.completedProducts(pageParam),
   });
 };
+
+export const useHiddenProduct = () => {
+  return useCustomInfiniteQuery({
+    queryKey: queryKeys.hiddenProducts(),
+    queryFn: ({ pageParam = 0 }: any) => userService.GET.hiddenProducts(pageParam),
+  });
+};
+
+export const useSalesProduct = () => {
+  return useCustomInfiniteQuery({
+    queryKey: queryKeys.salesProducts(),
+    queryFn: ({ pageParam = 0 }: any) => userService.GET.salesProducts(pageParam),
+  });
+};
+
+export const useDonationHistory = (endPoint: string) => {
+  return useCustomInfiniteQuery({
+    queryKey: queryKeys.donationHistory(endPoint),
+    queryFn: ({ pageParam = 0 }: any) => userService.GET.donationHistory(endPoint, pageParam),
+  });
+};
+
+export const useWishList = () => {
+  return useCustomInfiniteQuery({
+    queryKey: queryKeys.wishList(),
+    queryFn: ({ pageParam = 0 }: any) => userService.GET.wishList(pageParam),
+  });
+};
+
+export function useProfile() {
+  return useQuery({
+    queryKey: queryKeys.profile(),
+    queryFn: () => userService.GET.profile(),
+  });
+}
+
+export function usePurchaseHistory() {
+  return useQuery({
+    queryKey: queryKeys.purchaseHistory(),
+    queryFn: () => userService.GET.purchaseHistory(),
+  });
+}

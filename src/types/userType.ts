@@ -48,11 +48,33 @@ interface Products {
   time: string;
 }
 
+export interface MypageResponse {
+  user_name: string;
+  nick_name: string;
+  university_name: string;
+  style: string[];
+  profile_image: string[];
+  level: string;
+  next_level: string;
+  point: number;
+  remain_level_point: number;
+}
+
+export interface AccountResponse {
+  user_name: string;
+  university_name: string;
+  university_email: string;
+}
+
 export type CompletedProducts = Products;
 export type SalesProducts = Products;
 
 export interface HiddenProducts extends Products {
   is_private: boolean;
+}
+
+export interface PurchaseProduct extends Products {
+  is_selected: boolean;
 }
 
 export interface WishItem extends Products {
@@ -73,10 +95,7 @@ export interface ProfileResponse {
   style: string[];
 }
 
-export interface PurchaseProductsResponse extends Products {
-  is_selected: boolean;
-}
-
+export type PurchaseProductsResponse = Array<PurchaseProduct>;
 export type BlockListResponse = InfiniteQueryResponse<BlockListType>;
 export type CompletedProductsResponse = InfiniteQueryResponse<CompletedProducts>;
 export type HiddenProductsResponse = InfiniteQueryResponse<HiddenProducts>;

@@ -8,17 +8,18 @@ import {
   TableDonationHistory,
   TextLabel,
 } from 'components/index';
-import { useDonationHistoryQuery } from 'queries/user/useDonationHistoryQuery';
 import { useInView } from 'react-intersection-observer';
+import { useDonationHistory } from 'service/user/useUserService';
 
 const DonationHistory = () => {
   const [showCompletedOnly, setShowCompletedOnly] = useState(false);
+  const endPoint = showCompletedOnly ? `complete/` : ``;
   const {
-    data: donationHistoryQuery,
+    data: donationData,
     status,
     fetchNextPage,
     isFetchingNextPage,
-  } = useDonationHistoryQuery(showCompletedOnly);
+  } = useDonationHistory(endPoint);
   const { ref, inView } = useInView({ threshold: 0, delay: 0 });
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const DonationHistory = () => {
 
       <S.TableHeader>
         <TextLabel size={13} $weight={400} color={'var(--grey-6)'}>
-          총 {donationHistoryQuery ? donationHistoryQuery.totalElements : 0}개
+          총 {donationData ? donationData.totalElements : 0}개
         </TextLabel>
         <Checkbox
           label="완료된 내역만 보기"
@@ -49,7 +50,7 @@ const DonationHistory = () => {
         />
       </S.TableHeader>
 
-      <TableDonationHistory donationData={donationHistoryQuery?.pagesData || []} status={status} />
+      <TableDonationHistory donationData={donationData?.pagesData || []} status={status} />
       {isFetchingNextPage ? (
         <Loading $width="100%" $height="50px" />
       ) : (

@@ -1,11 +1,11 @@
 import { USER_ID } from 'constants/shared';
 import { getData } from 'service';
 import {
-  AccountInfoType,
+  AccountResponse,
   BlockListResponse,
   CompletedProductsResponse,
   DonationHistoryResponse,
-  MypageUserType,
+  MypageResponse,
   ProfileResponse,
   PurchaseProductsResponse,
   SalesProductsResponse,
@@ -13,11 +13,11 @@ import {
 } from 'types/userType';
 
 const GET = {
-  mypage(): Promise<MypageUserType> {
+  mypage(): Promise<MypageResponse> {
     return getData(`/users/${USER_ID}`);
   },
 
-  accountInfo(): Promise<AccountInfoType> {
+  accountInfo(): Promise<AccountResponse> {
     return getData(`/users/userInfo/${USER_ID}`);
   },
 
