@@ -1,4 +1,4 @@
-import { instanceWithoutAuth } from 'service';
+import { instanceWithoutAuth } from 'service/service';
 import { LoginFormData } from 'types/authType';
 
 const POST = {

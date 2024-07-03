@@ -1,5 +1,6 @@
 import { USER_ID } from 'constants/shared';
-import { getData } from 'service';
+import { getData } from 'service/service';
+
 import {
   AccountResponse,
   BlockListResponse,
