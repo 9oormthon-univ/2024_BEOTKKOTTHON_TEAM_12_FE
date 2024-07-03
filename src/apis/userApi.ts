@@ -1,6 +1,6 @@
 import { instance } from 'apis';
 import { USER_ID } from 'constants/shared';
-import { AccountInfoType } from 'types/userType';
+import { AccountInfo } from 'types/userType';
 
 const GET = {
   completedProducts(pageParam: number) {
@@ -27,7 +27,7 @@ const GET = {
 };
 
 const PUT = {
-  changedAccountInfo(accountInfo: AccountInfoType) {
+  changedAccountInfo(accountInfo: AccountInfo) {
     return instance.put(`/users/userInfo/update/${USER_ID}`, accountInfo);
   },
   changedProfile(userInfo: any) {

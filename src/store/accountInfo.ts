@@ -1,15 +1,15 @@
-import { AccountInfoType } from 'types/userType';
+import { AccountInfo } from 'types/userType';
 import { create } from 'zustand';
 
 interface Actions {
-  setAccountInfo: (obj: AccountInfoType) => void;
+  setAccountInfo: (obj: AccountInfo) => void;
   setUserName: (str: string) => void;
   setUniversityName: (str: string) => void;
   setUniversityEmail: (str: string) => void;
 }
 
 interface ProductsStore {
-  accountInfo: AccountInfoType;
+  accountInfo: AccountInfo;
   actions: Actions;
 }
 
@@ -20,7 +20,7 @@ export const useProductStore = create<ProductsStore>((set) => ({
     university_email: '',
   },
   actions: {
-    setAccountInfo: (obj: AccountInfoType) => set(() => ({ accountInfo: { ...obj } })),
+    setAccountInfo: (obj: AccountInfo) => set(() => ({ accountInfo: { ...obj } })),
     setUserName: (str: string) =>
       set((state) => ({ accountInfo: { ...state.accountInfo, user_name: str } })),
     setUniversityName: (str: string) =>

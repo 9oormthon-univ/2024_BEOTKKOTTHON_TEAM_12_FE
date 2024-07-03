@@ -1,7 +1,9 @@
 import { USER_ID } from 'constants/shared';
-import { getData } from 'service/service';
+import { deleteData, getData, putData } from 'service/service';
+import { PutQueryResponse } from 'types/common';
 
 import {
+  AccountInfo,
   AccountResponse,
   BlockListResponse,
   CompletedProductsResponse,
@@ -10,6 +12,8 @@ import {
   ProfileResponse,
   PurchaseProductsResponse,
   SalesProductsResponse,
+  UnblockResponse,
+  UserProfile,
   WishListResponse,
 } from 'types/userType';
 
@@ -55,8 +59,31 @@ const GET = {
   },
 };
 
+const PUT = {
+  changeAccount(account: AccountInfo): Promise<PutQueryResponse> {
+    return putData(`/users/myHistory/${USER_ID}`, account);
+  },
+  changeProfile(userInfo: UserProfile): Promise<PutQueryResponse> {
+    return putData(`/users/profile/${USER_ID}`, userInfo);
+  },
+  changeSalesToCompleted(productId: number): Promise<PutQueryResponse> {
+    return putData(`/users/myProducts/onSale/${USER_ID}`, {
+      id: productId,
+      post_status: 'soldOut',
+    });
+  },
+};
+
+const DELETE = {
+  unblock(blockedId: string): Promise<UnblockResponse> {
+    return deleteData(`/users/blockedUsers/unBlock/${USER_ID}/${blockedId}`);
+  },
+};
+
 const userService = {
   GET,
+  PUT,
+  DELETE,
 };
 
 export default userService;

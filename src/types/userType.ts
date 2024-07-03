@@ -32,7 +32,7 @@ export interface SigninFormDataType {
 }
 
 // 계정정보 데이터 타입
-export interface AccountInfoType {
+export interface AccountInfo {
   user_name: string;
   university_name: string;
   university_email: string;
@@ -95,6 +95,12 @@ export interface ProfileResponse {
   style: string[];
 }
 
+export interface UnblockResponse {
+  status: number;
+  message: string;
+  timestamp: string;
+}
+
 export type PurchaseProductsResponse = Array<PurchaseProduct>;
 export type BlockListResponse = InfiniteQueryResponse<BlockListType>;
 export type CompletedProductsResponse = InfiniteQueryResponse<CompletedProducts>;
@@ -102,3 +108,4 @@ export type HiddenProductsResponse = InfiniteQueryResponse<HiddenProducts>;
 export type DonationHistoryResponse = InfiniteQueryResponse<DonationHistory>;
 export type WishListResponse = InfiniteQueryResponse<WishItem[]>;
 export type SalesProductsResponse = InfiniteQueryResponse<SalesProducts>;
+export type UserProfile = Pick<MypageResponse, 'nick_name' | 'profile_image' | 'style'>;

@@ -1,14 +1,13 @@
 import { Header, TextLabel, TextInput, ButtonBack, Loading, BoxError } from 'components/index';
 import * as S from './style';
 import { useEffect } from 'react';
-import { useChangeAccountMutation } from 'queries/user/useChangeAccountMutation';
-import { useAccount } from 'service/user/useUserService';
+import { useAccount, useChangeAccount } from 'service/user/useUserService';
 import { useAccountInfo, useAccountInfoActions } from 'store/accountInfo';
 
 const AccountInfo = () => {
   const accountInfo = useAccountInfo();
   const { setAccountInfo, setUserName } = useAccountInfoActions();
-  const { mutate: changeAccountInfo } = useChangeAccountMutation();
+  const { mutate: changeAccountInfo } = useChangeAccount();
   const { data: accountInfoData, status } = useAccount();
 
   useEffect(() => {

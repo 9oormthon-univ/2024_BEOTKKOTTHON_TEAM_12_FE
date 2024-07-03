@@ -27,3 +27,18 @@ export async function getInfiniteData<T>(endpoint: string, pageParam: number): P
   const response = await instance.get(`${endpoint}?pageNumber=${pageParam}`);
   return response.data;
 }
+
+export async function postData<T, U>(endpoint: string, data: U): Promise<T> {
+  const response = await instance.post(endpoint, data);
+  return response.data;
+}
+
+export async function putData<T, U>(endpoint: string, data: U): Promise<T> {
+  const response = await instance.put(endpoint, data);
+  return response.data;
+}
+
+export async function deleteData<T>(endpoint: string): Promise<T> {
+  const response = await instance.delete(endpoint);
+  return response.data;
+}

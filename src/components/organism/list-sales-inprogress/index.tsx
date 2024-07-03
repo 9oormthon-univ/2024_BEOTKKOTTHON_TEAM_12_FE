@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
 import * as S from './style';
 import ModalProduct from 'components/molcule/modal-product';
 import Button from 'components/atom/button';
 import { useProductList } from 'store/productListData';
-import { usePostSalesCompletedMutation } from 'queries/user/usePostSalesCompletedMutation';
 import { ProductListItem } from 'types/productType';
 import { BoxError, BoxItemTrade } from 'components';
 import { useToggle } from 'hooks/useToggle';
+import { useChangeSalesToCompleted } from 'service/user/useUserService';
 
 const ListSalesInprogress: React.FC = () => {
   const productList = useProductList();
-  const { mutate: postSalesCompletedMutation } = usePostSalesCompletedMutation();
+  const { mutate: postSalesCompletedMutation } = useChangeSalesToCompleted();
   const [isOpenModal, togleOpenModal] = useToggle(false);
 
   if (productList.length === 0)

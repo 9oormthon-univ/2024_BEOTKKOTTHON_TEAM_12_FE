@@ -1,7 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import queryKeys from './queries';
 import userService from './userService';
 import { useCustomInfiniteQuery } from 'hooks/useCustomInfiniteQuery';
+import { AccountInfo } from 'types/userType';
 
 export function useMypage() {
   return useQuery({
@@ -72,3 +73,39 @@ export function usePurchaseHistory() {
     queryFn: () => userService.GET.purchaseHistory(),
   });
 }
+
+export function useUnblock() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (blockedId: string) => userService.DELETE.unblock(blockedId),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.blockList() }),
+    onError: () => alert('차단을 해제하지 못했습니다.'),
+  });
+}
+
+export const useChangeAccount = () => {
+  return useMutation({
+    mutationFn: (accountInfo: AccountInfo) => userService.PUT.changeAccount(accountInfo),
+    onSuccess: () => alert('저장되었습니다.'),
+    onError: () => alert('저장하지 못했습니다. 다시 시도해주세요.'),
+  });
+};
+
+export const useChangeProfile = () => {
+  return useMutation({
+    mutationFn: (userInfo: any) => userService.PUT.changeProfile(userInfo),
+    onSuccess: () => alert('프로필을 수정하였습니다.'),
+    onError: () => alert('프로필을 수정하지 못했습니다.'),
+  });
+};
+
+export const useChangeSalesToCompleted = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (productId: number) => userService.PUT.changeSalesToCompleted(productId),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.salesProducts() }),
+    onError: () => alert('상품 상태를 변경하지 못했습니다.'),
+  });
+};

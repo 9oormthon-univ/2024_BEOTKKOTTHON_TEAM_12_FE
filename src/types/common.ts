@@ -11,3 +11,9 @@ export interface InfiniteQueryResponse<T> {
   numberOfElements: number;
   empty: boolean;
 }
+
+export interface PutQueryResponse {
+  status: number;
+  message: string;
+  timestamp: string;
+}

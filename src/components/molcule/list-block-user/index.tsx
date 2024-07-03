@@ -3,7 +3,7 @@ import Loading from 'components/atom/loading';
 import { BoxError, Button, ProfileAvatar, TextLabel } from 'components';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { BlockListType } from 'types/userType';
-import { useUnblockMutation } from 'queries/user/useUnblockMutation';
+import { useUnblock } from 'service/user/useUserService';
 
 interface ListBlockUser {
   userList: BlockListType[];
@@ -11,7 +11,7 @@ interface ListBlockUser {
 }
 
 const ListBlockUser = ({ userList, status }: ListBlockUser) => {
-  const { mutate: unblockMutation } = useUnblockMutation();
+  const { mutate: unblockMutation } = useUnblock();
   const height = `var(--content-size)`;
 
   if (status === 'pending') return <Loading $height={height} />;
