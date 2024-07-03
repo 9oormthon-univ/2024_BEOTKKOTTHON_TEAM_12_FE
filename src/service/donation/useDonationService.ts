@@ -10,6 +10,7 @@ export const useRanking = () => {
   });
 };
 
+// 수정 필요
 export const useDonationMutation = () => {
   const donationForm = useDonationForm();
   const charityNumber = useCharityNumber();
