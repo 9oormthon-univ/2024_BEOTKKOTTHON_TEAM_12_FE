@@ -2,11 +2,11 @@ import * as S from './style';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { TextLabel } from 'components/index';
 import { Link } from 'react-router-dom';
-import { MypageUserType } from 'types/userType';
+import { MypageResponse } from 'types/userType';
 import { IoIosHelpCircleOutline } from 'react-icons/io';
 
 interface ProgressBarProps {
-  userData: MypageUserType;
+  userData: MypageResponse;
 }
 
 const ProgressBar = ({ userData }: ProgressBarProps) => {

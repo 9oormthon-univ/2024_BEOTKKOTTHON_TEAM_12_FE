@@ -1,9 +1,8 @@
 import { USER_ID } from 'constants/shared';
 import { deleteData, getData, putData } from 'service/service';
-import { PutQueryResponse } from 'types/common';
+import { DefaultQueryResponse } from 'types/common';
 
 import {
-  AccountInfo,
   AccountResponse,
   BlockListResponse,
   CompletedProductsResponse,
@@ -60,13 +59,13 @@ const GET = {
 };
 
 const PUT = {
-  changeAccount(account: AccountInfo): Promise<PutQueryResponse> {
+  changeAccount(account: AccountResponse): Promise<DefaultQueryResponse> {
     return putData(`/users/myHistory/${USER_ID}`, account);
   },
-  changeProfile(userInfo: UserProfile): Promise<PutQueryResponse> {
+  changeProfile(userInfo: UserProfile): Promise<DefaultQueryResponse> {
     return putData(`/users/profile/${USER_ID}`, userInfo);
   },
-  changeSalesToCompleted(productId: number): Promise<PutQueryResponse> {
+  changeSalesToCompleted(productId: number): Promise<DefaultQueryResponse> {
     return putData(`/users/myProducts/onSale/${USER_ID}`, {
       id: productId,
       post_status: 'soldOut',

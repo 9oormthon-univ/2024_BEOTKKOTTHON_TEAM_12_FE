@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import queryKeys from './queries';
 import userService from './userService';
 import { useCustomInfiniteQuery } from 'hooks/useCustomInfiniteQuery';
-import { AccountInfo } from 'types/userType';
+import { AccountResponse } from 'types/userType';
 
 export function useMypage() {
   return useQuery({
@@ -86,7 +86,7 @@ export function useUnblock() {
 
 export const useChangeAccount = () => {
   return useMutation({
-    mutationFn: (accountInfo: AccountInfo) => userService.PUT.changeAccount(accountInfo),
+    mutationFn: (accountInfo: AccountResponse) => userService.PUT.changeAccount(accountInfo),
     onSuccess: () => alert('저장되었습니다.'),
     onError: () => alert('저장하지 못했습니다. 다시 시도해주세요.'),
   });

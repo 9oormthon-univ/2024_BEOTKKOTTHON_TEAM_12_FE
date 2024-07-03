@@ -12,7 +12,7 @@ export interface InfiniteQueryResponse<T> {
   empty: boolean;
 }
 
-export interface PutQueryResponse {
+export interface DefaultQueryResponse {
   status: number;
   message: string;
   timestamp: string;
