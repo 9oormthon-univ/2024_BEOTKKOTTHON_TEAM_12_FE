@@ -3,7 +3,6 @@ import productService from './productService';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import queryKeys from './queries';
 import { ProductFormDataType } from 'types/productType';
-import { useProductActions } from 'store/product';
 
 export const useProductMain = (activeCategory: string, clickedOnSale: string | null) => {
   return useCustomInfiniteQuery({
