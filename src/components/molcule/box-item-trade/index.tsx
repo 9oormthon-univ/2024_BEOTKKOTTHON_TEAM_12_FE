@@ -5,22 +5,21 @@ import defaultImg from 'assets/images/product-default-img.png';
 import { useNavigate } from 'react-router-dom';
 import { transformPrice } from 'utils/transformPrice';
 import { truncatedName } from 'utils/truncatedName';
-import { ProductListItem } from 'types/productType';
-import { useLikedMutation } from 'queries/products/useLikedMutation';
-import { useUnlikedMutation } from 'queries/products/useUnlikedMutation';
+import { ProductItem } from 'types/productType';
 import { useProductListActions } from 'store/productListData';
 import { GoHeartFill } from 'react-icons/go';
+import { useLiked, useUnliked } from 'service/product/useProductService';
 
 interface SaleItemProps {
-  product: ProductListItem;
+  product: ProductItem;
   $marginBottom?: string;
 }
 
 const BoxItemTrade: React.FC<SaleItemProps> = ({ product, $marginBottom }) => {
   const navigate = useNavigate();
   const { setIsSelected } = useProductListActions();
-  const { mutate: likedMutation } = useLikedMutation(product.id);
-  const { mutate: unlikedMutation } = useUnlikedMutation(product.id);
+  const { mutate: likedMutation } = useLiked(product.id);
+  const { mutate: unlikedMutation } = useUnliked(product.id);
   const soldState = product.post_status === 'soldOut';
   const circleUrl = product.product_status === '아주 좋아요' ? stategreen : stategrey;
 

@@ -2,7 +2,7 @@ import * as S from './style';
 import ModalProduct from 'components/molcule/modal-product';
 import Button from 'components/atom/button';
 import { useProductList } from 'store/productListData';
-import { ProductListItem } from 'types/productType';
+import { ProductItem } from 'types/productType';
 import { BoxError, BoxItemTrade } from 'components';
 import { useToggle } from 'hooks/useToggle';
 import { useChangeSalesToCompleted } from 'service/user/useUserService';
@@ -17,7 +17,7 @@ const ListSalesInprogress: React.FC = () => {
 
   return (
     <S.Container>
-      {productList.map((item: ProductListItem) => (
+      {productList.map((item: ProductItem) => (
         <S.SaleWrapper key={item.id}>
           {isOpenModal && (
             <ModalProduct

@@ -1,14 +1,14 @@
 import { FormTrade, Header } from 'components/index';
 import { useNavigate } from 'react-router-dom';
-import { useNewProductMutation } from 'queries/products/useNewProductMutation';
 import { useEffect } from 'react';
 import { useProductListActions } from 'store/productListData';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useNewProduct } from 'service/product/useProductService';
 
 const ProductNew = () => {
   const navigate = useNavigate();
   const { setActiveCategory } = useProductListActions();
-  const { mutate: newProductMutation } = useNewProductMutation();
+  const { mutate: newProductMutation } = useNewProduct();
 
   useEffect(() => {
     setActiveCategory('');

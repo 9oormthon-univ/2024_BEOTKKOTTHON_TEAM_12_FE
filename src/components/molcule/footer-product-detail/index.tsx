@@ -1,21 +1,20 @@
 import * as S from './style';
 import { Button } from 'components/index';
 import { transformPrice } from 'utils/transformPrice';
-import { useLikedMutation } from 'queries/products/useLikedMutation';
-import { useUnlikedMutation } from 'queries/products/useUnlikedMutation';
-import { ProductDetailItem } from 'types/productType';
+import { ProductDetailResponse } from 'types/productType';
 import { useNewChatRoom } from 'queries/chatting/useNewChatRoom';
 import { USER_ID } from 'constants/shared';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
+import { useLiked, useUnliked } from 'service/product/useProductService';
 
 interface FooterProductDetailProps {
-  product: ProductDetailItem;
+  product: ProductDetailResponse;
   status: string;
 }
 
 const FooterProductDetail = ({ product, status }: FooterProductDetailProps) => {
-  const { mutate: likedMutation } = useLikedMutation(product?.id as number);
-  const { mutate: unlikedMutation } = useUnlikedMutation(product?.id as number);
+  const { mutate: likedMutation } = useLiked(product?.id as number);
+  const { mutate: unlikedMutation } = useUnliked(product?.id as number);
   const { mutate: roomIdMutation } = useNewChatRoom();
 
   const isMine = product?.seller.id === USER_ID;

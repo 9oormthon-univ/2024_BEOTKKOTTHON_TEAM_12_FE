@@ -1,14 +1,10 @@
 import BoxKebabList from 'components/atom/box-kebab-list';
 import { USER_ID } from 'constants/shared';
-import { useHideMutation } from 'queries/products/useHideMutation';
-import { useOnSaleMutation } from 'queries/products/useOnSaleMutation';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ModalProduct from '../modal-product';
-import { useDeleteMutation } from 'queries/products/useDeleteMutation';
-import { useProduct } from 'store/product';
-import { ProductDetailItem } from 'types/productType';
-import { useBlockUserMutation } from 'queries/products/useBlockUserMutation';
+import { useProduct, useProductActions } from 'store/product';
 import { useToggle } from 'hooks/useToggle';
+import { useBlock, useDeleteProduct, useHide, useOnSale } from 'service/product/useProductService';
 
 interface KebabProductDetailProps {
   id: string;
@@ -16,12 +12,30 @@ interface KebabProductDetailProps {
 
 const KebabProductDetail = ({ id }: KebabProductDetailProps) => {
   const product = useProduct();
+  const status = product?.post_status;
+  const navigate = useNavigate();
   const [isOpenModal, togleOpenModal] = useToggle(false);
+  const { updateOnSale } = useProductActions();
 
-  const { mutate: onSaleMutation } = useOnSaleMutation(id, product as ProductDetailItem);
-  const { mutate: hideMutation } = useHideMutation(id);
-  const { mutate: deleteMutation } = useDeleteMutation(id);
-  const { mutate: blockMutation } = useBlockUserMutation(product?.seller.id as number);
+  const { mutate: onSaleMutation } = useOnSale(id, status);
+  const { mutate: hideMutation } = useHide(id, product?.is_private as boolean);
+  const { mutate: deleteMutation } = useDeleteProduct(id);
+  const { mutate: blockMutation } = useBlock(product?.seller.id as number);
+
+  const handleClick = () => {
+    blockMutation();
+    navigate(-1);
+  };
+
+  const handleClickOnSale = () => {
+    onSaleMutation();
+    updateOnSale(product?.post_status === 'onSale' ? 'soldOut' : 'onSale');
+  };
+
+  const handleClickDelete = () => {
+    deleteMutation();
+    navigate('/product');
+  };
 
   if (!product) return null;
 
@@ -29,7 +43,7 @@ const KebabProductDetail = ({ id }: KebabProductDetailProps) => {
     <>
       {product.seller?.id !== USER_ID ? (
         <BoxKebabList>
-          <p onClick={() => blockMutation()}>차단하기</p>
+          <p onClick={handleClick}>차단하기</p>
           <p className="red">신고하기</p>
         </BoxKebabList>
       ) : (
@@ -38,7 +52,7 @@ const KebabProductDetail = ({ id }: KebabProductDetailProps) => {
             <Link to={`/product/edit/${id}`}>수정하기</Link>
           </p>
 
-          <p onClick={() => onSaleMutation()}>
+          <p onClick={handleClickOnSale}>
             {product.post_status === 'onSale' ? '판매 완료로 변경' : '판매 중으로 변경'}
           </p>
 
@@ -57,7 +71,7 @@ const KebabProductDetail = ({ id }: KebabProductDetailProps) => {
           isOpenModal={isOpenModal}
           togleOpenModal={togleOpenModal}
           id={id as string}
-          onClick={() => deleteMutation()}
+          onClick={handleClickDelete}
         >
           <p>게시글을 삭제하시겠어요?</p>
         </ModalProduct>

@@ -1,16 +1,16 @@
-import { ProductListItem } from 'types/productType';
+import { ProductItem } from 'types/productType';
 import { create } from 'zustand';
 
 interface Actions {
   setInitialProductList: () => void;
-  addProductList: (newProductList: ProductListItem[]) => void;
+  addProductList: (newProductList: ProductItem[]) => void;
   setActiveCategory: (category: string) => void;
   setClickedOnSale: () => void;
   setIsSelected: (productId: number) => void;
 }
 
 interface ProductListDataStore {
-  productList: ProductListItem[];
+  productList: ProductItem[];
   activeCategory: string;
   clickedOnSale: string | null;
   actions: Actions;

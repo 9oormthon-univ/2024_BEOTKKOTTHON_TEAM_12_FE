@@ -1,13 +1,11 @@
-import { USER_ID } from 'constants/shared';
 import { BoxTag, Tag } from 'components/index';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useSearchActions } from 'store/search';
 import { useState } from 'react';
-import { useRecentSearch } from 'queries/products/useRecentSearch';
-import { useTagDelete } from 'queries/products/useTagDelete';
+import { useRecentSearch, useTagDelete } from 'service/product/useProductService';
 
 const ListSearchTag = () => {
-  const { data: recentSearchData, status } = useRecentSearch(USER_ID);
+  const { data: recentSearchData, status } = useRecentSearch();
   const { mutate: tagDeleteMutation } = useTagDelete();
   const { changeSearchData } = useSearchActions();
 
@@ -41,6 +39,8 @@ const ListSearchTag = () => {
   if (status === 'pending') return null;
   if (status === 'error') return null;
 
+  console.log(recentSearchData);
+
   return (
     <BoxTag
       onMouseDown={startDragging}
@@ -48,7 +48,7 @@ const ListSearchTag = () => {
       onMouseUp={stopDragging}
       onMouseMove={whileDragging}
     >
-      {recentSearchData.map((search: string, index: number) => (
+      {recentSearchData.search_name_list.map((search: string, index: number) => (
         <Tag onClick={() => changeSearchData(search)} key={index}>
           <p>{search}</p>
           <div className="close" onClick={() => handleClickClose(search)}>
