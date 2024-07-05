@@ -1,8 +1,8 @@
 import { Header, TextLabel, TextInput, ButtonBack, Loading, BoxError } from 'components/index';
 import * as S from './style';
-import { useEffect } from 'react';
 import { useAccount, useChangeAccount } from 'service/user/useUserService';
 import { useAccountInfo, useAccountInfoActions } from 'store/accountInfo';
+import useConditionalUpdate from 'hooks/useConditionalUpdate';
 
 const AccountInfo = () => {
   const accountInfo = useAccountInfo();
@@ -10,9 +10,7 @@ const AccountInfo = () => {
   const { mutate: changeAccountInfo } = useChangeAccount();
   const { data: accountInfoData, status } = useAccount();
 
-  useEffect(() => {
-    if (accountInfoData) setAccountInfo(accountInfoData);
-  }, [accountInfoData]);
+  useConditionalUpdate(accountInfoData, setAccountInfo);
 
   if (status === 'pending') return <Loading $height="100svh" />;
 

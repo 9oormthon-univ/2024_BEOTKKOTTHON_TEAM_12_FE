@@ -8,9 +8,9 @@ import {
 import { useParams } from 'react-router-dom';
 import { GoKebabHorizontal } from 'react-icons/go';
 import { useToggle } from 'hooks/useToggle';
-import { useEffect } from 'react';
 import { useProductActions } from 'store/product';
 import { useProductDetail } from 'service/product/useProductService';
+import useConditionalUpdate from 'hooks/useConditionalUpdate';
 
 const ProductDetail = () => {
   const { id } = useParams() as { id: string };
@@ -18,9 +18,7 @@ const ProductDetail = () => {
   const { data: detailData, status } = useProductDetail(id);
   const [isOpen, togleOpen] = useToggle(false);
 
-  useEffect(() => {
-    if (detailData) setProduct(detailData);
-  }, [detailData]);
+  useConditionalUpdate(detailData, setProduct);
 
   if (status === 'pending') return null;
   if (status === 'error') return null;
