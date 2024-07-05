@@ -2,6 +2,7 @@ import clothes from 'assets/onboarding/clothes.svg';
 import donation from 'assets/onboarding/donation.svg';
 import earth from 'assets/onboarding/earth.svg';
 import tag from 'assets/onboarding/tag.svg';
+import wearProfile from 'assets/images/wear_profile.svg';
 
 // 기부 절차
 export const DONATION_HEADER = [
@@ -103,3 +104,17 @@ export const STYLE_TAGS = [
   '섹시글램',
   '아메카지',
 ];
+
+export const CHATTING_WEAR = {
+  chat_other_id: -1,
+  chat_other_level: '',
+  chat_other_nick_name: '팀 WEAR',
+  chat_room_id: -1,
+  product_image: [wearProfile],
+  message_info: {
+    is_mine: false,
+    message: `등록하신 <가져가세요> 상품이 5일동안 거래가`,
+    message_image: [],
+    time: '10:00',
+  },
+};

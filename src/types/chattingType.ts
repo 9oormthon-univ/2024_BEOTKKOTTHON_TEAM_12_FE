@@ -1,3 +1,5 @@
+import { InfiniteQueryResponse } from './common';
+
 export interface ChattingType {
   message_user_type: string;
   message: string | null;
@@ -31,3 +33,27 @@ export interface ChattingListType {
     is_mine: boolean;
   };
 }
+
+export interface ChattingDetailResponse {
+  chat_room_id: number;
+  product_id: number;
+  product_image: string[];
+  product_name: string;
+  price: number;
+  seller_id: number;
+  seller_nick_name: string;
+  seller_profile_image: string[];
+  seller_level: string;
+  customer_id: string;
+  customer_nick_name: string;
+  customer_profile_image: string[];
+  customer_level: string;
+  message_info_list: ChattingType[];
+}
+
+export interface NewRoomResponse {
+  chat_room_id: number;
+  is_created: boolean;
+}
+
+export type ChattingListResponse = InfiniteQueryResponse<ChattingListType[]>;

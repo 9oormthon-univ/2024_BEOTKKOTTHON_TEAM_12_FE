@@ -2,10 +2,10 @@ import * as S from './style';
 import { Button } from 'components/index';
 import { transformPrice } from 'utils/transformPrice';
 import { ProductDetailResponse } from 'types/productType';
-import { useNewChatRoom } from 'queries/chatting/useNewChatRoom';
 import { USER_ID } from 'constants/shared';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import { useLiked, useUnliked } from 'service/product/useProductService';
+import { useNewChatRoom } from 'service/chatting/useChattingService';
 
 interface FooterProductDetailProps {
   product: ProductDetailResponse;
