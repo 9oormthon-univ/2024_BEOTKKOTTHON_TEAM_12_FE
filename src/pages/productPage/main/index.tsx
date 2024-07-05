@@ -13,22 +13,28 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from 'assets/logo/logo.svg';
 import { useEffect } from 'react';
 import { useSearchActions } from 'store/search';
-import { useProductListActions } from 'store/productListData';
-import { useProductMainQuery } from 'queries/products/useProductMainQuery';
+import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 import { useInView } from 'react-intersection-observer';
 import { IoIosNotificationsOutline } from 'react-icons/io';
+import { useProductMain } from 'service/product/useProductService';
 
 const ProductMain = () => {
   const navigate = useNavigate();
+  const clickedOnSale = useClickedOnSale();
+  const activeCategory = useActiveCategory();
+  const { addProductList, setActiveCategory } = useProductListActions();
+  const { changeSearchData } = useSearchActions();
+  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
   const {
-    data: productMainQuery,
+    data: mainData,
     status,
     fetchNextPage,
     isFetchingNextPage,
-  } = useProductMainQuery();
-  const { changeSearchData } = useSearchActions();
-  const { setActiveCategory } = useProductListActions();
-  const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+  } = useProductMain(activeCategory, clickedOnSale);
+
+  useEffect(() => {
+    if (mainData) addProductList(mainData.pagesData);
+  }, [mainData]);
 
   useEffect(() => {
     if (inView && fetchNextPage) fetchNextPage();
@@ -56,7 +62,7 @@ const ProductMain = () => {
         </section>
 
         <section className="filter">
-          <FilterTrade totalElements={productMainQuery?.totalElements || 0} />
+          <FilterTrade totalElements={mainData?.totalElements || 0} />
         </section>
 
         <section className="items">

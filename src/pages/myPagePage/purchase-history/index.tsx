@@ -1,13 +1,19 @@
 import { ButtonBack, Header, ListTradeItems, Loading, TextLabel } from 'components/index';
 import * as S from './style';
-import { usePurchaseHistoryQuery } from 'queries/user/usePurchaseHistoryQuery';
-import { useProductList } from 'store/productListData';
+import { useProductList, useProductListActions } from 'store/productListData';
+import { usePurchaseHistory } from 'service/user/useUserService';
+import { useEffect } from 'react';
 
 const PurchaseHistory = () => {
   const productList = useProductList();
-  const purchaseHistoryQuery = usePurchaseHistoryQuery();
+  const { data: purchaseHistory, status } = usePurchaseHistory();
+  const { addProductList } = useProductListActions();
 
-  if (purchaseHistoryQuery.isLoading) return <Loading />;
+  useEffect(() => {
+    if (purchaseHistory) addProductList(purchaseHistory);
+  }, [purchaseHistory]);
+
+  if (status === 'pending') return <Loading />;
 
   return (
     <>

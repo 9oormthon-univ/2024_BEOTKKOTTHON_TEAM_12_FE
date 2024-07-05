@@ -1,23 +1,16 @@
 import { Header, TextLabel, TextInput, ButtonBack, Loading, BoxError } from 'components/index';
 import * as S from './style';
-import { useState } from 'react';
-import { useAccountInfoQuery } from 'queries/user/useAccountInfoQuery';
-import { useChangeAccountMutation } from 'queries/user/useChangeAccountMutation';
-import { AccountInfoType } from 'types/userType';
+import { useAccount, useChangeAccount } from 'service/user/useUserService';
+import { useAccountInfo, useAccountInfoActions } from 'store/accountInfo';
+import useConditionalUpdate from 'hooks/useConditionalUpdate';
 
 const AccountInfo = () => {
-  const { mutate: changeAccountInfo } = useChangeAccountMutation();
-  const [accountInfo, setAccountInfo] = useState<AccountInfoType>({
-    user_name: '',
-    university_name: '',
-    university_email: '',
-  });
+  const accountInfo = useAccountInfo();
+  const { setAccountInfo, setUserName } = useAccountInfoActions();
+  const { mutate: changeAccountInfo } = useChangeAccount();
+  const { data: accountInfoData, status } = useAccount();
 
-  const { status } = useAccountInfoQuery(setAccountInfo);
-
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAccountInfo({ ...accountInfo, user_name: e.target.value });
-  };
+  useConditionalUpdate(accountInfoData, setAccountInfo);
 
   if (status === 'pending') return <Loading $height="100svh" />;
 
@@ -52,7 +45,7 @@ const AccountInfo = () => {
             name="user_name"
             labelSize={16}
             value={accountInfo.user_name}
-            onChange={onChangeInput}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <TextInput
             label="학교"

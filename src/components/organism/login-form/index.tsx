@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import * as S from './style';
 import { Checkbox, PasswordInput, Button, BoxInput } from 'components/index';
 import { useNavigate } from 'react-router-dom';
-import { useLogin } from 'queries/auth/useLogin';
 import { LoginFormData } from 'types/authType';
 import { LOGIN_DATA } from 'constants/shared';
+import { useLogin } from 'service/auth/useAuthService';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -15,11 +15,10 @@ const LoginForm = () => {
     password: LOGIN_DATA.user_password,
   });
 
-  const { mutate: loginMutation } = useLogin(formData);
+  const { mutate: loginMutation } = useLogin();
 
-  const handleLogin = async () => {
-    const data = loginMutation();
-    console.log('로그인', data);
+  const handleLogin = () => {
+    loginMutation(formData);
     navigate('/donation');
   };
 

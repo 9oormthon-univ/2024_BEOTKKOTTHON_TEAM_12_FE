@@ -1,16 +1,26 @@
 import { FormTrade, Header } from 'components/index';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useProductFormData } from 'store/productFormData';
-import { useEditProductMutation } from 'queries/products/useEditProductMutation';
-import { useProductEditQuery } from 'queries/products/useProductEditQuery';
+import { useFormDataActions, useProductFormData } from 'store/productFormData';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useEdit, useProductEdit } from 'service/product/useProductService';
+import { useProductListActions } from 'store/productListData';
+import { useEffect } from 'react';
 
 const ProductEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const formData = useProductFormData();
-  const { status } = useProductEditQuery(id as string);
-  const { mutate: editProductMutation } = useEditProductMutation(id as string);
+  const { setActiveCategory } = useProductListActions();
+  const { receiveProductFormData } = useFormDataActions();
+  const { data: editData, status } = useProductEdit(id as string);
+  const { mutate: editProductMutation } = useEdit(id as string);
+
+  useEffect(() => {
+    if (editData) {
+      receiveProductFormData(editData);
+      setActiveCategory(editData.category_name);
+    }
+  }, [editData]);
 
   return (
     <>

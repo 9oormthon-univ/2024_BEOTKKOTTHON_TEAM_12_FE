@@ -1,15 +1,35 @@
 import { FilterTrade, ListTag, ListTradeItems, Loading, Search } from 'components/index';
 import * as S from './style';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSearchQuery } from 'queries/products/useSearchQuery';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 import { IoMdArrowBack } from 'react-icons/io';
+import { useSearch } from 'service/product/useProductService';
+import { useSearchData } from 'store/search';
+import { useActiveCategory, useClickedOnSale, useProductListActions } from 'store/productListData';
 
 const SearchResult = () => {
   const navigate = useNavigate();
-  const { data: searchQuery, status, fetchNextPage, isFetchingNextPage } = useSearchQuery();
+  const searchName = useSearchData();
+  const onSale = useClickedOnSale();
+  const activeCategory = useActiveCategory();
+  const { setActiveCategory, addProductList } = useProductListActions();
+  const {
+    data: searchData,
+    status,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useSearch(onSale, searchName, activeCategory);
+
   const { ref, inView } = useInView({ threshold: 0, delay: 0 });
+
+  useEffect(() => {
+    setActiveCategory('전체');
+  }, []);
+
+  useEffect(() => {
+    if (searchData) addProductList(searchData.pagesData);
+  }, [searchData]);
 
   useEffect(() => {
     if (inView && fetchNextPage) fetchNextPage();
@@ -30,7 +50,7 @@ const SearchResult = () => {
         </section>
 
         <section className="filter">
-          <FilterTrade totalElements={searchQuery?.totalElements || 0} />
+          <FilterTrade totalElements={searchData?.totalElements || 0} />
         </section>
 
         <section className="items">

@@ -2,11 +2,11 @@ import { Button, TextLabel } from 'components/index';
 import * as S from './style';
 import { useRef, ChangeEvent, useState } from 'react';
 import noImg from 'assets/images/profile-no-image.png';
-import { useImgUploadMutation } from 'queries/image-upload/useImgUploadMutaion';
-import { ProfileUserType } from 'types/userType';
+import { ProfileResponse } from 'types/userType';
+import { useImageUpload } from 'service/image/useImageService';
 
 interface ImageInputProps {
-  profileEditQuery: ProfileUserType;
+  profileEditQuery: ProfileResponse;
 }
 
 const ImageInput = ({ profileEditQuery }: ImageInputProps) => {
@@ -14,14 +14,15 @@ const ImageInput = ({ profileEditQuery }: ImageInputProps) => {
   const [img, setImg] = useState(profile_image[0] || noImg);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { mutate: ImgUploadMutation } = useImgUploadMutation(setImg);
+  const { mutateAsync: imageMutation } = useImageUpload();
 
-  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       const sendImgData = new FormData();
       sendImgData.append('files', file);
-      ImgUploadMutation(sendImgData);
+      const imgStr = await imageMutation(sendImgData);
+      setImg(imgStr);
     }
   };
 

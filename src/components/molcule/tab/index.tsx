@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import { BoxError, ListSalesInprogress, ListTradeItems, Loading } from 'components';
 import { useInView } from 'react-intersection-observer';
-import { useSalesHistoryQueries } from 'queries/user/useSalesHistoryQueries';
+import { useSalesHistoryQueries } from 'hooks/useSalesHistoryQueries';
 
 const Tab = () => {
   const tabs = ['판매 중', '판매 완료', '숨김'];

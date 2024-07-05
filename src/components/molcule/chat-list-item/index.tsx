@@ -2,21 +2,26 @@ import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import TextLabel from 'components/atom/text-label';
-import { useChattingList } from 'queries/chatting/useChattingList';
 import Loading from 'components/atom/loading';
 import { ChattingListType } from 'types/chattingType';
-import { useChattingListData } from 'store/chattingList';
 import BoxError from 'components/atom/box-error';
+import { useEffect } from 'react';
+import { CHATTING_WEAR } from 'constants/shared';
+import { useChattingList } from 'service/chatting/useChattingService';
 
 const ChatListItem = () => {
+  let chattingList: ChattingListType[] = [CHATTING_WEAR];
   const navigate = useNavigate();
-
-  const { status } = useChattingList();
-  const chattingList = useChattingListData();
+  const { data: chattingListData, status } = useChattingList();
 
   const handleClick = (room_id: number) => {
     navigate(`/chat/room/${room_id}`);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line no-unsafe-optional-chaining
+    if (chattingListData) chattingList = [...chattingList, ...chattingListData?.content];
+  }, [chattingListData]);
 
   if (status === 'pending') return <Loading $height="var(--content-size)" />;
   if (status === 'error')

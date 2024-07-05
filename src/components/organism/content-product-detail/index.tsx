@@ -1,9 +1,9 @@
 import { BoxError, BoxProductProfile, Carousel, DescriptionProduct, Loading } from 'components';
 import * as S from './style';
-import { ProductDetailItem, Seller } from 'types/productType';
+import { ProductDetailResponse, Seller } from 'types/productType';
 
 interface ContentProductDetailProps {
-  product: ProductDetailItem;
+  product: ProductDetailResponse;
   status: string;
 }
 

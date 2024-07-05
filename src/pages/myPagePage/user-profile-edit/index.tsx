@@ -8,9 +8,8 @@ import {
   Loading,
   BoxError,
 } from 'components/index';
-import { useState } from 'react';
-import { useProfileEditQuery } from 'queries/user/useProfileEditQuery';
-import { useChangeProfile } from 'queries/user/useChangeProfileMutation';
+import { useEffect, useState } from 'react';
+import { useChangeProfile, useProfile } from 'service/user/useUserService';
 
 const UserProfileEdit = () => {
   const height = `calc(100svh - var(--header-size))`;
@@ -21,7 +20,11 @@ const UserProfileEdit = () => {
     style: [] as string[],
   });
 
-  const { data: profileEditQuery, status } = useProfileEditQuery(setUserInfo);
+  const { data: profileData, status } = useProfile();
+
+  useEffect(() => {
+    if (profileData) setUserInfo({ ...profileData });
+  }, [profileData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -62,7 +65,7 @@ const UserProfileEdit = () => {
             labelSize={16}
             onChange={handleChange}
           />
-          <ImageInput profileEditQuery={profileEditQuery} />
+          <ImageInput profileEditQuery={profileData} />
           <TagInput
             $padding="20px"
             currentStyle={userInfo.style}

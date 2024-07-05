@@ -2,11 +2,11 @@ import * as S from './style';
 import { ProfileAvatar, ProfileButton, TextLabel } from '../../index';
 import { levelUrlArr } from 'utils/levelUrlArr';
 import { useNavigate } from 'react-router-dom';
-import { MypageUserType } from 'types/userType';
+import { MypageResponse } from 'types/userType';
 import { IoIosArrowForward } from 'react-icons/io';
 
 interface ProfileCardProps {
-  userData: MypageUserType;
+  userData: MypageResponse;
 }
 
 const ProfileCard = ({ userData }: ProfileCardProps) => {

@@ -1,6 +1,6 @@
 import { ProfileCard, ProgressBar } from 'components/index';
 import styled from 'styled-components';
-import { MypageUserType } from 'types/userType';
+import { MypageResponse } from 'types/userType';
 
 export const UserSectionWrapper = styled.div`
   background-color: #fff;
@@ -8,7 +8,7 @@ export const UserSectionWrapper = styled.div`
 `;
 
 interface UserSectionProps {
-  userData: MypageUserType;
+  userData: MypageResponse;
 }
 
 const UserSection = ({ userData }: UserSectionProps) => {

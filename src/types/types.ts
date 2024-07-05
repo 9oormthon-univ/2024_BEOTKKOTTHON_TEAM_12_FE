@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductListItem } from './productType';
+import { ProductItem } from './productType';
 
 export interface TabItemProps {
   label: string;
@@ -9,7 +9,7 @@ export interface TabItemProps {
 
 /**리스트에 필요한 상품 데이터 prop */
 export interface ProductProp {
-  productData: ProductListItem[];
+  productData: ProductItem[];
 }
 
 export interface Seller {

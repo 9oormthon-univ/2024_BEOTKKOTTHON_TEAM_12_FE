@@ -6,14 +6,22 @@ import {
   KebabProductDetail,
 } from 'components/index';
 import { useParams } from 'react-router-dom';
-import { useProductDetailQuery } from 'queries/products/useProductDetailQuery';
 import { GoKebabHorizontal } from 'react-icons/go';
 import { useToggle } from 'hooks/useToggle';
+import { useProductActions } from 'store/product';
+import { useProductDetail } from 'service/product/useProductService';
+import useConditionalUpdate from 'hooks/useConditionalUpdate';
 
 const ProductDetail = () => {
   const { id } = useParams() as { id: string };
-  const { data: productDetailQuery, status } = useProductDetailQuery(id);
+  const { setProduct } = useProductActions();
+  const { data: detailData, status } = useProductDetail(id);
   const [isOpen, togleOpen] = useToggle(false);
+
+  useConditionalUpdate(detailData, setProduct);
+
+  if (status === 'pending') return null;
+  if (status === 'error') return null;
 
   return (
     <>
@@ -21,9 +29,9 @@ const ProductDetail = () => {
         <ButtonBack className="left" />
         <GoKebabHorizontal className="right" onClick={togleOpen} />
       </Header>
-      {productDetailQuery && isOpen && <KebabProductDetail id={id} />}
-      <ContentProductDetail product={productDetailQuery} status={status} />
-      <FooterProductDetail product={productDetailQuery} status={status} />
+      {detailData && isOpen && <KebabProductDetail id={id} />}
+      <ContentProductDetail product={detailData} status={status} />
+      <FooterProductDetail product={detailData} status={status} />
     </>
   );
 };

@@ -4,15 +4,15 @@ import main from 'assets/magazine/quiz_page.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { QUIZ_DATA } from 'constants/shared';
-import { useQuizMutation } from 'queries/magazine/useQuizMutation';
 import { IoShareSocialOutline } from 'react-icons/io5';
 import { useToggle } from 'hooks/useToggle';
+import { useQuiz } from 'service/magazine/useMagazineService';
 
 let totalPoints = 0;
 
 const QuizPage = () => {
   const navigate = useNavigate();
-  const { mutate: quizMutation } = useQuizMutation();
+  const { mutate: quizMutation } = useQuiz();
   const [submitAnswer, setSubmitAnswer] = useState<number[]>([0, 0]);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [isOpenModal, togleOpenModal] = useToggle(false);
