@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
@@ -28,8 +28,12 @@ export async function getInfiniteData<T>(endpoint: string, pageParam: number): P
   return response.data;
 }
 
-export async function postData<T, U>(endpoint: string, data: U): Promise<T> {
-  const response = await instance.post(endpoint, data);
+export async function postData<T, U>(
+  endpoint: string,
+  data: U,
+  config?: AxiosRequestConfig
+): Promise<T> {
+  const response = await instance.post(endpoint, data, config);
   return response.data;
 }
 

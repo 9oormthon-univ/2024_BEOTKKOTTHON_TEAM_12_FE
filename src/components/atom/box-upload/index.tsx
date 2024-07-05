@@ -1,12 +1,13 @@
 import * as S from './style';
-import { useFormDataActions, useShowImages } from 'store/productFormData';
-import { useImgUploadMutation } from 'service/image-upload/useImgUploadMutaion';
+import { useFormDataActions, useProductFormData, useShowImages } from 'store/productFormData';
 import { FaImage } from 'react-icons/fa';
+import { useImageUpload } from 'service/image/useImageService';
 
 const BoxUpload = () => {
   const showImages = useShowImages();
-  const { changeShowImages } = useFormDataActions();
-  const { mutate: ImgUploadMutation } = useImgUploadMutation();
+  const formData = useProductFormData();
+  const { changeShowImages, changeProductFormData } = useFormDataActions();
+  const { mutateAsync: imageMutation } = useImageUpload();
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files as FileList;
@@ -17,7 +18,8 @@ const BoxUpload = () => {
         sendImgData.append('files', files[i]);
       }
 
-      ImgUploadMutation(sendImgData);
+      const imgStr = await imageMutation(sendImgData);
+      changeProductFormData('product_image', [...formData.product_image, ...imgStr]);
 
       const imageLists = files;
       let imageUrlLists = [...showImages];
